@@ -190,7 +190,7 @@ body {
     top: 1.5rem;
     left: calc(119%); /* aligns line with center of dot */
     width: 2px;
-    height: 106.2%;
+    height: 100%;
     background-color: #444;
     z-index: 1;
   }

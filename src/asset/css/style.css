@@ -207,6 +207,20 @@
     transform: scale(1.1);
   }
 
+  /*---- CTA Button styles ----*/
+
+.button-wraper{
+  @apply  relative overflow-hidden isolate  w-fit h-fit
+}
+
+
+.button-wraper::before{
+  @apply absolute top-0  left-0  w-full h-full content-[''] bg-linear-150 from-[#007FCF] to-[#F56B0D] 
+}
+
+.button-cnt{
+@apply relative rounded-[inherit] w-fit h-fit  overflow-hidden bg-black  
+}
   
   
   /* Responsive Design */

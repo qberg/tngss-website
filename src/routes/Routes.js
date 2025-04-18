@@ -12,12 +12,14 @@ import WhyAttendCorporates from '../pages/WhyAttendCorporates';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Speaker />} />
-      <Route path="/speakers-list" element={<Speaker />} />
-      <Route path="/program-details" element={<Program />} />
-      <Route path="/why-attend-startups" element={<WhyAttendStartup />} />
-      <Route path="/why-attend-investors" element={<WhyAttendInvestors/>} />
-      <Route path="/why-attend-corporates" element={<WhyAttendCorporates/>} />
+      {/* <Route path="/tngss-web-app" element={<Speaker />} /> */}
+      {/* <Route path="/tngss-web-app/speakers-list" element={<Speaker />} /> */}
+      <Route path="/tngss-web-app/program-details" element={<Program />} />
+      <Route path="/tngss-web-app/about" element={<Program />} />
+      <Route path="/tngss-web-app/why-attend-tngss" element={<WhyAttendStartup />} />
+      {/* <Route path="/tngss-web-app/why-attend-startups" element={<WhyAttendStartup />} /> */}
+      {/* <Route path="/tngss-web-app/why-attend-investors" element={<WhyAttendInvestors/>} /> */}
+      {/* <Route path="/tngss-web-app/why-attend-corporates" element={<WhyAttendCorporates/>} /> */}
 
       
       
