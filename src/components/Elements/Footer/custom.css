@@ -1,0 +1,12 @@
+@keyframes marking {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-96%);
+    }
+  }
+  
+.animate-marking {
+animation: marking 15s linear infinite;
+}
