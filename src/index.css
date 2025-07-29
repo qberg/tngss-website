@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+@font-face {
+  font-family: 'Urbanist';
+  /* src: url('path/to/urbanist-regular.woff2') format('woff2'),
+       url('path/to/urbanist-regular.woff') format('woff'); */
+  font-weight: 400; /* Or other desired weight */
+  font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+    font-size: 14px;
+
 }
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Urbanist Fallback;
+  overflow-x: hidden;
+  font-size: 14px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+
+.border-gradient-to-r {
+  border: 2px solid; /* Fallback border if border-image fails */
+  border-image: linear-gradient(to right, #0055FF, #F7750C) 1;
+  border-radius: 20px; /* Adjust as needed for the rounded corners */
+  padding: 1.5rem; /* Optional: spacing inside the element */
+  background-color: rgba(0, 0, 0, 0.4); /* Optional: for semi-transparent inner background */
+}
+
+
+
+
+/* section{
+  @apply overflow-x-hidden
+} */

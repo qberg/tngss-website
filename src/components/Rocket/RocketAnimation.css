@@ -1,0 +1,40 @@
+.rocket {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    transform: translate(0, 0) scale(2.5); /* Start top-left and large */
+    animation: flyRocket 4s ease-in-out forwards;
+    z-index: 9999;
+
+  }
+  
+  /* Final fixed position */
+  /* .rocket.fixed {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    animation: none;
+    z-index: 9999;
+  }
+   */
+  /* Circular flight path (top-left → around center → top-center) */
+  @keyframes flyRocket {
+    0% {
+      transform: translate(0px, 0px) scale(6.5);
+      opacity: 1;
+    }
+    25% {
+      transform: translate(200px, 200px) scale(5);
+    }
+    50% {
+      transform: translate(50vw, 50vh) scale(3.5);
+    }
+    75% {
+      transform: translate(60vw, 0px) scale(2.2);
+    }
+    100% {
+      transform: translate(50vw, 20px) scale(1);
+    }
+  }
+  

@@ -1,0 +1,25 @@
+/* Enable perspective for the 3D effect */
+.perspective-midrange {
+    perspective: 1000px; /* Adjust this value for a stronger/weaker 3D effect */
+  }
+  
+  /* Preserve 3D transforms on child elements */
+  .transform-style {
+    transform-style: preserve-3d;
+  }
+  
+  /* Hide the back face during the flip */
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Rotate the back of the card 180 degrees */
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  /* Ensure smooth transitions */
+  .transition-transform {
+    transition: transform 0.7s ease-in-out;
+  }
+  
