@@ -135,7 +135,7 @@ const HeroSection = ({data, className = '' }) => {
         width: "95%"
       }}>
       <img
-        src={`https://cms.tngss.startuptn.in${data?.Major?.url}`||innerImage}
+        src={`https://cms.tngss.startuptn.in${data?.Minor?.url}`||innerImage}
         alt="Digital Abstract"
         className="w-full rounded-2xl"
       />

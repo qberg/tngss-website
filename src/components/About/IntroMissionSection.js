@@ -4,7 +4,7 @@ import introBackground from "../../assets/img/about-sec-pg.png";
 import GradientBdrCard from "../Elements/GradientBorderCard";
 
 const IntroMissionSection = ({data}) => {
-  // console.log(data)
+  console.log(data,"introoo")
   return (
     // <div className="w-full min-h-screen p-8 md:p-16 relative">
     //   <style>{`
@@ -70,15 +70,29 @@ const IntroMissionSection = ({data}) => {
     <div className=" backdrop-blur-sm rounded-xl p-6 md:p-10  min-h-screen">
         {/* Introduction */}
 <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-black mb-4">
-  {data?.features[0].Title || 'Introduction'}
+  {data?.features[0]?.title || 'Introduction'}
 </h2>
 
-   <p className="text-gray-800 mb-3 text-lg md:text-xl"
+   {/* <p className="text-gray-800 mb-3 text-lg md:text-xl"
 
            dangerouslySetInnerHTML={{
              __html: data?.features[0].description.replace(/\n/g, '<br  />') || ''
            }}
-        />
+        /> */}
+
+<p
+  className="text-gray-800 text-lg md:text-xl"
+  dangerouslySetInnerHTML={{
+    __html:
+      data?.features[0]?.description
+        ? `<p class="my-4">${data.features[0]?.description
+            .replace(/\\n\\n/g, '</p><p class="my-4">') // Adds vertical gap
+            .replace(/\\n/g, '<br />')}</p>`
+        : '',
+  }}
+/>
+
+
 
 
         {/* Image and Mission */}
@@ -86,7 +100,7 @@ const IntroMissionSection = ({data}) => {
           {/* Image */}
           <GradientBdrCard className="flex justify-center items-center">
             <img
-              src={`https://cms.tngss.startuptn.in${data?.features[1].Creative?.url}`}
+              src={`https://cms.tngss.startuptn.in${data?.features[0]?.creative?.url}`}
               alt="about"
               className="  flex justify-center items-center  w-full h-auto "
             />
@@ -95,14 +109,27 @@ const IntroMissionSection = ({data}) => {
           {/* Mission */}
           <div className="flex flex-col mt-10 h-full">
            <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-black mb-4">
-  {data?.features[1].Title || 'Mission'}
+  {data?.features[1]?.title || 'Mission'}
 </h2>
 
-          <p className="text-gray-800 mb-3 text-lg md:text-xl"
+          {/* <p className="text-gray-800 mb-3 text-lg md:text-xl"
 
             dangerouslySetInnerHTML={{
-             __html: data?.features[0].description.replace(/\n/g, '<br  />') || ''
-           }}     />
+             __html: data?.features[1]?.description.replace(/\n/g, '<br  />') || ''
+           }}     /> */}
+<p
+  className="text-gray-800 text-lg md:text-xl"
+  dangerouslySetInnerHTML={{
+    __html:
+      data?.features[0]?.description
+        ? `<p class="my-4">${data.features[1]?.description
+            .replace(/\\n\\n/g, '</p><p class="my-4">') // Adds vertical gap
+            .replace(/\\n/g, '<br />')}</p>`
+        : '',
+  }}
+/>
+
+
 
           </div>
         </div>

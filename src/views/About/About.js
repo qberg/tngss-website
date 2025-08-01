@@ -14,20 +14,22 @@ import bgImage from '../../assets/img/image.png';
 const About = () => {
   const [content, setContent] = useState(null);
 
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const response = await fetch(`https://cms.tngss.startuptn.in/api/aboutus?pLevel`); // Replace with your CMS API endpoint
-        const data = await response.json();
-        setContent(data.data);
-        // console.log(content.data)
-      } catch (error) {
-        console.error('Error fetching content:', error);
+useEffect(() => {
+  const fetchContent = async () => {
+    try {
+      const response = await fetch(`https://dev.tngss.startuptn.in/cms-service/v1/about-us/find-all`);
+      const data = await response.json();
+      if (data?.data?.about_us?.length) {
+        setContent(data.data.about_us[0]); // get the first item
       }
-    };
+    } catch (error) {
+      console.error('Error fetching content:', error);
+    }
+  };
 
-    fetchContent();
-  }, []);
+  fetchContent();
+}, []);
+
 
   return (
     <div style={{backgroundColor:'black'}} >
@@ -53,11 +55,11 @@ const About = () => {
   </div>
 </div>
       
-        <IntroMissionSection data={content?.Section1}/>
-        <WhyTamilNaduSection data={content?.Section2}/>
-        <FocusAreasSection data={content?.Section3}/>
-        <KeyFocusSection data={content?.Section4}/>
-        <GetInvolvedSection data={content?.Section5}/>
+        <IntroMissionSection data={content?.section1}/>
+        <WhyTamilNaduSection data={content?.section2}/>
+        <FocusAreasSection data={content?.section3}/>
+        <KeyFocusSection data={content?.section4}/>
+        <GetInvolvedSection data={content?.section5}/>
     </div>
   );
 };

@@ -477,7 +477,7 @@ const KeyFocusSection = ({ data }) => {
   return (
     <section className="relative bg-black text-white py-16 font-urbanist">
       <div className="mx-auto px-4"  style={{ maxWidth: '90rem' }}>
-        <h2 className="text-3xl md:text-6xl font-bold text-center mb-12">{data?.Heading}</h2>
+        <h2 className="text-3xl md:text-6xl font-bold text-center mb-12">{data?.heading}</h2>
 
         <div className="relative px-12 sm:px-16 md:px-20">
           {/* Navigation Arrows - Responsive positioning */}

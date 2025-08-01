@@ -11,10 +11,12 @@ const WhyAttend = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // http://192.168.1.15:8004/cms-service/v1/about-us/find-all
+      // https://cms.tngss.startuptn.in/api/whyattend-startup?pLevel
       try {
-        const response = await fetch(`https://cms.tngss.startuptn.in/api/whyattend-startup?pLevel`); // Replace with your actual endpoint
+        const response = await fetch(` https://dev.tngss.startuptn.in/cms-service/v1/whyattend/find-all`); // Replace with your actual endpoint
         const result = await response.json();
-        setData(result.data); // Assuming the data structure has a 'data' field
+        setData(result.data.why_attend[0]); // Assuming the data structure has a 'data' field
       } catch (error) {
         console.error('Error fetching data:', error);
       }

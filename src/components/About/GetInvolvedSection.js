@@ -103,7 +103,7 @@ const GetInvolvedSection = ({ data }) => {
               }}
             /> */}
 
-            {data?.Heading?.split("\\n").map((line, idx) => (
+            {data?.heading?.split("\\n").map((line, idx) => (
   <h2
     key={idx}
     className="text-5xl sm:text-6xl md:text-7xl lg:text-[72px] leading-[1.2] mb-3 font-semibold"

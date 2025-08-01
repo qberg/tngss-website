@@ -85,7 +85,7 @@ const WhyTamilNaduSection = ({data}) => {
           {/* Text Content */}
           <div>
          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-  {data?.Title}
+  {data?.title}
 </h2>
 
 <p className="text-base md:text-lg lg:text-xl leading-relaxed">
