@@ -16,6 +16,7 @@ const About = () => {
 
 useEffect(() => {
   const fetchContent = async () => {
+    //  https://cms.tngss.startuptn.in/api/whyattend-startup?pLevel
     try {
       const response = await fetch(`https://dev.tngss.startuptn.in/cms-service/v1/about-us/find-all`);
       const data = await response.json();
