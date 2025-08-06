@@ -11,9 +11,11 @@ import {
   Speakers,
   Faq,
   Program,
-} from '../views' // Assuming you have a layout component
+} from '../views'
 
 const AppRoutes = () => {
+  const showAllRoutes = false
+
   return (
     <Routes>
       <Route
@@ -22,29 +24,34 @@ const AppRoutes = () => {
       />
       <Route path='/home' element={<RouteWithLayout component={Home} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
-      <Route
-        path='/why-attend'
-        element={<RouteWithLayout component={WhyAttend} />}
-      />
-      <Route
-        path='/speakers'
-        element={<RouteWithLayout component={Speakers} />}
-      />
 
-      <Route
-        path='/program'
-        element={<RouteWithLayout component={Program} />}
-      />
-      <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
-      <Route
-        path='/privacy-policy'
-        element={<RouteWithLayout component={PrivacyPolicy} />}
-      />
-      <Route
-        path='/terms-and-condition'
-        element={<RouteWithLayout component={TermsandCondition} />}
-      />
-      <Route path='/' element={<Navigate to='/home' />} />
+      {showAllRoutes && (
+        <>
+          <Route
+            path='/why-attend'
+            element={<RouteWithLayout component={WhyAttend} />}
+          />
+          <Route
+            path='/speakers'
+            element={<RouteWithLayout component={Speakers} />}
+          />
+
+          <Route
+            path='/program'
+            element={<RouteWithLayout component={Program} />}
+          />
+          <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
+          <Route
+            path='/privacy-policy'
+            element={<RouteWithLayout component={PrivacyPolicy} />}
+          />
+          <Route
+            path='/terms-and-condition'
+            element={<RouteWithLayout component={TermsandCondition} />}
+          />
+          <Route path='/' element={<Navigate to='/home' />} />
+        </>
+      )}
     </Routes>
   )
 }
