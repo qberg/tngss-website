@@ -1,8 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
-import logo from '../../assets/Nav_logo.png'
-import NavBar from '../../components/Elements/NavBar'
-import Footer from '../../components/Elements/Footer/Footer'
-import HeroSection from '../../components/About/HeroSection'
+import React from 'react'
 import IntroMissionSection from '../../components/About/IntroMissionSection'
 import FocusAreasSection from '../../components/About/FocusAreasSection'
 import WhyTamilNaduSection from '../../components/About/WhyTamilNaduSection'
@@ -16,11 +12,7 @@ const About = () => {
   const { data, loading, error, refresh } = useAboutData()
 
   if (loading) {
-    return (
-      <div className='min-h-screen bg-black flex items-center justify-center'>
-        <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600'></div>
-      </div>
-    )
+    return null
   }
 
   if (error) {
