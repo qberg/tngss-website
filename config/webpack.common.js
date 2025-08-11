@@ -65,7 +65,7 @@ module.exports = {
           'css-loader',
           // 'sass-loader',
           {
-            loader: 'postcss-loader', 
+            loader: 'postcss-loader',
             options: {
               postcssOptions: {
                 ident: 'postcss',
@@ -81,12 +81,12 @@ module.exports = {
         oneOf: [
           {
             resourceQuery: /url/, // for `import icon from './icon.svg?url'`
-            type: 'asset/resource'
+            type: 'asset/resource',
           },
           {
-            use: ['@svgr/webpack'] // default: use as React component
-          }
-        ]
+            use: ['@svgr/webpack'], // default: use as React component
+          },
+        ],
       },
 
       // Images: Copy image files to build folder
@@ -96,36 +96,4 @@ module.exports = {
       { test: /\.(woff(2)?|eot|ttf|otf|)$/, type: 'asset/inline' },
     ],
   },
-//   module: {
-//     rules: [
-//         {
-//             test: /\.(css|scss|sass)$/,
-//             use: [
-//                 MiniCssExtractPlugin.loader,
-//                 'css-loader',
-//                 {
-//                     loader: 'postcss-loader',
-//                     options: {
-//                         postcssOptions: {
-//                             ident: 'postcss',
-//                             plugins: [require('tailwindcss'), require('autoprefixer')],
-//                         },
-//                     },
-//                 },
-//             ],
-//         },
-       
-//       {
-//         test: /\.svg$/,
-//         use: ['@svgr/webpack'],
-//       },
-
-//       // Images: Copy image files to build folder
-//       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
-
-//       // Fonts and SVGs: Inline files
-//       { test: /\.(woff(2)?|eot|ttf|otf|)$/, type: 'asset/inline' },
-//     ],
-// },
-
 }

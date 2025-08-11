@@ -56,7 +56,7 @@
 
 .button-cnt {
   background-color: var(--color-black);
-  width: fit-content;
+  width: auto;
   height: fit-content;
   position: relative;
   overflow: hidden;
@@ -65,7 +65,7 @@
 
 .button-cnt:hover {
   background-image: linear-gradient(150deg, #007fcf, #f56b0d);
-  width: fit-content;
+  width: auto;
   height: fit-content;
   position: relative;
   overflow: hidden;

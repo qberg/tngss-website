@@ -1,24 +1,52 @@
 import React from 'react'
 import CM from '../../../assets/CM.png'
 import CMbg from '../../../assets/CMbg.svg?url'
+import { motion, useTransform } from 'motion/react'
 
-export default function CMSection() {
+export default function CMSection({ scrollYProgress }) {
+  const wholeScale = useTransform(
+    scrollYProgress,
+    [0, 0.19, 0.38, 0.5, 0.7, 1],
+    [0.8, 0.8, 1, 1, 1, 0.6]
+  )
+
+  const wholeY = useTransform(
+    scrollYProgress,
+    [0.6, 0.65, 0.65, 0.7],
+    [0, -40, -120, -160]
+  )
+
+  const borderRadius = useTransform(
+    scrollYProgress,
+    [0, 0.19, 0.39, 0.45],
+    ['1.25rem', '1.25rem', '0rem', '0rem']
+  )
+
+  const innerBorderRadius = useTransform(
+    scrollYProgress,
+    [0, 0.19, 0.38],
+    ['1.5rem', '1.5rem', '0.75rem']
+  )
+
   return (
-    <div
+    <motion.div
       style={{
         background:
           'linear-gradient(148.59deg, #0055FF 2.92%, #07BCCE 23.28%, #F7750C 80.11%, #FF0000 97.63%)',
-        borderRadius: '0.75rem',
+        borderRadius: borderRadius,
+        scale: wholeScale,
+        transformOrigin: 'top center',
+        y: wholeY,
       }}
-      className=' sticky top-0  overflow-hidden  w-full h-screen z-10 p-2 '
+      className='sticky top-0 overflow-hidden w-full h-screen z-10 p-2'
     >
       <section
-        className=' cm-cont h-full w-full bg-white z-20 flex  flex-col-reverse md:flex-row rounded items-center justify-end md:justify-center overflow-hidden text-black px-4 will-change-transform '
+        className='cm-cont h-full w-full bg-white z-20 flex  flex-col-reverse md:flex-row rounded items-center justify-end md:justify-center overflow-hidden text-black px-4 will-change-transform'
         style={{
           backgroundImage: `url(${CMbg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          borderRadius: '0.75rem',
+          borderRadius: innerBorderRadius,
         }}
       >
         {/* Text Section */}
@@ -51,6 +79,6 @@ export default function CMSection() {
           />
         </div>
       </section>
-    </div>
+    </motion.div>
   )
 }

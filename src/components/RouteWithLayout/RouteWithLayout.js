@@ -1,29 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import NavBar from '../Elements/NavBar';
-import Footer from '../Elements/Footer/Footer';
-import { ReactLenis, useLenis } from 'lenis/react'
+import React from 'react'
+import PropTypes from 'prop-types'
+import NavBar from '../Elements/NavBar'
+import Footer from '../Elements/Footer/Footer'
+import { ReactLenis } from 'lenis/react'
 
-const RouteWithLayout = ({  component: Component }) => {
-
-  const lenis = useLenis((lenis) => {
-    // called every scroll
-    // console.log(lenis)
-  })
-
+const RouteWithLayout = ({ component: Component }) => {
   return (
     <>
-     <ReactLenis lerp={2} root />
-    <NavBar/>
-    <Component />
-    <Footer/>
+      <ReactLenis
+        root
+        options={{
+          lerp: 0.1,
+          duration: 1.2,
+          smoothWheel: true,
+          smoothTouch: false,
+        }}
+      />
+      <NavBar />
+      <Component />
+      <Footer />
     </>
-  );
-};
+  )
+}
 
 RouteWithLayout.propTypes = {
   component: PropTypes.elementType.isRequired,
-  path: PropTypes.string
-};
+  path: PropTypes.string,
+}
 
-export default RouteWithLayout;
+export default RouteWithLayout

@@ -12,6 +12,7 @@ import {
   Faq,
   Program,
 } from '../views'
+import NewHome from '../views/New'
 
 const AppRoutes = () => {
   const showAllRoutes = false
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       />
       <Route path='/home' element={<RouteWithLayout component={Home} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
+      <Route path='/new' element={<RouteWithLayout component={NewHome} />} />
 
       {showAllRoutes && (
         <>

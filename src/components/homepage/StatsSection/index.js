@@ -1,12 +1,12 @@
 'use client'
 
-import { useRef } from 'react'
-import useStackingAnimation from '../../../hooks/useStackingAnimation'
+import { useMemo, useRef } from 'react'
 import useCounterAnimation from '../../../hooks/useCounterAnimation'
 import '../../Elements/custom.css'
 import BG from '../../../assets/statsbg.svg?url'
+import { motion, useTransform } from 'motion/react'
 
-export default function StatsSection({ className = '' }) {
+export default function StatsSection({ scrollYProgress }) {
   const contentRef = useRef(null)
   const counterRefs = [
     useRef(null),
@@ -23,22 +23,23 @@ export default function StatsSection({ className = '' }) {
     useRef(null),
   ]
 
-  useStackingAnimation(contentRef)
-
-  const data = [
-    { count: 50, tag: 'Global Startups Stakeholders' },
-    { count: 30000, tag: 'Attendees' },
-    { count: 50, tag: 'Showcasing Power Brands Of TN' },
-    { count: 150, tag: 'International & National Speakers' },
-    { count: 750, tag: 'Stalls' },
-    { count: 75, tag: 'Incubations Participation' },
-    { count: 10, tag: 'Unicorns/ Soonicorns' },
-    { count: 100, tag: 'Investors Participation' },
-    { count: 150, tag: 'Student Startups Showcasing' },
-    { count: 100, tag: 'Investment Commitment', suffix: 'Crore' },
-    { count: 500, tag: 'Speed Meetings With Investors/ Mentors' },
-    { count: 100, tag: 'Partner Events' },
-  ]
+  const data = useMemo(
+    () => [
+      { count: 50, tag: 'Global Startups Stakeholders' },
+      { count: 30000, tag: 'Attendees' },
+      { count: 50, tag: 'Showcasing Power Brands Of TN' },
+      { count: 150, tag: 'International & National Speakers' },
+      { count: 750, tag: 'Stalls' },
+      { count: 75, tag: 'Incubations Participation' },
+      { count: 10, tag: 'Unicorns/ Soonicorns' },
+      { count: 100, tag: 'Investors Participation' },
+      { count: 150, tag: 'Student Startups Showcasing' },
+      { count: 100, tag: 'Investment Commitment', suffix: 'Crore' },
+      { count: 500, tag: 'Speed Meetings With Investors/ Mentors' },
+      { count: 100, tag: 'Partner Events' },
+    ],
+    []
+  )
 
   useCounterAnimation(
     data.map((item, index) => ({
@@ -48,15 +49,24 @@ export default function StatsSection({ className = '' }) {
     }))
   )
 
+  const wholeScale = useTransform(
+    scrollYProgress,
+    [0.4, 0.5, 0.75, 0.95, 1],
+    [0.8, 1, 1, 0.85, 0.8]
+  )
+
   return (
-    <section
+    <motion.section
       ref={contentRef}
       style={{
         background:
           'linear-gradient(148.59deg, #0055FF 2.92%, #07BCCE 23.28%, #F7750C 80.11%, #FF0000 97.63%)',
         borderRadius: '0.75rem',
+        scale: wholeScale,
+        willChange: 'transform',
+        transformOrigin: 'bottom center',
       }}
-      className={`overflow-hidden sticky top-0 w-full  lg:h-screen z-10 p-2 my-24 ${className}`}
+      className={`overflow-hidden sticky top-0 w-full  lg:h-screen z-10 p-2 my-24`}
       id='stats-section'
     >
       <div
@@ -103,6 +113,6 @@ export default function StatsSection({ className = '' }) {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
