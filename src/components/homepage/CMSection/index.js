@@ -6,7 +6,7 @@ import { motion, useTransform } from 'motion/react'
 export default function CMSection({ scrollYProgress }) {
   const wholeScale = useTransform(
     scrollYProgress,
-    [0, 0.19, 0.38, 0.5, 0.7, 1],
+    [0, 0.19, 0.35, 0.5, 0.7, 1],
     [0.8, 0.8, 1, 1, 1, 0.6]
   )
 

@@ -4,10 +4,7 @@ import lottie from 'lottie-web'
 
 import loadingAnimation from '../../assets/preloader.json'
 import mobileAnimation from '../../assets/mobile_anim.json'
-import logo from '../../assets/Nav_logo.png'
 
-import NavBar from '../../components/Elements/NavBar'
-import Footer from '../../components/Elements/Footer/Footer'
 import StackingSections from '../../components/Homepage/FirstSections/StackingSections'
 import PreFooter from '../../components/Homepage/Prefooter/PreFooter'
 import CurtainSection from '../../components/Homepage/CurtainSection/CurtainSection'

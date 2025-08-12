@@ -15,7 +15,7 @@ const reasons = [
   { number: 5, text: 'Build Strategic Partnerships' },
 ]
 
-const WhyAttend = () => {
+const WhyAttendSection = () => {
   const outerRef = useRef(null)
   const containerRef = useRef(null)
   const cardsRef = useRef(null)
@@ -64,15 +64,17 @@ const WhyAttend = () => {
     [600, -(scrollWidth - containerWidth) - 300]
   )
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    console.log('Page scroll: ', latest)
-  })
+  const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 1])
 
   return (
     <motion.div
-      className='relative w-full'
+      className='relative w-full bg-black'
       ref={outerRef}
-      style={{ height: scrollHeight }}
+      style={{
+        height: scrollHeight,
+        opacity: opacity,
+        willChange: 'transform',
+      }}
     >
       <motion.div
         style={{
@@ -86,7 +88,7 @@ const WhyAttend = () => {
       />
 
       <div
-        className='h-screen flex flex-col justify-center items-center md:gap-28 xl:gap-44 2xl:gap-60 3xl:gap-72 overflow-hidden'
+        className='h-screen flex flex-col justify-center items-center md:gap-28 xl:gap-44 2xl:gap-60 overflow-hidden'
         style={{
           position: 'sticky',
           top: 0,
@@ -94,7 +96,7 @@ const WhyAttend = () => {
       >
         <div className='relative h-fit w-full z-10'>
           <div className='w-full text-center'>
-            <motion.h2
+            <motion.h1
               style={{
                 opacity: headingOpacity,
                 y: headerY,
@@ -103,7 +105,7 @@ const WhyAttend = () => {
               className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-attend mt-10'
             >
               Why Attend
-            </motion.h2>
+            </motion.h1>
           </div>
         </div>
 
@@ -144,4 +146,4 @@ const WhyAttendCard = ({ number, text, className }) => {
   )
 }
 
-export default WhyAttend
+export default WhyAttendSection

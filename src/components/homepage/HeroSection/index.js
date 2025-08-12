@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import Herobg from '../../../assets/herobg.svg?url'
 import pin from '../../../assets/locationpin.svg?url'
 import logo from '../../../assets/Nav_logo.png'
@@ -41,14 +40,16 @@ const HeroSection = ({ scrollYProgress }) => {
   )
 
   const wholeOpacity = useTransform(scrollYProgress, [0.6, 0.7], [1, 0])
+  const wholeScale = useTransform(scrollYProgress, [0.6, 0.7], [1, 0.6])
 
   return (
     <motion.section
       id='hero-section'
-      className='relative flex flex-col justify-center items-center h-screen bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
+      className='bg-transparent flex flex-col justify-center items-center h-screen bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
       style={{
         backgroundImage: `url(${Herobg})`,
         opacity: wholeOpacity,
+        scale: wholeScale,
         willChange: 'transform',
       }}
       initial='hidden'
