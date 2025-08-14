@@ -1,8 +1,8 @@
 import { useRef } from 'react'
-import ParallelScroll from './ParallelScroll'
 import { useDoomScroll } from '../../../hooks/useDoomScroll'
+import ParallelScroll from '../../Homepage/Prefooter/ParallelScroll'
 
-export default function PreFooter() {
+export default function SegmentsSection() {
   const circleRef = useRef(null)
   const mainRef = useRef(null)
   const headingRef = useRef(null)
@@ -12,7 +12,7 @@ export default function PreFooter() {
     <div className=' overflow-x-clip relative w-full '>
       <p
         ref={headingRef}
-        className='text-black flex relative ml-2 w-full  md:sticky   md:justify-center items-center pt-9 md:pt-0  z-10 md:top-40 text-4xl md:h-[60vh]  h-60 md:text-center md:text-8xl font-bold md:mb-36 md-10 '
+        className=' text-black flex relative ml-2 w-full  md:sticky   md:justify-center items-center pt-9 md:pt-0  z-10 md:top-40 text-4xl md:h-[60vh]  h-60 md:text-center md:text-8xl font-bold md:mb-36 md-10 '
       >
         Key Highlights
       </p>
@@ -31,4 +31,3 @@ export default function PreFooter() {
     </div>
   )
 }
-

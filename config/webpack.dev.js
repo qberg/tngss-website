@@ -19,6 +19,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 3001,
+    allowedHosts: ['.ngrok-free.app'],
   },
 
   module: {

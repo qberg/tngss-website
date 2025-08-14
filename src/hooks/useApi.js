@@ -73,3 +73,9 @@ export const useAboutData = () => {
     defaultValue: {},
   })
 }
+
+export const useSpeakersData = () => {
+  return useApiData('/api/speakers', {
+    defaultValue: {},
+  })
+}

@@ -6,13 +6,35 @@ import {
   useTransform,
 } from 'motion/react'
 import StaggeredCard from '../../../motion/StaggerCard'
+import CTAButton from '../../Elements/CTAButton'
 
 const reasons = [
-  { number: 1, text: 'Network with 1000+ Global Innovators' },
-  { number: 2, text: 'Access ₹500Cr+ Investment Pool' },
-  { number: 3, text: 'Learn from 50+ Industry Leaders' },
-  { number: 4, text: 'Showcase to International VCs' },
-  { number: 5, text: 'Build Strategic Partnerships' },
+  {
+    number: 1,
+    title: 'Startups',
+    text: 'Starting, building, or scaling your Startup? The Tamil Nadu Global Startup Summit 2025 is your launchpad to success.',
+  },
+
+  {
+    number: 2,
+    title: 'Investors',
+    text: ' Discover high-potential startups and game-changing innovations at Tamil Nadu Global Startup Summit 2025.',
+  },
+  {
+    number: 3,
+    title: 'Aspirants',
+    text: "Whether you're a student, aspiring entrepreneur, or young innovator, this is your chance to gain knowledge, find opportunities, and take the first step toward building something extraordinary.",
+  },
+  {
+    number: 4,
+    title: 'Corporates',
+    text: 'Explore emerging innovations, engage with future-ready startups and collaborate for strategic growth opportunities.',
+  },
+  {
+    title: 'Ecosystem Enablers',
+    number: 5,
+    text: ' Connect with global stakeholders, discover high-impact startups, and collaborate to strengthen the innovation ecosystem.',
+  },
 ]
 
 const WhyAttendSection = () => {
@@ -50,6 +72,7 @@ const WhyAttendSection = () => {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.5, 0.7], [1, 1, 0])
   const headerY = useTransform(scrollYProgress, [0, 0.5, 0.7], [0, 0, -160])
+  const buttonY = useTransform(scrollYProgress, [0, 0.5, 0.7], [0, 0, -80])
 
   const gradientOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.2])
   const gradientBlur = useTransform(
@@ -88,14 +111,14 @@ const WhyAttendSection = () => {
       />
 
       <div
-        className='h-screen flex flex-col justify-center items-center md:gap-28 xl:gap-44 2xl:gap-60 overflow-hidden'
+        className='h-screen flex flex-col justify-center items-center md:gap-20 2xl:gap-48 overflow-hidden'
         style={{
           position: 'sticky',
           top: 0,
         }}
       >
         <div className='relative h-fit w-full z-10'>
-          <div className='w-full text-center'>
+          <div className='w-full text-center flex flex-col gap-2 2xl:gap-4 items-center justify-center'>
             <motion.h1
               style={{
                 opacity: headingOpacity,
@@ -106,6 +129,23 @@ const WhyAttendSection = () => {
             >
               Why Attend
             </motion.h1>
+
+            <motion.div
+              style={{
+                opacity: headingOpacity,
+                y: buttonY,
+                willChange: 'transform',
+              }}
+            >
+              <CTAButton
+                src='/why-attend'
+                className='rounded-2xl w-full md:w-auto mt-5'
+              >
+                <div className='w-60 h-12 px-6 flex items-center justify-center md:justify-center text-lg md:text-xl '>
+                  Know More
+                </div>
+              </CTAButton>
+            </motion.div>
           </div>
         </div>
 
@@ -120,6 +160,7 @@ const WhyAttendSection = () => {
                 <WhyAttendCard
                   key={index}
                   number={reason.number}
+                  title={reason.title}
                   text={reason.text}
                 />
               </StaggeredCard>
@@ -131,17 +172,27 @@ const WhyAttendSection = () => {
   )
 }
 
-const WhyAttendCard = ({ number, text, className }) => {
+const WhyAttendCard = ({ number, title, text, className }) => {
   return (
     <div
-      className={`flex flex-col justify-between p-6 border border-white/20 border-solid bg-black/15 backdrop-blur-sm rounded-lg aspect-square w-40 md:w-80 md:h-80 2xl:w-96 2xl:h-96 flex-shrink-0 ${className}`}
+      className='p-1 rounded-lg overflow-hidden'
+      style={{
+        background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
+      }}
     >
-      <p className='text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-bold gradient-text leading-tight mb-1'>
-        {number.toString().padStart(2, '0')}
-      </p>
-      <p className='text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold uppercase leading-tight text-white/90'>
-        {text}
-      </p>
+      <div
+        className={`flex flex-col justify-between p-6 border-solid bg-black backdrop-blur-sm rounded-lg aspect-square w-40 md:w-80 md:h-80 2xl:w-96 2xl:h-96 flex-shrink-0 ${className}`}
+      >
+        <div className='leading-tight mb-1'>
+          <p className='font-semibold text-lg sm:text-xl md:text-2xl lg:text-2xl 2xl:text-4xl text-blue-400'></p>
+          <p className='text-xl sm:text-2xl md:text-3xl lg:text-3xl 2xl:text-6xl font-bold gradient-text leading-tight mb-1'>
+            {title}
+          </p>
+        </div>
+        <p className='text-white opacity-90 text-[8px] sm:text-xs md:text-sm lg:text-base 2xl:text-lg leading-tight'>
+          {text}
+        </p>
+      </div>
     </div>
   )
 }

@@ -18,29 +18,47 @@ const EVENT_CONFIG = {
   registrationUrl: 'https://event.startuptn.in/',
 }
 
-const HeroSection = ({ scrollYProgress }) => {
-  const videoOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.25, 0.6, 0.8],
-    [0.6, 0.6, 0.3, 0.1, 0]
-  )
-  const yEvents = useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 400])
-  const yCta = useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 600])
-  const subOpacity = useTransform(scrollYProgress, [0, 0.1, 0.25], [1, 1, 0])
-  const logoScale = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.25, 0.3],
-    [1, 1, 0.8, 0.75]
-  )
+const HeroSection = ({ scrollYProgress, isMobile }) => {
+  const videoOpacity =
+    !isMobile && scrollYProgress
+      ? useTransform(
+          scrollYProgress,
+          [0, 0.1, 0.25, 0.6, 0.8],
+          [0.4, 0.4, 0.1, 0.05, 0]
+        )
+      : 0.4
 
-  const logoY = useTransform(
-    scrollYProgress,
-    [0.2, 0.25, 0.3, 0.35, 0.4],
-    [0, 20, 50, 60, 65]
-  )
+  const yEvents = !isMobile
+    ? useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 400])
+    : 0
 
-  const wholeOpacity = useTransform(scrollYProgress, [0.6, 0.7], [1, 0])
-  const wholeScale = useTransform(scrollYProgress, [0.6, 0.7], [1, 0.6])
+  const yCta = !isMobile
+    ? useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 600])
+    : 0
+
+  const subOpacity = !isMobile
+    ? useTransform(scrollYProgress, [0, 0.1, 0.25], [1, 1, 0])
+    : 1
+
+  const logoScale = !isMobile
+    ? useTransform(scrollYProgress, [0, 0.1, 0.25, 0.3], [1, 1, 0.8, 0.75])
+    : 1
+
+  const logoY = !isMobile
+    ? useTransform(
+        scrollYProgress,
+        [0.2, 0.25, 0.3, 0.35, 0.4],
+        [0, 20, 50, 60, 65]
+      )
+    : 1
+
+  const wholeOpacity = !isMobile
+    ? useTransform(scrollYProgress, [0.6, 0.7], [1, 0])
+    : 1
+
+  const wholeScale = !isMobile
+    ? useTransform(scrollYProgress, [0.6, 0.7], [1, 0.6])
+    : 1
 
   return (
     <motion.section
@@ -50,7 +68,7 @@ const HeroSection = ({ scrollYProgress }) => {
         backgroundImage: `url(${Herobg})`,
         opacity: wholeOpacity,
         scale: wholeScale,
-        willChange: 'transform',
+        willChange: isMobile ? 'auto' : 'transform',
       }}
       initial='hidden'
       animate='visible'
@@ -127,8 +145,8 @@ const CallToAction = () => (
       qrCodeUrl='https://apps.apple.com/in/app/tngss/id6744852527'
       icon={<Download size={16} />}
     >
-      <div className='flex items-center justify-center md:px-3 md:px-5 2xl:px-4 2xl:py-6 w-full h-10'>
-        <span>App Store</span>
+      <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
+        <span className='text-2xl'>App Store</span>
       </div>
     </AppCTAButton>
 
@@ -137,8 +155,8 @@ const CallToAction = () => (
       qrCodeUrl='https://play.google.com/store/apps/details?id=in.tngss.app'
       icon={<Download size={16} />}
     >
-      <div className='flex items-center justify-center md:px-3 md:px-5  2xl:px-4 2xl:py-6 w-full h-10'>
-        <span>Play Store</span>
+      <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>
+        <span className='text-2xl'>Play Store</span>
       </div>
     </AppCTAButton>
   </div>
