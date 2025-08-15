@@ -47,6 +47,7 @@ export default function ShowcaseSection() {
       </div>
 
       {/* Background Image */}
+
       <img
         alt=''
         src={bg}
@@ -118,4 +119,3 @@ export default function ShowcaseSection() {
     </section>
   )
 }
-

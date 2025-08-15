@@ -11,30 +11,27 @@ import innovation from '../../../assets/segments/innovation.png'
 import globalMarket from '../../../assets/segments/globalMarket.png'
 import sustainability from '../../../assets/segments/sustainability.png'
 
+import bg1 from '../../../assets/ke0.jpeg'
+import bg2 from '../../../assets/ke1.jpg'
+import bg3 from '../../../assets/ke2.jpg'
+import bg4 from '../../../assets/ke3.jpg'
+
 const segments = [
   {
-    title: 'Innovation & Technology',
-    bgImage: innovation,
+    title: 'Elite Investor & Founder Networking Hub',
+    bgImage: bg1,
   },
   {
-    title: 'Global Markets & Expansion',
-    bgImage: globalMarket,
+    title: 'Connect & Collaborate at the Pavilion',
+    bgImage: bg2,
   },
   {
-    title: 'Sustainability & Impact',
-    bgImage: sustainability,
+    title: 'Startup Accelerator Bootcamp',
+    bgImage: bg3,
   },
   {
-    title: 'Startup Growth & Funding',
-    bgImage: startUp,
-  },
-  {
-    title: 'Innovation & Technology',
-    bgImage: innovation,
-  },
-  {
-    title: 'Global Markets & Expansion',
-    bgImage: globalMarket,
+    title: 'Startup Showcase & Thought Leadership Stages',
+    bgImage: bg4,
   },
 ]
 
@@ -73,7 +70,7 @@ const CircleRevealSection = () => {
   const circleScale = useTransform(
     scrollYProgress,
     [0, 1],
-    [0.25, isMobile ? 0.4 : 10]
+    [0.25, isMobile ? 0.4 : 8]
   )
 
   const cardsX = useTransform(
@@ -97,7 +94,7 @@ const CircleRevealSection = () => {
 
   return (
     <motion.section
-      className='overflow-x-clip relative w-full z-20'
+      className='overflow-x-clip relative w-full z-10'
       ref={mainRef}
       style={{
         height: scrollHeight,
@@ -106,7 +103,7 @@ const CircleRevealSection = () => {
       {/*circle that expands*/}
       <motion.div
         className='absolute top-0 left-1/4 justify-center flex items-center will-change-transform bg-white rounded-full'
-        style={{ scale: circleScale, width: '85vh', height: '85vh' }}
+        style={{ scale: circleScale, width: '90vh', height: '90vh' }}
       />
 
       <div
@@ -120,7 +117,7 @@ const CircleRevealSection = () => {
           className='text-black text-4xl md:text-8xl font-bold'
           style={{ y: headerY, opacity: headerOpacity }}
         >
-          6 Segment Series
+          Key Highlights
         </motion.h1>
 
         <motion.div
@@ -164,7 +161,13 @@ const SegmentCard = ({ segment }) => {
         ) : (
           <div className='absolute inset-0 bg-gray-900' />
         )}
-        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10' />
+        <div
+          className='absolute inset-0 z-10'
+          style={{
+            background:
+              'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
+          }}
+        />
         <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
           <h4 className='text-xl sm:text-xl font-bold mb-1'>{segment.title}</h4>
         </div>

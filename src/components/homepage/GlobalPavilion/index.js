@@ -28,37 +28,40 @@ const flags = [
 ]
 
 const content = {
-  title: 'The World Of Innovation',
+  title: 'Global Pavilion',
   description:
     'A vibrant showcase of startups, scale-ups, and ecosystem leaders from across continents. Explore groundbreaking products, discover emerging market trends, and connect with global innovators shaping the future. Whether youre seeking partnerships, investment opportunities, or fresh ideas, the Global Pavilion is your gateway to international collaboration and cross-border growth.',
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
+const FlagMarquee = () => {
+  const duplicatedFlags = [...flags, ...flags] // Duplicate for seamless loop
 
-const flagVariants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
+  return (
+    <div className='overflow-hidden whitespace-nowrap w-full'>
+      <motion.div
+        className='flex gap-12 items-center'
+        animate={{
+          x: ['0%', '-50%'],
+        }}
+        transition={{
+          duration: 30,
+          ease: 'linear',
+          repeat: Infinity,
+        }}
+        style={{ width: 'max-content' }}
+      >
+        {duplicatedFlags.map((flag, index) => (
+          <div key={`${flag.id}-${index}`} className='flex-shrink-0'>
+            <img
+              src={flag.flag}
+              alt={flag.alt}
+              className='w-24 h-16 md:w-32 md:h-20 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  )
 }
 
 const GlobalPavilion = ({ shouldAnimate = false }) => {
@@ -69,56 +72,16 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
         src={bg}
         className='absolute inset-0 object-cover object-center w-full h-full -z-10'
       />
-      <h1 className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-attend mt-10'>
-        Global Pavilion
+      <h1 className='text-white will-change-transform text-6xl md:text-9xl 2xl:text-13xl mix-blend-lighten gradient-text-attend mt-10'>
+        {content.title}
       </h1>
-      <div className='w-full flex flex-col md:flex-row md:justify-center gap-4 md:gap-6 xl:gap-8 2xl:gap-16 px-4 md:px-20 2xl:px-32'>
-        {/*flags*/}
-        <div className='flex-2 order-2 md:order-1'>
-          <motion.div
-            className='grid grid-cols-3 sm:grid-cols-4 2xl:grid-cols-5 gap-4 2xl:gap-x-8 2xl:gap-y-12'
-            variants={containerVariants}
-            initial='hidden'
-            animate={shouldAnimate ? 'visible' : 'hidden'}
-          >
-            {flags.map((flagData) => (
-              <motion.div
-                key={flagData.id}
-                className='p-1 2xl:p-2 md:rounded-xl 2xl:rounded-2xl overflow-hidden'
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                  willChange: 'transform',
-                }}
-                variants={flagVariants}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-              >
-                <div className='group relative aspect-flag md:rounded-xl 2xl:rounded-2xl overflow-hidden'>
-                  <img
-                    src={flagData.flag}
-                    alt={flagData.alt}
-                    className='w-full h-full object-cover object-center'
-                    loading='lazy'
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-        {/*content*/}
-        <motion.div
-          className='flex-1 order-1 md:order-2 flex flex-col items-start justify-center gap-2 md:gap-4'
-          initial={{ opacity: 0, x: -30 }}
-          animate={
-            shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
-          }
-          style={{ willChange: 'transform' }}
-        >
-          <h3 className='text-6xl text-left'>{content.title}</h3>
-          <p className='text-lg leading-relaxed'>{content.description}</p>
-        </motion.div>
+      <p className='w-6/12 text-2xl text-white text-center'>
+        {content.description}
+      </p>
+
+      {/* Single row infinite marquee scroll of flags */}
+      <div className='w-full mt-8'>
+        <FlagMarquee />
       </div>
     </section>
   )

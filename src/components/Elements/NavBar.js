@@ -39,11 +39,12 @@ export default function NavBar() {
   }, [isVisible, controls])
 
   const menuItems = [
+    { name: 'Home', link: '/new' },
     { name: 'About', link: '/about' },
-    //{ name: 'Why Attend', link: '/why-attend' },
-    // { name: 'Speakers', link: '/speakers' },
+    { name: 'Why Attend', link: '/why-attend' },
+    { name: 'Speakers', link: '/speakers' },
     // { name: 'Programs', link: '/program' },
-    //{ name: 'FAQ', link: '/faq' },
+    { name: 'FAQ', link: '/faq' },
   ]
 
   const toggleMenu = () => {

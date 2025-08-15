@@ -25,7 +25,6 @@ const Speakers = () => {
 
   const fetchSpeakers = async (filter = 'all') => {
     try {
-      // let query = "https://dev.tngss.startuptn.in/event-service/v1/speakers/find-all"
       let query =
         'https://dev.tngss.startuptn.in/event-service/v1/speakers/find-all-web'
 

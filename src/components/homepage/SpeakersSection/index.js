@@ -170,7 +170,14 @@ const SpeakerCard = ({ speaker }) => {
         ) : (
           <div className='absolute inset-0 bg-gray-900' />
         )}
-        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10' />
+
+        <div
+          className='absolute inset-0 z-10'
+          style={{
+            background:
+              'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
+          }}
+        />
         <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
           <h4 className='text-xl sm:text-xl font-bold mb-1'>{speaker.name}</h4>
           <p className='text-sm text-white/80 leading-tight'>

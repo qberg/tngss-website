@@ -7,6 +7,9 @@ module.exports = {
         urbanist: ['Urbanist', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      fontSize: {
+        '13xl': '13rem',
+      },
     },
   },
   variants: {

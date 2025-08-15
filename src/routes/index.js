@@ -26,6 +26,15 @@ const AppRoutes = () => {
       <Route path='/home' element={<RouteWithLayout component={Home} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
       <Route path='/new' element={<RouteWithLayout component={NewHome} />} />
+      <Route
+        path='/speakers'
+        element={<RouteWithLayout component={Speakers} />}
+      />
+
+      <Route
+        path='/program'
+        element={<RouteWithLayout component={Program} />}
+      />
 
       {showAllRoutes && (
         <>
@@ -38,10 +47,6 @@ const AppRoutes = () => {
             element={<RouteWithLayout component={Speakers} />}
           />
 
-          <Route
-            path='/program'
-            element={<RouteWithLayout component={Program} />}
-          />
           <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
           <Route
             path='/privacy-policy'
