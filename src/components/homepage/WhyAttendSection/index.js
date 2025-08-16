@@ -74,7 +74,7 @@ const WhyAttendSection = () => {
   const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 1])
 
   // Parallax transformations for cards with staggered effect
-  const cardsContainerY = useTransform(cardsScrollProgress, [0, 1], [200, -200])
+  const cardsContainerY = useTransform(cardsScrollProgress, [0, 1], [100, -100])
 
   // Individual card parallax transforms
   const createCardTransforms = (index) => {

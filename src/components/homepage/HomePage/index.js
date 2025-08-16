@@ -43,7 +43,7 @@ const HomePage = () => {
         <div className='h-screen' />
 
         <motion.div
-          className='fixed inset-0 -z-10'
+          className={isMobile ? 'min-h-screen' : 'fixed inset-0 -z-10'}
           style={{ opacity: gpOpacity }}
         >
           <GlobalPavilion shouldAnimate={shouldAnimateFlag} />

@@ -1,71 +1,163 @@
 import { useQuery } from '@tanstack/react-query'
-import { apiClient } from '../utils/apiClient'
+import { payloadClient } from '../utils/payloadClient'
 
-export const useApiData = (queryKey, endpoint, options = {}) => {
-  const {
-    enabled = true,
-    staleTime = 5 * 60 * 1000,
-    cacheTime = 10 * 60 * 1000,
-    retry = 3,
-    onSuccess = null,
-    onError = null,
-    ...queryOptions
-  } = options
-
+export const useSpeakersData = () => {
   return useQuery({
-    queryKey,
+    queryKey: ['speakers', 'all-with-relations'],
     queryFn: async () => {
-      if (!endpoint) {
-        throw new Error('No endpoint provided')
-      }
-
-      const result = await apiClient.get(endpoint)
+      const result = await payloadClient.get('/api/speakers', {
+        limit: 0,
+        depth: 2,
+        sort: 'sort_order',
+        where: {
+          status: { equals: 'confirmed' },
+        },
+      })
 
       if (result.success) {
-        onSuccess?.(result.data)
         return result.data
       } else {
-        const error = new Error(result.error || 'API request failed')
-        onError?.(error)
-        throw error
+        throw new Error(result.error || 'Failed to fetch speakers')
       }
     },
-    enabled,
-    staleTime,
-    cacheTime,
-    retry,
-    ...queryOptions,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
   })
 }
 
-export const useAboutData = (options = {}) => {
-  const query = useApiData(['about-us'], '/api/globals/about-us-wp', {
+export const useSpeakerBySlug = (slug) => {
+  return useQuery({
+    queryKey: ['speaker', slug],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/speakers', {
+        limit: 1,
+        depth: 2,
+        where: {
+          slug: { equals: slug },
+          status: { equals: 'confirmed' },
+        },
+      })
+
+      if (result.success && result.data.docs && result.data.docs.length > 0) {
+        return result.data.docs[0]
+      } else if (
+        result.success &&
+        result.data.docs &&
+        result.data.docs.length === 0
+      ) {
+        throw new Error('Speaker not found')
+      } else {
+        throw new Error(result.error || 'Failed to fetch speaker')
+      }
+    },
+    enabled: !!slug,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useSpeakerBySlugFromCache = (slug) => {
+  const { data: speakersData, isLoading, error } = useSpeakersData()
+
+  return useQuery({
+    queryKey: ['speaker', 'from-cache', slug],
+    queryFn: () => {
+      if (!speakersData?.docs) {
+        throw new Error('Speakers data not available')
+      }
+
+      const speaker = speakersData.docs.find((speaker) => speaker.slug === slug)
+      if (!speaker) {
+        throw new Error('Speaker not found')
+      }
+
+      return speaker
+    },
+    enabled: !!slug && !!speakersData?.docs && !isLoading && !error,
+    staleTime: 5 * 60 * 1000,
+  })
+}
+
+export const useSpeakerBySlugEff = (slug) => {
+  const { data: speakersData, isLoading: speakersLoading } = useSpeakersData()
+
+  return useQuery({
+    queryKey: ['speaker', 'smart', slug],
+    queryFn: async () => {
+      // First try cache
+      if (speakersData?.docs) {
+        const speakerFromCache = speakersData.docs.find(
+          (speaker) => speaker.slug === slug
+        )
+        if (speakerFromCache) {
+          return { data: speakerFromCache, source: 'cache' }
+        }
+      }
+
+      // Fallback to direct API
+      const result = await payloadClient.get('/api/speakers', {
+        limit: 1,
+        depth: 2,
+        where: {
+          slug: { equals: slug },
+          status: { equals: 'confirmed' },
+        },
+      })
+
+      if (result.success && result.data.docs && result.data.docs.length > 0) {
+        return { data: result.data.docs[0], source: 'direct' }
+      } else if (
+        result.success &&
+        result.data.docs &&
+        result.data.docs.length === 0
+      ) {
+        throw new Error('Speaker not found')
+      } else {
+        throw new Error(result.error || 'Failed to fetch speaker')
+      }
+    },
+    enabled: !!slug && !speakersLoading,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+    select: (data) => data.data,
+  })
+}
+
+export const useSpeakerTypes = () => {
+  return useQuery({
+    queryKey: ['speaker-types'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/speaker-types', {
+        limit: 0,
+        sort: 'name',
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch speaker types')
+      }
+    },
     staleTime: 10 * 60 * 1000,
-    ...options,
   })
-
-  return {
-    data: query.data || {},
-    loading: query.isLoading,
-    error: query.error,
-    refresh: query.refetch,
-    isStale: query.isStale,
-    isFetching: query.isFetching,
-  }
 }
 
-export const useSpeakersData = (options = {}) => {
-  const query = useApiData(['speakers'], '/api/speakers', {
-    staleTime: 2 * 60 * 1000,
-    ...options,
-  })
+// Tags hook
+export const useTags = () => {
+  return useQuery({
+    queryKey: ['tags'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/tags', {
+        limit: 0,
+        sort: 'name',
+      })
 
-  return {
-    data: query.data || {},
-    loading: query.isLoading,
-    error: query.error,
-    refresh: query.refetch,
-    isStale: query.isStale,
-    isFetching: query.isFetching,
-  }
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch tags')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+  })
 }

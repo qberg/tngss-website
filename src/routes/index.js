@@ -13,6 +13,7 @@ import {
   Program,
 } from '../views'
 import NewHome from '../views/New'
+import SpeakerDetail from '../components/speakers/SpeakerDetail'
 
 const AppRoutes = () => {
   const showAllRoutes = false
@@ -30,11 +31,16 @@ const AppRoutes = () => {
         path='/speakers'
         element={<RouteWithLayout component={Speakers} />}
       />
+      <Route
+        path='/speakers/:slug'
+        element={<RouteWithLayout component={SpeakerDetail} />}
+      />
 
       <Route
         path='/program'
         element={<RouteWithLayout component={Program} />}
       />
+      <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
 
       {showAllRoutes && (
         <>
@@ -47,7 +53,6 @@ const AppRoutes = () => {
             element={<RouteWithLayout component={Speakers} />}
           />
 
-          <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
           <Route
             path='/privacy-policy'
             element={<RouteWithLayout component={PrivacyPolicy} />}

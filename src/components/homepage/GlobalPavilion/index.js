@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 import bg from '../../../assets/globalPavBg.svg?url'
 import usFlag from '../../../assets/flags/usa.svg?url'
 import ukFlag from '../../../assets/flags/uk.svg?url'
@@ -34,30 +34,54 @@ const content = {
 }
 
 const FlagMarquee = () => {
-  const duplicatedFlags = [...flags, ...flags] // Duplicate for seamless loop
+  const extendedFlags = [...flags, ...flags, ...flags]
 
   return (
-    <div className='overflow-hidden whitespace-nowrap w-full'>
+    <div className='overflow-hidden w-full'>
       <motion.div
-        className='flex gap-12 items-center'
+        className='flex gap-12 items-center will-change-transform'
         animate={{
-          x: ['0%', '-50%'],
+          x: ['0%', '-33.333%'],
         }}
         transition={{
-          duration: 30,
+          duration: 45,
           ease: 'linear',
           repeat: Infinity,
+          repeatType: 'loop',
         }}
-        style={{ width: 'max-content' }}
+        style={{
+          width: 'max-content',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          perspective: 1000,
+        }}
       >
-        {duplicatedFlags.map((flag, index) => (
-          <div key={`${flag.id}-${index}`} className='flex-shrink-0'>
+        {extendedFlags.map((flag, index) => (
+          <motion.div
+            key={`${flag.id}-${Math.floor(index / flags.length)}-${
+              index % flags.length
+            }`}
+            className='flex-shrink-0'
+            style={{
+              transform: 'translateZ(0)',
+              willChange: 'transform',
+            }}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] },
+            }}
+          >
             <img
               src={flag.flag}
               alt={flag.alt}
-              className='w-24 h-16 md:w-32 md:h-20 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
+              className='w-40 h-28 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
+              style={{
+                imageRendering: 'crisp-edges',
+                backfaceVisibility: 'hidden',
+              }}
+              loading='lazy'
             />
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </div>
@@ -66,23 +90,49 @@ const FlagMarquee = () => {
 
 const GlobalPavilion = ({ shouldAnimate = false }) => {
   return (
-    <section className='relative h-full w-full flex flex-col gap-4 md:gap-6 xl:gap-8 2xl:gap-24 items-center justify-center'>
+    <section className='relative h-full w-full flex flex-col gap-4 md:gap-6 xl:gap-8 2xl:gap-24 items-center justify-center py-4'>
       <img
         alt=''
         src={bg}
         className='absolute inset-0 object-cover object-center w-full h-full -z-10'
       />
-      <h1 className='text-white will-change-transform text-6xl md:text-9xl 2xl:text-13xl mix-blend-lighten gradient-text-attend mt-10'>
+      <motion.h1
+        className='text-white will-change-transform text-6xl md:text-9xl 2xl:text-13xl mix-blend-lighten gradient-text-attend mt-10 px-4'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
         {content.title}
-      </h1>
-      <p className='w-6/12 text-2xl text-white text-center'>
-        {content.description}
-      </p>
+      </motion.h1>
 
-      {/* Single row infinite marquee scroll of flags */}
-      <div className='w-full mt-8'>
+      <motion.p
+        className='w-full sm:w-6/12 text-2xl text-white text-left px-4'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
+        {content.description}
+      </motion.p>
+
+      <motion.div
+        className='w-full mt-8'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1,
+          delay: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
         <FlagMarquee />
-      </div>
+      </motion.div>
     </section>
   )
 }

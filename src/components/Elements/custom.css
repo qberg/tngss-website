@@ -318,6 +318,19 @@
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-text-black {
+  background: linear-gradient(
+    90deg,
+    rgba(132, 132, 132, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(218, 218, 218, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 @font-face {
   font-family: Urbanist Fallback;
   src: local('Arial');
@@ -380,12 +393,14 @@
   --color-amber-700: oklch(0.555 0.163 48.998);
   --color-blue-300: oklch(0.809 0.105 251.813);
   --color-blue-400: oklch(0.707 0.165 254.624);
+  --color-blue-500: #18bfdb;
   --color-blue-500: oklch(0.623 0.214 259.815);
   --color-blue-600: oklch(0.546 0.245 262.881);
   --color-blue-700: oklch(0.488 0.243 264.376);
   --color-purple-950: oklch(0.291 0.149 302.717);
   --color-black: #000;
   --color-white: #fff;
+  --color-custom-gray: #1a1a1a;
   --spacing: 0.25rem;
   --container-xs: 20rem;
   --container-lg: 32rem;
