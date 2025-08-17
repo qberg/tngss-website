@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom'
 import SpeakerDetailHero from '../SpeakerHero'
 import MinimalHero from '../../Elements/MinimalHero'
-import { useSpeakerBySlugEff } from '../../../hooks/useQueryApi'
+import {
+  useEventsByIds,
+  useSpeakerBySlugEff,
+  useSpeakerEvents,
+} from '../../../hooks/useQueryApi'
+import SpeakerEventsListing from '../SpeakerEventsListing'
 
 const SpeakerDetail = () => {
   const { slug } = useParams()
@@ -17,9 +22,7 @@ const SpeakerDetail = () => {
         applyBorder={false}
       />
       <SpeakerDetailHero speaker={speaker} />
-      <div className='min-h-screen bg-black overflow-hidden'>
-        <pre>{JSON.stringify(speaker, null, 2)}</pre>
-      </div>
+      <SpeakerEventsListing speaker={speaker} />
     </>
   )
 }

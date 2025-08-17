@@ -123,6 +123,64 @@ export const useSpeakerBySlugEff = (slug) => {
   })
 }
 
+export const useSpeakerEvents = (speakerId) => {
+  return useQuery({
+    queryKey: ['speaker-events', speakerId],
+    queryFn: async () => {
+      if (!speakerId) {
+        return { docs: [] }
+      }
+
+      const result = await payloadClient.get('/api/events', {
+        limit: 0,
+        depth: 5,
+        sort: 'schedule.from_date',
+        where: {
+          'speakers.speaker': { equals: speakerId },
+        },
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch speaker events')
+      }
+    },
+    enabled: !!speakerId,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useEventsByIds = (eventIds) => {
+  return useQuery({
+    queryKey: ['events-by-ids', eventIds?.join(',')],
+    queryFn: async () => {
+      if (!eventIds || eventIds.length === 0) {
+        return { docs: [] }
+      }
+
+      const result = await payloadClient.get('/api/events', {
+        limit: 0,
+        depth: 2,
+        sort: 'schedule.from_date',
+        where: {
+          id: { in: eventIds },
+        },
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch events')
+      }
+    },
+    enabled: !!eventIds && eventIds.length > 0,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
 export const useSpeakerTypes = () => {
   return useQuery({
     queryKey: ['speaker-types'],

@@ -30,7 +30,7 @@ const flags = [
 const content = {
   title: 'Global Pavilion',
   description:
-    'A vibrant showcase of startups, scale-ups, and ecosystem leaders from across continents. Explore groundbreaking products, discover emerging market trends, and connect with global innovators shaping the future. Whether youre seeking partnerships, investment opportunities, or fresh ideas, the Global Pavilion is your gateway to international collaboration and cross-border growth.',
+    'Step into a world of opportunities at the Global Pavilion, where leading startup ecosystems, international accelerators, innovative startups, and global innovation hubs come together under one roof. The pavilion will showcase cutting-edge technologies, cross-border collaborations, and world-class startup success stories from across continents.',
 }
 
 const FlagMarquee = () => {
@@ -97,7 +97,7 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
         className='absolute inset-0 object-cover object-center w-full h-full -z-10'
       />
       <motion.h1
-        className='text-white will-change-transform text-6xl md:text-9xl 2xl:text-13xl mix-blend-lighten gradient-text-attend mt-10 px-4'
+        className='text-white will-change-transform text-6xl md:text-9xl 2xl:text-13xl mix-blend-lighten gradient-text-black mt-10 px-4'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -109,7 +109,7 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
       </motion.h1>
 
       <motion.p
-        className='w-full sm:w-6/12 text-2xl text-white text-left px-4'
+        className='w-full sm:w-8/12 2xl:w-6/12 text-2xl text-white text-center px-4'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{

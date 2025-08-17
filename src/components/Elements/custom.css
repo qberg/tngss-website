@@ -331,6 +331,10 @@
   -webkit-text-fill-color: transparent;
 }
 
+.highlight-text {
+  color: #18bfdb !important;
+}
+
 @font-face {
   font-family: Urbanist Fallback;
   src: local('Arial');

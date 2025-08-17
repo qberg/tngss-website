@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet'
+import FaqPage from '../../components/faqpage/FaqPage'
 
 const FAQ = () => {
   return (
@@ -10,6 +11,7 @@ const FAQ = () => {
           content='Find answers to all your questions about TNGSS 2025 - from summit information, registeration to program offering and eligibility.'
         />
       </Helmet>
+      <FaqPage />
     </>
   )
 }

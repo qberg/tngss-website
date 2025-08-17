@@ -1,5 +1,3 @@
-import bgImage from '../../assets/looper.svg?url'
-
 const MinimalHero = ({ title, subTitle, tagLine, applyBorder = true }) => {
   return (
     <section className='relative overflow-hidden' style={{ height: '50vh' }}>
