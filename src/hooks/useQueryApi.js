@@ -219,3 +219,22 @@ export const useTags = () => {
     staleTime: 10 * 60 * 1000,
   })
 }
+
+export const useFaqWp = () => {
+  return useQuery({
+    queryKey: ['faq-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/faq-wp', {
+        depth: 2,
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch FAQ WP')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}

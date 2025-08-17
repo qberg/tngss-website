@@ -1,4 +1,5 @@
 import MinimalHero from '../../Elements/MinimalHero'
+import FaqBlocks from '../FaqBlocks'
 
 const FaqPage = () => {
   return (
@@ -8,6 +9,8 @@ const FaqPage = () => {
         subTitle=''
         tagLine="Frequently asked questions about TNGSS'25"
       />
+
+      <FaqBlocks />
     </section>
   )
 }
