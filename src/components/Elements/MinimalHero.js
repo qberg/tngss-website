@@ -18,7 +18,14 @@ const MinimalHero = ({ title, subTitle, tagLine, applyBorder = true }) => {
               {title}
             </h1>
 
-            <p className='text-xl md:text-4xl'>{tagLine}</p>
+            <div>
+              {subTitle && (
+                <p className='text-xl md:text-4xl highlight-text mt-4'>
+                  {subTitle}
+                </p>
+              )}
+              <p className='text-xl md:text-4xl'>{tagLine}</p>
+            </div>
           </div>
         </div>
       </div>

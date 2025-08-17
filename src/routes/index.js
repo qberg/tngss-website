@@ -2,18 +2,18 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import RouteWithLayout from '../components/RouteWithLayout'
 import {
-  Home,
   NotFound,
   WhyAttend,
-  About,
   PrivacyPolicy,
   TermsandCondition,
   Speakers,
   Faq,
   Program,
+  About,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
+import Venue from '../views/Venue'
 
 const AppRoutes = () => {
   const showAllRoutes = false
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         path='/not-found'
         element={<RouteWithLayout component={NotFound} />}
       />
-      <Route path='/home' element={<RouteWithLayout component={Home} />} />
+      <Route path='/home' element={<RouteWithLayout component={NewHome} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
       <Route path='/new' element={<RouteWithLayout component={NewHome} />} />
       <Route
@@ -35,6 +35,7 @@ const AppRoutes = () => {
         path='/speakers/:slug'
         element={<RouteWithLayout component={SpeakerDetail} />}
       />
+      <Route path='/venue' element={<RouteWithLayout component={Venue} />} />
 
       <Route
         path='/program'
@@ -42,15 +43,13 @@ const AppRoutes = () => {
       />
       <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
 
+      <Route path='/' element={<Navigate to='/home' />} />
+
       {showAllRoutes && (
         <>
           <Route
             path='/why-attend'
             element={<RouteWithLayout component={WhyAttend} />}
-          />
-          <Route
-            path='/speakers'
-            element={<RouteWithLayout component={Speakers} />}
           />
 
           <Route

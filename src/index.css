@@ -1,7 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
 
 @font-face {
   font-family: 'Urbanist';
@@ -12,10 +11,9 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-    font-size: 14px;
-
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  font-size: 14px;
 }
 
 @theme inline {
@@ -46,15 +44,18 @@ body {
 
 .border-gradient-to-r {
   border: 2px solid; /* Fallback border if border-image fails */
-  border-image: linear-gradient(to right, #0055FF, #F7750C) 1;
+  border-image: linear-gradient(to right, #0055ff, #f7750c) 1;
   border-radius: 20px; /* Adjust as needed for the rounded corners */
   padding: 1.5rem; /* Optional: spacing inside the element */
-  background-color: rgba(0, 0, 0, 0.4); /* Optional: for semi-transparent inner background */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.4
+  ); /* Optional: for semi-transparent inner background */
 }
-
-
-
 
 /* section{
   @apply overflow-x-hidden
 } */
+

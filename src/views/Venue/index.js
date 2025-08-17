@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet'
+import VenuePage from '../../components/venue/VenuePage'
 
 const Venue = () => {
   return (
@@ -10,6 +11,7 @@ const Venue = () => {
           content='TNGSS 2025 is happening at Codissia Trade Fair Complex, Coimbatore, Tamil Nadu.'
         />
       </Helmet>
+      <VenuePage />
     </>
   )
 }

@@ -2,7 +2,11 @@ import { useMemo, useState } from 'react'
 import FilterButton from '../../Elements/FilterButton'
 import { Calendar } from 'lucide-react'
 import SpeakerEventCard from '../../Elements/SpeakerEventCard'
-import { useEventsByIds, useSpeakerEvents } from '../../../hooks/useQueryApi'
+import {
+  useEventsByIds,
+  useSpeakerBySlugEff,
+  useSpeakerEvents,
+} from '../../../hooks/useQueryApi'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   gentleSpring,
@@ -74,9 +78,13 @@ const filterButtonVariant = {
 
 const SpeakerEventsListing = ({ speaker }) => {
   const [selectedFilter, setSelectedFilter] = useState('all')
-  const { data: eventsData, isLoading, error } = useSpeakerEvents(speaker?.id)
+  const {
+    data: speakerData,
+    isLoading,
+    error,
+  } = useSpeakerBySlugEff(speaker?.slug)
 
-  const events = eventsData?.docs || []
+  const events = speakerData?.events || []
 
   const filteredEvents = useMemo(() => {
     if (selectedFilter === 'all') return events
@@ -102,7 +110,7 @@ const SpeakerEventsListing = ({ speaker }) => {
   if (isLoading) {
     return (
       <section className='bg-black px-4 md:px-28 2xl:px-36 py-8 md:py-14 2xl:py-24 w-full h-full flex flex-col gap-4 md:gap-16 flex md:justify-end'>
-        <div className='w-full md:w-8/12 ml-auto'>
+        <div className='w-full md:w-8/12 mx-auto'>
           <motion.div
             className='flex items-center justify-center py-16'
             initial={{ opacity: 0 }}
@@ -128,14 +136,14 @@ const SpeakerEventsListing = ({ speaker }) => {
       transition={gentleSpring}
     >
       <motion.div
-        className='w-full md:w-8/12 ml-auto'
+        className='w-full md:w-8/12 mx-auto'
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={smoothSpring}
       >
         {/* Filter Buttons */}
         <motion.div
-          className='flex flex-wrap gap-3 mb-4 md:mb-8'
+          className='flex flex-wrap gap-3 mb-4 md:mb-8 justify-center'
           variants={staggerContainer}
           initial='initial'
           animate='animate'

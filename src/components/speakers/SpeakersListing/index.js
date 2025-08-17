@@ -306,7 +306,7 @@ const SpeakersListing = () => {
             ...springConfig,
             delay: 0.1,
           }}
-          className='uppercase text-5xl md:text-6xl text-white font-bold'
+          className='uppercase text-5xl md:text-6xl text-white font-medium'
         >
           Speakers
         </motion.h2>
@@ -629,7 +629,7 @@ const FilterDropdown = ({ title, isOpen, onToggle, children }) => {
                 }}
                 exit={{
                   opacity: 0,
-                  y: -5,
+                  y: 0,
                   transition: {
                     type: 'spring',
                     stiffness: 500,
@@ -827,7 +827,7 @@ const SearchBar = ({ value, onChange, onClear, placeholder }) => {
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         transition: snappySpring,
       }}
-      className='w-full md:w-96 border-white/30 border-2 border-solid relative rounded-2xl flex items-center justify-between p-3 md:p-4 bg-white/5 backdrop-blur-sm'
+      className='w-full md:w-96 border-white/30 border-2 border-solid relative rounded-full flex items-center justify-between p-3 md:p-4 bg-white/5 backdrop-blur-sm'
     >
       <div className='inline-flex gap-3 flex-1'>
         <motion.div

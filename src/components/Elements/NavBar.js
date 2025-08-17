@@ -41,8 +41,9 @@ export default function NavBar() {
   const menuItems = [
     { name: 'Home', link: '/new' },
     { name: 'About', link: '/about' },
-    { name: 'Why Attend', link: '/why-attend' },
+    //{ name: 'Why Attend', link: '/why-attend' },
     { name: 'Speakers', link: '/speakers' },
+    { name: 'Venue', link: '/venue' },
     // { name: 'Programs', link: '/program' },
     { name: 'FAQ', link: '/faq' },
   ]

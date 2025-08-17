@@ -238,3 +238,43 @@ export const useFaqWp = () => {
     retry: 2,
   })
 }
+
+export const useAboutUsWp = () => {
+  return useQuery({
+    queryKey: ['about-us-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/about-us-wp', {
+        depth: 2,
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch About Us WP')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useHallsData = () => {
+  return useQuery({
+    queryKey: ['halls'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/halls', {
+        limit: 0,
+        depth: 2,
+        sort: 'name',
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch halls')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
