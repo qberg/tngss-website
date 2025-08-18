@@ -6,7 +6,7 @@ import '../../Elements/custom.css'
 import BG from '../../../assets/statsbg.svg?url'
 import { motion, useTransform } from 'motion/react'
 
-export default function StatsSection({ scrollYProgress }) {
+export default function StatsSection({ scrollYProgress, isMobile }) {
   const contentRef = useRef(null)
   const counterRefs = [
     useRef(null),
@@ -61,16 +61,16 @@ export default function StatsSection({ scrollYProgress }) {
       style={{
         background:
           'linear-gradient(148.59deg, #0055FF 2.92%, #07BCCE 23.28%, #F7750C 80.11%, #FF0000 97.63%)',
-        borderRadius: '0.75rem',
-        scale: wholeScale,
+        scale: isMobile ? 1 : wholeScale,
+        borderRadius: isMobile ? '0rem' : '0.75rem',
         willChange: 'transform',
         transformOrigin: 'bottom center',
       }}
-      className={`overflow-hidden sticky top-0 w-full  lg:h-screen z-10 p-2 my-24`}
+      className={`overflow-hidden sticky top-0 w-full h-lvh z-10 p-2 mt-24 bg-transparent`}
       id='stats-section'
     >
       <div
-        className='flex flex-col lg:flex-row items-center justify-evenly bg-white w-full min-h-full lg:h-full relative px-3 py-6 sm:px-4 sm:py-8 lg:px-10 lg:py-12'
+        className='flex flex-col lg:flex-row items-center justify-evenly bg-white w-full h-full lg:h-full relative px-3 py-6 sm:px-4 sm:py-8 lg:px-10 lg:py-12'
         style={{
           borderRadius: '25px',
           background: `url(${BG})`,
@@ -79,7 +79,7 @@ export default function StatsSection({ scrollYProgress }) {
       >
         {/* Mobile Title */}
         <div className='block lg:hidden text-center mb-6 w-full'>
-          <p className='text-black text-lg sm:text-xl md:text-2xl font-semibold px-2'>
+          <p className='text-black text-3xl sm:text-xl md:text-2xl font-semibold px-2'>
             Grow With A Dynamic Community
           </p>
         </div>

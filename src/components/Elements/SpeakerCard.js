@@ -20,13 +20,13 @@ const SpeakerCard = ({ speaker, showName = true }) => {
         {showName && (
           <>
             <div
-              className='absolute inset-0 z-10'
+              className='absolute inset-0'
               style={{
                 background:
                   'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
               }}
             />
-            <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
+            <div className='absolute bottom-0 left-0 p-2 text-white'>
               <h4 className='text-lg sm:text-xl font-bold mb-1 leading-tight'>
                 {speaker?.name}
               </h4>

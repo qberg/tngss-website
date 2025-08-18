@@ -36,8 +36,8 @@ export const eventDetailsVariants = {
     y: 0,
     transition: {
       ...customSpring,
-      staggerChildren: 1.6,
-      delay: 1,
+      staggerChildren: 0.3,
+      delay: 0.2,
     },
   },
 }
@@ -64,7 +64,7 @@ export const ctaVariants = {
     y: 0,
     transition: {
       ...customSpring,
-      delay: 2,
+      delay: 0.4,
     },
   },
 }

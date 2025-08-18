@@ -20,10 +20,10 @@ const ScrollAnimsFirst = () => {
   return (
     <div ref={mainContainerRef}>
       <HeroSection scrollYProgress={scrollValue} isMobile={isMobile} />
-      <div style={{ height: '75vh' }} />
-      <CMSection scrollYProgress={scrollYProgress} />
-      <StatsSection scrollYProgress={scrollYProgress} />
-      <div style={{ height: '50vh' }} />
+      <div style={{ height: !isMobile ? '25vh' : '' }} />
+      <CMSection scrollYProgress={scrollYProgress} isMobile={isMobile} />
+      <StatsSection scrollYProgress={scrollYProgress} isMobile={isMobile} />
+      <div style={{ height: !isMobile ? '30vh' : '' }} />
     </div>
   )
 }

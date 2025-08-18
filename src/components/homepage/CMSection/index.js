@@ -3,30 +3,38 @@ import CM from '../../../assets/CM.png'
 import CMbg from '../../../assets/CMbg.svg?url'
 import { motion, useTransform } from 'motion/react'
 
-export default function CMSection({ scrollYProgress }) {
-  const wholeScale = useTransform(
-    scrollYProgress,
-    [0, 0.19, 0.35, 0.5, 0.7, 1],
-    [0.8, 0.8, 1, 1, 1, 0.6]
-  )
+export default function CMSection({ scrollYProgress, isMobile }) {
+  const wholeScale = !isMobile
+    ? useTransform(
+        scrollYProgress,
+        [0, 0.19, 0.35, 0.5, 0.7, 1],
+        [0.8, 0.8, 1, 1, 1, 0.6]
+      )
+    : 1
 
-  const wholeY = useTransform(
-    scrollYProgress,
-    [0.6, 0.65, 0.65, 0.7],
-    [0, -40, -120, -160]
-  )
+  const wholeY = !isMobile
+    ? useTransform(
+        scrollYProgress,
+        [0.6, 0.65, 0.65, 0.7],
+        [0, -40, -120, -160]
+      )
+    : 0
 
-  const borderRadius = useTransform(
-    scrollYProgress,
-    [0, 0.19, 0.39, 0.45],
-    ['1.25rem', '1.25rem', '0rem', '0rem']
-  )
+  const borderRadius = !isMobile
+    ? useTransform(
+        scrollYProgress,
+        [0, 0.19, 0.39, 0.45],
+        ['1.25rem', '1.25rem', '0rem', '0rem']
+      )
+    : '0rem'
 
-  const innerBorderRadius = useTransform(
-    scrollYProgress,
-    [0, 0.19, 0.38],
-    ['1.5rem', '1.5rem', '0.75rem']
-  )
+  const innerBorderRadius = !isMobile
+    ? useTransform(
+        scrollYProgress,
+        [0, 0.19, 0.38],
+        ['1.5rem', '1.5rem', '0.75rem']
+      )
+    : '1.5rem'
 
   return (
     <motion.div
@@ -38,7 +46,7 @@ export default function CMSection({ scrollYProgress }) {
         transformOrigin: 'top center',
         y: wholeY,
       }}
-      className='sticky top-0 overflow-hidden w-full h-screen z-10 p-2'
+      className='sticky top-0 overflow-hidden w-full h-svh z-10 p-2'
     >
       <section
         className='cm-cont h-full w-full bg-white z-20 flex  flex-col-reverse md:flex-row rounded items-center justify-end md:justify-center overflow-hidden text-black px-4 will-change-transform'
@@ -71,7 +79,7 @@ export default function CMSection({ scrollYProgress }) {
         </div>
 
         {/* Image Section */}
-        <div className='w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center'>
+        <div className='w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center mt-20 md:mt-0'>
           <img
             alt='Chief Minister'
             src={CM}

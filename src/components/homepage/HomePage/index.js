@@ -6,7 +6,6 @@ import SpeakersSection from '../SpeakersSection'
 import PastEngagements from '../PastEngagements'
 import CircleRevealSection from '../CircleRevealSection'
 import { useIsMobile } from '../../../hooks/test_hooks/useIsMobile'
-import RainSection from '../RainSection'
 import ShowcaseSection from '../../Homepage/showcase_section/ShowcaseSection'
 
 const { default: ScrollAnimsFirst } = require('../ScrollAnimsFirst')
@@ -40,16 +39,16 @@ const HomePage = () => {
         <ScrollAnimsFirst />
         <WhyAttendSection />
 
-        <div className='h-screen' />
+        {!isMobile && <div className='h-screen' />}
 
         <motion.div
-          className={isMobile ? 'min-h-screen' : 'fixed inset-0 -z-10'}
+          className={isMobile ? 'h-lvh py-8' : 'fixed inset-0 -z-10'}
           style={{ opacity: gpOpacity }}
         >
           <GlobalPavilion shouldAnimate={shouldAnimateFlag} />
         </motion.div>
 
-        <div className='h-screen' />
+        {!isMobile && <div className='h-screen' />}
         <SpeakersSection />
       </div>
 

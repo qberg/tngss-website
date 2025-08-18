@@ -30,8 +30,8 @@ export default function ShowcaseSection() {
     setIsMobile(window.innerWidth < 768)
 
     const timeout = setTimeout(() => {
-      ScrollTrigger.refresh() // 🛠️ ensure layout recalculates after full paint
-    }, 500) // Adjust if you have more layout delays
+      ScrollTrigger.refresh()
+    }, 500)
 
     return () => clearTimeout(timeout)
   }, [])
@@ -43,7 +43,6 @@ export default function ShowcaseSection() {
     >
       <div className='relative isolate z-10'>
         <RainScrollBackground scrollTargetRef={showcaseRef} />
-        {/* All your actual content goes here */}
       </div>
 
       {/* Background Image */}
@@ -96,7 +95,10 @@ export default function ShowcaseSection() {
           </div>
         </div>
         <div className=' relative h-fit '>
-          <div ref={lottieRef} className='max-w-2xl h-full  mx-auto' />
+          <div
+            ref={lottieRef}
+            className='max-w-xl 2xl:max-w-2xl h-full  mx-auto'
+          />
           <CTAButton
             src='https://event.startuptn.in/'
             className=' absolute bottom-11 left-1/2  -translate-x-2/3  flex sm:hidden rounded-2xl justify-center items-center  transform rotate-6 '

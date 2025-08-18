@@ -10,6 +10,19 @@ module.exports = {
       fontSize: {
         '13xl': '13rem',
       },
+      height: {
+        dvh: 'calc(var(--dvh, 1vh) * 100)',
+        svh: 'calc(var(--svh, 1vh) * 100)',
+        lvh: 'calc(var(--lvh, 1vh) * 100)',
+      },
+      width: {
+        vw: 'calc(var(--vw, 1vw) * 100)',
+      },
+      spacing: {
+        dvh: 'calc(var(--dvh, 1vh) * 100)',
+        svh: 'calc(var(--svh, 1vh) * 100)',
+        vw: 'calc(var(--vw, 1vw) * 100)',
+      },
     },
   },
   variants: {

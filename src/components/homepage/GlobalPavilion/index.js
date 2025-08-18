@@ -1,30 +1,53 @@
 import { motion } from 'framer-motion'
 import bg from '../../../assets/globalPavBg.svg?url'
-import usFlag from '../../../assets/flags/usa.svg?url'
-import ukFlag from '../../../assets/flags/uk.svg?url'
-import indiaFlag from '../../../assets/flags/india.svg?url'
+import austriaFlag from '../../../assets/flags/austria.png'
+import belgiumFlag from '../../../assets/flags/belgium.png'
+import denmarkFlag from '../../../assets/flags/denmark.png'
+import franceFlag from '../../../assets/flags/france.png'
+import japanFlag from '../../../assets/flags/japan.png'
+import malayasiaFlag from '../../../assets/flags/malayasia.png'
+import netherlandsFlag from '../../../assets/flags/netherlands.png'
+import saudiArabiaFlag from '../../../assets/flags/saudi-arabia.png'
+import southKoreaFlag from '../../../assets/flags/south-korea.png'
+import uaeFlag from '../../../assets/flags/uae.png'
+import germanyFlag from '../../../assets/flags/germany.png'
+import singaporeFlag from '../../../assets/flags/singapore.png'
+import srilankaFlag from '../../../assets/flags/srilanka.png'
 
 const flags = [
-  { id: 1, country: 'United States', flag: usFlag, alt: 'United States flag' },
-  { id: 2, country: 'Canada', flag: ukFlag, alt: 'Canada flag' },
+  { id: 1, country: 'Austria', flag: austriaFlag, alt: 'Austria flag' },
+  { id: 2, country: 'Belgium', flag: belgiumFlag, alt: 'Belgium flag' },
   {
     id: 3,
-    country: 'United Kingdom',
-    flag: usFlag,
-    alt: 'United Kingdom flag',
+    country: 'Denmark',
+    flag: denmarkFlag,
+    alt: 'Denmark flag',
   },
-  { id: 4, country: 'Germany', flag: indiaFlag, alt: 'Germany flag' },
-  { id: 5, country: 'France', flag: usFlag, alt: 'France flag' },
-  { id: 6, country: 'Japan', flag: ukFlag, alt: 'Japan flag' },
-  { id: 7, country: 'South Korea', flag: indiaFlag, alt: 'South Korea flag' },
-  { id: 8, country: 'China', flag: usFlag, alt: 'China flag' },
-  { id: 9, country: 'India', flag: indiaFlag, alt: 'India flag' },
-  { id: 10, country: 'Australia', flag: ukFlag, alt: 'Australia flag' },
-  { id: 11, country: 'Brazil', flag: usFlag, alt: 'Brazil flag' },
-  { id: 12, country: 'Mexico', flag: ukFlag, alt: 'Mexico flag' },
-  { id: 13, country: 'Italy', flag: indiaFlag, alt: 'Italy flag' },
-  { id: 14, country: 'Spain', flag: usFlag, alt: 'Spain flag' },
-  { id: 15, country: 'Netherlands', flag: ukFlag, alt: 'Netherlands flag' },
+  { id: 4, country: 'France', flag: franceFlag, alt: 'France flag' },
+  { id: 5, country: 'Japan', flag: japanFlag, alt: 'Japan Flag' },
+  { id: 7, country: 'Malayasia', flag: malayasiaFlag, alt: 'Malayasia flag' },
+  {
+    id: 8,
+    country: 'Netherland',
+    flag: netherlandsFlag,
+    alt: 'Netherland flag',
+  },
+  {
+    id: 9,
+    country: 'Saudi Arabia',
+    flag: saudiArabiaFlag,
+    alt: 'Saudi Arabia flag',
+  },
+  { id: 10, country: 'UAE', flag: uaeFlag, alt: 'UAE flag' },
+  {
+    id: 11,
+    country: 'southKoreaFlag',
+    flag: southKoreaFlag,
+    alt: 'South Korea Flag',
+  },
+  { id: 12, country: 'Germany Flag', flag: germanyFlag, alt: 'Germany Flag' },
+  { id: 13, country: 'Singapore', flag: singaporeFlag, alt: 'singapore Flag' },
+  { id: 14, country: 'Srilanka', flag: srilankaFlag, alt: 'Srilanka Flag' },
 ]
 
 const content = {
@@ -37,7 +60,7 @@ const FlagMarquee = () => {
   const extendedFlags = [...flags, ...flags, ...flags]
 
   return (
-    <div className='overflow-hidden w-full'>
+    <div className='overflow-hidden w-full pb-12 md:pb-0'>
       <motion.div
         className='flex gap-12 items-center will-change-transform'
         animate={{
@@ -74,7 +97,7 @@ const FlagMarquee = () => {
             <img
               src={flag.flag}
               alt={flag.alt}
-              className='w-40 h-28 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
+              className='w-48 h-36 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
               style={{
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
@@ -109,7 +132,7 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
       </motion.h1>
 
       <motion.p
-        className='w-full sm:w-8/12 2xl:w-6/12 text-2xl text-white text-center px-4'
+        className='w-full sm:w-8/12 2xl:w-8/12 text-lg md:text-2xl text-white text-justify px-4 leading-tight mt-10 md:mt-0'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -122,7 +145,7 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
       </motion.p>
 
       <motion.div
-        className='w-full mt-8'
+        className='w-full mt-16 md:mt-8'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{

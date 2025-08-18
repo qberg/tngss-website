@@ -74,7 +74,7 @@ const WhyAttendSection = () => {
   const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 1])
 
   // Parallax transformations for cards with staggered effect
-  const cardsContainerY = useTransform(cardsScrollProgress, [0, 1], [100, -100])
+  const cardsContainerY = useTransform(cardsScrollProgress, [0, 1], [10, -10])
 
   // Individual card parallax transforms
   const createCardTransforms = (index) => {
@@ -144,7 +144,7 @@ const WhyAttendSection = () => {
                 y: headerY,
                 willChange: 'transform',
               }}
-              className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-attend mt-10 2xl:mt-24'
+              className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-black mt-24 md:mt-10 2xl:mt-24'
             >
               Why Attend
             </motion.h1>
@@ -158,7 +158,7 @@ const WhyAttendSection = () => {
             >
               <CTAButton
                 src='/why-attend'
-                className='rounded-2xl w-full md:w-auto mt-5'
+                className='hidden rounded-2xl w-full md:w-auto mt-5'
               >
                 <div className='w-60 h-12 px-6 flex items-center justify-center md:justify-center text-lg md:text-xl'>
                   Know More
@@ -175,16 +175,16 @@ const WhyAttendSection = () => {
             y: cardsContainerY,
             willChange: 'transform',
           }}
-          className='relative z-20 w-full px-4 md:px-8 lg:px-16 flex-1 flex flex-col items-center justify-start'
+          className='relative z-20 w-full py-4 md:py-0 px-4 md:px-8 lg:px-16 flex-1 flex flex-col items-center justify-start'
         >
-          <motion.div className='flex flex-col md:flex-row justify-center items-center gap-3 md:gap-4 lg:gap-6 min-w-max mx-auto'>
+          <motion.div className='flex flex-col md:flex-row justify-center items-center gap-16 md:gap-4 2xl:gap-6 min-w-max mx-auto'>
             {data.map((item, index) => {
               const cardTransforms = createCardTransforms(index)
 
               return (
                 <motion.div
                   key={index}
-                  className='flex-shrink-0 hover:z-50 isolate'
+                  className='hover:z-50 isolate'
                   style={{
                     y: cardTransforms.y,
                     scale: cardTransforms.scale,
@@ -207,7 +207,7 @@ const WhyAttendSection = () => {
                       } rounded-2xl transform-gpu`}
                     >
                       {/* Front Face */}
-                      <GradientBdrCard className='w-56 h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 rounded-2xl overflow-hidden bg-black'>
+                      <GradientBdrCard className='w-56 h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
                         <motion.div className='relative w-full h-full flex isolate rounded-2xl overflow-hidden'>
                           <motion.img
                             src={item.img}
@@ -252,7 +252,7 @@ const WhyAttendSection = () => {
                       </GradientBdrCard>
 
                       {/* Back Face */}
-                      <GradientBdrCard className='text-left w-56 h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 rounded-2xl overflow-hidden bg-black'>
+                      <GradientBdrCard className='text-left w-56 h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
                         <motion.div
                           className='flex flex-col w-full h-full p-5 md:p-6 text-white'
                           initial={{ opacity: 0 }}
@@ -260,7 +260,7 @@ const WhyAttendSection = () => {
                           transition={{ duration: 0.4, delay: 0.2 }}
                         >
                           <motion.p
-                            className='text-2xl md:text-3xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'
+                            className='text-2xl 2xl:text-3xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.3 }}
@@ -268,7 +268,7 @@ const WhyAttendSection = () => {
                             {item.title}
                           </motion.p>
                           <motion.p
-                            className='flex-1 text-sm md:text-base leading-relaxed text-gray-300'
+                            className='flex-1 text-sm 2xl:text-base leading-tight text-gray-300'
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.4 }}

@@ -75,7 +75,7 @@ const SpeakersSection = () => {
   }
 
   return (
-    <section className='relative h-auto md:h-screen flex flex-col gap-4 md:gap-6 xl:gap-8 2xl:gap-24 justify-center'>
+    <section className='relative h-svh md:h-screen flex flex-col gap-4 md:gap-6 xl:gap-8 2xl:gap-24 justify-center'>
       <img
         src={bg}
         alt='Background for speakers'
@@ -87,7 +87,7 @@ const SpeakersSection = () => {
       </h1>
 
       {/*outer vertical flex box for layout*/}
-      <motion.div className='flex flex-col gap-8 md:gap-6 2xl:gap-8 px-4 md:px-14 2xl:px-24'>
+      <motion.div className='flex flex-col gap-8 md:gap-6 2xl:gap-8 px-4 md:px-14 2xl:px-24 mt-10 md:mt-0'>
         {/*arrows*/}
         <div className='w-full hidden md:flex justify-end'>
           <div className='flex gap-4'>
@@ -178,6 +178,7 @@ const SpeakerCard = ({ speaker }) => {
               'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
           }}
         />
+        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10' />
         <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
           <h4 className='text-xl sm:text-xl font-bold mb-1'>{speaker.name}</h4>
           <p className='text-sm text-white/80 leading-tight'>

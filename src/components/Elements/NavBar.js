@@ -61,7 +61,7 @@ export default function NavBar() {
       {/* Navbar */}
       <motion.div
         className={`navbar flex fixed top-0 left-0 z-50 px-5 text-white backdrop-blur-md w-full justify-between items-center py-5 pb-1 border-b ${
-          isScrolled ? 'bg-black/80' : 'bg-transparent'
+          isScrolled ? 'bg-black bg-opacity-30' : 'bg-transparent'
         } border-gray-600`}
         initial={{ opacity: 0, translateY: '-100%' }}
         animate={controls}

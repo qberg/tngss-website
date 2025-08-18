@@ -63,7 +63,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
   return (
     <motion.section
       id='hero-section'
-      className='bg-transparent flex flex-col justify-center items-center h-screen bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
+      className='bg-transparent flex flex-col justify-start pt-40 md:pt-0 md:justify-center items-center h-svh bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
       style={{
         backgroundImage: `url(${Herobg})`,
         opacity: wholeOpacity,
@@ -88,12 +88,12 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         variants={logoVariants}
         style={{ scale: logoScale, y: logoY }}
       >
-        <div className='flex justify-center items-center h-[45vh] md:h-[50vh] pr-4 md:px-10 w-full'>
+        <div className='flex justify-center items-center h-[25vh] md:h-[40vh] 2xl:h-[50vh] pr-4 md:px-10 w-full'>
           <div className='relative'>
             <img
               src={logo}
               alt='StartupTN Logo'
-              className='object-contain heroBg logo-3d-img max-w-[95%] md:max-w-full'
+              className='object-contain heroBg logo-3d-img max-w-[95%] 2xl:max-w-full'
             />
           </div>
         </div>
@@ -104,9 +104,18 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         <EventDetails />
       </motion.div>
 
+      {/*
+        <motion.div
+        className='z-20 md:hidden'
+        variants={ctaVariants}
+        style={{ y: yCta, opacity: subOpacity }}
+      >
+        <CallToAction />
+      </motion.div>
+      */}
       {/* CTA Button */}
       <motion.div
-        className='absolute bottom-4 md:bottom-4 2xl:bottom-6 z-20'
+        className='md:block absolute bottom-20 md:bottom-12 2xl:bottom-16 z-20'
         variants={ctaVariants}
         style={{ y: yCta, opacity: subOpacity }}
       >
@@ -119,7 +128,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
 const EventDetails = () => (
   <motion.div className='' variants={eventDetailsVariants}>
     <motion.p
-      className='text-center text-3xl md:text-5xl mb-5 md:mb-5 mt-2 md:mt-6 2xl:mt-8'
+      className='text-center text-3xl 2xl:text-5xl mb-2 2xl:mb-5 mt-2 2xl:mt-8'
       variants={eventChildVariants}
     >
       <img
@@ -140,21 +149,13 @@ const EventDetails = () => (
 
 const CallToAction = () => (
   <div className='flex flex-col md:flex-row gap-1 md:gap-4'>
-    <AppCTAButton
-      showQR={true}
-      qrCodeUrl='https://apps.apple.com/in/app/tngss/id6744852527'
-      icon={<Download size={16} />}
-    >
+    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
       <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
         <span className='text-2xl'>App Store</span>
       </div>
     </AppCTAButton>
 
-    <AppCTAButton
-      showQR={true}
-      qrCodeUrl='https://play.google.com/store/apps/details?id=in.tngss.app'
-      icon={<Download size={16} />}
-    >
+    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
       <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>
         <span className='text-2xl'>Play Store</span>
       </div>

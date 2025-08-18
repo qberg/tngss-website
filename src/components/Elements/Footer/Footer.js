@@ -126,7 +126,7 @@ export default function Footer() {
               <p>
                 Phone:{' '}
                 <a href={`tel:+91${'4422256789'}`}>
-                  <u>(+91) {'4422256789'}</u>
+                  <u>(+91) {'44 22256789'}</u>
                 </a>
               </p>
               <p className='hidden md:block'>
