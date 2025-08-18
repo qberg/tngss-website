@@ -81,7 +81,7 @@ export default function ShowcaseSection() {
             >
               <div className='w-70 h-10 px-6 py-7 flex items-center justify-center '>
                 <img className='px-2' src={vector} />
-                Book Your Pass
+                Buy Your Pass
               </div>
             </CTAButton>
           </div>
@@ -105,7 +105,7 @@ export default function ShowcaseSection() {
             contCN=' justify-center  items-center flex p-3  '
           >
             <img className='px-2' src={vector} />
-            Book Your Pass
+            Buy Your Pass
             {/* </div> */}
           </CTAButton>
         </div>

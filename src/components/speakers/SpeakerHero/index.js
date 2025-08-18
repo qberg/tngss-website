@@ -287,7 +287,7 @@ const SpeakerDetailHero = ({ speaker }) => {
               {/* Bio */}
               {speaker?.summary && (
                 <motion.p
-                  className='text-lg md:text-2xl'
+                  className='text-lg text-xl 2xl:text-2xl text-justify'
                   variants={fadeInUp}
                   initial='initial'
                   animate='animate'

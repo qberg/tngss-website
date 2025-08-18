@@ -80,7 +80,7 @@ export default function Footer() {
                 className='rounded-2xl '
               >
                 <div className='w-60 h-10 px-10 text-white flex items-center justify-center'>
-                  Book Your Pass
+                  Buy Your Pass
                 </div>
               </CTAButton>
             </div>
@@ -100,7 +100,7 @@ export default function Footer() {
                 className='rounded-2xl w-full'
               >
                 <div className='w-50 h-9 px-5 flex items-center justify-center'>
-                  Book Your Pass
+                  Buy Your Pass
                 </div>
               </CTAButton>
             </div>
