@@ -117,7 +117,7 @@ export default function NavBar() {
               src={vector || '/placeholder.svg'}
               alt='Vector'
             />
-            Book Your Pass
+            Buy Your Pass
           </ShineButton>
         </div>
 
