@@ -156,10 +156,10 @@ export default function Footer() {
               </div>
               <div className='flex gap-6 justify-center'>
                 <p className='cursor-pointer'>
-                  <a href='terms-and-condition'>Terms & Conditions</a>
+                  <a href='/terms-and-condition'>Terms & Conditions</a>
                 </p>
                 <p className='cursor-pointer'>
-                  <a href='privacy-policy'>Privacy Policy</a>
+                  <a href='/privacy-policy'>Privacy Policy</a>
                 </p>
               </div>
             </div>

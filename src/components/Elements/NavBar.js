@@ -39,7 +39,7 @@ export default function NavBar() {
   }, [isVisible, controls])
 
   const menuItems = [
-    { name: 'Home', link: '/new' },
+    { name: 'Home', link: '/home' },
     { name: 'About', link: '/about' },
     //{ name: 'Why Attend', link: '/why-attend' },
     { name: 'Speakers', link: '/speakers' },

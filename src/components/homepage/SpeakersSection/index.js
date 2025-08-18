@@ -82,7 +82,7 @@ const SpeakersSection = () => {
         className='absolute inset-0 object-cover object-center w-full h-full -z-10'
       />
 
-      <h1 className='text-white will-change-transform text-6xl 2xl:text-9xl mix-blend-lighten gradient-text-attend mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
+      <h1 className='text-white will-change-transform text-6xl 2xl:text-9xl mix-blend-lighten gradient-text-black mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
         Speakers at TNGSS 2025
       </h1>
 

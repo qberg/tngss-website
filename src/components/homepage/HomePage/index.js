@@ -23,7 +23,7 @@ const HomePage = () => {
 
   const gpOpacity = useTransform(
     scrollYProgress,
-    [0, 0.55, 0.7, 0.9, 1],
+    [0, 0.4, 0.65, 0.9, 1],
     [0, 0, 1, 0, 0]
   )
 

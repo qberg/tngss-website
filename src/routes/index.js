@@ -26,7 +26,6 @@ const AppRoutes = () => {
       />
       <Route path='/home' element={<RouteWithLayout component={NewHome} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
-      <Route path='/new' element={<RouteWithLayout component={NewHome} />} />
       <Route
         path='/speakers'
         element={<RouteWithLayout component={Speakers} />}
@@ -45,6 +44,15 @@ const AppRoutes = () => {
 
       <Route path='/' element={<Navigate to='/home' />} />
 
+      <Route
+        path='/privacy-policy'
+        element={<RouteWithLayout component={PrivacyPolicy} />}
+      />
+      <Route
+        path='/terms-and-condition'
+        element={<RouteWithLayout component={TermsandCondition} />}
+      />
+
       {showAllRoutes && (
         <>
           <Route
@@ -52,14 +60,6 @@ const AppRoutes = () => {
             element={<RouteWithLayout component={WhyAttend} />}
           />
 
-          <Route
-            path='/privacy-policy'
-            element={<RouteWithLayout component={PrivacyPolicy} />}
-          />
-          <Route
-            path='/terms-and-condition'
-            element={<RouteWithLayout component={TermsandCondition} />}
-          />
           <Route path='/' element={<Navigate to='/home' />} />
         </>
       )}
