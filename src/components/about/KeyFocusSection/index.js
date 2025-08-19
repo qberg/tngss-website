@@ -1,375 +1,207 @@
-import { useEffect, useRef, useState } from 'react'
-import { useIsMobile } from '../../../hooks/test_hooks/useIsMobile'
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from 'motion/react'
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
+import backgroundImg from '../../../assets/texture.png'
 
-import bg1 from '../../../assets/ke0.jpeg'
-import bg2 from '../../../assets/ke1.jpg'
-import bg3 from '../../../assets/ke2.jpg'
-import bg4 from '../../../assets/ke3.jpg'
-
-const segments = [
-  {
-    title: 'Elite Investor & Founder Networking Hub',
-    bgImage: bg1,
-  },
-  {
-    title: 'Connect & Collaborate at the Pavilion',
-    bgImage: bg2,
-  },
-  {
-    title: 'Startup Accelerator Bootcamp',
-    bgImage: bg3,
-  },
-  {
-    title: 'Startup Showcase & Thought Leadership Stages',
-    bgImage: bg4,
-  },
-]
-
-const CircleRevealSection = () => {
-  const mainRef = useRef(null)
-  const containerRef = useRef(null)
-  const cardsRef = useRef(null)
-  const isMobile = useIsMobile()
-  const [containerWidth, setContainerWidth] = useState(0)
-  const [scrollWidth, setScrollWidth] = useState(0)
-  const [scrollHeight, setScrollHeight] = useState(0)
-
-  // Mobile swipe state
-  const [currentIndex, setCurrentIndex] = useState(0)
+const KeyFocusSection = ({ sectionTitle, data }) => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
 
   useEffect(() => {
-    const updateMeasurements = () => {
-      if (!cardsRef.current || !containerRef.current) return
-
-      const containerW = containerRef.current.offsetWidth
-      const scrollW = cardsRef.current.scrollWidth
-
-      setContainerWidth(containerW)
-      setScrollWidth(scrollW)
-
-      const totalScrollDistance = scrollW - containerW + 100
-      setScrollHeight(window.innerHeight * 1.5 + totalScrollDistance)
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      setIsMobile(width < 640)
+      setIsTablet(width >= 640 && width < 1024)
     }
 
-    updateMeasurements()
-    window.addEventListener('resize', updateMeasurements)
-    return () => window.removeEventListener('resize', updateMeasurements)
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
-  const { scrollYProgress } = useScroll({
-    target: mainRef,
-    offset: ['start end', 'end start'],
-  })
+  const cardsPerView = isMobile ? 1 : isTablet ? 2 : 3
+  const totalSlides = Math.ceil((data?.length || 0) / cardsPerView)
 
-  // Desktop animations (unchanged)
-  const circleScale = useTransform(scrollYProgress, [0, 1], [0.25, 8])
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides)
+  }
 
-  const cardsX = useTransform(
-    scrollYProgress,
-    [0.4, 0.75],
-    [100, -(scrollWidth - containerWidth) - 100]
-  )
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
+  }
 
-  const headerY = useTransform(scrollYProgress, [0, 0.2, 0.33], [400, 200, 0])
-  const headerOpacity = useTransform(
-    scrollYProgress,
-    [0.1, 0.2, 0.25],
-    [0, 0.75, 1]
-  )
-  const cardsOpacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1])
-  const cardsY = useTransform(scrollYProgress, [0, 0.2, 0.33], [300, 150, 0])
+  const goToSlide = (index) => setCurrentSlide(index)
 
-  // Mobile swipe handlers
-  const handleDragEnd = (event, info) => {
-    const threshold = 50
-    const { offset, velocity } = info
+  // Touch Handlers
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+  }
 
-    if (offset.x > threshold || velocity.x > 500) {
-      // Swipe right - go to previous
-      setCurrentIndex((prev) => Math.max(0, prev - 1))
-    } else if (offset.x < -threshold || velocity.x < -500) {
-      // Swipe left - go to next
-      setCurrentIndex((prev) => Math.min(segments.length - 1, prev + 1))
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    const deltaX = touchStartX.current - touchEndX.current
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0) handleNext()
+      else handlePrev()
     }
   }
 
-  const goToSlide = (index) => {
-    setCurrentIndex(index)
+  if (!data?.length) {
+    return null
   }
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    console.log('Page Scroll:', latest)
-  })
+  return (
+    <section
+      className='relative bg-black text-white py-16 font-urbanist'
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div className='mx-auto px-4 container'>
+        <h2 className='text-3xl md:text-6xl font-medium text-center mb-12'>
+          {sectionTitle}
+        </h2>
 
-  // Mobile version
-  if (isMobile) {
-    return (
-      <section className='relative w-full py-16 bg-gray-50'>
-        <div className='px-6 mb-8'>
-          <h1 className='text-black text-4xl font-bold text-center'>
-            Key Highlights
-          </h1>
-        </div>
-
-        <div className='relative overflow-hidden'>
-          <motion.div
-            className='flex'
-            animate={{ x: -currentIndex * 100 + '%' }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 30,
-              mass: 0.8,
-            }}
-            drag='x'
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.1}
-            onDragEnd={handleDragEnd}
-          >
-            {segments.map((segment, index) => (
-              <motion.div
-                key={index}
-                className='w-full flex-shrink-0 px-6'
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: index === currentIndex ? 1 : 0.7,
-                  y: 0,
-                  scale: index === currentIndex ? 1 : 0.95,
-                }}
-                transition={{
-                  duration: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94], // iOS easing curve
-                }}
+        <div className='relative px-12 sm:px-16 md:px-20'>
+          {/* Navigation Arrows - Responsive positioning */}
+          {totalSlides > 1 && (
+            <>
+              {/* Previous Arrow */}
+              <button
+                className={`absolute top-1/2 transform -translate-y-1/2 z-20
+                  w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 
+                  bg-orange-500 bg-opacity-80 text-white rounded-full
+                  flex items-center justify-center hover:bg-opacity-100 shadow-lg
+                  transition-all duration-300 hover:scale-110 orange-circle-1
+                  ${isMobile ? 'left-2' : isTablet ? 'left-4' : 'left-8'}`}
+                onClick={handlePrev}
+                aria-label='Previous slide'
               >
-                <MobileSegmentCard segment={segment} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+                <FaArrowLeft className='text-xs sm:text-sm md:text-base' />
+              </button>
 
-        {/* Page indicator dots */}
-        <div className='flex justify-center mt-6 space-x-2'>
-          {segments.map((_, index) => (
-            <motion.button
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-blue-500 w-6' : 'bg-gray-300'
-              }`}
-              onClick={() => goToSlide(index)}
-              whileTap={{ scale: 0.8 }}
-              transition={{
-                type: 'spring',
-                stiffness: 400,
-                damping: 30,
-              }}
-            />
-          ))}
-        </div>
+              {/* Next Arrow */}
+              <button
+                className={`absolute top-1/2 transform -translate-y-1/2 z-20
+                  w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 
+                  bg-orange-500 bg-opacity-80 text-white rounded-full
+                  flex items-center justify-center hover:bg-opacity-100 shadow-lg
+                  transition-all duration-300 hover:scale-110 orange-circle-1
+                  ${isMobile ? 'right-2' : isTablet ? 'right-4' : 'right-8'}`}
+                onClick={handleNext}
+                aria-label='Next slide'
+              >
+                <FaArrowRight className='text-xs sm:text-sm md:text-base' />
+              </button>
+            </>
+          )}
 
-        {/* Navigation arrows */}
-        <div className='absolute top-1/2 left-4 transform -translate-y-1/2'>
-          <motion.button
-            className={`p-3 rounded-full bg-white shadow-lg ${
-              currentIndex === 0 ? 'opacity-50' : 'opacity-90'
-            }`}
-            onClick={() => goToSlide(Math.max(0, currentIndex - 1))}
-            disabled={currentIndex === 0}
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 30,
-            }}
+          {/* Carousel container */}
+          <div
+            className='relative overflow-hidden rounded-2xl'
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
+            <div
+              className='flex transition-transform duration-500 ease-in-out'
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              <path
-                d='M15 18L9 12L15 6'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </motion.button>
+              {Array.from({ length: totalSlides }).map((_, slideIndex) => {
+                const startIndex = slideIndex * cardsPerView
+                const endIndex = Math.min(
+                  startIndex + cardsPerView,
+                  data.length
+                )
+                const slideCards = data.slice(startIndex, endIndex)
+
+                return (
+                  <div
+                    key={slideIndex}
+                    className='w-full flex-shrink-0 px-2 md:px-4'
+                  >
+                    <div
+                      className={`grid gap-4 md:gap-6 ${
+                        isMobile
+                          ? 'grid-cols-1'
+                          : isTablet
+                          ? 'grid-cols-2'
+                          : 'grid-cols-3'
+                      }`}
+                    >
+                      {slideCards.map((item, itemIndex) => (
+                        <div
+                          key={startIndex + itemIndex}
+                          className='rounded-3xl overflow-hidden'
+                          style={{
+                            background:
+                              'linear-gradient(to right, #0055FF, #18BFDB, #F5710C, #EC473E)',
+                            padding: '2px',
+                            height: '280px',
+                          }}
+                        >
+                          <div className='w-full h-full rounded-3xl bg-black p-6 flex flex-col'>
+                            <img
+                              src={
+                                item?.icon?.url ||
+                                '/placeholder.svg?height=48&width=48'
+                              }
+                              alt={item.title}
+                              className='w-12 h-12 mb-4 object-contain highlight-text'
+                            />
+                            <h3 className='text-lg md:text-xl font-semibold mb-2'>
+                              {item.title}
+                            </h3>
+                            <p className='text-sm text-gray-300 mb-4 line-clamp-4 flex-grow'>
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Navigation dots */}
+          {totalSlides > 1 && (
+            <div className='flex justify-center mt-8 space-x-2'>
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+                    currentSlide === index
+                      ? 'bg-[#18BFDB] scale-110 shadow-lg'
+                      : 'bg-gray-500 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Slide counter for mobile */}
+          {isMobile && totalSlides > 1 && (
+            <div className='text-center mt-4 text-sm text-gray-400'>
+              {/* {currentSlide + 1} / {totalSlides} */}
+            </div>
+          )}
         </div>
-
-        <div className='absolute top-1/2 right-4 transform -translate-y-1/2'>
-          <motion.button
-            className={`p-3 rounded-full bg-white shadow-lg ${
-              currentIndex === segments.length - 1 ? 'opacity-50' : 'opacity-90'
-            }`}
-            onClick={() =>
-              goToSlide(Math.min(segments.length - 1, currentIndex + 1))
-            }
-            disabled={currentIndex === segments.length - 1}
-            whileTap={{ scale: 0.95 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 30,
-            }}
-          >
-            <svg
-              width='20'
-              height='20'
-              viewBox='0 0 24 24'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M9 18L15 12L9 6'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              />
-            </svg>
-          </motion.button>
-        </div>
-      </section>
-    )
-  }
-
-  // Desktop version (unchanged)
-  return (
-    <motion.section
-      className='overflow-x-clip relative w-full z-20'
-      ref={mainRef}
-      style={{
-        height: scrollHeight,
-      }}
-    >
-      {/*circle that expands*/}
-      <motion.div
-        className='absolute top-0 left-1/4 justify-center flex items-center will-change-transform bg-white rounded-full'
-        style={{ scale: circleScale, width: '90vh', height: '90vh' }}
-      />
-
-      <div
-        className='h-screen w-screen flex flex-col justify-between items-center py-8 2xl:py-40'
-        style={{
-          position: 'sticky',
-          top: 0,
-        }}
-      >
-        <motion.h1
-          className='text-black text-4xl md:text-8xl font-bold'
-          style={{ y: headerY, opacity: headerOpacity }}
-        >
-          Key Highlights
-        </motion.h1>
-
-        <motion.div
-          ref={containerRef}
-          className='relative w-full'
-          style={{ opacity: cardsOpacity, y: cardsY }}
-        >
-          <motion.div
-            ref={cardsRef}
-            className='flex gap-8 px-8 w-fit'
-            style={{ x: cardsX, willChange: 'transform' }}
-          >
-            {segments.map((segment, index) => (
-              <SegmentCard key={index} segment={segment} />
-            ))}
-          </motion.div>
-        </motion.div>
       </div>
-    </motion.section>
+    </section>
   )
 }
 
-const SegmentCard = ({ segment }) => {
-  return (
-    <div
-      className='p-1 rounded-2xl overflow-hidden'
-      style={{
-        background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
-      }}
-    >
-      <div
-        className='relative w-96 overflow-hidden rounded-lg md:rounded-2xl'
-        style={{ aspectRatio: '0.85/1' }}
-      >
-        {segment.bgImage ? (
-          <img
-            src={segment.bgImage}
-            alt={`${segment.title}-bgImage`}
-            className='absolute inset-0 w-full h-full object-cover object-center'
-          />
-        ) : (
-          <div className='absolute inset-0 bg-gray-900' />
-        )}
-        <div
-          className='absolute inset-0 z-10'
-          style={{
-            background:
-              'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
-          }}
-        />
-        <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
-          <h4 className='text-xl sm:text-xl font-bold mb-1'>{segment.title}</h4>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const MobileSegmentCard = ({ segment }) => {
-  return (
-    <motion.div
-      className='p-1 rounded-2xl overflow-hidden mx-auto'
-      style={{
-        background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
-        maxWidth: '320px',
-      }}
-      whileTap={{ scale: 0.98 }}
-      transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 30,
-      }}
-    >
-      <div
-        className='relative w-full overflow-hidden rounded-xl'
-        style={{ aspectRatio: '0.85/1' }}
-      >
-        {segment.bgImage ? (
-          <img
-            src={segment.bgImage}
-            alt={`${segment.title}-bgImage`}
-            className='absolute inset-0 w-full h-full object-cover object-center'
-          />
-        ) : (
-          <div className='absolute inset-0 bg-gray-900' />
-        )}
-        <div
-          className='absolute inset-0 z-10'
-          style={{
-            background:
-              'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
-          }}
-        />
-        <div className='absolute bottom-0 left-0 p-4 text-white z-20'>
-          <h4 className='text-lg font-bold leading-tight'>{segment.title}</h4>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-export default CircleRevealSection
+export default KeyFocusSection
