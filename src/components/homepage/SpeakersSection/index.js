@@ -276,7 +276,7 @@ const SpeakersSection = ({ isMobile }) => {
       />
 
       <h1 className='text-white will-change-transform text-6xl 2xl:text-8xl mix-blend-lighten gradient-text-black mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
-        Featured Speakers at TNGSS 2025
+        Speakers at TNGSS 2025
       </h1>
 
       <motion.div className='flex flex-col gap-8 md:gap-6 2xl:gap-8 px-4 md:px-14 2xl:px-24 mt-10 md:mt-0'>

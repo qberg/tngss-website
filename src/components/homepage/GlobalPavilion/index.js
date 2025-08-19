@@ -34,7 +34,7 @@ const FlagMarquee = ({ flags = [] }) => {
             key={`${flagData.id}-${Math.floor(index / flags.length)}-${
               index % flags.length
             }`}
-            className='flex-shrink-0'
+            className='flex-shrink-0 flex flex-col items-center gap-3'
             style={{
               transform: 'translateZ(0)',
               willChange: 'transform',
@@ -54,6 +54,9 @@ const FlagMarquee = ({ flags = [] }) => {
               }}
               loading='lazy'
             />
+            <span className='text-white text-center text-sm md:text-base xl:text-lg 2xl:text-2xl font-medium px-2'>
+              {flagData.country}
+            </span>
           </motion.div>
         ))}
       </motion.div>
