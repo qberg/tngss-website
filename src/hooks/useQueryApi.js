@@ -10,7 +10,7 @@ export const useSpeakersData = () => {
         depth: 2,
         sort: 'sort_order',
         where: {
-          status: { equals: 'confirmed' },
+          isPublic: { equals: true },
         },
       })
 

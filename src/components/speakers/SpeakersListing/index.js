@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect } from 'react'
-import { useSpeakersData } from '../../../hooks/useApi'
 import {
   ChevronDown,
   Filter,
@@ -11,6 +10,7 @@ import {
 import SpeakerCard from '../../Elements/SpeakerCard'
 import useMeasure from 'react-use-measure'
 import { motion, AnimatePresence } from 'motion/react'
+import { useSpeakersData } from '../../../hooks/useQueryApi'
 
 const springConfig = {
   type: 'spring',
@@ -189,21 +189,26 @@ const SpeakersListing = () => {
     }
   }, [isFilterDrawerOpen])
 
-  const {
-    data: speakersData,
-    isLoading: speakersLoading,
-    error: speakersError,
-  } = useSpeakersData()
+  const { data: speakersData, isLoading, error, isError } = useSpeakersData()
 
   const allSpeakers = useMemo(() => {
     const speakers = speakersData?.docs || []
-    return speakers.filter((speaker) => {
-      const speakerType =
-        typeof speaker.speaker_type === 'object'
-          ? speaker.speaker_type.slug
-          : speaker.speaker_type?.toLowerCase()
-      return speakerType === 'international' || speakerType === 'domestic'
-    })
+    return speakers
+      .filter((speaker) => {
+        const speakerType =
+          typeof speaker.speaker_type === 'object'
+            ? speaker.speaker_type.slug
+            : speaker.speaker_type?.toLowerCase()
+        const isValidType =
+          speakerType === 'international' || speakerType === 'domestic'
+        const isPublic = speaker.isPublic === true
+        return isValidType && isPublic
+      })
+      .sort((a, b) => {
+        const nameA = a.name?.toLowerCase() || ''
+        const nameB = b.name?.toLowerCase() || ''
+        return nameA.localeCompare(nameB)
+      })
   }, [speakersData])
 
   const speakerTypeCounts = useMemo(() => {
