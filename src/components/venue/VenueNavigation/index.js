@@ -66,13 +66,12 @@ const fadeIn = {
 const VenueNavigation = () => {
   const { data: hallsData, isLoading, error } = useHallsData()
   const [selectedHall, setSelectedHall] = useState(null)
-  const [selectedView, setSelectedView] = useState('venue') // Default to venue overview
+  const [selectedView, setSelectedView] = useState('venue')
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
   const [imageError, setImageError] = useState(false)
 
   const halls = hallsData?.docs || []
 
-  // Set first hall as default when data loads (only if venue view is not selected)
   const activeHall = selectedView === 'venue' ? null : selectedHall || halls[0]
   const zones = activeHall?.zones?.docs || []
   const allZones = halls.flatMap((hall) => hall.zones?.docs || []) // All zones for venue overview
@@ -81,21 +80,20 @@ const VenueNavigation = () => {
     setSelectedHall(hall)
     setSelectedView('hall')
     setIsMobileDropdownOpen(false)
-    setImageError(false) // Reset image error state
+    setImageError(false)
   }, [])
 
   const handleVenueSelect = useCallback(() => {
     setSelectedView('venue')
     setSelectedHall(null)
     setIsMobileDropdownOpen(false)
-    setImageError(false) // Reset image error state
+    setImageError(false)
   }, [])
 
   const handleMobileDropdownToggle = useCallback(() => {
     setIsMobileDropdownOpen(!isMobileDropdownOpen)
   }, [isMobileDropdownOpen])
 
-  // Safe image error handler using React state instead of DOM manipulation
   const handleImageError = useCallback(() => {
     setImageError(true)
   }, [])
@@ -372,7 +370,6 @@ const VenueOverviewPanel = ({ halls, allZones }) => {
                   },
                 }}
                 whileHover={{
-                  x: 2,
                   backgroundColor: 'rgba(255, 255, 255, 0.12)',
                   transition: snappySpring,
                 }}

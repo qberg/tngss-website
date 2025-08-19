@@ -342,7 +342,7 @@ const SpeakerDetailHero = ({ speaker }) => {
               )}
 
               {/* Education */}
-              {speaker?.alma_matter && (
+              {speaker?.alma_matter && speaker?.alma_matter.length > 0 && (
                 <motion.div
                   variants={fadeInUp}
                   initial='initial'

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import bg from '../../../assets/speakersbg.svg?url'
 import { useSpeakersData } from '../../../hooks/useApi'
 import { motion, useMotionValue } from 'motion/react'
@@ -6,72 +6,227 @@ import CTAButton from '../../Elements/CTAButton'
 import { animate } from 'motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
-const SpeakersSection = () => {
-  const { data, loading, error, refresh } = useSpeakersData()
+const SpeakersSection = ({ isMobile }) => {
+  const { data, loading, error } = useSpeakersData()
   const dragX = useMotionValue(0)
   const [isDragging, setIsDragging] = useState(false)
   const [currentX, setCurrentX] = useState(0)
+  const [isLooping, setIsLooping] = useState(false)
+  const animationRef = useRef(null)
 
-  if (loading) {
-    return 'Loading...'
-  }
-  if (error) return 'An error has occurred: ' + error.message
+  const speakersData = useMemo(() => data?.docs || [], [data?.docs])
 
-  const speakersData = data?.docs || []
+  const calculations = useMemo(() => {
+    const cardWidth = 280 + 21
+    const totalWidth = speakersData.length * cardWidth
+    const containerWidth =
+      typeof window !== 'undefined' ? window.innerWidth : 1200
+    const containerPadding = 250
+    const availableWidth = containerWidth - containerPadding
+    const maxDrag =
+      totalWidth > availableWidth ? -(totalWidth - availableWidth) : 0
+    const cardsToMove = isMobile ? 2.5 : 1.1
+    const moveDistance = cardWidth * cardsToMove
 
-  const cardWidth = 280 + 21
-  const totalWidth = speakersData.length * cardWidth
-  const containerWidth =
-    typeof window !== 'undefined' ? window.innerWidth : 1200
+    return { cardWidth, totalWidth, maxDrag, moveDistance }
+  }, [speakersData.length, isMobile])
 
-  const containerPadding = 250
-  const availableWidth = containerWidth - containerPadding
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.stop()
+      }
+    }
+  }, [])
 
-  const maxDrag =
-    totalWidth > availableWidth ? -(totalWidth - availableWidth) : 0
+  const dragSettings = useMemo(() => {
+    return isMobile
+      ? {
+          dragElastic: 0.05,
+          dragMomentum: true,
+          dragTransition: {
+            power: 0.2,
+            timeConstant: 100,
+            bounceDamping: 10,
+            bounceStiffness: 300,
+          },
+        }
+      : {
+          dragElastic: 0.1,
+          dragMomentum: true,
+          dragTransition: { power: 0.1, timeConstant: 200 },
+        }
+  }, [isMobile])
 
-  const cardsToMove = 1.1
-  const moveDistance = cardWidth * cardsToMove
+  const buttonStates = useMemo(() => {
+    const canScrollLeft = currentX < 0
+    const canScrollRight = currentX > calculations.maxDrag || isLooping
+    return { canScrollLeft, canScrollRight }
+  }, [currentX, calculations.maxDrag, isLooping])
 
-  const scrollLeft = () => {
+  const performLoopBack = useCallback(async () => {
+    if (isLooping) return
+
+    setIsLooping(true)
+
+    if (animationRef.current) {
+      animationRef.current.stop()
+    }
+
+    try {
+      animationRef.current = animate(dragX, 0, {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+        mass: 0.8,
+        duration: 1.2,
+      })
+
+      await animationRef.current
+      setCurrentX(0)
+    } finally {
+      setIsLooping(false)
+    }
+  }, [dragX, isLooping])
+
+  const scrollLeft = useCallback(async () => {
+    if (isLooping) return
+
     const currentPosition = dragX.get()
-    const newX = Math.min(0, currentPosition + moveDistance)
+    const newX = Math.min(0, currentPosition + calculations.moveDistance)
 
-    animate(dragX, newX, {
-      type: 'tween',
-      ease: [0.25, 0.46, 0.45, 0.94],
-      duration: 1.0,
-    }).then(() => {
+    if (animationRef.current) {
+      animationRef.current.stop()
+    }
+
+    try {
+      animationRef.current = animate(dragX, newX, {
+        type: 'tween',
+        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 1.0,
+      })
+
+      await animationRef.current
       setCurrentX(newX)
-    })
-  }
+    } catch (error) {
+      console.warn('Animation interrupted:', error)
+    }
+  }, [dragX, calculations.moveDistance, isLooping])
 
-  const scrollRight = () => {
+  const scrollRight = useCallback(async () => {
+    if (isLooping) return
+
     const currentPosition = dragX.get()
-    const newX = Math.max(maxDrag, currentPosition - moveDistance)
+    const newX = Math.max(
+      calculations.maxDrag,
+      currentPosition - calculations.moveDistance
+    )
 
-    animate(dragX, newX, {
-      type: 'tween',
-      ease: [0.25, 0.46, 0.45, 0.94],
-      duration: 1.0,
-    }).then(() => {
-      setCurrentX(newX)
-    })
-  }
+    if (animationRef.current) {
+      animationRef.current.stop()
+    }
 
-  const canScrollLeft = currentX < 0
-  const canScrollRight = currentX > maxDrag
+    try {
+      if (newX <= calculations.maxDrag) {
+        animationRef.current = animate(dragX, newX, {
+          type: 'tween',
+          ease: [0.25, 0.46, 0.45, 0.94],
+          duration: 1.0,
+        })
 
-  const handleDragEnd = (event, info) => {
-    setIsDragging(false)
-    const finalX = dragX.get()
-    setCurrentX(finalX)
-    console.log('Drag ended at:', info.point.x, 'Final X:', finalX)
-  }
+        await animationRef.current
+        setCurrentX(newX)
 
-  const handleDragStart = () => {
+        const timeoutId = setTimeout(() => {
+          performLoopBack()
+        }, 800)
+
+        return () => clearTimeout(timeoutId)
+      } else {
+        animationRef.current = animate(dragX, newX, {
+          type: 'tween',
+          ease: [0.25, 0.46, 0.45, 0.94],
+          duration: 1.0,
+        })
+
+        await animationRef.current
+        setCurrentX(newX)
+      }
+    } catch (error) {
+      console.warn('Animation interrupted:', error)
+    }
+  }, [
+    dragX,
+    calculations.maxDrag,
+    calculations.moveDistance,
+    isLooping,
+    performLoopBack,
+  ])
+
+  const handleDragEnd = useCallback(
+    async (event, info) => {
+      if (isLooping) return
+
+      setIsDragging(false)
+      const finalX = dragX.get()
+      const constrainedX = Math.max(calculations.maxDrag, Math.min(0, finalX))
+
+      if (finalX !== constrainedX) {
+        if (animationRef.current) {
+          animationRef.current.stop()
+        }
+
+        try {
+          animationRef.current = animate(dragX, constrainedX, {
+            type: 'spring',
+            stiffness: 300,
+            damping: 30,
+            duration: 0.5,
+          })
+
+          await animationRef.current
+        } catch (error) {
+          console.warn('Animation interrupted:', error)
+        }
+      }
+
+      setCurrentX(constrainedX)
+
+      if (
+        constrainedX <= calculations.maxDrag &&
+        Math.abs(info.velocity.x) < 100
+      ) {
+        const timeoutId = setTimeout(() => {
+          performLoopBack()
+        }, 500)
+
+        return () => clearTimeout(timeoutId)
+      }
+    },
+    [dragX, calculations.maxDrag, isLooping, performLoopBack]
+  )
+
+  const handleDragStart = useCallback(() => {
+    if (isLooping) return
+
+    if (animationRef.current) {
+      animationRef.current.stop()
+    }
+
     setIsDragging(true)
     setCurrentX(dragX.get())
+  }, [dragX, isLooping])
+
+  if (loading) {
+    return <div className='text-white text-center py-8'>Loading...</div>
+  }
+
+  if (error) {
+    return (
+      <div className='text-white text-center py-8'>
+        An error has occurred: {error.message}
+      </div>
+    )
   }
 
   return (
@@ -80,63 +235,68 @@ const SpeakersSection = () => {
         src={bg}
         alt='Background for speakers'
         className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+        loading='lazy'
       />
 
       <h1 className='text-white will-change-transform text-6xl 2xl:text-9xl mix-blend-lighten gradient-text-black mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
         Speakers at TNGSS 2025
       </h1>
 
-      {/*outer vertical flex box for layout*/}
       <motion.div className='flex flex-col gap-8 md:gap-6 2xl:gap-8 px-4 md:px-14 2xl:px-24 mt-10 md:mt-0'>
-        {/*arrows*/}
+        {/* Navigation arrows */}
         <div className='w-full hidden md:flex justify-end'>
           <div className='flex gap-4'>
             <button
               onClick={scrollLeft}
-              disabled={!canScrollLeft}
+              disabled={!buttonStates.canScrollLeft || isLooping}
               className={`w-6 h-6 flex items-center transition-opacity ${
-                !canScrollLeft
+                !buttonStates.canScrollLeft || isLooping
                   ? 'opacity-50 cursor-not-allowed'
                   : 'opacity-100 hover:opacity-100'
               }`}
+              aria-label='Scroll left'
             >
               <ArrowLeft size={16} />
             </button>
 
             <button
               onClick={scrollRight}
-              disabled={!canScrollRight}
+              disabled={isLooping}
               className={`w-6 h-6 flex items-center transition-opacity ${
-                !canScrollRight
+                isLooping
                   ? 'opacity-50 cursor-not-allowed'
                   : 'opacity-100 hover:opacity-100'
               }`}
+              aria-label='Scroll right'
             >
               <ArrowRight size={16} />
             </button>
           </div>
         </div>
 
+        {/* Draggable container */}
         <motion.div
-          className='flex gap-6 2xl:gap-8 cursor-grab active:cursor-grabbing'
-          drag='x'
+          className={`flex gap-6 2xl:gap-8 ${
+            isLooping ? 'cursor-wait' : 'cursor-grab active:cursor-grabbing'
+          }`}
+          drag={isLooping ? false : 'x'}
           dragConstraints={{
-            left: maxDrag,
+            left: calculations.maxDrag,
             right: 0,
           }}
-          dragElastic={0.1}
-          dragMomentum={true}
-          dragTransition={{ power: 0.1, timeConstant: 200 }}
+          {...dragSettings}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
           style={{ x: dragX }}
+          animate={isLooping ? { opacity: [1, 0.8, 1] } : {}}
+          transition={isLooping ? { duration: 0.3, repeat: 2 } : {}}
         >
           {speakersData.map((speaker) => (
             <SpeakerCard speaker={speaker} key={speaker.id} />
           ))}
         </motion.div>
 
-        {/*cta*/}
+        {/* CTA Button */}
         <div className='w-full flex justify-center'>
           <CTAButton
             src='/speakers'
@@ -166,6 +326,7 @@ const SpeakerCard = ({ speaker }) => {
             src={speaker.profile_image.url}
             alt={`${speaker.name}-${speaker.designation}`}
             className='absolute inset-0 w-full h-full object-cover object-center'
+            loading='lazy'
           />
         ) : (
           <div className='absolute inset-0 bg-gray-900' />
@@ -178,7 +339,6 @@ const SpeakerCard = ({ speaker }) => {
               'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
           }}
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10' />
         <div className='absolute bottom-0 left-0 p-2 text-white z-20'>
           <h4 className='text-xl sm:text-xl font-bold mb-1'>{speaker.name}</h4>
           <p className='text-sm text-white/80 leading-tight'>

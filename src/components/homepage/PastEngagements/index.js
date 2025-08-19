@@ -15,14 +15,14 @@ export default function PastEngagements() {
 
   return (
     <section
-      className='h-60vh relative px-6 md:px-20 py-10 w-screen min-h-screen overflow-hidden bg-white text-white flex justify-center items-start isolate z-50'
+      className='relative px-6 md:px-20 py-16 md:py-10 w-screen h-auto md:min-h-screen overflow-hidden bg-white text-white flex justify-center items-start isolate z-50'
       style={{
         backgroundImage: `url(${pastbg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className='w-full mt-10 z-10'>
+      <div className='w-full z-10'>
         {/* Heading and Text */}
         <div className='flex flex-col md:flex-row md:justify-between md:mb-16 space-y-6 md:space-y-0'>
           <h1 className='text-4xl md:text-5xl lg:text-7xl font-semibold text-left md:text-center'>

@@ -207,7 +207,7 @@ const WhyAttendSection = () => {
                       } rounded-2xl transform-gpu`}
                     >
                       {/* Front Face */}
-                      <GradientBdrCard className='w-56 h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
+                      <GradientBdrCard className='w-64 h-80 md:w-56 md:h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
                         <motion.div className='relative w-full h-full flex isolate rounded-2xl overflow-hidden'>
                           <motion.img
                             src={item.img}
@@ -252,7 +252,7 @@ const WhyAttendSection = () => {
                       </GradientBdrCard>
 
                       {/* Back Face */}
-                      <GradientBdrCard className='text-left w-56 h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
+                      <GradientBdrCard className='text-left w-64 h-80 md:w-56 md:h-72 2xl:w-72 2xl:h-96 rounded-2xl overflow-hidden bg-black'>
                         <motion.div
                           className='flex flex-col w-full h-full p-5 md:p-6 text-white'
                           initial={{ opacity: 0 }}

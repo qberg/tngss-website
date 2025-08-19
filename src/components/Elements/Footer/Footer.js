@@ -32,7 +32,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <div className={isHome ? 'bg-white isolate' : 'bg-black isolate'}>
+    <div className={isHome ? 'bg-black isolate' : 'bg-black isolate'}>
       <div
         className='flex flex-col bg-[#18BFDB] h-[60vh] md:rounded-t-[60px] overflow-hidden z-50'
         style={{ borderRadius: '50px 23px 0px 0px' }}

@@ -5,9 +5,9 @@ import { motion, useTransform } from 'motion/react'
 import SpeakersSection from '../SpeakersSection'
 import PastEngagements from '../PastEngagements'
 import CircleRevealSection from '../CircleRevealSection'
+import MobileCircleRevealSection from '../MobileCircleRevealSection'
 import { useIsMobile } from '../../../hooks/test_hooks/useIsMobile'
 import ShowcaseSection from '../../Homepage/showcase_section/ShowcaseSection'
-
 const { default: ScrollAnimsFirst } = require('../ScrollAnimsFirst')
 const { default: WhyAttendSection } = require('../WhyAttendSection')
 
@@ -38,24 +38,18 @@ const HomePage = () => {
       <div ref={homepageRef}>
         <ScrollAnimsFirst />
         <WhyAttendSection />
-
         {!isMobile && <div className='h-screen' />}
-
         <motion.div
           className={isMobile ? 'h-lvh py-8' : 'fixed inset-0 -z-10'}
-          style={{ opacity: gpOpacity }}
+          style={{ opacity: isMobile ? 1 : gpOpacity }}
         >
           <GlobalPavilion shouldAnimate={shouldAnimateFlag} />
         </motion.div>
-
         {!isMobile && <div className='h-screen' />}
-        <SpeakersSection />
+        <SpeakersSection isMobile={isMobile} />
       </div>
 
-      {/*rain section*/}
-      <ShowcaseSection />
-
-      <CircleRevealSection />
+      {isMobile ? <MobileCircleRevealSection /> : <CircleRevealSection />}
 
       <PastEngagements />
     </div>

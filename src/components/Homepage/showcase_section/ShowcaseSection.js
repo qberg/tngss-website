@@ -39,7 +39,7 @@ export default function ShowcaseSection() {
   return (
     <section
       ref={showcaseRef}
-      className='relative h-screen w-screen overflow-hidden z-10'
+      className='relative h-screen w-screen overflow-hidden z-20'
     >
       <div className='relative isolate z-10'>
         <RainScrollBackground scrollTargetRef={showcaseRef} />
