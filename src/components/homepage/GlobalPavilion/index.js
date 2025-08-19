@@ -1,62 +1,12 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import bg from '../../../assets/globalPavBg.svg?url'
-import austriaFlag from '../../../assets/flags/austria.png'
-import belgiumFlag from '../../../assets/flags/belgium.png'
-import denmarkFlag from '../../../assets/flags/denmark.png'
-import franceFlag from '../../../assets/flags/france.png'
-import japanFlag from '../../../assets/flags/japan.png'
-import malayasiaFlag from '../../../assets/flags/malayasia.png'
-import netherlandsFlag from '../../../assets/flags/netherlands.png'
-import saudiArabiaFlag from '../../../assets/flags/saudi-arabia.png'
-import southKoreaFlag from '../../../assets/flags/south-korea.png'
-import uaeFlag from '../../../assets/flags/uae.png'
-import germanyFlag from '../../../assets/flags/germany.png'
-import singaporeFlag from '../../../assets/flags/singapore.png'
-import srilankaFlag from '../../../assets/flags/srilanka.png'
+import { useGlobalPavilionData } from '../../../hooks/useQueryApi'
 
-const flags = [
-  { id: 1, country: 'Austria', flag: austriaFlag, alt: 'Austria flag' },
-  { id: 2, country: 'Belgium', flag: belgiumFlag, alt: 'Belgium flag' },
-  {
-    id: 3,
-    country: 'Denmark',
-    flag: denmarkFlag,
-    alt: 'Denmark flag',
-  },
-  { id: 4, country: 'France', flag: franceFlag, alt: 'France flag' },
-  { id: 5, country: 'Japan', flag: japanFlag, alt: 'Japan Flag' },
-  { id: 7, country: 'Malayasia', flag: malayasiaFlag, alt: 'Malayasia flag' },
-  {
-    id: 8,
-    country: 'Netherland',
-    flag: netherlandsFlag,
-    alt: 'Netherland flag',
-  },
-  {
-    id: 9,
-    country: 'Saudi Arabia',
-    flag: saudiArabiaFlag,
-    alt: 'Saudi Arabia flag',
-  },
-  { id: 10, country: 'UAE', flag: uaeFlag, alt: 'UAE flag' },
-  {
-    id: 11,
-    country: 'southKoreaFlag',
-    flag: southKoreaFlag,
-    alt: 'South Korea Flag',
-  },
-  { id: 12, country: 'Germany Flag', flag: germanyFlag, alt: 'Germany Flag' },
-  { id: 13, country: 'Singapore', flag: singaporeFlag, alt: 'singapore Flag' },
-  { id: 14, country: 'Srilanka', flag: srilankaFlag, alt: 'Srilanka Flag' },
-]
+const FlagMarquee = ({ flags = [] }) => {
+  if (!flags || flags.length === 0) {
+    return null
+  }
 
-const content = {
-  title: 'Global Pavilion',
-  description:
-    'Step into a world of opportunities at the Global Pavilion, where leading startup ecosystems, international accelerators, innovative startups, and global innovation hubs come together under one roof. The pavilion will showcase cutting-edge technologies, cross-border collaborations, and world-class startup success stories from across continents.',
-}
-
-const FlagMarquee = () => {
   const extendedFlags = [...flags, ...flags, ...flags]
 
   return (
@@ -79,9 +29,9 @@ const FlagMarquee = () => {
           perspective: 1000,
         }}
       >
-        {extendedFlags.map((flag, index) => (
+        {extendedFlags.map((flagData, index) => (
           <motion.div
-            key={`${flag.id}-${Math.floor(index / flags.length)}-${
+            key={`${flagData.id}-${Math.floor(index / flags.length)}-${
               index % flags.length
             }`}
             className='flex-shrink-0'
@@ -95,8 +45,8 @@ const FlagMarquee = () => {
             }}
           >
             <img
-              src={flag.flag}
-              alt={flag.alt}
+              src={flagData.flag?.url}
+              alt={flagData.flag?.alt || `${flagData.country} flag`}
               className='w-48 h-36 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
               style={{
                 imageRendering: 'crisp-edges',
@@ -112,6 +62,43 @@ const FlagMarquee = () => {
 }
 
 const GlobalPavilion = ({ shouldAnimate = false }) => {
+  const { data: pavilionData, isLoading, error } = useGlobalPavilionData()
+
+  if (isLoading) {
+    return (
+      <section className='relative h-full w-full flex items-center justify-center py-4'>
+        <img
+          alt=''
+          src={bg}
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+        />
+        <div className='text-white text-2xl'>Loading...</div>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className='relative h-full w-full flex items-center justify-center py-4'>
+        <img
+          alt=''
+          src={bg}
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+        />
+        <div className='text-red-500 text-2xl'>
+          Failed to load pavilion data
+        </div>
+      </section>
+    )
+  }
+
+  const content = {
+    title: pavilionData?.title || 'Global Pavilion',
+    description:
+      pavilionData?.description ||
+      'Step into a world of opportunities at the Global Pavilion...',
+  }
+
   return (
     <section className='relative h-full w-full flex flex-col gap-4 md:gap-6 xl:gap-8 2xl:gap-24 items-center justify-center py-4'>
       <img
@@ -154,7 +141,7 @@ const GlobalPavilion = ({ shouldAnimate = false }) => {
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
       >
-        <FlagMarquee />
+        <FlagMarquee flags={pavilionData?.flags || []} />
       </motion.div>
     </section>
   )

@@ -278,3 +278,45 @@ export const useHallsData = () => {
     retry: 2,
   })
 }
+
+export const useGlobalPavilionData = () => {
+  return useQuery({
+    queryKey: ['global-pavilion'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/home-wp', {
+        depth: 2,
+      })
+
+      if (result.success && result.data.global_pavilion) {
+        return result.data.global_pavilion
+      } else {
+        throw new Error(result.error || 'Failed to fetch Global Pavilion data')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useFeaturedSpeakers = () => {
+  return useQuery({
+    queryKey: ['featured-speakers'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/home-wp', {
+        depth: 3,
+      })
+
+      if (result.success && result.data.featured_speakers?.speakers) {
+        return {
+          docs: result.data.featured_speakers.speakers.map(
+            (item) => item.speaker
+          ),
+        }
+      } else {
+        throw new Error(result.error || 'Failed to fetch featured speakers')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}

@@ -8,8 +8,9 @@ import CircleRevealSection from '../CircleRevealSection'
 import MobileCircleRevealSection from '../MobileCircleRevealSection'
 import { useIsMobile } from '../../../hooks/test_hooks/useIsMobile'
 import ShowcaseSection from '../../Homepage/showcase_section/ShowcaseSection'
-const { default: ScrollAnimsFirst } = require('../ScrollAnimsFirst')
-const { default: WhyAttendSection } = require('../WhyAttendSection')
+import bg from '../../../assets/speakersbg.svg?url'
+import ScrollAnimsFirst from '../ScrollAnimsFirst'
+import WhyAttendSection from '../WhyAttendSection'
 
 const HomePage = () => {
   const homepageRef = useRef(null)
@@ -23,7 +24,7 @@ const HomePage = () => {
 
   const gpOpacity = useTransform(
     scrollYProgress,
-    [0, 0.4, 0.65, 0.9, 1],
+    [0, 0.4, 0.65, 0.85, 1],
     [0, 0, 1, 0, 0]
   )
 
@@ -45,13 +46,26 @@ const HomePage = () => {
         >
           <GlobalPavilion shouldAnimate={shouldAnimateFlag} />
         </motion.div>
-        {!isMobile && <div className='h-screen' />}
+        {!isMobile && <div style={{ height: '25vh' }} />}
+
         <SpeakersSection isMobile={isMobile} />
       </div>
 
+      {!isMobile && (
+        <div style={{ height: '25vh' }} className='relative'>
+          <img
+            src={bg}
+            alt='Background for speakers'
+            className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+            style={{ transform: 'rotate(180deg) scaleX(-1)' }}
+            loading='lazy'
+          />
+        </div>
+      )}
       {isMobile ? <MobileCircleRevealSection /> : <CircleRevealSection />}
 
       <PastEngagements />
+      <ShowcaseSection />
     </div>
   )
 }

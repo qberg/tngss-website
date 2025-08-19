@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import bg from '../../../assets/speakersbg.svg?url'
-import { useSpeakersData } from '../../../hooks/useApi'
 import { motion, useMotionValue } from 'motion/react'
 import CTAButton from '../../Elements/CTAButton'
 import { animate } from 'motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useFeaturedSpeakers } from '../../../hooks/useQueryApi'
 
 const SpeakersSection = ({ isMobile }) => {
-  const { data, loading, error } = useSpeakersData()
+  const { data, isLoading: loading, error } = useFeaturedSpeakers()
   const dragX = useMotionValue(0)
   const [isDragging, setIsDragging] = useState(false)
   const [currentX, setCurrentX] = useState(0)
@@ -218,14 +218,51 @@ const SpeakersSection = ({ isMobile }) => {
   }, [dragX, isLooping])
 
   if (loading) {
-    return <div className='text-white text-center py-8'>Loading...</div>
+    return (
+      <section className='relative h-svh md:h-screen flex items-center justify-center'>
+        <img
+          src={bg}
+          alt='Background for speakers'
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+          loading='lazy'
+        />
+        <div className='text-white text-center py-8 text-2xl'>
+          Loading featured speakers...
+        </div>
+      </section>
+    )
   }
 
   if (error) {
     return (
-      <div className='text-white text-center py-8'>
-        An error has occurred: {error.message}
-      </div>
+      <section className='relative h-svh md:h-screen flex items-center justify-center'>
+        <img
+          src={bg}
+          alt='Background for speakers'
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+          loading='lazy'
+        />
+        <div className='text-white text-center py-8'>
+          An error has occurred: {error.message}
+        </div>
+      </section>
+    )
+  }
+
+  // Show message if no featured speakers
+  if (!speakersData || speakersData.length === 0) {
+    return (
+      <section className='relative h-svh md:h-screen flex items-center justify-center'>
+        <img
+          src={bg}
+          alt='Background for speakers'
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+          loading='lazy'
+        />
+        <div className='text-white text-center py-8 text-xl'>
+          No featured speakers available at the moment.
+        </div>
+      </section>
     )
   }
 
@@ -238,8 +275,8 @@ const SpeakersSection = ({ isMobile }) => {
         loading='lazy'
       />
 
-      <h1 className='text-white will-change-transform text-6xl 2xl:text-9xl mix-blend-lighten gradient-text-black mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
-        Speakers at TNGSS 2025
+      <h1 className='text-white will-change-transform text-6xl 2xl:text-8xl mix-blend-lighten gradient-text-black mt-2 md:mt-4 px-4 md:px-14 2xl:px-20'>
+        Featured Speakers at TNGSS 2025
       </h1>
 
       <motion.div className='flex flex-col gap-8 md:gap-6 2xl:gap-8 px-4 md:px-14 2xl:px-24 mt-10 md:mt-0'>
@@ -324,12 +361,17 @@ const SpeakerCard = ({ speaker }) => {
         {speaker.profile_image ? (
           <img
             src={speaker.profile_image.url}
-            alt={`${speaker.name}-${speaker.designation}`}
+            alt={
+              speaker.profile_image.alt ||
+              `${speaker.name}-${speaker.designation}`
+            }
             className='absolute inset-0 w-full h-full object-cover object-center'
             loading='lazy'
           />
         ) : (
-          <div className='absolute inset-0 bg-gray-900' />
+          <div className='absolute inset-0 bg-gray-900 flex items-center justify-center'>
+            <span className='text-white text-lg'>No Image</span>
+          </div>
         )}
 
         <div
