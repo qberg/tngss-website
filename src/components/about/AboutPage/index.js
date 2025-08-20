@@ -14,6 +14,7 @@ const AboutPage = () => {
     introduction,
     mission,
     committe,
+    steering_committe,
     whyTN,
     pavilion,
     pavilionTitle,
@@ -40,6 +41,9 @@ const AboutPage = () => {
         />
       )}
 
+      {steering_committe && (
+        <OrganisingCommitteSection data={steering_committe} />
+      )}
       {committe && <OrganisingCommitteSection data={committe} />}
 
       {pavilionTitle && pavilion && (
