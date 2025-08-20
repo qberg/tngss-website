@@ -1,10 +1,9 @@
 'use client'
-
 import { useMemo, useRef } from 'react'
 import useCounterAnimation from '../../../hooks/useCounterAnimation'
 import '../../Elements/custom.css'
 import BG from '../../../assets/statsbg.svg?url'
-import { motion, useTransform } from 'motion/react'
+import { motion, useTransform, useMotionValue } from 'motion/react'
 
 export default function StatsSection({ scrollYProgress, isMobile }) {
   const contentRef = useRef(null)
@@ -22,6 +21,9 @@ export default function StatsSection({ scrollYProgress, isMobile }) {
     useRef(null),
     useRef(null),
   ]
+
+  // Create fallback motion value
+  const fallbackScrollY = useMotionValue(0)
 
   const data = useMemo(
     () => [
@@ -49,10 +51,11 @@ export default function StatsSection({ scrollYProgress, isMobile }) {
     }))
   )
 
+  // Use fallback if scrollYProgress is null
   const wholeScale = useTransform(
-    scrollYProgress,
-    [0.4, 0.5, 0.75, 0.95, 1],
-    [0.8, 1, 1, 0.85, 0.8]
+    scrollYProgress || fallbackScrollY,
+    [0.3, 0.35, 0.4],
+    !scrollYProgress || isMobile ? [1, 1, 1] : [0.8, 1, 1]
   )
 
   return (
@@ -83,7 +86,6 @@ export default function StatsSection({ scrollYProgress, isMobile }) {
             Grow With A Dynamic Community
           </p>
         </div>
-
         {/* Desktop Rotated Title */}
         <div className='hidden lg:flex justify-center items-center relative h-full w-xs max-w-[100vh]'>
           <div className='absolute flex justify-center -rotate-90 w-[calc(100vh-1rem)] pl-14'>
@@ -92,7 +94,6 @@ export default function StatsSection({ scrollYProgress, isMobile }) {
             </p>
           </div>
         </div>
-
         {/* Stats Grid */}
         <div className='grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-x-6 sm:gap-y-6 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-12 z-10 max-w-4xl w-full'>
           {data.map((item, index) => (

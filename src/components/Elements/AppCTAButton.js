@@ -9,7 +9,7 @@ export default function AppCTAButton({
   qrCodeUrl = '',
   showQR = false,
   icon = null,
-  minWidth = '240px',
+  minWidth = '120px',
 }) {
   const [isQRVisible, setIsQRVisible] = useState(false)
 
@@ -76,7 +76,7 @@ export default function AppCTAButton({
             className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full z-50 mb-2'
           >
             <div className='bg-white p-4 rounded-lg shadow-2xl border-2 border-gray-200'>
-              <div className='w-32 h-32 bg-gray-100 flex items-center justify-center text-base text-black border-2 border-dashed border-gray-300'>
+              <div className='w-28 h-28 bg-gray-100 flex items-center justify-center text-base text-black border-2 border-dashed border-gray-300'>
                 {qrCodeUrl ? (
                   <img
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(

@@ -5,19 +5,11 @@ import { motion, useTransform } from 'motion/react'
 
 export default function CMSection({ scrollYProgress, isMobile }) {
   const wholeScale = !isMobile
-    ? useTransform(
-        scrollYProgress,
-        [0, 0.19, 0.35, 0.5, 0.7, 1],
-        [0.8, 0.8, 1, 1, 1, 0.6]
-      )
+    ? useTransform(scrollYProgress, [0, 0.1, 0.15], [0.8, 0.8, 1])
     : 1
 
   const wholeY = !isMobile
-    ? useTransform(
-        scrollYProgress,
-        [0.6, 0.65, 0.65, 0.7],
-        [0, -40, -120, -160]
-      )
+    ? useTransform(scrollYProgress, [0.3, 0.35, 0.4], [0, -40, -160])
     : 0
 
   const borderRadius = !isMobile
@@ -44,7 +36,6 @@ export default function CMSection({ scrollYProgress, isMobile }) {
         borderRadius: borderRadius,
         scale: wholeScale,
         transformOrigin: 'top center',
-        y: wholeY,
       }}
       className='sticky top-0 overflow-hidden w-full h-svh z-10 p-2'
     >

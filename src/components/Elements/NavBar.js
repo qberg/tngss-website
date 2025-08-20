@@ -44,7 +44,7 @@ export default function NavBar() {
     //{ name: 'Why Attend', link: '/why-attend' },
     { name: 'Speakers', link: '/speakers' },
     { name: 'Venue', link: '/venue' },
-    // { name: 'Programs', link: '/program' },
+    { name: 'Agenda', link: '/agenda' },
     { name: 'FAQ', link: '/faq' },
   ]
 
@@ -100,7 +100,7 @@ export default function NavBar() {
             contCN='!bg-none py-2 px-4'
           >
             <img
-              className='px-2 inline-block w-10 h-5'
+              className='px-2 inline-block w-8 h-4 mb-0.5'
               src={book || '/placeholder.svg'}
               alt='Vector'
               style={{ filter: 'invert(1)' }}
@@ -113,7 +113,7 @@ export default function NavBar() {
             contCN='hover py-2 px-2'
           >
             <img
-              className='px-2 inline-block'
+              className='px-2 inline-block w-8 h-4 mb-0.5'
               src={vector || '/placeholder.svg'}
               alt='Vector'
             />
