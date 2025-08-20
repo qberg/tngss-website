@@ -47,7 +47,7 @@ const IntroSection = ({ introData, missionData }) => {
                 {introTitle}
               </h2>
               {introDescription.length > 0 && (
-                <div className='text-gray-800 mb-3 text-lg md:text-xl'>
+                <div className='text-gray-800 mb-3 text-lg md:text-xl text-justify'>
                   {renderDescription(introDescription)}
                 </div>
               )}
@@ -56,7 +56,7 @@ const IntroSection = ({ introData, missionData }) => {
 
           {/* Image and Mission - Only render if missionData exists */}
           {missionData && (
-            <div className='flex flex-col md:flex-row md:items-center justify-center gap-8 md:mt-12 items-start'>
+            <div className='flex flex-col md:flex-row md:items-center justify-center gap-8 md:mt-12 items-start text-justify'>
               {/* Image - Only render if missionImage exists */}
               {missionImage?.url && (
                 <GradientBdrCard className='p-1 w-full md:w-1/2'>
@@ -76,7 +76,7 @@ const IntroSection = ({ introData, missionData }) => {
                   {missionTitle}
                 </h2>
                 {missionDescription.length > 0 && (
-                  <div className='text-gray-800 mb-3 text-lg md:text-xl'>
+                  <div className='text-gray-800 mb-3 text-lg md:text-xl text-justify'>
                     {renderDescription(missionDescription)}
                   </div>
                 )}

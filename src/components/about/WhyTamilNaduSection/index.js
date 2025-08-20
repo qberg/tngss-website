@@ -12,7 +12,7 @@ const WhyTamilNaduSection = ({ title, description }) => {
         {title}
       </h1>
 
-      <p className='text-left font-urbanist font-normal text-lg md:text-2xl w-full md:w-3/4 mx-auto'>
+      <p className='text-left font-urbanist font-normal text-lg md:text-2xl w-full md:w-3/4 mx-auto text-justify'>
         {description}
       </p>
     </section>
