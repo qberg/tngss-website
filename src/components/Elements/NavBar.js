@@ -44,7 +44,7 @@ export default function NavBar() {
     //{ name: 'Why Attend', link: '/why-attend' },
     { name: 'Speakers', link: '/speakers' },
     { name: 'Venue', link: '/venue' },
-    { name: 'Agenda', link: '/agenda' },
+    // { name: 'Agenda', link: '/agenda' },
     { name: 'FAQ', link: '/faq' },
   ]
 

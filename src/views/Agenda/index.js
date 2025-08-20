@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet'
+import AgendaPage from '../../components/agenda/AgendaPage'
 
 const Agenda = () => {
   return (
@@ -10,6 +11,8 @@ const Agenda = () => {
           content='Find answers to all your questions about TNGSS 2025 - from summit information, registeration to program offering and eligibility.'
         />
       </Helmet>
+
+      <AgendaPage />
     </>
   )
 }
