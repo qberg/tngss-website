@@ -14,7 +14,7 @@ const MinimalHero = ({ title, subTitle, tagLine, applyBorder = true }) => {
           style={{ backgroundImage: `url('/assets/min-hero-lg.svg')` }}
         >
           <div className=''>
-            <h1 className='text-white text-6xl md:text-8xl mb-4 font-medium font-urbanist gradient-text-black'>
+            <h1 className='text-white text-6xl md:text-8xl mb-4 md:mb-0 font-medium font-urbanist gradient-text-black md:leading-relaxed'>
               {title}
             </h1>
 

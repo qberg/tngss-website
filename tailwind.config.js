@@ -7,6 +7,12 @@ module.exports = {
         urbanist: ['Urbanist', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      colors: {
+        'theme-blue': '#18BFDB',
+        'theme-orange': '#F5710C',
+        'inactive-blue': '#1B374E',
+        'bg-gray': '#222222',
+      },
       fontSize: {
         '13xl': '13rem',
       },

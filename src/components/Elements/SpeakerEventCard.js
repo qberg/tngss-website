@@ -13,6 +13,7 @@ import {
   Globe,
   Video,
 } from 'lucide-react'
+import GradientBadge from './GradientBadge'
 
 const SpeakerEventCard = ({ event }) => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -56,7 +57,7 @@ const SpeakerEventCard = ({ event }) => {
       <div className='w-full h-full bg-black rounded-2xl overflow-hidden p-3 md:p-6'>
         {/* Badges */}
         <div className='flex gap-2 md:gap-4 mb-4 text-xs md:text-base flex-wrap'>
-          <Badge label={getEventTypeLabel(event?.main_or_partner)} />
+          <GradientBadge label={getEventTypeLabel(event?.main_or_partner)} />
           {event?.registeration_mode !== 'none' && (
             <div className='flex gap-1 items-center highlight-text font-bold font-urbanist'>
               <Album size={14} />
@@ -160,24 +161,6 @@ const SpeakerEventCard = ({ event }) => {
         </div>
       </div>
     </article>
-  )
-}
-
-const Badge = ({ label }) => {
-  return (
-    <section
-      className='p-1 overflow-hidden rounded-lg'
-      style={{
-        background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
-      }}
-    >
-      <div
-        className='w-full h-full rounded-lg overflow-hidden px-2.5 py-1 md:px-3 md:py-1.5 font-bold font-urbanist text-white text-xs md:text-base'
-        style={{ background: '#191919' }}
-      >
-        {label}
-      </div>
-    </section>
   )
 }
 

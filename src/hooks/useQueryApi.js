@@ -1,27 +1,57 @@
 import { useQuery } from '@tanstack/react-query'
 import { payloadClient } from '../utils/payloadClient'
 
-export const useSpeakersData = () => {
+const QUERY_DEFAULTS = {
+  SHORT_STALE_TIME: 5 * 60 * 1000,
+  LONG_STALE_TIME: 10 * 60 * 1000,
+  DEFAULT_RETRY: 2,
+}
+
+const usePayloadQuery = (queryKey, endpoint, options = {}) => {
+  const {
+    payloadOptions = {},
+    queryOptions = {},
+    errorMessage = 'Failed to fetch data',
+  } = options
+
   return useQuery({
-    queryKey: ['speakers', 'all-with-relations'],
+    queryKey,
     queryFn: async () => {
-      const result = await payloadClient.get('/api/speakers', {
-        limit: 0,
-        depth: 2,
-        sort: 'sort_order',
-        where: {
-          isPublic: { equals: true },
-        },
-      })
+      const result = await payloadClient.get(endpoint, payloadOptions)
 
       if (result.success) {
         return result.data
       } else {
-        throw new Error(result.error || 'Failed to fetch speakers')
+        throw new Error(result.error || errorMessage)
       }
     },
     staleTime: 5 * 60 * 1000,
     retry: 2,
+    ...queryOptions,
+  })
+}
+
+export const useEventsData = () => {
+  return usePayloadQuery(['events'], '/api/events', {
+    payloadOptions: {
+      limit: 0,
+      depth: 2,
+      sort: 'schedule.from_date',
+      where: { isPublic: { equals: true } },
+    },
+    errorMessage: 'Failed to fetch events',
+  })
+}
+
+export const useSpeakersData = () => {
+  return usePayloadQuery(['speakers', 'all-with-relations'], '/api/speakers', {
+    payloadOptions: {
+      limit: 0,
+      depth: 2,
+      sort: 'sort_order',
+      where: { isPublic: { equals: true } },
+    },
+    errorMessage: 'Failed to fetch speakers',
   })
 }
 

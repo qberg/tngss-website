@@ -405,7 +405,7 @@ const SpeakersListing = () => {
   ]
 
   return (
-    <section className='h-auto bg-black px-4 pb-8 md:px-28 2xl:px-44 py-4 md:py-14 2xl:py-24'>
+    <section className='h-auto bg-black px-4 pb-8 md:px-24 2xl:px-44 py-4 md:py-14 2xl:py-24'>
       {/* Header with search and mobile filter button */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}

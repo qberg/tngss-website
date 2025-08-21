@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import useQRCode from '../../hooks/useQRCode'
 import './flip.css'
+import QRHover from './QRHover'
 
 export default function AppCTAButton({
   children = [],
@@ -10,18 +10,15 @@ export default function AppCTAButton({
   showQR = false,
   icon = null,
   minWidth = '120px',
+  qrPosition = 'top',
+  qrSize = 'w-28 h-28',
 }) {
-  const [isQRVisible, setIsQRVisible] = useState(false)
-
-  const handleQRToggle = (e) => {
-    e.preventDefault()
-    setIsQRVisible(!isQRVisible)
-  }
+  const { isQRVisible, qrHandlers } = useQRCode(showQR)
 
   return (
     <div className='relative inline-block'>
       <a href={qrCodeUrl} target='_blank' rel='noopener noreferrer'>
-        <a
+        <div
           role='button'
           style={{
             lineHeight: '12px',
@@ -29,8 +26,7 @@ export default function AppCTAButton({
             display: 'inline-block',
             minWidth: minWidth,
           }}
-          onMouseEnter={showQR ? handleQRToggle : undefined}
-          onMouseLeave={showQR ? handleQRToggle : undefined}
+          {...qrHandlers}
         >
           <div
             className={`button-wraper p-[2px] ${className} hover:scale-105 transition-all duration-500`}
@@ -42,58 +38,11 @@ export default function AppCTAButton({
               {icon && <span className='flex-shrink-0 ml-1'>{icon}</span>}
             </div>
           </div>
-        </a>
+        </div>
       </a>
 
       {/* QR Code Overlay */}
-      <AnimatePresence>
-        {isQRVisible && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0,
-              y: 0,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: -10,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0,
-              y: 0,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 300,
-              damping: 25,
-              duration: 0.3,
-            }}
-            style={{
-              transformOrigin: 'bottom center',
-            }}
-            className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full z-50 mb-2'
-          >
-            <div className='bg-white p-4 rounded-lg shadow-2xl border-2 border-gray-200'>
-              <div className='w-28 h-28 bg-gray-100 flex items-center justify-center text-base text-black border-2 border-dashed border-gray-300'>
-                {qrCodeUrl ? (
-                  <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=${encodeURIComponent(
-                      qrCodeUrl
-                    )}`}
-                    alt='QR Code'
-                    className='w-full h-full'
-                  />
-                ) : (
-                  'Coming Soon !'
-                )}
-              </div>
-              <div className='absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white'></div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <QRHover isVisible={isQRVisible} qrCodeUrl={qrCodeUrl} />
     </div>
   )
 }
