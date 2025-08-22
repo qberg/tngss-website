@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import useMeasure from 'react-use-measure'
 import { formatDate, formatTime } from '../../../utils/dateHelpers'
 import GradientBadge from '../../Elements/GradientBadge'
 import {
   Album,
+  Calendar,
   CalendarFold,
   ChevronDown,
   ChevronUp,
@@ -12,18 +13,27 @@ import {
   ExternalLink,
   MapPin,
   Ticket,
-  Users,
 } from 'lucide-react'
-import { AnimatePresence } from 'framer-motion'
 import { SquareTabButton, TabButton } from '../../Elements/TabButtons'
 import AppButton from '../../Elements/AppButton'
-import { Speakers } from '../../../views'
-
-const { useEventsData } = require('../../../hooks/useQueryApi')
+import {
+  smoothSpring,
+  snappySpring,
+  superSnappySpring,
+} from '../../../motion/Springs'
+import { useEventsData } from '../../../hooks/useQueryApi'
+import {
+  contentVariants,
+  contentYVariants,
+  dateBlockContainerVariants,
+  dateBlockVariants,
+} from './variants'
+import { variants } from 'tailwindcss/stubs/defaultConfig.stub'
 
 const AgendaListing = () => {
   const [selectedEvent, setSelectedEvent] = useState('main_event')
   const [selectedDate, setSelectedDate] = useState('all')
+  const [previousEvent, setPreviousEvent] = useState('main_event')
 
   const { data: eventsData, isLoading, error, isError } = useEventsData()
 
@@ -138,46 +148,109 @@ const AgendaListing = () => {
   ]
 
   const handleEventTabChange = (eventTabKey) => {
+    setPreviousEvent(selectedEvent)
     setSelectedEvent(eventTabKey)
     setSelectedDate('all')
+
+    if (navigator.vibrate) {
+      navigator.vibrate(5)
+    }
   }
 
   return (
     <section className='h-auto bg-black px-4 pb-8 md:px-24 2xl:px-44 py-4 md:py-14 2xl:py-24'>
       {/*Date + Event Type tabs*/}
       <div
-        className='hidden md:flex p-3 justify-between items-center rounded-md mb-6 md:mb-12 2xl:mb-20'
+        className='flex flex-col gap-10 md:flex-row p-3 md:justify-between items-center rounded-md mb-6 md:mb-12 2xl:mb-20'
         style={{ background: '#222222' }}
       >
         {/*event date tabs */}
-        <div className='flex gap-6'>
+        <div className='flex gap-6 order-2 md:order-1 flex-wrap items-center justify-center'>
           {/*available dates*/}
-          {dateTabs.map((dateTab) => {
+          {dateTabs.map((dateTab, index) => {
             const count = dateCounts[dateTab.key] || 0
             if (dateTab.key !== 'all' && count === 0) return null
 
             return (
-              <SquareTabButton
+              <motion.div
                 key={dateTab.key}
-                tab={dateTab}
-                isActive={selectedDate === dateTab.key}
-                onClick={() => setSelectedDate(dateTab.key)}
-                count={count}
-              />
+                layout
+                layoutId={`date-tab-${dateTab.key}`}
+                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                  scale: 1,
+                  transition: {
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 25,
+                    mass: 0.6,
+                    delay: index * 0.03,
+                  },
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.9,
+                  x: -20,
+                  transition: {
+                    type: 'spring',
+                    stiffness: 500,
+                    damping: 30,
+                    mass: 0.4,
+                  },
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: superSnappySpring,
+                }}
+                className='relative'
+              >
+                <SquareTabButton
+                  tab={dateTab}
+                  isActive={selectedDate === dateTab.key}
+                  onClick={() => setSelectedDate(dateTab.key)}
+                  count={count}
+                />
+                {selectedDate === dateTab.key && (
+                  <motion.div
+                    layoutId='activeDateTabIndicator'
+                    className='absolute inset-0 bg-theme-blue rounded-xl'
+                    transition={{ ...superSnappySpring }}
+                  />
+                )}
+              </motion.div>
             )
           })}
         </div>
 
         {/* event type tabs */}
-        <div className='rounded-full inline-flex bg-white max-h-14'>
+        <div className='rounded-full inline-flex bg-white max-h-14 order-1 md:order-2'>
           {tabs.map((tab) => (
-            <TabButton
+            <motion.div
               key={tab.key}
-              tab={tab}
-              isActive={selectedEvent === tab.key}
-              onClick={() => handleEventTabChange(tab.key)}
-              count={eventCounts[tab.key] || 0}
-            />
+              whileTap={{
+                scale: 0.98,
+                transition: superSnappySpring,
+              }}
+              className='relative'
+            >
+              <TabButton
+                tab={tab}
+                isActive={selectedEvent === tab.key}
+                onClick={() => handleEventTabChange(tab.key)}
+                count={eventCounts[tab.key] || 0}
+              />
+              {selectedEvent === tab.key && (
+                <motion.div
+                  layoutId='activeTabIndicator'
+                  className='absolute inset-0 bg-theme-blue rounded-full'
+                  transition={{
+                    ...superSnappySpring,
+                  }}
+                />
+              )}
+            </motion.div>
           ))}
         </div>
       </div>
@@ -187,9 +260,62 @@ const AgendaListing = () => {
 
         {/*agendas list*/}
         <div className='w-full md:w-9/12 mx-auto flex flex-col gap-2 md:gap-4 2xl:gap-8'>
-          {groupedEvents.map(({ date, events }) => {
-            return <DateEventBlock key={date} date={date} events={events} />
-          })}
+          <AnimatePresence mode='wait' initial={false}>
+            {groupedEvents.length === 0 ? (
+              <motion.div
+                key={`empty-${selectedEvent}`}
+                variants={contentYVariants}
+                initial='initial'
+                animate='animate'
+                exit='exit'
+                className='text-center py-16'
+              >
+                <div className='bg-gray-900/50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4'>
+                  <Calendar size={24} className='text-gray-500' />
+                </div>
+
+                <h3 className='text-gray-300 text-lg font-medium mb-2'>
+                  No events found
+                </h3>
+
+                <p className='text-gray-500 mb-6'>
+                  No events match the selected filter criteria.
+                </p>
+
+                <button
+                  onClick={() => console.log('Reset filters')}
+                  className='text-[#18BFDB] hover:text-white transition-colors'
+                >
+                  Check back later
+                </button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={`events-${selectedEvent}`}
+                variants={contentYVariants}
+                initial='initial'
+                animate='animate'
+                exit='exit'
+              >
+                <motion.div
+                  variants={dateBlockContainerVariants}
+                  initial='initial'
+                  animate='animate'
+                >
+                  {groupedEvents.map(({ date, events }, index) => {
+                    return (
+                      <motion.div
+                        key={`${date}-${selectedEvent}`}
+                        variants={dateBlockVariants}
+                      >
+                        <DateEventBlock date={date} events={events} />
+                      </motion.div>
+                    )
+                  })}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

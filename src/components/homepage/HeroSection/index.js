@@ -63,7 +63,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
   return (
     <motion.section
       id='hero-section'
-      className='bg-transparent flex flex-col justify-start pt-40 md:pt-0 md:justify-center items-center h-svh bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
+      className='bg-transparent flex flex-col justify-between pt-40 md:pt-0 items-center h-svh bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
       style={{
         backgroundImage: `url(${Herobg})`,
         opacity: wholeOpacity,
@@ -82,9 +82,13 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         loop
         style={{ opacity: videoOpacity }}
       ></motion.video>
+
+      {/* Top spacer for mobile padding */}
+      <div className='flex-shrink-0 md:hidden'></div>
+
       {/* Logo Section */}
       <motion.div
-        className='relative z-20 md:mt-20 will-change-transform'
+        className='relative z-20 sm:mt-32 lg:mt-40 2xl:mt-60 will-change-transform'
         variants={logoVariants}
         style={{ scale: logoScale, y: logoY }}
       >
@@ -104,18 +108,9 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         <EventDetails />
       </motion.div>
 
-      {/*
-        <motion.div
-        className='z-20 md:hidden'
-        variants={ctaVariants}
-        style={{ y: yCta, opacity: subOpacity }}
-      >
-        <CallToAction />
-      </motion.div>
-      */}
       {/* CTA Button */}
       <motion.div
-        className='md:block absolute bottom-20 md:bottom-12 2xl:bottom-16 z-20'
+        className='z-20 mb-20 sm:mb-8 lg:mb-12 2xl:mb-16'
         variants={ctaVariants}
         style={{ y: yCta, opacity: subOpacity }}
       >

@@ -11,11 +11,17 @@ import ShowcaseSection from '../../Homepage/showcase_section/ShowcaseSection'
 import bg from '../../../assets/speakersbg.svg?url'
 import ScrollAnimsFirst from '../ScrollAnimsFirst'
 import WhyAttendSection from '../WhyAttendSection'
+import MobileHeroSection from '../MobileHeroSection'
+import MobileCMSection from '../MobileCMSection'
+import MobileStatsSection from '../MobileStatsSection'
+import MobileWhyAttendSection from '../MobileWhyAttendSection'
+import { useMobileStickyTrigger } from '../../../hooks/mobileHooks'
+import MobileSpeakersSection from '../MobileSpeakersSection'
 
 const HomePage = () => {
   const homepageRef = useRef(null)
-  const [shouldAnimateFlag, setShouldAnimateFlag] = useState(false)
   const isMobile = useIsMobile()
+  const mobileEffects = useMobileStickyTrigger()
 
   const { scrollYProgress } = useScroll({
     target: homepageRef,
@@ -28,14 +34,25 @@ const HomePage = () => {
     [0, 0, 1, 0, 0]
   )
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (latest > 0.65 && !shouldAnimateFlag) {
-      setShouldAnimateFlag(true)
-    }
-  })
+  if (isMobile) {
+    return (
+      <div className='text-white font-urbanist'>
+        <MobileHeroSection isSticky={mobileEffects.isSticky} />
+        <MobileCMSection isSticky={mobileEffects.isSticky} />
+        <MobileStatsSection isSticky={mobileEffects.isSticky} />
+        <MobileWhyAttendSection />
+        <div className='h-lvh'>
+          <GlobalPavilion />
+        </div>
+        <MobileSpeakersSection />
+        <MobileCircleRevealSection />
+        <PastEngagements />
+      </div>
+    )
+  }
 
   return (
-    <div className='home-fade-in text-white font-urbanist'>
+    <div className='text-white font-urbanist'>
       <div ref={homepageRef}>
         <ScrollAnimsFirst />
         <WhyAttendSection />
@@ -44,7 +61,7 @@ const HomePage = () => {
           className={isMobile ? 'h-lvh py-8' : 'fixed inset-0 -z-10'}
           style={{ opacity: isMobile ? 1 : gpOpacity }}
         >
-          <GlobalPavilion shouldAnimate={shouldAnimateFlag} />
+          <GlobalPavilion />
         </motion.div>
         {!isMobile && <div style={{ height: '25vh' }} />}
 

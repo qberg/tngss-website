@@ -12,6 +12,7 @@ module.exports = {
         'theme-orange': '#F5710C',
         'inactive-blue': '#1B374E',
         'bg-gray': '#222222',
+        'text-gray': '#9D9D9D',
       },
       fontSize: {
         '13xl': '13rem',

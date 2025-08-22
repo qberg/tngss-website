@@ -19,6 +19,13 @@ export const snappySpring = {
   mass: 0.6,
 }
 
+export const superSnappySpring = {
+  type: 'spring',
+  stiffness: 600,
+  damping: 30,
+  mass: 0.4,
+}
+
 export const smoothSpring = {
   type: 'spring',
   stiffness: 250,

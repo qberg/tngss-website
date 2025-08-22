@@ -5,7 +5,7 @@ export const SquareTabButton = ({ tab, isActive, onClick, count }) => {
       className={`
 	relative px-4 py-5 text-lg font-bold rounded-xl
 	transition-all duration-300 ease-out 
-	focus:outline-none border-none
+	focus:outline-none focus:ring-0 focus:border-none outline-none ring-0
         w-20
 	${isActive ? 'text-white bg-theme-blue' : 'text-white bg-inactive-blue'}
    `}
@@ -29,7 +29,7 @@ export const TabButton = ({ tab, isActive, onClick, count }) => {
       className={`
 	relative px-6 py-3 text-base font-bold rounded-full
 	transition-all duration-300 ease-out 
-	focus:outline-none border-none
+	focus:outline-none focus:ring-0 focus:border-none outline-none ring-0
 	${isActive ? 'text-white bg-[#18BFDB]' : 'text-theme-blue'}
    `}
     >

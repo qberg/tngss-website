@@ -64,7 +64,7 @@ const FlagMarquee = ({ flags = [] }) => {
   )
 }
 
-const GlobalPavilion = ({ shouldAnimate = false }) => {
+const GlobalPavilion = () => {
   const { data: pavilionData, isLoading, error } = useGlobalPavilionData()
 
   if (isLoading) {

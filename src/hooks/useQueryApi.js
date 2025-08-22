@@ -350,3 +350,40 @@ export const useFeaturedSpeakers = () => {
     retry: 2,
   })
 }
+
+export const useWhyAttendData = () => {
+  return useQuery({
+    queryKey: ['why-attend-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/why-attend-wp', {
+        depth: 2,
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch Why Attend data')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useDiscoverTNFromBase = () => {
+  const { data, ...rest } = useWhyAttendData()
+
+  return {
+    data: data?.discover_tn,
+    ...rest,
+  }
+}
+
+export const useStakeholdersFromBase = () => {
+  const { data, ...rest } = useWhyAttendData()
+
+  return {
+    data: data?.stakeholders,
+    ...rest,
+  }
+}

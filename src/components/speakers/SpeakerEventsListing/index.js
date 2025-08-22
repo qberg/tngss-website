@@ -261,7 +261,7 @@ const SpeakerEventsListing = ({ speaker }) => {
               >
                 <motion.button
                   onClick={() => handleFilterChange('all')}
-                  className='text-[#18BFDB] hover:text-white transition-colors underline'
+                  className='text-[#18BFDB] hover:text-white transition-colors'
                   whileHover={{
                     scale: 1.05,
                     transition: snappySpring,

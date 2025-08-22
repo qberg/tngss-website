@@ -259,7 +259,7 @@ const CircleRevealSection = () => {
       />
 
       <div
-        className='h-screen w-screen flex flex-col justify-between items-center py-8 2xl:py-40'
+        className='h-screen w-screen flex flex-col justify-between gap-6 items-center py-8 2xl:py-40'
         style={{
           position: 'sticky',
           top: 0,

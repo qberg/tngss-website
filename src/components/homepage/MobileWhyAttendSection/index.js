@@ -9,7 +9,6 @@ import Frame2 from '../../../assets/attendees/4.webp'
 import Frame3 from '../../../assets/attendees/1.webp'
 import Frame4 from '../../../assets/attendees/3.webp'
 import Frame5 from '../../../assets/attendees/5.webp'
-import useIsMobile from '../../../hooks/useIsMobile'
 
 const data = [
   {
@@ -44,61 +43,9 @@ const data = [
   },
 ]
 
-const WhyAttendSection = () => {
+const MobileWhyAttendSection = () => {
   const outerRef = useRef(null)
   const cardsRef = useRef(null)
-
-  const { scrollYProgress } = useScroll({
-    target: outerRef,
-    offset: ['start start', 'end start'],
-  })
-
-  // Cards-specific scroll progress
-  const { scrollYProgress: cardsScrollProgress } = useScroll({
-    target: cardsRef,
-    offset: ['start end', 'end start'],
-  })
-
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.4, 0.6], [1, 1, 0])
-  const headerY = useTransform(scrollYProgress, [0, 0.4, 0.6], [0, 0, -160])
-  const buttonY = useTransform(scrollYProgress, [0, 0.4, 0.6], [0, 0, -80])
-
-  const gradientOpacity = useTransform(scrollYProgress, [0, 1], [0.5, 0.2])
-  const gradientBlur = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['blur(70px)', 'blur(100px)']
-  )
-
-  const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 1])
-
-  // Parallax transformations for cards with staggered effect
-  const cardsContainerY = useTransform(cardsScrollProgress, [0, 1], [10, -10])
-
-  // Individual card parallax transforms
-  const createCardTransforms = (index) => {
-    const stagger = index * 0.1
-    const parallaxOffset = (index % 2 === 0 ? 1 : -1) * 20
-
-    return {
-      y: useTransform(
-        cardsScrollProgress,
-        [0, 0.5, 1],
-        [30 + parallaxOffset, 0, -30 + parallaxOffset]
-      ),
-      scale: useTransform(
-        cardsScrollProgress,
-        [0, 0.3, 0.7, 1],
-        [0.95, 1, 1, 0.98]
-      ),
-      rotateX: useTransform(cardsScrollProgress, [0, 0.5, 1], [2, 0, -2]),
-      opacity: useTransform(
-        cardsScrollProgress,
-        [0, 0.2, 0.8, 1],
-        [0.7, 1, 1, 0.8]
-      ),
-    }
-  }
 
   const cardHoverVariants = {
     rest: { rotateZ: 0 },
@@ -114,47 +61,30 @@ const WhyAttendSection = () => {
 
   return (
     <motion.div
-      className='relative w-full bg-black h-auto md:h-screen'
+      className='relative w-full bg-black h-auto md:h-screen z-20'
       ref={outerRef}
-      style={{
-        opacity: opacity,
-        willChange: 'transform',
-      }}
     >
       {/* Background Gradient */}
       <motion.div
+        className='absolute custom-gradient custom-size rounded-full'
         style={{
-          opacity: gradientOpacity,
-          filter: gradientBlur,
+          opacity: 0.5,
+          filter: 'blur(100px)',
           transformOrigin: 'center',
-          transform: 'translateY(-80%)',
+          transform: 'translateY(-40%)',
           willChange: 'transform',
         }}
-        className='absolute custom-gradient custom-size rounded-full'
       />
 
       <div className='h-auto md:h-full flex flex-col justify-center items-center md:gap-20 2xl:gap-28 overflow-hidden'>
         {/* Header Section */}
         <div className='relative h-fit w-full z-10'>
           <div className='w-full text-center flex flex-col gap-2 2xl:gap-4 items-center justify-center'>
-            <motion.h1
-              style={{
-                opacity: headingOpacity,
-                y: headerY,
-                willChange: 'transform',
-              }}
-              className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-black mt-24 md:mt-10 2xl:mt-24'
-            >
+            <motion.h1 className='text-white will-change-transform text-6xl md:text-9xl mix-blend-lighten gradient-text-black mt-24 md:mt-10 2xl:mt-24'>
               Why Attend
             </motion.h1>
 
-            <motion.div
-              style={{
-                opacity: headingOpacity,
-                y: buttonY,
-                willChange: 'transform',
-              }}
-            >
+            <motion.div>
               <CTAButton
                 src='/why-attend'
                 className='hidden rounded-2xl w-full md:w-auto mt-5'
@@ -170,28 +100,12 @@ const WhyAttendSection = () => {
         {/* Flipping Cards Section */}
         <motion.div
           ref={cardsRef}
-          style={{
-            y: cardsContainerY,
-            willChange: 'transform',
-          }}
-          className='relative z-20 w-full py-4 md:py-0 px-4 md:px-8 lg:px-16 flex-1 flex flex-col items-center justify-start'
+          className='relative z-20 w-full pt-4 pb-16 md:py-0 px-4 md:px-8 lg:px-16 flex-1 flex flex-col items-center justify-start'
         >
           <motion.div className='flex flex-col md:flex-row justify-center items-center gap-16 md:gap-4 2xl:gap-6 min-w-max mx-auto'>
             {data.map((item, index) => {
-              const cardTransforms = createCardTransforms(index)
-
               return (
-                <motion.div
-                  key={index}
-                  className='hover:z-50 isolate'
-                  style={{
-                    y: cardTransforms.y,
-                    scale: cardTransforms.scale,
-                    rotateX: cardTransforms.rotateX,
-                    opacity: cardTransforms.opacity,
-                    willChange: 'transform',
-                  }}
-                >
+                <motion.div key={index} className='hover:z-50 isolate'>
                   <motion.div
                     className='will-change-transform'
                     variants={cardHoverVariants}
@@ -298,4 +212,4 @@ const WhyAttendSection = () => {
   )
 }
 
-export default WhyAttendSection
+export default MobileWhyAttendSection

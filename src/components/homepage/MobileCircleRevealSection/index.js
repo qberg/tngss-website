@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { motion, useMotionValue, useSpring, animate } from 'motion/react'
+import { useState, useCallback } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 import bg1 from '../../../assets/ke0.jpeg'
 import bg2 from '../../../assets/ke1.jpg'
@@ -26,299 +26,206 @@ const segments = [
 ]
 
 const MobileCircleRevealSection = () => {
-  // Native iOS-style swipe state
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const [screenWidth, setScreenWidth] = useState(0)
 
-  // Motion values for native-like scrolling
-  const x = useMotionValue(0)
-  const xSpring = useSpring(x, {
-    stiffness: 300,
-    damping: 30,
-    mass: 0.8,
-    restDelta: 0.001,
-  })
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setScreenWidth(window.innerWidth)
-
-      const handleResize = () => {
-        setScreenWidth(window.innerWidth)
-      }
-
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  // Update spring position when currentIndex changes
-  useEffect(() => {
-    const targetX = -currentIndex * screenWidth
-    animate(x, targetX, {
-      type: 'spring',
-      stiffness: 300,
-      damping: 30,
-      mass: 0.8,
-    })
-  }, [currentIndex, screenWidth, x])
-
-  // Native iOS swipe handlers
-  const handleDragStart = () => {
-    setIsDragging(true)
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % segments.length)
   }
 
-  const handleDrag = (event, info) => {
-    const currentX = -currentIndex * screenWidth
-    const newX = currentX + info.offset.x
-
-    // Apply rubber band effect at boundaries
-    const maxIndex = segments.length - 1
-    let constrainedX = newX
-
-    if (currentIndex === 0 && info.offset.x > 0) {
-      // Rubber band effect when trying to go before first item
-      constrainedX = currentX + info.offset.x * 0.3
-    } else if (currentIndex === maxIndex && info.offset.x < 0) {
-      // Rubber band effect when trying to go after last item
-      constrainedX = currentX + info.offset.x * 0.3
-    }
-
-    x.set(constrainedX)
-  }
-
-  const handleDragEnd = (event, info) => {
-    setIsDragging(false)
-
-    const threshold = 50
-    const velocityThreshold = 500
-    const { offset, velocity } = info
-
-    let newIndex = currentIndex
-
-    // Determine direction based on distance and velocity
-    if (
-      Math.abs(offset.x) > threshold ||
-      Math.abs(velocity.x) > velocityThreshold
-    ) {
-      if (offset.x > 0 || velocity.x > 0) {
-        // Swipe right - go to previous
-        newIndex = Math.max(0, currentIndex - 1)
-      } else {
-        // Swipe left - go to next
-        newIndex = Math.min(segments.length - 1, currentIndex + 1)
-      }
-    }
-
-    setCurrentIndex(newIndex)
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + segments.length) % segments.length)
   }
 
   const goToSlide = (index) => {
-    if (index >= 0 && index < segments.length && !isDragging) {
-      setCurrentIndex(index)
-    }
+    setCurrentIndex(index)
   }
 
   return (
-    <section className='relative w-full py-20 bg-gray-50 overflow-hidden'>
+    <section className='relative w-full py-16 bg-gray-50 overflow-hidden'>
       {/* Header */}
-      <motion.div
-        className='px-6 mb-12'
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.8,
-          ease: [0.25, 0.46, 0.45, 0.94],
-        }}
-      >
+      <div className='px-6 mb-12'>
         <h1 className='text-black text-4xl font-bold text-center leading-tight'>
           Key Highlights
         </h1>
-      </motion.div>
-
-      {/* Native swipe container */}
-      <div className='relative overflow-hidden'>
-        <motion.div
-          className='flex'
-          style={{
-            x: xSpring,
-            width: `${segments.length * 100}%`,
-          }}
-          drag='x'
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0}
-          dragMomentum={false}
-          onDragStart={handleDragStart}
-          onDrag={handleDrag}
-          onDragEnd={handleDragEnd}
-        >
-          {segments.map((segment, index) => {
-            const distance = Math.abs(index - currentIndex)
-            const isActive = index === currentIndex
-            const isPrev = index === currentIndex - 1
-            const isNext = index === currentIndex + 1
-
-            return (
-              <motion.div
-                key={index}
-                className='flex-shrink-0 px-6 flex justify-center items-center'
-                style={{
-                  width: `${100 / segments.length}%`,
-                  minHeight: '500px',
-                }}
-                animate={{
-                  scale: isActive ? 1 : isPrev || isNext ? 0.85 : 0.75,
-                  opacity: isActive ? 1 : isPrev || isNext ? 0.6 : 0.3,
-                  y: isActive ? 0 : isPrev || isNext ? 20 : 40,
-                  rotateY: distance > 1 ? (index < currentIndex ? -15 : 15) : 0,
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 30,
-                  mass: 0.8,
-                }}
-              >
-                <MobileSegmentCard
-                  segment={segment}
-                  isActive={isActive}
-                  isDragging={isDragging}
-                />
-              </motion.div>
-            )
-          })}
-        </motion.div>
       </div>
 
-      {/* Native-style page indicators */}
-      <motion.div
-        className='flex justify-center mt-8 space-x-2'
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.6,
-        }}
-      >
+      {/* Carousel Container */}
+      <div className='relative h-96 flex items-center justify-center px-4'>
+        <div className='relative w-full max-w-sm flex items-center justify-center'>
+          {/* Previous Card */}
+          <motion.div
+            className='absolute left-0 z-10'
+            style={{ x: -20 }}
+            animate={{
+              scale: 0.8,
+              opacity: 0.6,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 400,
+              damping: 30,
+            }}
+            onClick={prevSlide}
+          >
+            <CarouselCard
+              segment={
+                segments[(currentIndex - 1 + segments.length) % segments.length]
+              }
+              isActive={false}
+            />
+          </motion.div>
+
+          {/* Current Card */}
+          <motion.div
+            className='relative z-20'
+            key={currentIndex}
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            animate={{
+              scale: 1,
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{ scale: 0.8, opacity: 0, y: -50 }}
+            transition={{
+              type: 'spring',
+              stiffness: 400,
+              damping: 30,
+              mass: 0.8,
+            }}
+            drag='x'
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(e, { offset, velocity }) => {
+              if (offset.x > 100 || velocity.x > 500) {
+                prevSlide()
+              } else if (offset.x < -100 || velocity.x < -500) {
+                nextSlide()
+              }
+            }}
+          >
+            <CarouselCard segment={segments[currentIndex]} isActive={true} />
+          </motion.div>
+
+          {/* Next Card */}
+          <motion.div
+            className='absolute right-0 z-10'
+            style={{ x: 20 }}
+            animate={{
+              scale: 0.8,
+              opacity: 0.6,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 400,
+              damping: 30,
+            }}
+            onClick={nextSlide}
+          >
+            <CarouselCard
+              segment={segments[(currentIndex + 1) % segments.length]}
+              isActive={false}
+            />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Page Indicators */}
+      <div className='flex justify-center mt-8 gap-2'>
         {segments.map((_, index) => (
           <motion.button
             key={index}
-            className={`rounded-full ${
-              index === currentIndex
-                ? 'bg-blue-500 w-8 h-2'
-                : 'bg-gray-300 w-2 h-2'
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'bg-blue-500 w-8' : 'bg-gray-300 w-2'
             }`}
             onClick={() => goToSlide(index)}
             whileTap={{ scale: 0.8 }}
-            layout
-            transition={{
-              type: 'spring',
-              stiffness: 500,
-              damping: 30,
+            animate={{
+              backgroundColor: index === currentIndex ? '#3b82f6' : '#d1d5db',
             }}
+            transition={{ duration: 0.3 }}
           />
         ))}
-      </motion.div>
-
-      {/* Gesture hint for first time users */}
-      <motion.div
-        className='absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center space-x-2 text-gray-500 text-sm'
-        initial={{ opacity: 1 }}
-        animate={{
-          opacity: [1, 0.5, 1],
-          x: [-5, 5, -5],
-        }}
-        transition={{
-          duration: 2,
-          repeat: 2,
-          ease: 'easeInOut',
-        }}
-      >
-        <svg width='16' height='16' viewBox='0 0 24 24' fill='none'>
-          <path
-            d='M9 18L15 12L9 6'
-            stroke='currentColor'
-            strokeWidth='2'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
-        <span>Swipe to explore</span>
-      </motion.div>
+      </div>
     </section>
   )
 }
 
-const MobileSegmentCard = ({ segment, isActive, isDragging }) => {
+const CarouselCard = ({ segment, isActive }) => {
   return (
     <motion.div
-      className='relative rounded-3xl overflow-hidden'
+      className='relative rounded-3xl overflow-hidden cursor-pointer'
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
-        width: '300px',
-        height: '400px',
-        perspective: '1000px',
+        width: '280px',
+        height: '360px',
       }}
+      whileHover={isActive ? { y: -8 } : { scale: 0.85 }}
+      whileTap={{ scale: isActive ? 0.95 : 0.75 }}
       animate={{
         boxShadow: isActive
-          ? '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-          : '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+          ? '0 25px 50px rgba(0, 0, 0, 0.2)'
+          : '0 10px 25px rgba(0, 0, 0, 0.1)',
       }}
       transition={{
         type: 'spring',
-        stiffness: 300,
+        stiffness: 400,
         damping: 30,
+        duration: 0.3,
       }}
     >
       <div className='p-1 w-full h-full'>
-        <motion.div
-          className='relative w-full h-full overflow-hidden rounded-3xl'
-          animate={{
-            rotateY: isDragging ? (Math.random() - 0.5) * 2 : 0,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 400,
-            damping: 25,
-          }}
-        >
-          {segment.bgImage ? (
-            <motion.img
-              src={segment.bgImage}
-              alt={`${segment.title}-bgImage`}
-              className='absolute inset-0 w-full h-full object-cover'
-              animate={{
-                scale: isActive ? 1.05 : 1,
-              }}
-              transition={{
-                duration: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            />
-          ) : (
-            <div className='absolute inset-0 bg-gray-900' />
-          )}
+        <div className='relative w-full h-full overflow-hidden rounded-3xl bg-gray-900'>
+          {/* Background Image */}
+          <motion.img
+            src={segment.bgImage}
+            alt={segment.title}
+            className='absolute inset-0 w-full h-full object-cover'
+            animate={{
+              scale: isActive ? 1.05 : 1.1,
+            }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          />
 
+          {/* iOS-style Gradient Overlay */}
           <div
             className='absolute inset-0 z-10'
             style={{
-              background:
-                'linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1), transparent)',
+              background: isActive
+                ? 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)'
+                : 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
             }}
           />
 
+          {/* Content */}
           <motion.div
             className='absolute bottom-0 left-0 right-0 p-6 text-white z-20'
             animate={{
-              y: isActive ? 0 : 8,
               opacity: isActive ? 1 : 0.8,
+              y: isActive ? 0 : 5,
             }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
           >
-            <h4 className='text-xl font-bold leading-tight'>{segment.title}</h4>
+            <h4 className='text-lg font-bold leading-tight tracking-tight'>
+              {segment.title}
+            </h4>
           </motion.div>
-        </motion.div>
+
+          {/* iOS-style shine effect */}
+          {isActive && (
+            <motion.div
+              className='absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 z-30'
+              initial={{ x: '-100%' }}
+              animate={{ x: '100%' }}
+              transition={{
+                duration: 1.5,
+                ease: 'easeInOut',
+                repeat: Infinity,
+                repeatDelay: 3,
+              }}
+              style={{ transform: 'skewX(-20deg)' }}
+            />
+          )}
+        </div>
       </div>
     </motion.div>
   )

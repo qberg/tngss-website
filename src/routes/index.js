@@ -8,7 +8,6 @@ import {
   TermsandCondition,
   Speakers,
   Faq,
-  Program,
   About,
   Agenda,
 } from '../views'
@@ -17,8 +16,6 @@ import SpeakerDetail from '../components/speakers/SpeakerDetail'
 import Venue from '../views/Venue'
 
 const AppRoutes = () => {
-  const showAllRoutes = false
-
   return (
     <Routes>
       <Route
@@ -27,6 +24,10 @@ const AppRoutes = () => {
       />
       <Route path='/home' element={<RouteWithLayout component={NewHome} />} />
       <Route path='/about' element={<RouteWithLayout component={About} />} />
+      <Route
+        path='/why-attend'
+        element={<RouteWithLayout component={WhyAttend} />}
+      />
       <Route
         path='/speakers'
         element={<RouteWithLayout component={Speakers} />}
@@ -50,17 +51,6 @@ const AppRoutes = () => {
         path='/terms-and-condition'
         element={<RouteWithLayout component={TermsandCondition} />}
       />
-
-      {showAllRoutes && (
-        <>
-          <Route
-            path='/why-attend'
-            element={<RouteWithLayout component={WhyAttend} />}
-          />
-
-          <Route path='/' element={<Navigate to='/home' />} />
-        </>
-      )}
     </Routes>
   )
 }
