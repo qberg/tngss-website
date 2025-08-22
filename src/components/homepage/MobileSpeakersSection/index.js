@@ -1,143 +1,71 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useRef, useCallback, useMemo } from 'react'
 import bg from '../../../assets/speakersbg.svg?url'
-import { motion, useMotionValue, useTransform, animate } from 'motion/react'
+import { motion, useMotionValue, animate } from 'motion/react'
 import CTAButton from '../../Elements/CTAButton'
 import { useFeaturedSpeakers } from '../../../hooks/useQueryApi'
+import SpeakerCard from './SpeakerCard'
 
 const MobileSpeakersSection = () => {
   const { data, isLoading: loading, error } = useFeaturedSpeakers()
+
   const dragX = useMotionValue(0)
   const [isDragging, setIsDragging] = useState(false)
-  const [containerWidth, setContainerWidth] = useState(0)
   const containerRef = useRef(null)
-  const animationRef = useRef(null)
 
   const speakersData = useMemo(() => data?.docs || [], [data?.docs])
 
-  // Mobile-optimized calculations
-  const calculations = useMemo(() => {
-    if (typeof window === 'undefined')
-      return { cardWidth: 280, totalWidth: 0, maxDrag: 0, visibleCards: 1.2 }
-
-    const viewportWidth = window.innerWidth
-    const padding = 32 // 16px on each side
+  const config = useMemo(() => {
+    const viewportWidth =
+      typeof window !== 'undefined' ? window.innerWidth : 375
+    const padding = 32
     const gap = 16
-
-    // Card width: show 1.2 cards on mobile for peek effect
-    const visibleCards = 1.2
-    const cardWidth =
-      (viewportWidth - padding - gap * (visibleCards - 1)) / visibleCards
-
+    const cardWidth = Math.max(280, viewportWidth * 0.8)
     const totalWidth = speakersData.length * (cardWidth + gap) - gap
-    const maxDrag = Math.min(0, -(totalWidth - (viewportWidth - padding)))
+    const maxScroll = Math.max(0, totalWidth - (viewportWidth - padding))
 
     return {
-      cardWidth: Math.max(cardWidth, 260), // Minimum card width
-      totalWidth,
-      maxDrag,
-      visibleCards,
+      cardWidth,
       gap,
+      maxScroll: -maxScroll,
+      totalCards: speakersData.length,
+      cardStep: cardWidth + gap,
     }
-  }, [speakersData.length, containerWidth])
+  }, [speakersData.length])
 
-  // Update container width on resize
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth)
-      }
-    }
-
-    updateWidth()
-    window.addEventListener('resize', updateWidth)
-    return () => window.removeEventListener('resize', updateWidth)
-  }, [])
-
-  // Cleanup animations
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        animationRef.current.stop()
-      }
-    }
-  }, [])
-
-  // Strict drag constraints - no over-dragging
-  const dragConstraints = useMemo(() => {
-    return {
-      left: calculations.maxDrag,
-      right: 0,
-    }
-  }, [calculations.maxDrag])
-
-  // No transform needed - direct dragX value
-  const constrainedX = dragX
-
-  const snapToPosition = useCallback(
-    async (targetX) => {
-      if (animationRef.current) {
-        animationRef.current.stop()
-      }
-
-      try {
-        animationRef.current = animate(dragX, targetX, {
-          type: 'spring',
-          stiffness: 400,
-          damping: 40,
-          mass: 0.8,
-        })
-        await animationRef.current
-      } catch (error) {
-        // Animation was interrupted
-      }
-    },
-    [dragX]
-  )
-
-  const handleDragStart = useCallback(() => {
-    setIsDragging(true)
-    if (animationRef.current) {
-      animationRef.current.stop()
-    }
-  }, [])
-
-  const handleDragEnd = useCallback(
-    async (event, info) => {
-      setIsDragging(false)
-
+  const snapToCard = useCallback(
+    (velocity = 0) => {
       const currentX = dragX.get()
-      const velocity = info.velocity.x
+      const { cardStep, totalCards, maxScroll } = config
 
-      // Calculate target position with momentum
-      let targetX = currentX + velocity * 0.2
+      // Find current card index
+      const currentIndex = -currentX / cardStep
 
-      // Snap to card boundaries for better UX
-      const cardStep = calculations.cardWidth + calculations.gap
-      const snapIndex = Math.round(-targetX / cardStep)
-      const snapPosition = -snapIndex * cardStep
+      // Determine snap direction based on velocity
+      let targetIndex
+      if (Math.abs(velocity) > 500) {
+        // High velocity - snap in direction of movement
+        targetIndex =
+          velocity > 0 ? Math.floor(currentIndex) : Math.ceil(currentIndex)
+      } else {
+        // Low velocity - snap to nearest
+        targetIndex = Math.round(currentIndex)
+      }
 
-      // Apply strict constraints - no over-dragging
-      targetX = Math.max(calculations.maxDrag, Math.min(0, snapPosition))
+      // Clamp to bounds
+      targetIndex = Math.max(0, Math.min(totalCards - 1, targetIndex))
+      const snapTarget = -targetIndex * cardStep
+      const finalTarget = Math.max(maxScroll, Math.min(0, snapTarget))
 
-      await snapToPosition(targetX)
+      // Simple, fast spring animation
+      animate(dragX, finalTarget, {
+        type: 'spring',
+        stiffness: 400,
+        damping: 30,
+        mass: 0.5,
+      })
     },
-    [dragX, calculations, snapToPosition]
+    [dragX, config]
   )
-
-  // Touch-friendly drag settings with strict bounds
-  const dragSettings = {
-    drag: 'x',
-    dragConstraints: dragConstraints,
-    dragElastic: 0, // Remove elastic behavior
-    dragMomentum: true,
-    dragTransition: {
-      power: 0.3,
-      timeConstant: 150,
-    },
-    whileDrag: { cursor: 'grabbing' },
-    onDragStart: handleDragStart,
-    onDragEnd: handleDragEnd,
-  }
 
   if (loading) {
     return (
@@ -181,7 +109,7 @@ const MobileSpeakersSection = () => {
       />
 
       {/* Header */}
-      <div className='px-4 mb-16'>
+      <div className='px-4 mb-12'>
         <h1 className='text-white text-5xl sm:text-6xl leading-tight gradient-text-black'>
           Speakers at
           <br />
@@ -189,21 +117,58 @@ const MobileSpeakersSection = () => {
         </h1>
       </div>
 
-      {/* Draggable speakers container */}
+      {/* Simple, smooth speakers carousel */}
       <div ref={containerRef} className='relative overflow-hidden'>
         <motion.div
-          className='flex gap-4 px-4 cursor-grab active:cursor-grabbing'
-          style={{ x: constrainedX }}
-          {...dragSettings}
+          className='flex gap-4 px-4'
+          style={{
+            x: dragX,
+            cursor: isDragging ? 'grabbing' : 'grab',
+          }}
+          drag='x'
+          dragMomentum={true}
+          dragElastic={0.1}
+          dragConstraints={{
+            left: config.maxScroll - 10,
+            right: 10,
+          }}
+          dragTransition={{
+            power: 0.3,
+            timeConstant: 150,
+            modifyTarget: (target) => {
+              // Snap to nearest card
+              const cardStep = config.cardStep
+              const snapIndex = Math.round(-target / cardStep)
+              const clampedIndex = Math.max(
+                0,
+                Math.min(config.totalCards - 1, snapIndex)
+              )
+              return -clampedIndex * cardStep
+            },
+          }}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={(_, { velocity }) => {
+            setIsDragging(false)
+            // Let dragTransition handle the snapping
+          }}
+          style={{
+            touchAction: 'pan-x',
+            WebkitUserSelect: 'none',
+            userSelect: 'none',
+          }}
         >
           {speakersData.map((speaker, index) => (
             <motion.div
               key={speaker.id}
               className='flex-shrink-0'
-              style={{ width: calculations.cardWidth }}
+              style={{ width: config.cardWidth }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{
+                delay: index * 0.05,
+                duration: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
             >
               <SpeakerCard speaker={speaker} />
             </motion.div>
@@ -212,7 +177,7 @@ const MobileSpeakersSection = () => {
       </div>
 
       {/* CTA Button */}
-      <div className='flex justify-center px-4 mt-12'>
+      <div className='flex justify-center px-4 mt-8'>
         <CTAButton src='/speakers' className='rounded-2xl'>
           <div className='w-60 h-12 flex items-center justify-center text-lg font-semibold'>
             View All Speakers
@@ -220,51 +185,6 @@ const MobileSpeakersSection = () => {
         </CTAButton>
       </div>
     </section>
-  )
-}
-
-const SpeakerCard = ({ speaker }) => {
-  return (
-    <div
-      className='p-1 overflow-hidden rounded-lg md:rounded-2xl flex-shrink-0'
-      style={{
-        background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
-      }}
-    >
-      <div className='relative w-full h-80 overflow-hidden rounded-lg md:rounded-2xl bg-gray-900'>
-        {speaker.profile_image ? (
-          <img
-            src={speaker.profile_image.url}
-            alt={speaker.profile_image.alt || `${speaker.name}`}
-            className='absolute inset-0 w-full h-full object-cover object-center'
-            loading='lazy'
-          />
-        ) : (
-          <div className='absolute inset-0 bg-gray-800 flex items-center justify-center'>
-            <span className='text-white/60 text-lg'>No Image</span>
-          </div>
-        )}
-
-        {/* Gradient overlay */}
-        <div
-          className='absolute inset-0 z-10'
-          style={{
-            background:
-              'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)',
-          }}
-        />
-
-        {/* Speaker info */}
-        <div className='absolute bottom-0 left-0 right-0 p-3 text-white z-20'>
-          <h4 className='text-lg font-bold mb-1 leading-tight'>
-            {speaker.name}
-          </h4>
-          <p className='text-sm text-white/80 leading-tight'>
-            {speaker.designation}, {speaker.organization}
-          </p>
-        </div>
-      </div>
-    </div>
   )
 }
 

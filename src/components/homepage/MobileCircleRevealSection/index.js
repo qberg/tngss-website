@@ -5,7 +5,6 @@ import bg1 from '../../../assets/ke0.jpeg'
 import bg2 from '../../../assets/ke1.jpg'
 import bg3 from '../../../assets/ke2.jpg'
 import bg4 from '../../../assets/ke3.jpg'
-
 const segments = [
   {
     title: 'Elite Investor & Founder Networking Hub',
@@ -52,80 +51,87 @@ const MobileCircleRevealSection = () => {
       {/* Carousel Container */}
       <div className='relative h-96 flex items-center justify-center px-4'>
         <div className='relative w-full max-w-sm flex items-center justify-center'>
-          {/* Previous Card */}
-          <motion.div
-            className='absolute left-0 z-10'
-            style={{ x: -20 }}
-            animate={{
-              scale: 0.8,
-              opacity: 0.6,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 30,
-            }}
-            onClick={prevSlide}
-          >
-            <CarouselCard
-              segment={
-                segments[(currentIndex - 1 + segments.length) % segments.length]
-              }
-              isActive={false}
-            />
-          </motion.div>
+          {/* Render all cards with proper positioning */}
+          {segments.map((segment, index) => {
+            const position =
+              (index - currentIndex + segments.length) % segments.length
+            const isVisible = position <= 1 || position >= segments.length - 1
 
-          {/* Current Card */}
-          <motion.div
-            className='relative z-20'
-            key={currentIndex}
-            initial={{ scale: 0.8, opacity: 0, y: 50 }}
-            animate={{
-              scale: 1,
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{ scale: 0.8, opacity: 0, y: -50 }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 30,
-              mass: 0.8,
-            }}
-            drag='x'
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.2}
-            onDragEnd={(e, { offset, velocity }) => {
-              if (offset.x > 100 || velocity.x > 500) {
-                prevSlide()
-              } else if (offset.x < -100 || velocity.x < -500) {
-                nextSlide()
-              }
-            }}
-          >
-            <CarouselCard segment={segments[currentIndex]} isActive={true} />
-          </motion.div>
+            if (!isVisible) return null
 
-          {/* Next Card */}
-          <motion.div
-            className='absolute right-0 z-10'
-            style={{ x: 20 }}
-            animate={{
-              scale: 0.8,
-              opacity: 0.6,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 30,
-            }}
-            onClick={nextSlide}
-          >
-            <CarouselCard
-              segment={segments[(currentIndex + 1) % segments.length]}
-              isActive={false}
-            />
-          </motion.div>
+            let x = 0
+            let scale = 0.85
+            let opacity = 0.7
+            let zIndex = 10
+            let y = 0
+
+            if (position === 0) {
+              // Current card
+              x = 0
+              y = 0
+              scale = 1
+              opacity = 1
+              zIndex = 30
+            } else if (position === 1) {
+              // Next card - positioned behind and to the right
+              x = 40
+              y = 20
+              scale = 0.85
+              opacity = 0.7
+              zIndex = 20
+            } else if (position === segments.length - 1) {
+              // Previous card - positioned behind and to the left
+              x = -40
+              y = 20
+              scale = 0.85
+              opacity = 0.7
+              zIndex = 20
+            }
+
+            return (
+              <motion.div
+                key={index}
+                className={`absolute ${
+                  position === 0
+                    ? 'cursor-grab active:cursor-grabbing'
+                    : 'cursor-pointer'
+                }`}
+                style={{ zIndex }}
+                animate={{
+                  x,
+                  y,
+                  scale,
+                  opacity,
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 30,
+                  mass: 0.8,
+                }}
+                drag={position === 0 ? 'x' : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={
+                  position === 0
+                    ? (e, { offset, velocity }) => {
+                        if (offset.x > 100 || velocity.x > 500) {
+                          prevSlide()
+                        } else if (offset.x < -100 || velocity.x < -500) {
+                          nextSlide()
+                        }
+                      }
+                    : undefined
+                }
+                onClick={() => {
+                  if (position === 1) nextSlide()
+                  else if (position === segments.length - 1) prevSlide()
+                }}
+              >
+                <CarouselCard segment={segment} isActive={position === 0} />
+              </motion.div>
+            )
+          })}
         </div>
       </div>
 
