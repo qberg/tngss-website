@@ -66,21 +66,18 @@ const MobileCircleRevealSection = () => {
             let y = 0
 
             if (position === 0) {
-              // Current card
               x = 0
               y = 0
               scale = 1
               opacity = 1
               zIndex = 30
             } else if (position === 1) {
-              // Next card - positioned behind and to the right
               x = 40
               y = 20
               scale = 0.85
               opacity = 0.7
               zIndex = 20
             } else if (position === segments.length - 1) {
-              // Previous card - positioned behind and to the left
               x = -40
               y = 20
               scale = 0.85

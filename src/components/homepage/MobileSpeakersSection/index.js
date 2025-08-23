@@ -1,71 +1,30 @@
-import { useState, useRef, useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import bg from '../../../assets/speakersbg.svg?url'
-import { motion, useMotionValue, animate } from 'motion/react'
 import CTAButton from '../../Elements/CTAButton'
 import { useFeaturedSpeakers } from '../../../hooks/useQueryApi'
 import SpeakerCard from './SpeakerCard'
+import useEmblaCarousel from 'embla-carousel-react'
 
 const MobileSpeakersSection = () => {
   const { data, isLoading: loading, error } = useFeaturedSpeakers()
-
-  const dragX = useMotionValue(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const containerRef = useRef(null)
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+    containScroll: 'trimSnaps',
+    align: 'start',
+    slidesToScroll: 1,
+  })
 
   const speakersData = useMemo(() => data?.docs || [], [data?.docs])
 
   const config = useMemo(() => {
     const viewportWidth =
       typeof window !== 'undefined' ? window.innerWidth : 375
-    const padding = 32
-    const gap = 16
-    const cardWidth = Math.max(280, viewportWidth * 0.8)
-    const totalWidth = speakersData.length * (cardWidth + gap) - gap
-    const maxScroll = Math.max(0, totalWidth - (viewportWidth - padding))
+    const cardWidth = viewportWidth * 0.8
 
     return {
       cardWidth,
-      gap,
-      maxScroll: -maxScroll,
-      totalCards: speakersData.length,
-      cardStep: cardWidth + gap,
     }
-  }, [speakersData.length])
-
-  const snapToCard = useCallback(
-    (velocity = 0) => {
-      const currentX = dragX.get()
-      const { cardStep, totalCards, maxScroll } = config
-
-      // Find current card index
-      const currentIndex = -currentX / cardStep
-
-      // Determine snap direction based on velocity
-      let targetIndex
-      if (Math.abs(velocity) > 500) {
-        // High velocity - snap in direction of movement
-        targetIndex =
-          velocity > 0 ? Math.floor(currentIndex) : Math.ceil(currentIndex)
-      } else {
-        // Low velocity - snap to nearest
-        targetIndex = Math.round(currentIndex)
-      }
-
-      // Clamp to bounds
-      targetIndex = Math.max(0, Math.min(totalCards - 1, targetIndex))
-      const snapTarget = -targetIndex * cardStep
-      const finalTarget = Math.max(maxScroll, Math.min(0, snapTarget))
-
-      // Simple, fast spring animation
-      animate(dragX, finalTarget, {
-        type: 'spring',
-        stiffness: 400,
-        damping: 30,
-        mass: 0.5,
-      })
-    },
-    [dragX, config]
-  )
+  }, [])
 
   if (loading) {
     return (
@@ -117,63 +76,23 @@ const MobileSpeakersSection = () => {
         </h1>
       </div>
 
-      {/* Simple, smooth speakers carousel */}
-      <div ref={containerRef} className='relative overflow-hidden'>
-        <motion.div
-          className='flex gap-4 px-4'
-          style={{
-            x: dragX,
-            cursor: isDragging ? 'grabbing' : 'grab',
-          }}
-          drag='x'
-          dragMomentum={true}
-          dragElastic={0.1}
-          dragConstraints={{
-            left: config.maxScroll - 10,
-            right: 10,
-          }}
-          dragTransition={{
-            power: 0.3,
-            timeConstant: 150,
-            modifyTarget: (target) => {
-              // Snap to nearest card
-              const cardStep = config.cardStep
-              const snapIndex = Math.round(-target / cardStep)
-              const clampedIndex = Math.max(
-                0,
-                Math.min(config.totalCards - 1, snapIndex)
-              )
-              return -clampedIndex * cardStep
-            },
-          }}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={(_, { velocity }) => {
-            setIsDragging(false)
-            // Let dragTransition handle the snapping
-          }}
-          style={{
-            touchAction: 'pan-x',
-            WebkitUserSelect: 'none',
-            userSelect: 'none',
-          }}
-        >
+      {/* Embla Carousel */}
+      <div className='embla overflow-hidden' ref={emblaRef}>
+        <div className='embla__container flex'>
           {speakersData.map((speaker, index) => (
-            <motion.div
+            <div
               key={speaker.id}
-              className='flex-shrink-0'
-              style={{ width: config.cardWidth }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: index * 0.05,
-                duration: 0.4,
-                ease: [0.25, 0.46, 0.45, 0.94],
+              className='embla__slide flex-shrink-0 pl-4 first:pl-4 last:pr-4'
+              style={{
+                width: config.cardWidth,
               }}
             >
-              <SpeakerCard speaker={speaker} />
-            </motion.div>
+              <div>
+                <SpeakerCard speaker={speaker} />
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* CTA Button */}

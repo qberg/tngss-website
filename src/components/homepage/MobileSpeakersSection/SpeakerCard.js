@@ -7,7 +7,6 @@ const SpeakerCard = ({ speaker }) => {
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
       }}
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
     >

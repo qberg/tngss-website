@@ -15,7 +15,7 @@ export default function PastEngagements() {
 
   return (
     <section
-      className='relative px-6 md:px-20 py-16 md:py-10 w-screen h-auto md:min-h-screen overflow-hidden bg-white text-white flex justify-center items-start isolate z-50'
+      className='relative px-6 md:px-20 py-16 md:py-10 w-screen h-auto md:min-h-screen overflow-hidden bg-white text-white flex justify-center items-start isolate md:z-50'
       style={{
         backgroundImage: `url(${pastbg})`,
         backgroundSize: 'cover',

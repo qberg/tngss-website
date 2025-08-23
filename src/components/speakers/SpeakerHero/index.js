@@ -46,15 +46,6 @@ const fadeInRight = {
   },
 }
 
-const scaleIn = {
-  initial: { opacity: 0, scale: 0.9 },
-  animate: {
-    opacity: 1,
-    scale: 1,
-    transition: springConfig,
-  },
-}
-
 const SpeakerDetailHero = ({ speaker }) => {
   const hasLocation = speaker?.location
   const hasLinkedIn = speaker?.linkedin_url
@@ -80,24 +71,23 @@ const SpeakerDetailHero = ({ speaker }) => {
           {/* Back button */}
           <motion.a
             href='/speakers'
-            className='w-full flex justify-start items-center gap-4 mb-2 group'
-            variants={fadeInLeft}
-            initial='initial'
-            animate='animate'
-            whileHover={{
-              x: -5,
-              transition: snappySpring,
-            }}
+            className='w-fit flex justify-start items-center gap-4 mb-2 group'
+            whileHover='hover'
             whileTap={{
               scale: 0.98,
               transition: snappySpring,
             }}
           >
             <motion.div
-              whileHover={{
-                scale: 1.1,
-                rotate: -5,
-                transition: snappySpring,
+              variants={{
+                hover: {
+                  x: [-2.5, 2.5, -2.5],
+                  transition: {
+                    duration: 1.2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  },
+                },
               }}
               className='text-white group-hover:text-[#18BFDB] transition-colors'
             >
@@ -393,18 +383,7 @@ const SpeakerDetailHero = ({ speaker }) => {
 
 const BioCard = ({ title, location, description }) => {
   return (
-    <motion.article
-      className='flex flex-col gap-1 font-montserrat'
-      whileHover={{
-        scale: 1.02,
-        y: -4,
-        transition: snappySpring,
-      }}
-      whileTap={{
-        scale: 0.98,
-        transition: snappySpring,
-      }}
-    >
+    <motion.article className='flex flex-col gap-1 font-montserrat'>
       {title && (
         <motion.h4
           className='font-semibold text-lg text-white'

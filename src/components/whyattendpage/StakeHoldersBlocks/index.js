@@ -13,42 +13,42 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
             : '',
         }}
       >
-        <div className='w-full h-full flex flex-col items-start gap-3 md:gap-5 2xl:gap-7 justify-start px-4 md:px-16 2xl:px-28 py-4 md:py-28 bg-black overflow-hidden'>
+        <div className='w-full h-full flex flex-col items-start gap-3 md:gap-5 2xl:gap-7 justify-start px-4 md:px-16 2xl:px-28 py-4 md:py-12 2xl:py-28 bg-black overflow-hidden'>
           {/*header*/}
-          <div className='mb-4 md:mb-20'>
-            <h3 className='text-2xl md:text-6xl uppercase text-white group-hover:text-[#18BFDB] transition-colors font-medium mb-2'>
+          <div className='mb-4 md:mb-8 2xl:mb-20'>
+            <h3 className='text-2xl md:text-5xl 2xl:text-6xl uppercase text-white group-hover:text-[#18BFDB] transition-colors font-medium mb-2'>
               {info.title}
             </h3>
 
-            <p className='font-medium font-urbanist text-white text-lg md:text-3xl'>
+            <p className='font-medium font-urbanist text-white text-lg md:text-2xl 2xl:text-3xl'>
               {info.sub_title}
             </p>
           </div>
 
           {/*content+image*/}
           <div
-            className={`flex flex-col w-full md:gap-20 ${
+            className={`flex flex-col w-full md:gap-16 2xl:gap-20 ${
               isEven ? 'md:flex-row' : 'md:flex-row-reverse'
             }`}
           >
             {/*content*/}
             <div className='w-full md:w-1/2 mb-2'>
-              <h4 className='font-urbanist font-medium text-white text-xl md:text-4xl mb-2 md:mb-8 text-justify'>
+              <h4 className='font-urbanist font-medium text-white text-xl md:text-3xl 2xl:text-4xl mb-2 md:mb-4 2xl:mb-8 text-justify'>
                 {info.description}
               </h4>
 
               {/*points*/}
-              <div className='flex flex-col gap-4'>
+              <div className='flex flex-col gap-4md:gap-2 2xl:gap-4'>
                 {info.points.map((content) => (
                   <p
                     key={content.id}
-                    className='text-text-gray text-base md:text-2xl text-justify flex items-start gap-2'
+                    className='text-text-gray text-base md:text-xl 2xl:text-2xl text-justify flex items-start gap-2'
                   >
                     <span className='text-white font-bold text-2xl md:mb-0'>
                       •
                     </span>
                     <div>
-                      <span className='font-bold'>{content.title}</span>
+                      <span className='font-bold'>{content.title} </span>
 
                       <span className='font-normal'>{content.description}</span>
                     </div>

@@ -17,6 +17,8 @@ import MobileStatsSection from '../MobileStatsSection'
 import MobileWhyAttendSection from '../MobileWhyAttendSection'
 import { useMobileStickyTrigger } from '../../../hooks/mobileHooks'
 import MobileSpeakersSection from '../MobileSpeakersSection'
+import MobileShowcaseSection from '../MobileShowcaseSection'
+import InstaReelSection from '../InstaReelSection'
 
 const HomePage = () => {
   const homepageRef = useRef(null)

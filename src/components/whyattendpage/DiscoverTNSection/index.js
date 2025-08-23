@@ -13,7 +13,7 @@ const DiscoverTNSection = ({ applyBorder = true }) => {
             : '',
         }}
       >
-        <div className='w-full h-full flex flex-col items-center gap-3 md:gap-5 2xl:gap-7 justify-center px-4 md:px-16 2xl:px-28 py-4 md:py-28 bg-black overflow-hidden'>
+        <div className='w-full h-full flex flex-col items-center gap-3 md:gap-5 2xl:gap-7 justify-center px-4 md:px-16 2xl:px-28 py-4 md:py-12 2xl:py-28 bg-black overflow-hidden'>
           {discoverTN?.title && (
             <h2 className='text-white text-4xl md:text-6xl font-semibold font-urbanist gradient-text-black leading-tight md:leading-snug 2xl:leading-normal'>
               {discoverTN.title}
@@ -26,7 +26,7 @@ const DiscoverTNSection = ({ applyBorder = true }) => {
               {discoverTN.content.map((item) => (
                 <div
                   key={item.id}
-                  className='font-normal font-urbanist text-base leading-none md:leading-tight md:text-2xl text-text-gray text-justify w-full md:w-10/12 mx-auto'
+                  className='font-normal font-urbanist text-base leading-none md:leading-tight md:text-xl 2xl:text-2xl text-text-gray text-justify w-full md:w-10/12 mx-auto'
                 >
                   {item.para}
                 </div>
