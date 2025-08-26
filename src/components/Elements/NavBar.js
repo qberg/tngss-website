@@ -81,7 +81,7 @@ export default function NavBar() {
         </a>
 
         {/* Desktop Menu - Hidden on mobile */}
-        <div className='hidden lg:absolute left-1/2 md:flex text-xl transform gap-4 lg:-translate-x-1/2'>
+        <div className='hidden md:flex text-xl gap-4'>
           {menuItems.map((item, index) => (
             <a
               key={index}

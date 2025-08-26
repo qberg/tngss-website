@@ -1,6 +1,7 @@
+import MinimalHero from '../../Elements/MinimalHero'
+import ChiefGuestSection from '../ChiefGuestSection'
+import HonourableDignitaries from '../HonourableDignitaries'
 import SpeakersListing from '../SpeakersListing'
-
-const { default: MinimalHero } = require('../../Elements/MinimalHero')
 
 const SpeakerPage = () => {
   return (
@@ -9,7 +10,12 @@ const SpeakerPage = () => {
         title='Speakers'
         subTitle=''
         tagLine="The Voice of Innovation at TNGSS'25"
+        applyBorder={false}
       />
+
+      <ChiefGuestSection />
+
+      <HonourableDignitaries />
 
       <SpeakersListing />
     </div>

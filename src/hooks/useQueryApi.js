@@ -153,6 +153,37 @@ export const useSpeakerBySlugEff = (slug) => {
   })
 }
 
+// learned the hard way the importance of URL encoding
+export const useGovtDignitaries = () => {
+  return useQuery({
+    queryKey: ['speakers', 'government-dignitaries'],
+    queryFn: async () => {
+      const baseUrl = '/api/speakers'
+      const params = new URLSearchParams({
+        'where[speaker_type.slug][equals]': 'government-dignitaries',
+        'where[isPublic][equals]': 'true',
+        limit: '0',
+        depth: '2',
+        sort: 'sort_order',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+      console.log('Final URL:', url) // Debug
+
+      const result = await payloadClient.get(url)
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(
+          result.error || 'Failed to fetch government dignitaries'
+        )
+      }
+    },
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
 export const useSpeakerEvents = (speakerId) => {
   return useQuery({
     queryKey: ['speaker-events', speakerId],

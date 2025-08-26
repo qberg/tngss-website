@@ -405,13 +405,13 @@ const SpeakersListing = () => {
   ]
 
   return (
-    <section className='h-auto bg-black px-4 pb-8 md:px-24 2xl:px-44 py-4 md:py-14 2xl:py-24'>
+    <section className='h-auto bg-black px-4 py-8 md:px-24 2xl:px-44 md:py-14 2xl:py-24'>
       {/* Header with search and mobile filter button */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={gentleSpring}
-        className='w-full flex flex-col md:flex-row justify-between gap-4 mb-8 md:mb-14 2xl:mb-24'
+        className='w-full flex flex-col md:flex-row justify-between gap-8 mb-8 md:mb-14 2xl:mb-24'
       >
         <motion.h2
           initial={{ opacity: 0, x: -20 }}
@@ -420,7 +420,7 @@ const SpeakersListing = () => {
             ...springConfig,
             delay: 0.1,
           }}
-          className='uppercase text-5xl md:text-6xl text-white font-medium'
+          className='uppercase text-3xl md:text-6xl text-white font-medium'
         >
           Speakers
         </motion.h2>
@@ -904,7 +904,7 @@ const SpeakersListing = () => {
                 variants={staggerContainer}
                 initial='initial'
                 animate='animate'
-                className='grid grid-cols-2 md:grid-cols-3 gap-2 gap-y-8 md:gap-10 2xl:gap-16'
+                className='grid grid-cols-2 md:grid-cols-3 gap-2 gap-y-4 md:gap-6 2xl:gap-8'
               >
                 {filteredSpeakers.map((speaker, index) => (
                   <motion.a
