@@ -27,7 +27,7 @@ const AboutPage = () => {
       <MinimalHero
         title='About Us'
         subTitle=''
-        tagLine='TNGSS Conversations: Where Ideas Collide'
+        tagLine='TNGSS: Where Innovation Meets Opportunity'
         applyBorder={false}
       />
 

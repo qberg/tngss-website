@@ -288,6 +288,56 @@ export const useAboutUsWp = () => {
   })
 }
 
+export const useSponsorsAndPartners = () => {
+  return useQuery({
+    queryKey: ['spons-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get(
+        '/api/globals/spons-and-partners-wp',
+        {
+          depth: 2,
+        }
+      )
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch Spons WP')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useSponsors = () => {
+  const { data, isLoading, error, isError, ...rest } = useSponsorsAndPartners()
+
+  return {
+    data: data?.sponsors || null,
+    isLoading,
+    error,
+    isError,
+    isEmpty: !data?.sponsors || Object.keys(data.sponsors).length === 0,
+    ...rest,
+  }
+}
+
+export const usePartners = () => {
+  const { data, isLoading, error, isError, ...rest } = useSponsorsAndPartners()
+
+  return {
+    data: data?.partners || null,
+    isLoading,
+    error,
+    isError,
+    isEmpty:
+      !data?.partners?.partners?.logos ||
+      data.partners.partners.logos.length === 0,
+    ...rest,
+  }
+}
+
 export const useHallsData = () => {
   return useQuery({
     queryKey: ['halls'],

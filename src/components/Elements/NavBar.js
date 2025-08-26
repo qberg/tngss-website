@@ -45,6 +45,7 @@ export default function NavBar() {
     { name: 'Speakers', link: '/speakers' },
     { name: 'Venue', link: '/venue' },
     { name: 'Agenda', link: '/agenda' },
+    { name: 'Sponsors', link: '/sponsors' },
     { name: 'FAQ', link: '/faq' },
   ]
 

@@ -6,6 +6,10 @@
   @apply relative flex justify-center items-center overflow-hidden isolate;
 }
 
+.spons-text {
+  @apply font-urbanist font-semibold text-xl md:text-4xl;
+}
+
 /* .card-content {
   @apply relative bg-black w-full h-full overflow-hidden rounded-xl;
 }
@@ -323,6 +327,85 @@
     rgba(132, 132, 132, 1) 0%,
     rgba(255, 255, 255, 1) 50%,
     rgba(218, 218, 218, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-diamond {
+  background: linear-gradient(
+    135deg,
+    rgba(27, 55, 78, 0.95) 0%,
+    rgba(24, 191, 219, 0.85) 35%,
+    rgba(245, 113, 12, 0.9) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-platinum {
+  background: linear-gradient(
+    110deg,
+    rgba(51, 65, 85, 1) 0%,
+    rgba(148, 163, 184, 1) 30%,
+    rgba(71, 85, 105, 1) 70%,
+    rgba(30, 41, 59, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(218, 165, 32, 1) 0%,
+    rgba(255, 215, 0, 1) 50%,
+    rgba(218, 165, 32, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-silver {
+  background: linear-gradient(
+    90deg,
+    rgba(139, 107, 66, 1) 0%,
+    rgba(205, 170, 125, 1) 50%,
+    rgba(160, 130, 90, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-bronze {
+  background: linear-gradient(
+    90deg,
+    rgba(166, 124, 82, 1) 0%,
+    rgba(205, 164, 122, 1) 50%,
+    rgba(180, 140, 100, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-zone {
+  background: linear-gradient(
+    90deg,
+    rgba(107, 114, 128, 1) 0%,
+    rgba(156, 163, 175, 1) 50%,
+    rgba(120, 130, 145, 1) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
