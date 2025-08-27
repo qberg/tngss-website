@@ -6,6 +6,7 @@ import WhyTamilNaduSection from '../WhyTamilNaduSection'
 import OrganisingCommitteSection from '../OrganisingCommitteSection'
 import FocusAreasSection from '../FocusAreaSection'
 import KeyFocusSection from '../KeyFocusSection'
+import SteeringCommitteSection from '../SteeringCommitteSection'
 
 const AboutPage = () => {
   const { data, isLoading, error, isError } = useAboutUsWp()
@@ -42,8 +43,9 @@ const AboutPage = () => {
       )}
 
       {steering_committe && (
-        <OrganisingCommitteSection data={steering_committe} />
+        <SteeringCommitteSection data={steering_committe} />
       )}
+
       {committe && <OrganisingCommitteSection data={committe} />}
 
       {pavilionTitle && pavilion && (
