@@ -26,7 +26,9 @@ const PartnerBlocks = () => {
                     key={logo.id}
                     logo={logo}
                     desktopWidth='10vw'
-                    mobileWidth='65px'
+                    desktopHeight='4vw'
+                    mobileWidth='100px'
+                    mobileHeight='50px'
                   />
                 ))}
               </div>

@@ -3,7 +3,7 @@ import SponsorLogo from './SponsorLogo'
 const DiamondTier = ({ sponsors }) => (
   <div className='w-full flex flex-col justify-center items-center'>
     <div>
-      <h3 className='gradient-text-diamond spons-text mb-2 md:mb-6 text-center md:text-left'>
+      <h3 className='gradient-text-diamond spons-text mb-2 md:mb-4 2xl:mb-6 text-center md:text-left'>
         {sponsors.header}
       </h3>
       <div className='flex flex-row gap-4'>
@@ -11,8 +11,10 @@ const DiamondTier = ({ sponsors }) => (
           <SponsorLogo
             key={logo.id}
             logo={logo}
-            desktopWidth='450px'
-            mobileWidth='225px'
+            desktopWidth='24vw'
+            desktopHeight='13vw'
+            mobileWidth='210px'
+            mobileHeight='125px'
           />
         ))}
       </div>

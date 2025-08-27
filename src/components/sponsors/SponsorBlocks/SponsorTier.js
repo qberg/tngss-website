@@ -1,13 +1,15 @@
 import SponsorLogo from './SponsorLogo'
 
 const SponsorTier = ({
-  sponsors,
+  sponsor,
   tierName,
   desktopWidth = '20vw',
+  desktopHeight = 'auto',
   mobileWidth = '150px',
+  mobileHeight = 'auto',
   additionalClasses = '',
 }) => {
-  if (!sponsors?.[tierName] || sponsors[tierName].logos.length === 0) {
+  if (!sponsor?.logos.length === 0) {
     return null
   }
 
@@ -23,6 +25,8 @@ const SponsorTier = ({
         return 'gradient-text-silver'
       case 'bronze':
         return 'gradient-text-bronze'
+      case 'other':
+        return 'gradient-text-zone'
       default:
         return 'gradient-text-zone'
     }
@@ -33,16 +37,18 @@ const SponsorTier = ({
       className={`flex flex-col justify-center items-center gap-4 md:items-start ${additionalClasses}`}
     >
       <h3 className={`${getGradientClass(tierName)} spons-text md:mb-2`}>
-        {sponsors[tierName].header}
+        {sponsor?.header}
       </h3>
 
       <div className='flex flex-row gap-4'>
-        {sponsors[tierName].logos.map((logo) => (
+        {sponsor?.logos.map((logo) => (
           <SponsorLogo
             key={logo.id}
             logo={logo}
             desktopWidth={desktopWidth}
+            desktopHeight={desktopHeight}
             mobileWidth={mobileWidth}
+            mobileHeight={mobileHeight}
           />
         ))}
       </div>
