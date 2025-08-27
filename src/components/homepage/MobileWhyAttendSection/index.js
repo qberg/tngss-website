@@ -87,7 +87,7 @@ const MobileWhyAttendSection = () => {
             <motion.div>
               <CTAButton
                 src='/why-attend'
-                className='hidden rounded-2xl w-full md:w-auto mt-5'
+                className='rounded-2xl w-full md:w-auto my-5'
               >
                 <div className='w-60 h-12 px-6 flex items-center justify-center md:justify-center text-lg md:text-xl'>
                   Know More

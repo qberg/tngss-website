@@ -3,8 +3,9 @@ import pin from '../../../assets/locationpin.svg?url'
 import logo from '../../../assets/Nav_logo.png'
 import '../../Elements/custom.css'
 import { motion } from 'motion/react'
-import AppCTAButton from '../../Elements/AppCTAButton'
-import { Download } from 'lucide-react'
+import book from '../../../assets/foodcart.svg?url'
+import vector from '../../../assets/Vector.svg?url'
+import ShineButton from '../../Elements/ShineButton'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -24,7 +25,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
       }}
     >
       <motion.video
-        className='absolute w-full h-full inset-0 z-10 object-cover'
+        className='absolute w-full h-full inset-0 z-10 object-cover opacity-25'
         src='https://divsh6mubpk9o.cloudfront.net/hero-vid.mp4'
         autoPlay
         muted
@@ -78,18 +79,33 @@ const EventDetails = () => (
 )
 
 const CallToAction = () => (
-  <div className='flex flex-col md:flex-row gap-1 md:gap-4'>
-    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
-      <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
-        <span className='text-2xl'>App Store</span>
-      </div>
-    </AppCTAButton>
+  <div className='flex flex-col md:flex-row gap-2'>
+    <ShineButton
+      src='https://event.startuptn.in/register'
+      className='!hover:bg-black w-full justify-center text-white'
+      contCN='!bg-none py-3 px-4 w-full'
+    >
+      <img
+        className='px-2 inline-block w-8 h-4'
+        src={book || '/placeholder.svg'}
+        alt='Vector'
+        style={{ filter: 'invert(1)' }}
+      />
+      Book Your Stall
+    </ShineButton>
 
-    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
-      <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>
-        <span className='text-2xl'>Play Store</span>
-      </div>
-    </AppCTAButton>
+    <ShineButton
+      src='https://event.startuptn.in/'
+      className='!hover:bg-black w-full justify-center text-white'
+      contCN='hover py-3 px-4 w-full'
+    >
+      <img
+        className='px-2 inline-block w-8 h-4'
+        src={vector || '/placeholder.svg'}
+        alt='Vector'
+      />
+      Buy Your Pass
+    </ShineButton>
   </div>
 )
 
