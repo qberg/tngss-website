@@ -1,18 +1,21 @@
 'use client'
 
 import logo from '../../assets/Nav_logo.png'
-import { useEffect, useState } from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { useEffect, useState, useRef } from 'react'
+import { motion, useAnimation, AnimatePresence } from 'motion/react'
 import ShineButton from './ShineButton'
 import book from '../../assets/foodcart.svg?url'
 import vector from '../../assets/Vector.svg?url'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 export default function NavBar() {
   const [isVisible, setIsVisible] = useState(true)
   const controls = useAnimation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState(null)
+  const [mobileActiveDropdown, setMobileActiveDropdown] = useState(null)
+  const dropdownTimeoutRef = useRef(null)
 
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -39,14 +42,18 @@ export default function NavBar() {
   }, [isVisible, controls])
 
   const menuItems = [
-    { name: 'Home', link: '/home' },
     { name: 'About', link: '/about' },
     { name: 'Why Attend', link: '/why-attend' },
-    { name: 'Speakers', link: '/speakers' },
-    { name: 'Venue', link: '/venue' },
     { name: 'Agenda', link: '/agenda' },
+    { name: 'Speakers', link: '/speakers' },
     { name: 'Sponsors', link: '/sponsors' },
-    { name: 'FAQ', link: '/faq' },
+    {
+      name: 'Info',
+      dropdown: [
+        { name: 'Venue', link: '/venue' },
+        { name: 'FAQ', link: '/faq' },
+      ],
+    },
   ]
 
   const toggleMenu = () => {
@@ -55,6 +62,24 @@ export default function NavBar() {
 
   const closeMenu = () => {
     setIsMenuOpen(false)
+    setMobileActiveDropdown(null)
+  }
+
+  const handleMouseEnter = (index) => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current)
+    }
+    setActiveDropdown(index)
+  }
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null)
+    }, 150)
+  }
+
+  const toggleMobileDropdown = (index) => {
+    setMobileActiveDropdown(mobileActiveDropdown === index ? null : index)
   }
 
   return (
@@ -81,22 +106,71 @@ export default function NavBar() {
         </a>
 
         {/* Desktop Menu - Hidden on mobile */}
-        <div className='hidden md:flex text-xl gap-4'>
+        <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-1/2'>
           {menuItems.map((item, index) => (
-            <a
-              key={index}
-              href={item.link}
-              className='hover:underline transition-all duration-200'
-            >
-              {item.name}
-            </a>
+            <div key={index} className='relative'>
+              {item.dropdown ? (
+                <div
+                  className='relative'
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button className='flex items-center gap-1 hover:text-theme-blue transition-all duration-200 py-2'>
+                    {item.name}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        activeDropdown === index ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {activeDropdown === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        className='absolute top-full left-0 mt-2 pb-4 w-48 bg-black backdrop-blur-md rounded-xl border border-gray-700 shadow-2xl overflow-hidden'
+                        style={{
+                          boxShadow:
+                            '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)',
+                        }}
+                      >
+                        {item.dropdown.map((subItem, subIndex) => (
+                          <motion.a
+                            key={subIndex}
+                            href={subItem.link}
+                            className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-inactive-blue last:border-b-0 hover:text-theme-blue'
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: subIndex * 0.05 }}
+                            whileHover={{ x: 4 }}
+                          >
+                            {subItem.name}
+                          </motion.a>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <a
+                  href={item.link}
+                  className='hover:text-theme-blue transition-all duration-200 py-2 block'
+                >
+                  {item.name}
+                </a>
+              )}
+            </div>
           ))}
         </div>
 
         {/* Desktop CTA Buttons - Hidden on mobile */}
         <div className='hidden md:flex gap-3 md:gap-5 items-center text-xl'>
           <ShineButton
-            src='https://event.startuptn.in/register'
+            src='/tickets'
             className='!hover:bg-black'
             contCN='!bg-none py-2 px-4'
           >
@@ -109,7 +183,7 @@ export default function NavBar() {
             Book Your Stall
           </ShineButton>
           <ShineButton
-            src='https://event.startuptn.in/'
+            src='/tickets'
             className='!hover:bg-black'
             contCN='hover py-2 px-2'
           >
@@ -125,14 +199,10 @@ export default function NavBar() {
         {/* Mobile Hamburger Menu Button */}
         <button
           onClick={toggleMenu}
-          className='md:hidden z-50 p-2 rounded-lg hover:bg-white/10 transition-colors duration-200'
+          className='md:hidden z-50 p-2 rounded-lg hover:bg-white transition-colors duration-200'
           aria-label='Toggle menu'
         >
-          {isMenuOpen ? (
-            <X size={28} className='text-white' />
-          ) : (
-            <Menu size={28} className='text-white' />
-          )}
+          {!isMenuOpen && <Menu size={28} className='text-white' />}
         </button>
       </motion.div>
 
@@ -141,7 +211,7 @@ export default function NavBar() {
         initial={{ opacity: 0 }}
         animate={isMenuOpen ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden ${
+        className={`fixed inset-0 bg-black backdrop-blur-sm z-40 md:hidden ${
           isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
         onClick={closeMenu}
@@ -152,11 +222,11 @@ export default function NavBar() {
         initial={{ x: '100%' }}
         animate={isMenuOpen ? { x: 0 } : { x: '100%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className='fixed top-0 right-0 h-full w-80 bg-black backdrop-blur-md z-50 md:hidden border-l border-gray-600'
+        className='fixed top-0 right-0 h-full w-80 bg-black backdrop-blur-md z-50 md:hidden border-l border-gray-600 overflow-y-auto'
       >
         <div className='flex flex-col h-full'>
           {/* Menu Header */}
-          <div className='flex justify-between items-center p-6 border-b border-gray-600'>
+          <div className='flex justify-between items-center p-6 border-b border-gray-600 sticky top-0 bg-black backdrop-blur-md'>
             <h2 className='text-white text-xl font-semibold'>Menu</h2>
             <button
               onClick={closeMenu}
@@ -169,27 +239,74 @@ export default function NavBar() {
 
           {/* Menu Items */}
           <div className='flex-1 px-6 py-8'>
-            <nav className='space-y-6'>
+            <nav className='space-y-2'>
               {menuItems.map((item, index) => (
-                <motion.a
+                <motion.div
                   key={index}
-                  href={item.link}
-                  onClick={closeMenu}
-                  className='block text-white text-lg font-medium hover:text-blue-400 transition-colors duration-200 py-2'
                   initial={{ opacity: 0, x: 20 }}
                   animate={
                     isMenuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
                   }
                   transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className='overflow-hidden'
                 >
-                  {item.name}
-                </motion.a>
+                  {item.dropdown ? (
+                    <div>
+                      <button
+                        onClick={() => toggleMobileDropdown(index)}
+                        className='flex items-center justify-between w-full text-white text-lg font-medium hover:text-theme-blue transition-colors duration-200 py-3 px-3 rounded-lg hover:bg-white/5'
+                      >
+                        {item.name}
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform duration-300 ${
+                            mobileActiveDropdown === index ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {mobileActiveDropdown === index && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className='overflow-hidden bg-white/5 rounded-lg ml-4 mt-2 border-l-2 border-theme-blue'
+                          >
+                            {item.dropdown.map((subItem, subIndex) => (
+                              <motion.a
+                                key={subIndex}
+                                href={subItem.link}
+                                onClick={closeMenu}
+                                className='block text-white text-lg hover:text-theme-blue transition-colors duration-200 py-3 px-4 hover:bg-white/5'
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: subIndex * 0.05 }}
+                              >
+                                {subItem.name}
+                              </motion.a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <a
+                      href={item.link}
+                      onClick={closeMenu}
+                      className='block text-white text-lg font-medium hover:text-theme-blue transition-colors duration-200 py-3 px-3 rounded-lg hover:bg-white/5'
+                    >
+                      {item.name}
+                    </a>
+                  )}
+                </motion.div>
               ))}
             </nav>
           </div>
 
           {/* Mobile CTA Buttons */}
-          <div className='p-6 border-t border-gray-600 space-y-4'>
+          <div className='p-6 border-t border-gray-600 space-y-4 sticky bottom-0 bg-black/95 backdrop-blur-md'>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={

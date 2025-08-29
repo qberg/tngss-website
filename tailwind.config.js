@@ -18,6 +18,9 @@ module.exports = {
         'inactive-blue': '#1B374E',
         'bg-gray': '#222222',
         'text-gray': '#9D9D9D',
+        'pale-gray': '#bbbbbb',
+        'light-gray': '#DDDDDD',
+        'badge-yellow': '#FDB633',
       },
       spacing: {
         '5p': '5%',

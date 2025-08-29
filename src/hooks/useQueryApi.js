@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { payloadClient } from '../utils/payloadClient'
+import { useMemo } from 'react'
 
 const QUERY_DEFAULTS = {
   SHORT_STALE_TIME: 5 * 60 * 1000,
@@ -168,7 +169,6 @@ export const useGovtDignitaries = () => {
       })
 
       const url = `${baseUrl}?${params.toString()}`
-      console.log('Final URL:', url) // Debug
 
       const result = await payloadClient.get(url)
 
@@ -184,6 +184,7 @@ export const useGovtDignitaries = () => {
     retry: 2,
   })
 }
+
 export const useSpeakerEvents = (speakerId) => {
   return useQuery({
     queryKey: ['speaker-events', speakerId],
@@ -465,6 +466,129 @@ export const useStakeholdersFromBase = () => {
 
   return {
     data: data?.stakeholders,
+    ...rest,
+  }
+}
+
+export const useTickets = () => {
+  return useQuery({
+    queryKey: ['tickets'],
+    queryFn: async () => {
+      const baseUrl = '/api/tickets'
+      const params = new URLSearchParams({
+        'where[isPublic][equals]': 'true',
+        limit: '0',
+        depth: '2',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+
+      const result = await payloadClient.get(url)
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(
+          result.error || 'Failed to fetch government dignitaries'
+        )
+      }
+    },
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+// oh yay learned about a pattern for fetching and filteritng data with hooks, gonna try it till i learn. Dont judge, be curious of how i am fucking up, have to read about mvc model
+export const usePassTickets = () => {
+  const { data, ...rest } = useTickets()
+
+  const passData = useMemo(() => {
+    if (!data?.docs) return data
+
+    const filteredDocs = data.docs.filter(
+      (ticket) =>
+        ticket.slug === 'visitor-pass' || ticket.slug === 'delegate-pass'
+    )
+
+    // we send the ...docs to maintain api contract
+    return {
+      ...data,
+      docs: filteredDocs,
+      totalDocs: filteredDocs.length,
+    }
+  }, [data])
+
+  return {
+    data: passData,
+    ...rest,
+  }
+}
+
+// while on the above hook got an idea to do pattern matching for any slug
+// oh how i miss ts, slugs can be an array of string -> ['visitor-pass', 'delegate-pass'] or a string
+export const useTicketsBySlug = (slugs) => {
+  const { data, ...rest } = useTickets()
+
+  const filteredData = useMemo(() => {
+    if (!data?.docs) return data
+
+    const slugArray = Array.isArray(slugs) ? slugs : [slugs]
+
+    const filteredDocs = data.docs.filter((ticket) => {
+      if (!ticket.slug) return false
+
+      return slugArray.some((slug) => {
+        if (!slug || typeof slug !== 'string') {
+          console.warn('Invalid slug pattern:', slug)
+          return false
+        }
+        // user is smarty pants sharing regex anol
+        if (slug.includes('*') || slug.startsWith('contains:')) {
+          const pattern = slug.replace('contains:', '').replace('*', '')
+          return ticket.slug.includes(pattern)
+        }
+
+        return ticket.slug === slug
+      })
+    })
+
+    return {
+      ...data,
+      docs: filteredDocs,
+      totalDocs: filteredDocs.length,
+    }
+  }, [data, slugs])
+
+  return {
+    data: filteredData,
+    ...rest,
+  }
+}
+
+export const useTicketsInfoWp = () => {
+  return useQuery({
+    queryKey: ['tickets-info-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/tickets-info-wp', {
+        depth: 2,
+      })
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch tickets info')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useTicketGuidelines = () => {
+  const { data, ...rest } = useTicketsInfoWp()
+
+  return {
+    data: data?.guidelines?.guidelines || [],
     ...rest,
   }
 }

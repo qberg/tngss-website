@@ -11,6 +11,7 @@ import {
   About,
   Agenda,
   Sponsors,
+  Tickets,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -46,6 +47,10 @@ const AppRoutes = () => {
       <Route
         path='/sponsors'
         element={<RouteWithLayout component={Sponsors} />}
+      />
+      <Route
+        path='/tickets'
+        element={<RouteWithLayout component={Tickets} />}
       />
 
       <Route

@@ -119,8 +119,8 @@ export default function Footer() {
               </p>
               <p>
                 Tollfree:{' '}
-                <a href={`tel:${'55343'}`}>
-                  <u>{'55343'}</u>
+                <a href={`tel:${'155343'}`}>
+                  <u>{'155343'}</u>
                 </a>
               </p>
               <p>
@@ -129,9 +129,7 @@ export default function Footer() {
                   <u>(+91) {'44 22256789'}</u>
                 </a>
               </p>
-              <p className='hidden md:block'>
-                All Rights Reserved © {new Date().getFullYear()}
-              </p>{' '}
+              <p className='hidden md:block'>All Rights Reserved © StartupTN</p>{' '}
               {/* Dynamic Year */}
             </div>
 

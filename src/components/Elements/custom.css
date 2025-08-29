@@ -10,6 +10,10 @@
   @apply font-urbanist font-semibold text-xl md:text-4xl;
 }
 
+.spons-text-small {
+  @apply font-urbanist font-semibold text-base md:text-2xl;
+}
+
 /* .card-content {
   @apply relative bg-black w-full h-full overflow-hidden rounded-xl;
 }
@@ -332,6 +336,21 @@
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+  line-height: 120%;
+}
+
+.gradient-text-gray {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 62%,
+    rgba(142, 142, 142, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  line-height: 120%;
 }
 
 .gradient-text-diamond {
