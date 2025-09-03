@@ -10,7 +10,7 @@ import purpleCardBg from '../../../assets/purple-cardbg.svg?url'
 import { useTicketsBySlug } from '../../../hooks/useQueryApi'
 import SimpleButton from '../../Elements/SimpleButton'
 
-const TicketHero = ({ applyBorder = true }) => {
+const TicketHero = ({ headers, applyBorder = true }) => {
   const {
     data: passData,
     isLoading,
@@ -26,32 +26,33 @@ const TicketHero = ({ applyBorder = true }) => {
   )
 
   const handleVisitorPassClick = () => {
-    window.open('https://event.startuptn.in/booking?pass=visitor', '_blank')
+    window.location.href = 'https://event.startuptn.in/booking?pass=visitor'
   }
 
   const handleDelegatePassClick = () => {
-    window.open('https://event.startuptn.in/booking?pass=delegate', '_blank')
+    window.location.href = 'https://event.startuptn.in/booking?pass=delegate'
   }
 
   return (
     <section
+      id='pass'
       className='pb-0.5'
       style={{
         background: applyBorder
           ? 'linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(170, 170, 170, 1) 50%, rgba(0, 0, 0, 1) 100%)'
           : '',
+        scrollBehavior: 'smooth',
       }}
     >
       <div className='w-full bg-black px-4 md:px-16 pt-36 pb-8 md:pb-16 flex flex-col gap-5 md:gap-16 2xl:gap-24 items-center justify-center mx-auto'>
         {/*title*/}
         <div className='flex flex-col items-center gap-4'>
           <h2 className='font-medium text-3xl md:text-4xl 2xl:text-6xl gradient-text-black'>
-            Choose your Pass
+            {headers?.title}
           </h2>
 
           <p className='text-lg md:text-xl 2xl:text-3xl text-center'>
-            Select the perfect pass that suits your needs and get ready for an
-            unforgettable experience.
+            {headers?.description}
           </p>
         </div>
 

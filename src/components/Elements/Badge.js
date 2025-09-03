@@ -38,6 +38,7 @@ const Badge = ({
       className='text-white px-3 py-1.5 text-sm rounded-full'
       style={{
         backgroundColor: '#1A1A1A',
+        boxShadow: '0 8px 32px 8px rgba(245,112,12,0.11)',
       }}
       onClick={onClick}
       whileHover={

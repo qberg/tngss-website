@@ -67,18 +67,12 @@ export default function Footer() {
 
             {/* Hover-only CTA for desktop */}
             <div className='hidden md:flex scale-90 flex-row justify-even items-center gap-4 absolute top-10 bottom-10 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500'>
-              <CTAButton
-                src='https://event.startuptn.in/register'
-                className='rounded-2xl'
-              >
+              <CTAButton src='/tickets#stall' className='rounded-2xl'>
                 <div className='w-60 h-10 px-10 text-white flex items-center justify-center'>
                   Book Your Stall
                 </div>
               </CTAButton>
-              <CTAButton
-                src='https://event.startuptn.in/'
-                className='rounded-2xl '
-              >
+              <CTAButton src='/tickets#pass' className='rounded-2xl '>
                 <div className='w-60 h-10 px-10 text-white flex items-center justify-center'>
                   Buy Your Pass
                 </div>
@@ -88,6 +82,7 @@ export default function Footer() {
             {/* Always-visible CTAs on mobile */}
             <div className='md:hidden absolute bottom-5 w-full flex flex-row justify-even items-center gap-2 px-4'>
               <CTAButton
+                src='/tickets#stall'
                 src='https://event.startuptn.in/register'
                 className='rounded-2xl w-full'
               >
@@ -95,10 +90,7 @@ export default function Footer() {
                   Book Your Stall
                 </div>
               </CTAButton>
-              <CTAButton
-                src='https://event.startuptn.in/'
-                className='rounded-2xl w-full'
-              >
+              <CTAButton src='/tickets#pass' className='rounded-2xl w-full'>
                 <div className='w-50 h-9 px-5 flex items-center justify-center'>
                   Buy Your Pass
                 </div>
@@ -129,7 +121,12 @@ export default function Footer() {
                   <u>(+91) {'44 22256789'}</u>
                 </a>
               </p>
-              <p className='hidden md:block'>All Rights Reserved © StartupTN</p>{' '}
+              <p className='hidden md:block'>
+                All Rights Reserved ©{' '}
+                <a href='https://startuptn.in' className='hover:underline'>
+                  StartupTN
+                </a>
+              </p>
               {/* Dynamic Year */}
             </div>
 

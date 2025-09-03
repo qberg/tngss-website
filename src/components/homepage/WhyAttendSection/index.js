@@ -1,40 +1,39 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useInView } from 'motion/react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import CTAButton from '../../Elements/CTAButton'
 import FlippingCard from '../../Elements/FlippingCard'
 import GradientBdrCard from '../../Elements/GradientBorderCard'
 
-import Frame1 from '../../../assets/attendees/2.webp'
-import Frame2 from '../../../assets/attendees/4.webp'
-import Frame3 from '../../../assets/attendees/1.webp'
-import Frame4 from '../../../assets/attendees/3.webp'
-import Frame5 from '../../../assets/attendees/5.webp'
-import useIsMobile from '../../../hooks/useIsMobile'
+import Frame1 from '../../../assets/home-attendees/1.png'
+import Frame2 from '../../../assets/home-attendees/2.png'
+import Frame3 from '../../../assets/home-attendees/3.png'
+import Frame4 from '../../../assets/home-attendees/4.png'
+import Frame5 from '../../../assets/home-attendees/5.png'
 
 const data = [
   {
-    img: Frame3,
+    img: Frame1,
     title: 'Startups',
     des: 'Starting, building, or scaling your Startup? The Tamil Nadu Global Startup Summit 2025 is your launchpad to success.',
     foot: 'Scale faster, network smarter, and fund your startup.',
   },
   {
-    img: Frame1,
+    img: Frame2,
     title: 'Investors',
     des: 'Discover high-potential startups and game-changing innovations at Tamil Nadu Global Startup Summit 2025.',
     foot: 'Discover, connect, and invest in the next big startup.',
+  },
+  {
+    img: Frame3,
+    title: 'Corporates',
+    des: 'Explore emerging innovations, engage with future-ready startups and collaborate for strategic growth opportunities.',
+    foot: 'Collaborate and Transform',
   },
   {
     img: Frame4,
     title: 'Aspirants',
     des: "Whether you're a student, aspiring entrepreneur, or young innovator, this is your chance to gain knowledge, find opportunities, and take the first step toward building something extraordinary.",
     foot: 'Your future starts here: network, learn, and grow.',
-  },
-  {
-    img: Frame2,
-    title: 'Corporates',
-    des: 'Explore emerging innovations, engage with future-ready startups and collaborate for strategic growth opportunities.',
-    foot: 'Collaborate and Transform',
   },
   {
     img: Frame5,
@@ -218,12 +217,16 @@ const WhyAttendSection = () => {
                             whileHover={{ scale: 1.05 }}
                           />
                           <motion.div
-                            className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent'
+                            className='absolute inset-0'
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{
                               duration: 0.6,
                               delay: index * 0.1 + 0.3,
+                            }}
+                            style={{
+                              background:
+                                'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)',
                             }}
                           />
                           <motion.div

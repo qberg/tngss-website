@@ -227,7 +227,9 @@ const SpeakerDetailHero = ({ speaker }) => {
                           <MapPin size={14} className='highlight-text' />
                         </motion.div>
                         <span className='text-lg'>
-                          {speaker.location.city}, {speaker.location.country}
+                          {[speaker.location.city, speaker.location.country]
+                            .filter(Boolean)
+                            .join(', ')}
                         </span>
                       </motion.div>
                     )}
@@ -277,7 +279,7 @@ const SpeakerDetailHero = ({ speaker }) => {
               {/* Bio */}
               {speaker?.summary && (
                 <motion.p
-                  className='text-lg text-xl 2xl:text-2xl text-justify'
+                  className='text-lg 2xl:text-2xl text-justify'
                   variants={fadeInUp}
                   initial='initial'
                   animate='animate'

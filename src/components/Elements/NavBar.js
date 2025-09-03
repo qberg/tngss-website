@@ -48,7 +48,7 @@ export default function NavBar() {
     { name: 'Speakers', link: '/speakers' },
     { name: 'Sponsors', link: '/sponsors' },
     {
-      name: 'Info',
+      name: 'More',
       dropdown: [
         { name: 'Venue', link: '/venue' },
         { name: 'FAQ', link: '/faq' },
@@ -80,6 +80,43 @@ export default function NavBar() {
 
   const toggleMobileDropdown = (index) => {
     setMobileActiveDropdown(mobileActiveDropdown === index ? null : index)
+  }
+
+  const handleScrollToStall = (e) => {
+    if (window.location.pathname === '/tickets') {
+      e.preventDefault()
+
+      const element = document.getElementById('stall')
+      if (element) {
+        const headerHeight = 100 // Adjust this value as needed
+        const elementPosition = element.offsetTop - headerHeight
+
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        })
+      }
+    }
+    closeMenu() // Close mobile menu in either case
+  }
+
+  const handleScrollToPass = (e) => {
+    if (window.location.pathname === '/tickets') {
+      e.preventDefault()
+
+      const element = document.getElementById('pass')
+      if (element) {
+        const headerHeight = 100
+        const elementPosition = element.offsetTop - headerHeight
+
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth',
+        })
+      }
+    }
+
+    closeMenu()
   }
 
   return (
@@ -170,7 +207,8 @@ export default function NavBar() {
         {/* Desktop CTA Buttons - Hidden on mobile */}
         <div className='hidden md:flex gap-3 md:gap-5 items-center text-xl'>
           <ShineButton
-            src='/tickets'
+            src='/tickets#stall'
+            onClick={handleScrollToStall}
             className='!hover:bg-black'
             contCN='!bg-none py-2 px-4'
           >
@@ -183,7 +221,8 @@ export default function NavBar() {
             Book Your Stall
           </ShineButton>
           <ShineButton
-            src='/tickets'
+            src='/tickets#pass'
+            onClick={handleScrollToPass}
             className='!hover:bg-black'
             contCN='hover py-2 px-2'
           >
@@ -222,11 +261,11 @@ export default function NavBar() {
         initial={{ x: '100%' }}
         animate={isMenuOpen ? { x: 0 } : { x: '100%' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className='fixed top-0 right-0 h-full w-80 bg-black backdrop-blur-md z-50 md:hidden border-l border-gray-600 overflow-y-auto'
+        className='fixed top-0 right-0 h-full w-80 bg-black backdrop-blur-md z-50 md:hidden border-l border-gray-600'
       >
         <div className='flex flex-col h-full'>
           {/* Menu Header */}
-          <div className='flex justify-between items-center p-6 border-b border-gray-600 sticky top-0 bg-black backdrop-blur-md'>
+          <div className='flex justify-between items-center p-6 border-b border-gray-600 flex-shrink-0 bg-black backdrop-blur-md'>
             <h2 className='text-white text-xl font-semibold'>Menu</h2>
             <button
               onClick={closeMenu}
@@ -237,8 +276,8 @@ export default function NavBar() {
             </button>
           </div>
 
-          {/* Menu Items */}
-          <div className='flex-1 px-6 py-8'>
+          {/* Menu Items - Scrollable Section */}
+          <div className='flex-1 px-6 py-8 overflow-y-auto'>
             <nav className='space-y-2'>
               {menuItems.map((item, index) => (
                 <motion.div
@@ -305,8 +344,8 @@ export default function NavBar() {
             </nav>
           </div>
 
-          {/* Mobile CTA Buttons */}
-          <div className='p-6 border-t border-gray-600 space-y-4 sticky bottom-0 bg-black/95 backdrop-blur-md'>
+          {/* Mobile CTA Buttons - Fixed at Bottom */}
+          <div className='p-6 border-t border-gray-600 space-y-4 flex-shrink-0 bg-black/95 backdrop-blur-md'>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={
@@ -315,7 +354,8 @@ export default function NavBar() {
               transition={{ duration: 0.3, delay: 0.6 }}
             >
               <ShineButton
-                src='https://event.startuptn.in/register'
+                src='/tickets#stall'
+                onClick={handleScrollToStall}
                 className='!hover:bg-black w-full justify-center text-white'
                 contCN='!bg-none py-3 px-4 w-full'
                 onClick={closeMenu}
@@ -337,7 +377,8 @@ export default function NavBar() {
               transition={{ duration: 0.3, delay: 0.7 }}
             >
               <ShineButton
-                src='https://event.startuptn.in/'
+                src='/tickets#pass'
+                onClick={handleScrollToPass}
                 className='!hover:bg-black w-full justify-center text-white'
                 contCN='hover py-3 px-4 w-full'
                 onClick={closeMenu}

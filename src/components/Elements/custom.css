@@ -1749,10 +1749,6 @@ body {
   display: none !important;
 }
 
-section {
-  overflow-x: hidden;
-}
-
 .-translate-x-100 {
   transform: translateX(-100%);
 }

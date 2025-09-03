@@ -3,11 +3,19 @@ export default function ShineButton({
   className = '',
   contCN = '',
   src = '/',
+  onClick = null,
 }) {
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e)
+    }
+  }
+
   return (
     <a
       className=''
       href={src}
+      onClick={handleClick}
       role='button'
       style={{
         lineHeight: '',

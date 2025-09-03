@@ -16,6 +16,7 @@ import {
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
 import Venue from '../views/Venue'
+import AgendaDetail from '../components/agenda/AgendaDetail'
 
 const AppRoutes = () => {
   return (
@@ -41,6 +42,10 @@ const AppRoutes = () => {
       <Route path='/venue' element={<RouteWithLayout component={Venue} />} />
 
       <Route path='/agenda' element={<RouteWithLayout component={Agenda} />} />
+      <Route
+        path='/agenda/:slug'
+        element={<RouteWithLayout component={AgendaDetail} />}
+      />
       <Route path='/faq' element={<RouteWithLayout component={Faq} />} />
 
       <Route path='/' element={<Navigate to='/home' />} />

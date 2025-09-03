@@ -15,17 +15,12 @@ import yellowCardBg from '../../../assets/yellow-cardbg.svg?url'
 import cyanCardBg from '../../../assets/cyan-cardbg.svg?url'
 import StallIcon from '../StallIcon'
 
-const ExhibitorBlock = () => {
+const ExhibitorBlock = ({ headers, guidelinesData }) => {
   const {
     data: exhibitorData,
     isLoading,
     error,
   } = useTicketsBySlug('contains:exhibitor')
-  const {
-    data: guidelinesData,
-    isLoading: guidelinesLoading,
-    error: guidelinesError,
-  } = useTicketGuidelines()
 
   const exhibitors = exhibitorData?.docs || []
 
@@ -44,14 +39,26 @@ const ExhibitorBlock = () => {
   )
 
   const handleExhibitorClick = () => {
-    window.open('https://event.startuptn.in/expo-booking', '_blank')
+    window.location.href = 'https://event.startuptn.in/expo-booking'
   }
 
   return (
-    <section className='w-full bg-black px-4 md:px-16 pt-16 md:pt-20 2xl:pt-24 pb-8 md:pb-16 flex flex-col gap-5 md:gap-12 2xl:gap-16 items-center justify-center mx-auto'>
-      <h2 className='font-medium text-3xl md:text-4xl 2xl:text-6xl gradient-text-black text-center'>
-        Stall Availability For Exhibitor Pass
-      </h2>
+    <section
+      id='stall'
+      className='w-full bg-black px-4 md:px-16 pt-16 md:pt-20 2xl:pt-24 pb-8 md:pb-16 flex flex-col gap-5 md:gap-12 2xl:gap-16 items-center justify-center mx-auto'
+      style={{
+        scrollMarginTop: '20px',
+      }}
+    >
+      <div className='flex flex-col items-center gap-4'>
+        <h2 className='font-medium text-3xl md:text-4xl 2xl:text-6xl gradient-text-black'>
+          {headers?.title}
+        </h2>
+
+        <p className='text-lg md:text-xl 2xl:text-3xl text-center'>
+          {headers?.description}
+        </p>
+      </div>
 
       {/*exhibitor cards */}
 

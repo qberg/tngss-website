@@ -1,11 +1,7 @@
 import { useParams } from 'react-router-dom'
 import SpeakerDetailHero from '../SpeakerHero'
 import MinimalHero from '../../Elements/MinimalHero'
-import {
-  useEventsByIds,
-  useSpeakerBySlugEff,
-  useSpeakerEvents,
-} from '../../../hooks/useQueryApi'
+import { useSpeakerBySlugEff } from '../../../hooks/useQueryApi'
 import SpeakerEventsListing from '../SpeakerEventsListing'
 
 const SpeakerDetail = () => {

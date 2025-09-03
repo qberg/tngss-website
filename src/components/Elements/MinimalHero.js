@@ -1,6 +1,6 @@
 const MinimalHero = ({ title, subTitle, tagLine, applyBorder = true }) => {
   return (
-    <section className='relative overflow-hidden' style={{ height: '50vh' }}>
+    <section className='relative overflow-hidden h-50vh md:h-62.5vh 2xl:h-50vh'>
       <div
         className='w-full h-full p-1'
         style={{

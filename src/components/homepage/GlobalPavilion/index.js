@@ -47,7 +47,7 @@ const FlagMarquee = ({ flags = [] }) => {
             <img
               src={flagData.flag?.url}
               alt={flagData.flag?.alt || `${flagData.country} flag`}
-              className='w-48 h-36 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-96 2xl:h-64 object-cover rounded-lg shadow-xl'
+              className='w-48 h-36 md:w-40 md:h-28 xl:w-40 xl:h-28 2xl:w-60 2xl:h-36 object-cover rounded-lg shadow-xl'
               style={{
                 imageRendering: 'crisp-edges',
                 backfaceVisibility: 'hidden',
@@ -135,7 +135,7 @@ const GlobalPavilion = () => {
       </motion.p>
 
       <motion.div
-        className='w-full mt-16 md:mt-8'
+        className='w-full mt-16 md:mt-8 2xl:mt-32'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{

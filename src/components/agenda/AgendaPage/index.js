@@ -1,5 +1,5 @@
 import MinimalHero from '../../Elements/MinimalHero'
-import AgendaListing from '../AgendaListing'
+import AgendaListingCompact from '../AgendaListingCompact'
 
 const AgendaPage = () => {
   return (
@@ -9,7 +9,7 @@ const AgendaPage = () => {
         subTitle=''
         tagLine="Exploring the Core of TNGSS'25"
       />
-      <AgendaListing />
+      <AgendaListingCompact />
     </section>
   )
 }

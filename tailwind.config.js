@@ -13,6 +13,7 @@ module.exports = {
       },
       colors: {
         'theme-blue': '#18BFDB',
+        'theme-light-blue': '#17bfdb',
         'theme-orange': '#F5710C',
         'theme-new-blue': '#0055FF',
         'inactive-blue': '#1B374E',
@@ -40,6 +41,9 @@ module.exports = {
         dvh: 'calc(var(--dvh, 1vh) * 100)',
         svh: 'calc(var(--svh, 1vh) * 100)',
         lvh: 'calc(var(--lvh, 1vh) * 100)',
+        '50vh': '50vh',
+        '60vh': '60vh',
+        '62.5vh': '62.5vh',
       },
       width: {
         vw: 'calc(var(--vw, 1vw) * 100)',

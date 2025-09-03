@@ -65,7 +65,7 @@ const DesktopFilterContainer = ({
         ...gentleSpring,
         delay: 0.2,
       }}
-      className={`hidden md:flex flex-col md:w-3/12 gap-8 ${className}`}
+      className={`hidden md:flex flex-col w-full gap-8 sticky md:top-14 2xl:top-28 ${className}`}
     >
       {/* Filter Header */}
       <motion.div

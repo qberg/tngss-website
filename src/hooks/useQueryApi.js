@@ -32,18 +32,6 @@ const usePayloadQuery = (queryKey, endpoint, options = {}) => {
   })
 }
 
-export const useEventsData = () => {
-  return usePayloadQuery(['events'], '/api/events', {
-    payloadOptions: {
-      limit: 0,
-      depth: 2,
-      sort: 'schedule.from_date',
-      where: { isPublic: { equals: true } },
-    },
-    errorMessage: 'Failed to fetch events',
-  })
-}
-
 export const useSpeakersData = () => {
   return usePayloadQuery(['speakers', 'all-with-relations'], '/api/speakers', {
     payloadOptions: {
@@ -591,4 +579,76 @@ export const useTicketGuidelines = () => {
     data: data?.guidelines?.guidelines || [],
     ...rest,
   }
+}
+
+// Events
+export const useEventsData = () => {
+  return useQuery({
+    queryKey: ['events'],
+    queryFn: async () => {
+      const baseUrl = '/api/events'
+      const params = new URLSearchParams({
+        'where[isPublic][equals]': 'true',
+        limit: '0',
+        depth: '2',
+        sort: 'schedule.from_date',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+      const result = await payloadClient.get(url)
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch events')
+      }
+    },
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useEventBySlugEff = (slug) => {
+  const { data: eventsData, isLoading: eventsLoading } = useEventsData()
+
+  return useQuery({
+    queryKey: ['event', 'smart', slug],
+    queryFn: async () => {
+      if (eventsData?.docs) {
+        const eventFromCache = eventsData.docs.find(
+          (event) => event.slug === slug
+        )
+        if (eventFromCache) {
+          return { data: eventFromCache, source: 'cache' }
+        }
+      }
+
+      const baseUrl = '/api/events'
+      const params = new URLSearchParams({
+        'where[slug][equals]': slug,
+        'where[isPublic][equals]': 'true',
+        limit: '1',
+        depth: '2',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+      const result = await payloadClient.get(url)
+
+      if (result.success && result.data.docs && result.data.docs.length > 0) {
+        return { data: result.data.docs[0], source: 'direct' }
+      } else if (
+        result.success &&
+        result.data.docs &&
+        result.data.docs.length === 0
+      ) {
+        throw new Error('Event not found')
+      } else {
+        throw new Error(result.error || 'Failed to fetch event')
+      }
+    },
+    enabled: !!slug && !eventsLoading,
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+    select: (data) => data.data,
+  })
 }
