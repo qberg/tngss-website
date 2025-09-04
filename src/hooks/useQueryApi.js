@@ -470,6 +470,49 @@ export const useStakeholdersFromBase = () => {
   }
 }
 
+export const useWhyTnData = () => {
+  return useQuery({
+    queryKey: ['why-tn-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/why-tn-wp', {
+        depth: 2,
+      })
+      if(result.data) {
+        return result.data
+      }
+      else {
+        throw new Error(result.error || 'Failed to fetch Why TN Page')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useDiscoverTNWhyTN = () => {
+  const { data, ...rest } = useWhyTnData()
+  return {
+    data: data?.discover_tn,
+    ...rest,
+  }
+}
+
+export const useImpactNumbers = () => {
+  const { data, ...rest } = useWhyTnData()
+  return {
+    data: data?.discover_tn.impact_numbers,
+    ...rest,
+  }
+}
+
+export const useHighlightsTnFromBase = () => {
+  const { data, ...rest } = useWhyTnData()
+  return {
+    data: data?.tn_highlights.highlight,
+    ...rest,
+  }
+}
+
 export const useTickets = () => {
   return useQuery({
     queryKey: ['tickets'],
