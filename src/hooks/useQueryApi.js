@@ -497,13 +497,21 @@ export const useDiscoverTNWhyTN = () => {
   }
 }
 
-export const useImpactNumbers = () => {
+export const useSectorHighlightsData = () => {
   const { data, ...rest } = useWhyTnData()
   return {
-    data: data?.discover_tn.impact_numbers,
+    data: data?.sector_higlights,
     ...rest,
   }
 }
+
+// export const useImpactNumbers = () => {
+//   const { data, ...rest } = useWhyTnData()
+//   return {
+//     data: data?.discover_tn.impact_numbers,
+//     ...rest,
+//   }
+// }
 
 export const useHighlightsTnFromBase = () => {
   const { data, ...rest } = useWhyTnData()
