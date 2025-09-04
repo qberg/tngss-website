@@ -139,55 +139,57 @@ const EventDetails = ({ event }) => {
               )}
 
               {/*location + time */}
-              <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
-                {/* Date */}
+              <div className='flex flex-col gap-2'>
+                {/* Date and Time Row */}
                 {event?.schedule && (
-                  <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
-                    <CalendarFold size={14} />
-                    <span>{formatDate(event.schedule.from_date)}</span>
-                  </div>
-                )}
-                {/* Time */}
-                {event?.schedule && (
-                  <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
-                    <Clock size={14} />
-                    <span>
-                      {formatTime(event.schedule.from_date)} -{' '}
-                      {formatTime(event.schedule.to_date)}
-                    </span>
+                  <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
+                    {/* Date */}
+                    <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
+                      <CalendarFold size={14} />
+                      <span>{formatDate(event.schedule.from_date)}</span>
+                    </div>
+                    {/* Time */}
+                    <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
+                      <Clock size={14} />
+                      <span>
+                        {formatTime(event.schedule.from_date)} -{' '}
+                        {formatTime(event.schedule.to_date)}
+                      </span>
+                    </div>
                   </div>
                 )}
 
-                {event?.partner_event_venue?.venue && (
-                  <a
-                    href={event?.partner_event_venue?.map_url}
-                    target='_blank'
-                    className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist underline'
-                    style={{
-                      color: '#17bfdb',
-                      lineHeight: '100%',
-                    }}
-                  >
-                    <MapPin size={14} className='' />
-                    <span>{event.partner_event_venue.venue}</span>
-                  </a>
-                )}
-
-                {event?.hall && (
-                  <div className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist'>
-                    <MapPin size={14} className='' />
-                    <span>{event.hall.name}</span>
-                  </div>
-                )}
+                {/* Location Row */}
+                <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
+                  {event?.partner_event_venue?.venue && (
+                    <a
+                      href={event?.partner_event_venue?.map_url}
+                      target='_blank'
+                      className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist underline'
+                      style={{
+                        color: '#17bfdb',
+                        lineHeight: '100%',
+                      }}
+                    >
+                      <MapPin size={14} className='' />
+                      <span>{event.partner_event_venue.venue}</span>
+                    </a>
+                  )}
+                  {event?.hall && (
+                    <div className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist'>
+                      <MapPin size={14} className='' />
+                      <span>{event.hall.name}</span>
+                    </div>
+                  )}
+                </div>
               </div>
-
               {/* Quick Info Grid */}
 
               {/* Description */}
               {event?.about && (
                 <div className=''>
                   <h3
-                    className='mb-6 font-urbanist font-semibold text-xl md:text-3xl 2xl:text-4xl'
+                    className='mb-4 font-urbanist font-semibold text-xl md:text-3xl 2xl:text-4xl'
                     style={{ color: '#17bfdb' }}
                   >
                     About The Event
@@ -219,11 +221,11 @@ const EventDetails = ({ event }) => {
               {event?.registeration_mode !== 'none' && (
                 <div className='mb-6'>
                   <h4 className='font-semibold font-urbanist mb-2 text-theme-blue text-2xl'>
-                    Download The App to Register
+                    Get the App
                   </h4>
                   <p className='text-white font-normal text-lg leading-tight text-justify mb-4'>
-                    Spots Are Going Fast! Download the app now to join the
-                    waitlist and lock in your place.
+                    Download the app to register instantly, plan your schedule
+                    and connect with attendees before the event.
                   </p>
 
                   <div className='flex gap-4'>

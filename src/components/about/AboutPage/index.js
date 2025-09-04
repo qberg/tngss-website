@@ -7,6 +7,7 @@ import OrganisingCommitteSection from '../OrganisingCommitteSection'
 import FocusAreasSection from '../FocusAreaSection'
 import KeyFocusSection from '../KeyFocusSection'
 import SteeringCommitteSection from '../SteeringCommitteSection'
+import WhyStartupTNSection from '../WhyStartupTNSection'
 
 const AboutPage = () => {
   const { data, isLoading, error, isError } = useAboutUsWp()
@@ -16,7 +17,7 @@ const AboutPage = () => {
     mission,
     committe,
     steering_committe,
-    whyTN,
+    whyStartupTN,
     pavilion,
     pavilionTitle,
     highlights,
@@ -35,12 +36,8 @@ const AboutPage = () => {
       {introduction && mission && (
         <IntroSection introData={introduction} missionData={mission} />
       )}
-      {whyTN && (
-        <WhyTamilNaduSection
-          title={whyTN?.title}
-          description={whyTN?.description}
-        />
-      )}
+
+      {whyStartupTN && <WhyStartupTNSection data={whyStartupTN} />}
 
       {steering_committe && (
         <SteeringCommitteSection data={steering_committe} />

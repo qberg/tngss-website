@@ -89,48 +89,50 @@ const EventCard = ({ event, isLast = false, isDropDown = true }) => {
         )}
 
         {/*location + time info */}
-        <div className='flex gap-3 md:gap-x-8 mb-6 flex-wrap'>
-          {/* Date */}
+        <div className='flex flex-col gap-2'>
+          {/* Date and Time Row */}
           {event?.schedule && (
-            <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
-              <CalendarFold size={14} />
-              <span>{formatDate(event.schedule.from_date)}</span>
-            </div>
-          )}
-          {/* Time */}
-          {event?.schedule && (
-            <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
-              <Clock size={14} />
-              <span>
-                {formatTime(event.schedule.from_date)} -{' '}
-                {formatTime(event.schedule.to_date)}
-              </span>
+            <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
+              {/* Date */}
+              <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
+                <CalendarFold size={14} />
+                <span>{formatDate(event.schedule.from_date)}</span>
+              </div>
+              {/* Time */}
+              <div className='flex gap-1 items-center font-semibold font-urbanist text-gray-300'>
+                <Clock size={14} />
+                <span>
+                  {formatTime(event.schedule.from_date)} -{' '}
+                  {formatTime(event.schedule.to_date)}
+                </span>
+              </div>
             </div>
           )}
 
-          {event?.partner_event_venue?.venue && (
-            <a
-              href={event?.partner_event_venue?.map_url}
-              target='_blank'
-              className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist underline'
-              style={{
-                color: '#17bfdb',
-                lineHeight: '100%',
-              }}
-            >
-              <MapPin size={14} className='' />
-              <span>{event.partner_event_venue.venue}</span>
-            </a>
-          )}
-
-          {event?.hall && (
-            <div className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist'>
-              <MapPin size={14} className='' />
-              <span>{event.hall.name}</span>
-            </div>
-          )}
+          {/* Location Row */}
+          <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
+            {event?.partner_event_venue?.venue && (
+              <a
+                href={event?.partner_event_venue?.map_url}
+                target='_blank'
+                className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist underline'
+                style={{
+                  color: '#17bfdb',
+                  lineHeight: '100%',
+                }}
+              >
+                <MapPin size={14} className='' />
+                <span>{event.partner_event_venue.venue}</span>
+              </a>
+            )}
+            {event?.hall && (
+              <div className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist'>
+                <MapPin size={14} className='' />
+                <span>{event.hall.name}</span>
+              </div>
+            )}
+          </div>
         </div>
-
         {/*height animated content */}
         {isDropDown && (
           <motion.div
@@ -245,7 +247,7 @@ const EventCard = ({ event, isLast = false, isDropDown = true }) => {
           ) : (
             <ShineButton
               src={`/agenda/${event.slug}`}
-              className='!hover:bg-black w-full justify-center text-white'
+              className='!hover:bg-black w-full justify-center text-white mt-4 md:mt-4'
               contCN='!bg-none py-1.5 px-2.5 w-full'
             >
               View More

@@ -12,6 +12,7 @@ import {
   Agenda,
   Sponsors,
   Tickets,
+  WhyTN,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -66,6 +67,7 @@ const AppRoutes = () => {
         path='/terms-and-condition'
         element={<RouteWithLayout component={TermsandCondition} />}
       />
+      <Route path='/why-tn' element={<RouteWithLayout component={WhyTN} />} />
     </Routes>
   )
 }
