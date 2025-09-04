@@ -33,7 +33,7 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
           >
             {/*content*/}
             <div className='w-full md:w-1/2 mb-2'>
-              <h4 className='font-urbanist font-medium text-white text-xl md:text-3xl 2xl:text-4xl mb-2 md:mb-4 2xl:mb-8 text-justify'>
+              <h4 className='font-urbanist font-medium text-white text-xl md:text-3xl 2xl:text-4xl mb-2 md:mb-4 2xl:mb-8 text-left'>
                 {info.description}
               </h4>
 

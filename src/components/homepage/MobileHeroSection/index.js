@@ -81,7 +81,7 @@ const EventDetails = () => (
 const CallToAction = () => (
   <div className='flex flex-col md:flex-row gap-2'>
     <ShineButton
-      src='https://event.startuptn.in/register'
+      src='/tickets'
       className='!hover:bg-black w-full justify-center text-white'
       contCN='!bg-none py-3 px-4 w-full'
     >
@@ -95,7 +95,7 @@ const CallToAction = () => (
     </ShineButton>
 
     <ShineButton
-      src='https://event.startuptn.in/'
+      src='/tickets'
       className='!hover:bg-black w-full justify-center text-white'
       contCN='hover py-3 px-4 w-full'
     >

@@ -13,6 +13,7 @@ import {
   Sponsors,
   Tickets,
   WhyTN,
+  WhySponsor,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -53,6 +54,10 @@ const AppRoutes = () => {
       <Route
         path='/sponsors'
         element={<RouteWithLayout component={Sponsors} />}
+      />
+      <Route
+        path='/why-sponsor'
+        element={<RouteWithLayout component={WhySponsor} />}
       />
       <Route
         path='/tickets'

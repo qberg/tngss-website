@@ -13,7 +13,7 @@ const HighlightBlock = ({ highlight, isEven, applyBorder = true }) => {
             : '',
         }}
       >
-        <div className='w-full h-full flex flex-col items-start gap-3 md:gap-5 2xl:gap-7 justify-start px-4 md:px-16 2xl:px-28 py-4 md:py-12 2xl:py-28 bg-black overflow-hidden'>
+        <div className='w-full h-full flex flex-col items-start gap-3 md:gap-5 2xl:gap-7 justify-start px-4 md:px-16 2xl:px-28 py-4 md:py-12 2xl:py-28 overflow-hidden bg-black'>
           {/*header*/}
           <div className='mb-4 md:mb-8 2xl:mb-20'>
             <h3 className='text-2xl md:text-5xl 2xl:text-6xl uppercase text-white group-hover:text-[#18BFDB] transition-colors font-medium mb-2'>

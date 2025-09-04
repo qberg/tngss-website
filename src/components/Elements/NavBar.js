@@ -42,18 +42,19 @@ export default function NavBar() {
   }, [isVisible, controls])
 
   const menuItems = [
-    { name: 'About', link: '/about' },
-    { name: 'Why Attend', link: '/why-attend' },
+    {
+      name: 'About',
+      dropdown: [
+        { name: 'TNGSS 2025', link: '/about' },
+        { name: 'Why Attend', link: '/why-attend' },
+        { name: 'Why Tamil Nadu', link: '/why-tn' },
+      ],
+    },
     { name: 'Agenda', link: '/agenda' },
     { name: 'Speakers', link: '/speakers' },
     { name: 'Sponsors', link: '/sponsors' },
-    {
-      name: 'More',
-      dropdown: [
-        { name: 'Venue', link: '/venue' },
-        { name: 'FAQ', link: '/faq' },
-      ],
-    },
+    { name: 'Venue', link: '/venue' },
+    { name: 'FAQ', link: '/faq' },
   ]
 
   const toggleMenu = () => {
@@ -179,7 +180,7 @@ export default function NavBar() {
                           <motion.a
                             key={subIndex}
                             href={subItem.link}
-                            className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-inactive-blue last:border-b-0 hover:text-theme-blue'
+                            className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-bg-gray last:border-b-0 hover:text-theme-blue'
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: subIndex * 0.05 }}
