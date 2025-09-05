@@ -87,7 +87,7 @@ const CardsCarousel = ({ title, cards }) => {
           <div className='embla__container flex'>
             {cards.map((card, index) => (
               <div
-                className='embla__slide flex-none w-full md:w-1/2 lg:w-1/4 pr-4 md:pr-6 2xl:pr-8 h-72 md:h-80 2xl:h-96'
+                className='embla__slide flex-none w-3/4 md:w-1/2 lg:w-1/4 pr-4 md:pr-6 2xl:pr-8 h-60 md:h-80 2xl:h-96'
                 key={card.id || index}
               >
                 <SectorCard title={card.title} description={card.description} />
@@ -114,7 +114,7 @@ const SectorCard = ({ title, description }) => {
           {title || 'Auto & Auto Components'}
         </h4>
         <p
-          className='font-light font-urbanist text-base text-text-gray'
+          className='font-light font-urbanist text-xs md:text-base text-text-gray'
           style={{ lineHeight: '110%' }}
         >
           {description ||

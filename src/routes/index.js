@@ -14,11 +14,13 @@ import {
   Tickets,
   WhyTN,
   WhySponsor,
+  SponsorInterestForm,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
 import Venue from '../views/Venue'
 import AgendaDetail from '../components/agenda/AgendaDetail'
+import RouteWithNav from '../components/Elements/RouteWithNav'
 
 const AppRoutes = () => {
   return (
@@ -58,6 +60,11 @@ const AppRoutes = () => {
       <Route
         path='/why-sponsor'
         element={<RouteWithLayout component={WhySponsor} />}
+      />
+
+      <Route
+        path='/sponsor-form'
+        element={<RouteWithNav component={SponsorInterestForm} />}
       />
       <Route
         path='/tickets'

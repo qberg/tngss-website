@@ -702,3 +702,23 @@ export const useEventBySlugEff = (slug) => {
     select: (data) => data.data,
   })
 }
+
+// Sponsor form page
+export const useSponsorFormWp = () => {
+  return useQuery({
+    queryKey: ['sponsor-form-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/sponsor-form-wp', {
+        depth: 2,
+      })
+
+      if (result.success !== false) {
+        return result
+      } else {
+        throw new Error(result.error || 'Failed to fetch sponsor form data')
+      }
+    },
+    staleTime: QUERY_DEFAULTS.LONG_STALE_TIME,
+    retry: QUERY_DEFAULTS.DEFAULT_RETRY,
+  })
+}

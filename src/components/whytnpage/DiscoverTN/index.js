@@ -19,7 +19,7 @@ const DiscoverTN = () => {
           {discoverTn?.description}
         </div>
       </div>
-      <div className='flex flex-col md:flex-row w-full justify-between py-3.5 md:py-0 mx-auto md:w-10/12 md:gap-8'>
+      <div className='flex flex-col md:flex-row w-full justify-between py-3.5 md:py-0 mx-auto md:w-10/12 gap-4 md:gap-8'>
         {discoverTn?.impact_numbers.map((info) => (
           <ImpactNumbersCard key={info.id} info={info} />
         ))}

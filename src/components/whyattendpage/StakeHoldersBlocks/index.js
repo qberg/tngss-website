@@ -33,9 +33,34 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
           >
             {/*content*/}
             <div className='w-full md:w-1/2 mb-2'>
-              <h4 className='font-urbanist font-medium text-white text-xl md:text-3xl 2xl:text-4xl mb-2 md:mb-4 2xl:mb-8 text-left'>
+              <h4 className='font-urbanist font-medium text-white text-xl md:text-3xl 2xl:text-4xl mb-4 md:mb-4 2xl:mb-8 text-left'>
                 {info.description}
               </h4>
+
+              <div className='w-full md:hidden flex flex-col items-center justify-center relative flex-1 mb-4'>
+                <div
+                  className='p-1 w-full h-fit overflow-hidden'
+                  style={{
+                    maxHeight: '400px',
+                    background:
+                      'linear-gradient(135deg,rgba(0, 85, 255, 1) 0%, rgba(24, 191, 219, 1) 15%, rgba(245, 113, 12, 1) 85%, rgba(236, 71, 62, 1) 100%)',
+                    borderRadius: '32px',
+                  }}
+                >
+                  <img
+                    src={info?.image.url}
+                    alt={info.image.alt || 'Stakeholder image'}
+                    className={`w-full h-auto object-cover transition-all duration-700 ${
+                      imageLoaded ? 'blur-0' : 'blur-md'
+                    }`}
+                    style={{
+                      borderRadius: '32px',
+                    }}
+                    onLoad={() => setImageLoaded(true)}
+                    onError={() => setImageLoaded(true)}
+                  />
+                </div>
+              </div>
 
               {/*points*/}
               <div className='flex flex-col gap-4md:gap-2 2xl:gap-4'>
@@ -58,7 +83,7 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
             </div>
 
             {/*image*/}
-            <div className='w-full md:w-1/2 flex flex-col items-center justify-center relative flex-1'>
+            <div className='hidden w-full md:w-1/2 md:flex flex-col items-center justify-center relative flex-1'>
               <div
                 className='p-1 w-full h-fit overflow-hidden'
                 style={{
