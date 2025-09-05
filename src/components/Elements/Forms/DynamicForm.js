@@ -3,11 +3,16 @@ import ShineButton from '../ShineButton'
 import FormButton from '../FormButton'
 import { ScrollableSelect } from './ScrollableSelect'
 import InputWrapper from './InputWrapper'
+import { useModal } from './ModalContext'
+import { extractTextFromRichText } from '../../../utils/payload'
+import { AdvancedPhoneInput, SimplePhoneInput } from './Fields/Phone'
 
 const DynamicForm = ({ data }) => {
+  const { showModal } = useModal()
+
   const formInstance = useForm({
     defaultValues: createDefaultValues(data?.form?.fields),
-    onSubmit: handleFormSubmission(data?.form?.id),
+    onSubmit: handleFormSubmission(data?.form?.id, showModal),
   })
 
   if (!data?.form) return null
@@ -22,7 +27,6 @@ const DynamicForm = ({ data }) => {
   )
 }
 
-// Layout Components
 const FormContainer = ({ children }) => (
   <section className='px-4 md:px-0 w-full md:w-10/12 mx-auto'>
     {children}
@@ -84,6 +88,19 @@ const FieldInput = ({ field, fieldApi }) => {
   const renderInputElement = () => {
     switch (field.blockType) {
       case 'text':
+        if (
+          field.name === 'phone_number' ||
+          field.name === 'phone' ||
+          field.name === 'mobile'
+        ) {
+          return (
+            <AdvancedPhoneInput
+              field={field}
+              fieldApi={fieldApi}
+              inputClasses={inputClasses}
+            />
+          )
+        }
         return (
           <InputWrapper>
             <input
@@ -158,9 +175,14 @@ const SubmitButtonContainer = ({ form }) => (
   </div>
 )
 
-const handleFormSubmission = (formId) => {
+const handleFormSubmission = (formId, showModal) => {
   return async ({ value }) => {
     console.log('Form submitted with value:', value)
+
+    const dataToSend = Object.entries(value).map(([name, value]) => ({
+      field: name,
+      value,
+    }))
 
     try {
       const response = await fetch(
@@ -170,15 +192,24 @@ const handleFormSubmission = (formId) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             form: formId,
-            submissionData: value,
+            submissionData: dataToSend,
           }),
         }
       )
 
       if (response.ok) {
-        alert('Form submitted successfully!')
+        showModal(
+          'Form Submitted Successfully!',
+          'Thank you for your submission. Please check your mail inbox for the brochure',
+          'success',
+          '/why-sponsor'
+        )
       } else {
-        alert('Submission failed')
+        showModal(
+          'Submission Failed',
+          'There was an error submitting your form. Please try again.',
+          'error'
+        )
       }
     } catch (error) {
       console.error('Submission error:', error)
@@ -199,10 +230,37 @@ const validateField = (field, value) => {
     }
   }
 
-  if (field.name === 'phone_number' && value) {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/
-    if (!phoneRegex.test(value.replace(/\s/g, ''))) {
-      return 'Please enter a valid phone number'
+  if (
+    (field.name === 'phone_number' ||
+      field.name === 'phone' ||
+      field.name === 'mobile') &&
+    value
+  ) {
+    return validateIndianPhoneNumber(field, value)
+  }
+
+  return undefined
+}
+
+const validateIndianPhoneNumber = (field, value) => {
+  if (field.required && (!value || value.trim() === '')) {
+    return `${field.label} is required`
+  }
+
+  if (value) {
+    const digitsOnly = value.replace(/\D/g, '')
+
+    if (digitsOnly.length === 0) {
+      return undefined
+    }
+
+    if (digitsOnly.length !== 10) {
+      return `Mobile number must be exactly 10 digits (currently ${digitsOnly.length})`
+    }
+
+    const validPrefixes = ['6', '7', '8', '9']
+    if (!validPrefixes.includes(digitsOnly[0])) {
+      return 'Mobile number must start with 6, 7, 8, or 9'
     }
   }
 
