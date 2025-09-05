@@ -1,4 +1,7 @@
 import MinimalHero from '../../Elements/MinimalHero'
+import AboutTngss from './AboutTngss'
+import EventHighlights from './EventHighlights'
+import SponsBenefits from './SponsBenefits'
 
 const WhySponsorPage = () => {
   return (
@@ -11,7 +14,9 @@ const WhySponsorPage = () => {
         ctaUrl='/sponsor-form'
       />
 
-      <div className='h-screen bg-black' />
+      <AboutTngss className='h-screen bg-black' />
+      <EventHighlights />
+      <SponsBenefits />
     </section>
   )
 }

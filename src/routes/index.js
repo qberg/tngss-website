@@ -13,7 +13,7 @@ import {
   Sponsors,
   Tickets,
   WhyTN,
-  WhySponsor,
+  WhySpons,
   SponsorInterestForm,
 } from '../views'
 import NewHome from '../views/New'
@@ -80,6 +80,8 @@ const AppRoutes = () => {
         element={<RouteWithLayout component={TermsandCondition} />}
       />
       <Route path='/why-tn' element={<RouteWithLayout component={WhyTN} />} />
+
+      <Route path='/why-sponsor' element={<RouteWithLayout component={WhySponsor} />} />
     </Routes>
   )
 }
