@@ -6,7 +6,8 @@ import { motion, useAnimation, AnimatePresence } from 'motion/react'
 import ShineButton from './ShineButton'
 import book from '../../assets/foodcart.svg?url'
 import vector from '../../assets/Vector.svg?url'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Download } from 'lucide-react'
+import AppCTAButton from './AppCTAButton'
 
 export default function NavBar() {
   const [isVisible, setIsVisible] = useState(true)
@@ -42,18 +43,25 @@ export default function NavBar() {
   }, [isVisible, controls])
 
   const menuItems = [
-    { name: 'About', link: '/about' },
-    { name: 'Why Attend', link: '/why-attend' },
-    { name: 'Agenda', link: '/agenda' },
-    { name: 'Speakers', link: '/speakers' },
-    { name: 'Sponsors', link: '/sponsors' },
     {
-      name: 'More',
+      name: 'About',
       dropdown: [
-        { name: 'Venue', link: '/venue' },
-        { name: 'FAQ', link: '/faq' },
+        { name: 'TNGSS 2025', link: '/about' },
+        { name: 'Why Attend', link: '/why-attend' },
+        { name: 'Why Tamil Nadu', link: '/why-tn' },
       ],
     },
+    { name: 'Agenda', link: '/agenda' },
+    { name: 'Speakers', link: '/speakers' },
+    {
+      name: 'Sponsors',
+      dropdown: [
+        { name: 'Our Sponsors', link: '/sponsors' },
+        { name: 'Become a Sponsor', link: '/why-sponsor' },
+      ],
+    },
+    { name: 'Venue', link: '/venue' },
+    { name: 'FAQ', link: '/faq' },
   ]
 
   const toggleMenu = () => {
@@ -179,7 +187,7 @@ export default function NavBar() {
                           <motion.a
                             key={subIndex}
                             href={subItem.link}
-                            className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-inactive-blue last:border-b-0 hover:text-theme-blue'
+                            className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-bg-gray last:border-b-0 hover:text-theme-blue'
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: subIndex * 0.05 }}
@@ -238,7 +246,7 @@ export default function NavBar() {
         {/* Mobile Hamburger Menu Button */}
         <button
           onClick={toggleMenu}
-          className='md:hidden z-50 p-2 rounded-lg hover:bg-white transition-colors duration-200'
+          className='md:hidden z-50 p-2 rounded-lg transition-colors duration-200'
           aria-label='Toggle menu'
         >
           {!isMenuOpen && <Menu size={28} className='text-white' />}
@@ -353,21 +361,15 @@ export default function NavBar() {
               }
               transition={{ duration: 0.3, delay: 0.6 }}
             >
-              <ShineButton
-                src='/tickets#stall'
-                onClick={handleScrollToStall}
-                className='!hover:bg-black w-full justify-center text-white'
-                contCN='!bg-none py-3 px-4 w-full'
-                onClick={closeMenu}
+              <AppCTAButton
+                showQR={true}
+                qrCodeUrl=''
+                icon={<Download size={16} />}
               >
-                <img
-                  className='px-2 inline-block w-10 h-5'
-                  src={book || '/placeholder.svg'}
-                  alt='Vector'
-                  style={{ filter: 'invert(1)' }}
-                />
-                Book Your Stall
-              </ShineButton>
+                <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
+                  <span className='text-2xl'>App Store</span>
+                </div>
+              </AppCTAButton>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -376,20 +378,15 @@ export default function NavBar() {
               }
               transition={{ duration: 0.3, delay: 0.7 }}
             >
-              <ShineButton
-                src='/tickets#pass'
-                onClick={handleScrollToPass}
-                className='!hover:bg-black w-full justify-center text-white'
-                contCN='hover py-3 px-4 w-full'
-                onClick={closeMenu}
+              <AppCTAButton
+                showQR={true}
+                qrCodeUrl=''
+                icon={<Download size={16} />}
               >
-                <img
-                  className='px-2 inline-block'
-                  src={vector || '/placeholder.svg'}
-                  alt='Vector'
-                />
-                Buy Your Pass
-              </ShineButton>
+                <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>
+                  <span className='text-2xl'>Play Store</span>
+                </div>
+              </AppCTAButton>
             </motion.div>
           </div>
         </div>
