@@ -508,6 +508,48 @@ export const useHighlightsTnFromBase = () => {
   }
 }
 
+export const useWhySponsData = () => {
+  return useQuery({
+    queryKey: ['why-sponsor-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/why-sponsor-wp', {
+        depth: 2,
+      })
+      if (result.data) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch Why Sponsor Page')
+      }
+    },
+    staleTime: 10 * 60 * 1000,
+    retry: 2,
+  })
+}
+
+export const useAboutTngss = () => {
+  const { data, ...rest } = useWhySponsData()
+  return {
+    data: data?.about_tngss,
+    ...rest,
+  }
+}
+
+export const useEventHighlights = () => {
+  const { data, ...rest } = useWhySponsData()
+  return {
+    data: data?.event_highlights,
+    ...rest,
+  }
+}
+
+export const useSponsBenefits = () => {
+  const { data, ...rest } = useWhySponsData()
+  return {
+    data: data?.spons_benefits,
+    ...rest,
+  }
+}
+
 export const useTickets = () => {
   return useQuery({
     queryKey: ['tickets'],
