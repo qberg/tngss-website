@@ -36,7 +36,7 @@ const AgendaListingCompact = () => {
 
   const tabs = [
     { key: 'main_event', label: 'Main Events' },
-    { key: 'partner_event', label: 'Partner Events' },
+    { key: 'partner_event', label: 'Pre Events' },
   ]
 
   // Initial filter state

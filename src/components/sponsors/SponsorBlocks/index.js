@@ -11,7 +11,7 @@ const SponsorBlocks = () => {
 
   return (
     // remove this margin later
-    <section className='relative overflow-hidden rounded-2xl mb-8 md:mb-16'>
+    <section className='relative overflow-hidden rounded-2xl mb-8 md:mb-0'>
       <div
         className='p-1 rounded-2xl'
         style={{

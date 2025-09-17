@@ -56,11 +56,12 @@ export default function NavBar() {
     {
       name: 'Sponsors',
       dropdown: [
-        { name: 'Our Sponsors', link: '/sponsors' },
+        { name: 'Sponsors & Partners', link: '/sponsors' },
         { name: 'Become a Sponsor', link: '/why-sponsor' },
       ],
     },
     { name: 'Venue', link: '/venue' },
+    { name: 'Exhibitors', link: '/exhibitors' },
     { name: 'FAQ', link: '/faq' },
   ]
 

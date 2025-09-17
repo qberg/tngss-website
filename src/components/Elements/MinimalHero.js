@@ -41,7 +41,7 @@ const MinimalHero = ({
                 className='!hover:bg-black w-full justify-center text-white mt-4 md:mt-8 2xl:mt-12'
                 contCN='!bg-none py-3 px-4 w-full'
               >
-                Dowload the Sponsorship Bronchure
+                Get the Sponsorship Brochure
               </ShineButton>
             )}
           </div>

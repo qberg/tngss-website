@@ -252,7 +252,7 @@ export const MobileCheckboxOption = ({ label, selected, onChange, count }) => (
   </motion.label>
 )
 
-// Desktop Filter Dropdown Component (unchanged)
+// Desktop Filter Dropdown Component
 export const FilterDropdown = ({ title, isOpen, onToggle, children }) => {
   const [ref, bounds] = useMeasure()
 

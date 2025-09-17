@@ -10,16 +10,16 @@ const SponsorForm = () => {
     return null
   }
   return (
-    <AuroraCard>
-      <AuroraCardTitle
-        title={sponsorsData.data.title}
-        description={sponsorsData.data.description}
-      />
-      <ModalProvider>
+    <ModalProvider>
+      <AuroraCard>
+        <AuroraCardTitle
+          title={sponsorsData.data.title}
+          description={sponsorsData.data.description}
+        />
         <DynamicForm data={sponsorsData.data} />
-      </ModalProvider>
-      <AuroraCardFooter message='You may still receive emails from us regarding any current registrations or orders.' />
-    </AuroraCard>
+        <AuroraCardFooter message='You may still receive emails from us regarding any current registrations or orders.' />
+      </AuroraCard>
+    </ModalProvider>
   )
 }
 

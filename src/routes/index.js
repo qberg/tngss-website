@@ -15,6 +15,8 @@ import {
   WhyTN,
   WhySpons,
   SponsorInterestForm,
+  WhySponsor,
+  Exhibitors,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -72,6 +74,11 @@ const AppRoutes = () => {
       />
 
       <Route
+        path='/exhibitors'
+        element={<RouteWithLayout component={Exhibitors} />}
+      />
+
+      <Route
         path='/privacy-policy'
         element={<RouteWithLayout component={PrivacyPolicy} />}
       />
@@ -81,7 +88,10 @@ const AppRoutes = () => {
       />
       <Route path='/why-tn' element={<RouteWithLayout component={WhyTN} />} />
 
-      <Route path='/why-sponsor' element={<RouteWithLayout component={WhySponsor} />} />
+      <Route
+        path='/why-sponsor'
+        element={<RouteWithLayout component={WhySponsor} />}
+      />
     </Routes>
   )
 }

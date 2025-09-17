@@ -15,7 +15,9 @@ const WhySponsorPage = () => {
       />
 
       <AboutTngss className='h-screen bg-black' />
-      <EventHighlights />
+      <div className='px-4 md:px-0'>
+        <EventHighlights />
+      </div>
       <SponsBenefits />
     </section>
   )

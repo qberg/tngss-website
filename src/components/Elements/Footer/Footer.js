@@ -158,11 +158,17 @@ export default function Footer() {
                 </p>
               </div>
             </div>
+
+            {/*dev by minsky*/}
+            <div className=''>Developed by</div>
           </div>
 
           {/* Policy Links (Mobile - already separated) */}
           <p className='block md:hidden text-center '>
-            All Rights Reserved © {new Date().getFullYear()}
+            All Rights Reserved ©{' '}
+            <a href='https://startuptn.in' className='hover:underline'>
+              StartupTN
+            </a>
           </p>
         </div>
       </div>
