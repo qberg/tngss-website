@@ -6,6 +6,14 @@
   @apply relative flex justify-center items-center overflow-hidden isolate;
 }
 
+.spons-text {
+  @apply font-urbanist font-semibold text-xl md:text-4xl;
+}
+
+.spons-text-small {
+  @apply font-urbanist font-semibold text-base md:text-2xl;
+}
+
 /* .card-content {
   @apply relative bg-black w-full h-full overflow-hidden rounded-xl;
 }
@@ -218,6 +226,16 @@
   text-align: left;
 }
 
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), transparent)';
+  z-index: 10;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -284,10 +302,9 @@
 
 .gradient-text {
   background: linear-gradient(
-    95.34deg,
-    #0055ff 4.12%,
-    #07bcce 60%,
-    rgba(7, 188, 206, 0) 100%
+    135deg,
+    rgba(0, 85, 255, 1) 0%,
+    rgba(24, 191, 219, 1) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -306,6 +323,111 @@
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-black {
+  background: linear-gradient(to right, #848484 0%, #ffffff 50%, #dadada 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 12px;
+}
+
+.gradient-text-gray {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 62%,
+    rgba(142, 142, 142, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  line-height: 120%;
+  letter-spacing: 0%;
+}
+
+.gradient-text-diamond {
+  background: linear-gradient(
+    135deg,
+    rgba(27, 55, 78, 0.95) 0%,
+    rgba(24, 191, 219, 0.85) 35%,
+    rgba(245, 113, 12, 0.9) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-platinum {
+  background: linear-gradient(
+    110deg,
+    rgba(51, 65, 85, 1) 0%,
+    rgba(148, 163, 184, 1) 30%,
+    rgba(71, 85, 105, 1) 70%,
+    rgba(30, 41, 59, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(218, 165, 32, 1) 0%,
+    rgba(255, 215, 0, 1) 50%,
+    rgba(218, 165, 32, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-silver {
+  background: linear-gradient(
+    90deg,
+    rgba(139, 107, 66, 1) 0%,
+    rgba(205, 170, 125, 1) 50%,
+    rgba(160, 130, 90, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-bronze {
+  background: linear-gradient(
+    90deg,
+    rgba(166, 124, 82, 1) 0%,
+    rgba(205, 164, 122, 1) 50%,
+    rgba(180, 140, 100, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-zone {
+  background: linear-gradient(
+    90deg,
+    rgba(107, 114, 128, 1) 0%,
+    rgba(156, 163, 175, 1) 50%,
+    rgba(120, 130, 145, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight-text {
+  color: #18bfdb !important;
 }
 
 @font-face {
@@ -370,12 +492,14 @@
   --color-amber-700: oklch(0.555 0.163 48.998);
   --color-blue-300: oklch(0.809 0.105 251.813);
   --color-blue-400: oklch(0.707 0.165 254.624);
+  --color-blue-500: #18bfdb;
   --color-blue-500: oklch(0.623 0.214 259.815);
   --color-blue-600: oklch(0.546 0.245 262.881);
   --color-blue-700: oklch(0.488 0.243 264.376);
   --color-purple-950: oklch(0.291 0.149 302.717);
   --color-black: #000;
   --color-white: #fff;
+  --color-custom-gray: #1a1a1a;
   --spacing: 0.25rem;
   --container-xs: 20rem;
   --container-lg: 32rem;
@@ -1619,10 +1743,6 @@ body {
   display: none !important;
 }
 
-section {
-  overflow-x: hidden;
-}
-
 .-translate-x-100 {
   transform: translateX(-100%);
 }
@@ -1642,4 +1762,109 @@ section {
 
 .animate-marking {
   animation: marking 15s linear infinite;
+}
+
+.aspect-flag {
+  aspect-ratio: 1.75 / 1;
+}
+
+.aspect-flag-xl {
+  aspect-ratio: 1.36 / 1;
+}
+
+#hero-section .hero-animate-floatUpBounce {
+  animation: hero-floatUpBounce 1.5s ease-out forwards;
+}
+
+#hero-section .hero-animate-fadeIn-delay-1 {
+  animation: hero-fadeIn 1s ease-out 2s forwards;
+  opacity: 0;
+}
+
+#hero-section .hero-animate-fadeIn-delay-2 {
+  animation: hero-fadeIn 1s ease-out 2.5s forwards;
+  opacity: 0;
+}
+
+#hero-section .hero-animate-fadeIn-delay-3 {
+  animation: hero-fadeIn 1s ease-out 3s forwards;
+  opacity: 0;
+}
+
+@keyframes hero-floatUpBounce {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+    scale: 0.8;
+  }
+  80% {
+    transform: translateY(-5px);
+    opacity: 1;
+    scale: 1.05;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes hero-fadeIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.aspect-flag {
+  overflow: hidden;
+  aspect-ratio: 1.75/ 1;
+}
+
+/* Mobile - scoped to hero section */
+@media (max-width: 767px) {
+  #hero-section .hero-animate-floatUpBounce {
+    animation: hero-floatUpBounceMobile 1.5s ease-out forwards;
+  }
+}
+
+@media (min-width: 1536px) {
+  .aspect-flag {
+    aspect-ratio: 1.36/1;
+  }
+}
+
+@keyframes hero-floatUpBounceMobile {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+    scale: 0.9;
+  }
+  80% {
+    transform: translateY(-5px);
+    opacity: 1;
+    scale: 1.02;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
 }

@@ -1,0 +1,52 @@
+export const HallLabels = {
+  hall_d: 'Hall D',
+  hall_g: 'Hall G',
+  hall_e: 'Hall E',
+}
+
+export const OrganizationTypeLabels = {
+  startup: 'Startup',
+  aspirants_individuals: 'Aspirant',
+  incubation_acceleration: 'Incubation & Acceleration',
+  investors: 'Investor',
+  government: 'Government',
+  industry_corporate: 'Industry & Corporate',
+  mentor_sme: 'Mentor',
+  ecosystem_service_provider: 'Ecosystem Partners',
+  others: 'Others',
+}
+
+export const SectorLabels = {
+  sector_agnostic: 'Sector Agnostic',
+  aerospace_defence_spacetech: 'Aerospace, Defence & Spacetech',
+  agriculture_foodtech: 'Agriculture & Foodtech',
+  ai_ml_iot: 'AI, ML & IoT',
+  art_culture_architecture: 'Art, Culture & Architecture',
+  automotive_ev_smart_mobility: 'Automotive, EV & Smart Mobility',
+  blue_economy: 'Blue Economy',
+  chemicals_materials: 'Chemicals & Materials',
+  circular_economy: 'Circular Economy',
+  climate_tech_clean_energy: 'Climate Tech & Clean Energy',
+  data_mining_analytics: 'Data Mining & Analytics',
+  edutech: 'Edutech',
+  femtech: 'Femtech',
+  fintech_insurtech: 'Fintech & Insurtech',
+  healthcare_life_sciences: 'Healthcare & Life Sciences',
+  hr_tech_smart_workforce: 'HR Tech & Smart Workforce',
+  industry_4_advanced_manufacturing: 'Industry 4.0 & Advanced Manufacturing',
+  lifestyle_personalcare_d2c: 'Lifestyle, Personal Care & D2C',
+  marketing_tech_mice: 'Marketing Tech & MICE',
+  media_entertainment: 'Media & Entertainment',
+  proptech_legaltech_regtech: 'PropTech, Legal Tech & RegTech',
+  retail_tech: 'Retail Tech',
+  saas_software_it_ites: 'SaaS, Software & IT/ITES',
+  smart_cities_e_governance: 'Smart Cities & E-Governance',
+  social_impact_rural_livelihood_sustainability:
+    'Social Impact, Rural Livelihood & Sustainability',
+  sports_tech_gaming: 'Sports Tech & Gaming',
+  supply_chain_logistics: 'Supply Chain & Logistics',
+  telecom_networking_hardware: 'Telecom, Networking & Hardware',
+  textiletech_fashion: 'TextileTech & Fashion',
+  travel_tourism: 'Travel & Tourism',
+  web3_blockchain_vr_ar: 'Web3.0, Blockchain, VR/AR',
+}

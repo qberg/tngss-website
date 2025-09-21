@@ -1,9 +1,14 @@
-export { default as Home } from './Home';
-export { default as NotFound } from './NotFound';
-export { default as About } from './About';
-export { default as PrivacyPolicy } from './PrivacyPolicy';
-export { default as TermsandCondition } from './TermsAndCondition';
-export { default as WhyAttend } from './WhyAttend';
-export { default as Speakers} from './Speakers';
-export { default as Faq} from './Faq';
-export { default as Program} from './Program';
+export { default as NotFound } from './NotFound'
+export { default as About } from './About'
+export { default as PrivacyPolicy } from './PrivacyPolicy'
+export { default as TermsandCondition } from './TermsAndCondition'
+export { default as WhyAttend } from './WhyAttend'
+export { default as Speakers } from './Speakers'
+export { default as Faq } from './Faq'
+export { default as Agenda } from './Agenda'
+export { default as Sponsors } from './Sponsors'
+export { default as WhySponsor } from './WhySponsor'
+export { default as SponsorInterestForm } from './SponsorInterestForm'
+export { default as Tickets } from './Tickets'
+export { default as WhyTN } from './WhyTN'
+export { default as Exhibitors } from './Exhibitors'
