@@ -15,10 +15,11 @@ import GradientBadge from '../../Elements/GradientBadge'
 import EventModeTag from './EventModeTag'
 import Badge from '../../Elements/Badge'
 import AppButton from '../../Elements/AppButton'
+import GenericLink from '../../Elements/GenericLink'
 
 const eventLabel = {
   main_event: 'Main Events',
-  partner_event: 'Partner Events',
+  partner_event: 'Pre-Events',
 }
 
 const EventDetails = ({ event }) => {
@@ -116,7 +117,10 @@ const EventDetails = ({ event }) => {
 
               {/* Title */}
               {event?.title && (
-                <h1 className='text-white text-3xl md:text-4xl 2xl:text-5xl font-semibold font-urbanist gradient-text-black leading-snug md:leading-snug 2xl:leading-normal'>
+                <h1
+                  className='text-white text-3xl md:text-4xl 2xl:text-5xl font-semibold font-urbanist gradient-text-black'
+                  style={{ lineHeight: '115%' }}
+                >
                   {event.title}
                 </h1>
               )}
@@ -162,18 +166,11 @@ const EventDetails = ({ event }) => {
                 {/* Location Row */}
                 <div className='flex gap-3 md:gap-2 md:gap-x-8 flex-wrap'>
                   {event?.partner_event_venue?.venue && (
-                    <a
+                    <GenericLink
                       href={event?.partner_event_venue?.map_url}
-                      target='_blank'
-                      className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist underline'
-                      style={{
-                        color: '#17bfdb',
-                        lineHeight: '100%',
-                      }}
-                    >
-                      <MapPin size={14} className='' />
-                      <span>{event.partner_event_venue.venue}</span>
-                    </a>
+                      label={event.partner_event_venue.venue}
+                      leftIcon={MapPin}
+                    />
                   )}
                   {event?.hall && (
                     <div className='flex items-center gap-1 text-gray-300 font-semibold font-urbanist'>

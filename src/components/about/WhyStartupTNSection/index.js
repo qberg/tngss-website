@@ -9,11 +9,11 @@ const WhyStartupTNSection = ({ data }) => {
           <BlueBlob />
         </div>
       </div>
-      <h1 className='font-urbanist font-medium text-3xl md:text-6xl'>
+      <h1 className='font-urbanist font-medium text-3xl md:text-6xl text-left w-full md:w-10/12'>
         {data.title}
       </h1>
 
-      <p className='font-urbanist font-normal text-lg md:text-2xl w-full md:w-10/12 mx-auto text-justify'>
+      <p className='font-urbanist font-normal text-lg md:text-2xl w-full md:w-10/12 mx-auto text-left'>
         {data.description}
       </p>
 
@@ -66,7 +66,7 @@ const Prose = ({ title, description }) => {
     <div className='flex flex-col gap-2 md:gap-6 items-start mx-auto w-full md:w-10/12'>
       <h2 className='font-urbanist font-bold text-lg md:text-3xl'>{title}:</h2>
 
-      <p className='font-urbanist font-normal flex-1 text-lg md:text-2xl mx-auto text-justify'>
+      <p className='font-urbanist font-normal flex-1 text-lg md:text-2xl mx-auto text-left'>
         {description}
       </p>
     </div>

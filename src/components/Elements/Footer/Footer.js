@@ -8,6 +8,7 @@ import yt from '../../../assets/yt.svg?url'
 import LinkedIn from '../../../assets/LinkedIn.svg?url'
 import X from '../../../assets/x.svg?url'
 import credits from '../../../assets/credits.png'
+import Minsky from '../../../assets/minsky.svg?url'
 
 export default function Footer() {
   const banner =
@@ -160,7 +161,21 @@ export default function Footer() {
             </div>
 
             {/*dev by minsky*/}
-            <div className=''>Developed by</div>
+            <div className='flex gap-1 items-center relative'>
+              <p> Developed by</p>
+              <a
+                href='https://www.minsky.in?utm_source=tngss_website&utm_medium=footer_link&utm_campaign=developed_by_minsky'
+                className='rounded-full w-24 h-24'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <img
+                  src={Minsky}
+                  alt={`Minsky Logo`}
+                  className='w-full h-full object-cover'
+                />
+              </a>
+            </div>
           </div>
 
           {/* Policy Links (Mobile - already separated) */}

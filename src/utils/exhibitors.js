@@ -40,13 +40,17 @@ export const HallLabels = {
   hall_e: 'Hall E',
 }
 
-export const generateExhibitorSlug = (name) => {
-  return (
-    name
-      ?.toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '') || ''
-  )
+export const generateExhibitorSlug = (exhibitor, index = 0) => {
+  const booths = exhibitor?.booths || []
+
+  if (booths.length > 0) {
+    return booths[0].booth_number
+  }
+
+  return `exhibitor-${index}`
+}
+
+export const generateExhibitorPath = (exhibitor, index = 0) => {
+  const slug = generateExhibitorSlug(exhibitor, index)
+  return `/exhibitors/${slug}`
 }

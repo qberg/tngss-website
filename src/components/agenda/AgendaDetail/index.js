@@ -12,7 +12,6 @@ const AgendaDetail = () => {
     <>
       <MinimalHero
         title='Agenda'
-        subTitle=''
         tagLine="Explore the core of TNGSS'25"
         applyBorder={false}
       />

@@ -13,7 +13,6 @@ import {
   Sponsors,
   Tickets,
   WhyTN,
-  WhySpons,
   SponsorInterestForm,
   WhySponsor,
   Exhibitors,
@@ -23,6 +22,8 @@ import SpeakerDetail from '../components/speakers/SpeakerDetail'
 import Venue from '../views/Venue'
 import AgendaDetail from '../components/agenda/AgendaDetail'
 import RouteWithNav from '../components/Elements/RouteWithNav'
+import ExhibitorDetailPage from '../components/exhibitors/ExhibitorDetailPage'
+import NewAgenda from '../views/NewAgenda'
 
 const AppRoutes = () => {
   return (
@@ -48,6 +49,10 @@ const AppRoutes = () => {
       <Route path='/venue' element={<RouteWithLayout component={Venue} />} />
 
       <Route path='/agenda' element={<RouteWithLayout component={Agenda} />} />
+      <Route
+        path='/agenda-new'
+        element={<RouteWithLayout component={NewAgenda} />}
+      />
       <Route
         path='/agenda/:slug'
         element={<RouteWithLayout component={AgendaDetail} />}
@@ -76,6 +81,11 @@ const AppRoutes = () => {
       <Route
         path='/exhibitors'
         element={<RouteWithLayout component={Exhibitors} />}
+      />
+
+      <Route
+        path='/exhibitors/:slug'
+        element={<RouteWithLayout component={ExhibitorDetailPage} />}
       />
 
       <Route

@@ -15,7 +15,7 @@ const DiscoverTN = () => {
         <div className='text-white text-6xl md:text-7xl mb-4 md:mb-0 font-medium font-urbanist gradient-text-black md:leading-relaxed text-center'>
           {discoverTn?.title}
         </div>
-        <div className='font-normal font-urbanist text-base leading-none md:leading-tight  md:text-2xl text-text-gray text-justify w-full mx-auto'>
+        <div className='font-normal font-urbanist text-base leading-none md:leading-tight  md:text-2xl text-text-gray text-left w-full mx-auto'>
           {discoverTn?.description}
         </div>
       </div>

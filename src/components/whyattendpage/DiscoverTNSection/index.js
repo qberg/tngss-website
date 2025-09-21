@@ -26,7 +26,7 @@ const DiscoverTNSection = ({ applyBorder = true }) => {
               {discoverTN.content.map((item) => (
                 <div
                   key={item.id}
-                  className='font-normal font-urbanist text-base leading-none md:leading-tight md:text-xl 2xl:text-2xl text-text-gray text-justify w-full md:w-10/12 mx-auto'
+                  className='font-normal font-urbanist text-base leading-none md:leading-tight md:text-xl 2xl:text-2xl text-text-gray text-left w-full md:w-10/12 mx-auto'
                 >
                   {item.para}
                 </div>

@@ -67,7 +67,7 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
                 {info.points.map((content) => (
                   <p
                     key={content.id}
-                    className='text-text-gray text-base md:text-xl 2xl:text-2xl text-justify flex items-start gap-2'
+                    className='text-text-gray text-base md:text-xl 2xl:text-2xl text-left flex items-start gap-2'
                   >
                     <span className='text-white font-bold text-2xl md:mb-0'>
                       •

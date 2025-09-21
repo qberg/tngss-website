@@ -700,6 +700,33 @@ export const useEventsData = () => {
   })
 }
 
+export const usePartnerEventsData = () => {
+  return useQuery({
+    queryKey: ['partner-events'],
+    queryFn: async () => {
+      const baseUrl = '/api/events'
+      const params = new URLSearchParams({
+        'where[isPublic][equals]': 'true',
+        'where[main_or_partner][not_equals]': 'main_event',
+        limit: '0',
+        depth: '2',
+        sort: 'schedule.from_date',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+      const result = await payloadClient.get(url)
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch events')
+      }
+    },
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
 export const useEventBySlugEff = (slug) => {
   const { data: eventsData, isLoading: eventsLoading } = useEventsData()
 

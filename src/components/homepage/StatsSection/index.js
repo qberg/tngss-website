@@ -27,7 +27,7 @@ export default function StatsSection({ scrollYProgress, isMobile }) {
 
   const data = useMemo(
     () => [
-      { count: 50, tag: 'Global Startups Stakeholders' },
+      { count: 200, tag: 'Global Startups Stakeholders' },
       { count: 30000, tag: 'Attendees' },
       { count: 50, tag: 'Showcasing Power Brands Of TN' },
       { count: 150, tag: 'International & National Speakers' },

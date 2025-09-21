@@ -30,7 +30,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
   }
 
   const handleDelegatePassClick = () => {
-    window.location.href = 'https://event.startuptn.in/booking?pass=delegate'
+    window.location.href = 'https://event.startuptn.in/upgrade?email='
   }
 
   return (

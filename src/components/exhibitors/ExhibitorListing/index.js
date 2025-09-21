@@ -1,6 +1,10 @@
 import { Building } from 'lucide-react'
 import { useInfiniteExhibitors } from '../../../hooks/useExhibitorsData'
-import { getHallFromBooth, HallLabels } from '../../../utils/exhibitors'
+import {
+  generateExhibitorPath,
+  getHallFromBooth,
+  HallLabels,
+} from '../../../utils/exhibitors'
 import { SectionTitle, SectionWrapper } from '../../Layout/Section'
 import {
   ExhibitorCard,
@@ -15,6 +19,7 @@ import { OrganizationTypeLabels, SectorLabels } from '../../../utils/labelMaps'
 import Badge from '../../Elements/Badge'
 import InfiniteScrollTrigger from '../../../hooks/useInfiniteScrollTrigger'
 import { ExhibitorCardSkeleton } from './loaders'
+import { ExhibitorCardLink } from '../ExhibitorCardLink'
 
 const ExhibitorListing = () => {
   const {
@@ -66,8 +71,14 @@ const ExhibitorListing = () => {
           const booths = exhibitor?.booths || []
           const sector = exhibitor?.sectorIntrested || 'sector_agnostic'
 
+          const exhibitorPath = generateExhibitorPath(exhibitor, index)
+
           return (
-            <ExhibitorCard key={exhibitor.exhibitor_id || index}>
+            <ExhibitorCardLink
+              key={exhibitor.exhibitor_id || index}
+              to={exhibitorPath}
+              exhibitor={exhibitor}
+            >
               <ExhibitorLogo
                 src={logoUrl}
                 alt={`${exhibitor.name || `Exhibitor ${index}`} Logo`}
@@ -102,7 +113,7 @@ const ExhibitorListing = () => {
                   {SectorLabels[sector]}
                 </Badge>
               </ExhibitorCardRow>
-            </ExhibitorCard>
+            </ExhibitorCardLink>
           )
         })}
 

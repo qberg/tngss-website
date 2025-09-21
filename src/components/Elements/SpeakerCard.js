@@ -1,9 +1,10 @@
 const SpeakerCard = ({ speaker, showName = true }) => {
   return (
     <div
-      className='p-1 overflow-hidden rounded-lg md:rounded-2xl flex-shrink-0 w-full h-full'
+      className='overflow-hidden rounded-lg md:rounded-2xl flex-shrink-0 w-full h-full'
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
+        padding: '1px',
       }}
     >
       <div className='relative w-full h-full overflow-hidden rounded-lg md:rounded-2xl'>

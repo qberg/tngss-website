@@ -144,13 +144,21 @@ const EventDetails = () => (
 
 const CallToAction = () => (
   <div className='flex flex-col md:flex-row gap-1 md:gap-4'>
-    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
+    <AppCTAButton
+      showQR={true}
+      qrCodeUrl='https://apps.apple.com/in/app/tngss/id6744852527'
+      icon={<Download size={16} />}
+    >
       <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
         <span className='text-2xl'>App Store</span>
       </div>
     </AppCTAButton>
 
-    <AppCTAButton showQR={true} qrCodeUrl='' icon={<Download size={16} />}>
+    <AppCTAButton
+      showQR={true}
+      qrCodeUrl='https://play.google.com/store/search?q=tngss'
+      icon={<Download size={16} />}
+    >
       <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>
         <span className='text-2xl'>Play Store</span>
       </div>

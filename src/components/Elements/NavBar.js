@@ -152,7 +152,7 @@ export default function NavBar() {
         </a>
 
         {/* Desktop Menu - Hidden on mobile */}
-        <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-1/2'>
+        <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-2/3 2xl:-translate-x-1/2'>
           {menuItems.map((item, index) => (
             <div key={index} className='relative'>
               {item.dropdown ? (

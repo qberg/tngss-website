@@ -121,95 +121,35 @@ export const useInfiniteExhibitors = (filters = {}, expoId = BASE_EXPO_ID) => {
 
 export const useExhibitorBySlug = (
   slug,
-  expoId = '0632d025-28d8-4650-92ed-f240a695d023'
-) => {
-  const { data: allExhibitors, isLoading, error } = useExhibitorsData(expoId)
-
-  // Find exhibitor by slug
-  const exhibitor = allExhibitors?.find(
-    (exhibitor) => generateExhibitorSlug(exhibitor.name) === slug
-  )
-
-  // Add hall information if exhibitor found
-  const exhibitorWithHall = exhibitor
-    ? {
-        ...exhibitor,
-        hall: getHallFromBooth(exhibitor.booths?.[0]?.booth_number),
-      }
-    : null
-
-  return {
-    data: exhibitorWithHall,
-    isLoading,
-    error:
-      error ||
-      (!exhibitorWithHall && !isLoading
-        ? new Error('Exhibitor not found')
-        : null),
-    isFound: !!exhibitorWithHall,
-  }
-}
-
-export const useFilteredExhibitors = (
-  expoId = '0632d025-28d8-4650-92ed-f240a695d023',
-  filters = {},
+  expoId = BASE_EXPO_ID,
   options = {}
 ) => {
-  const { data, ...queryResult } = useExhibitorsData(expoId, {
-    ...options,
-    select: (data) => {
-      if (!data || !Array.isArray(data)) return []
+  const endpoint = `/v1/expo/${expoId}/organiser/exhibitor/data/${slug}`
 
-      let filtered = data
+  return useQuery({
+    queryKey: ['exhibitor', expoId, slug],
+    queryFn: async () => {
+      const result = await exhibitorApiClient.get(endpoint)
 
-      // Filter by organisation type
-      if (filters.organisationType) {
-        filtered = filtered.filter(
-          (exhibitor) => exhibitor.organisationType === filters.organisationType
-        )
+      if (result.success) {
+        const exhibitor = result?.data || null
+
+        if (exhibitor) {
+          return {
+            ...exhibitor,
+            hall: getHallFromBooth(slug),
+          }
+        }
+
+        return exhibitor
+      } else {
+        throw new Error(result.error || 'Exhibitor not found')
       }
-
-      // Filter by sector
-      if (filters.sectorIntrested) {
-        filtered = filtered.filter(
-          (exhibitor) => exhibitor.sectorIntrested === filters.sectorIntrested
-        )
-      }
-
-      // Filter by profile type
-      if (filters.profileType) {
-        filtered = filtered.filter(
-          (exhibitor) => exhibitor.profileType === filters.profileType
-        )
-      }
-
-      // Filter by hall
-      if (filters.hall) {
-        filtered = filtered.filter((exhibitor) => {
-          if (!exhibitor.booths || exhibitor.booths.length === 0) return false
-
-          return exhibitor.booths.some((booth) => {
-            const hall = getHallFromBooth(booth.booth_number)
-            return hall === filters.hall
-          })
-        })
-      }
-
-      // Search by name
-      if (filters.searchTerm) {
-        filtered = filtered.filter((exhibitor) =>
-          exhibitor.name
-            .toLowerCase()
-            .includes(filters.searchTerm.toLowerCase())
-        )
-      }
-
-      return filtered
     },
+    staleTime: 10 * 60 * 1000, // 10 minutes
+    gcTime: 30 * 60 * 1000, // 30 minutes
+    retry: 2,
+    enabled: !!slug,
+    ...options,
   })
-
-  return {
-    data,
-    ...queryResult,
-  }
 }

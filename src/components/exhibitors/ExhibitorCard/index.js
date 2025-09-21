@@ -1,30 +1,57 @@
 import { useState } from 'react'
+import { motion } from 'motion/react'
 
 import logo from '../../../assets/tngss-dark.jpeg'
 import { Store } from 'lucide-react'
 import SkeletonPulse from '../../Elements/Loaders/SkeletonPulse'
 
-const ExhibitorCard = ({ children, className }) => {
+const ExhibitorCard = ({ children, className, delay = 0 }) => {
   return (
-    <div
+    <motion.div
       className={`${className} overflow-hidden rounded-lg md:rounded-xl w-full h-full`}
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
         padding: '1px',
       }}
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.05,
+        margin: '-25px',
+      }}
+      transition={{
+        duration: 0.6,
+        delay: delay,
+        ease: [0.25, 0.46, 0.45, 0.94], // iOS-like cubic bezier easing
+        opacity: { duration: 0.4 },
+        scale: { duration: 0.4 },
+      }}
+      whileHover={{
+        y: -8,
+        scale: 1.02,
+        transition: {
+          duration: 0.3,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        },
+      }}
     >
       <div className='relative w-full h-full bg-black overflow-hidden rounded-lg md:rounded-xl flex flex-col p-4 gap-3'>
         {children}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
 const StallInfoWrapper = ({ children, className }) => {
   return (
-    <div
-      className={`${className} flex gap-3 md:gap-2 md:gap-x-8 grid grid-cols-2`}
-    >
+    <div className={`${className} gap-3 md:gap-2 md:gap-x-8 grid grid-cols-2`}>
       {children}
     </div>
   )
