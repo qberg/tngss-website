@@ -1,29 +1,20 @@
-import { useInfinteEvents } from '../../../hooks/useEventData'
 import { SectionWrapper } from '../../Layout/Section'
 import AgendaCardsContent from '../AgendaCardsContent'
 import AgendaCardsContentHeader from '../AgendaCardsContentHeader'
-import { EventTypeProvider } from '../context/EventTypeContext'
+import { EventTypeProvider, useEventType } from '../context/EventTypeContext'
+import { MainEventsProvider } from '../context/MainEventsContext'
 import { PartnerEventsProvider } from '../context/PartnerEventsContext'
 
 const AgendaCardsRenderer = () => {
-  //const { data: filterOptions, isLoading, error } = useEventFilters()
-  const {
-    events,
-    isLoading,
-    isLoadingMore,
-    hasMore,
-    loadMore,
-    error,
-    totalCount,
-  } = useInfinteEvents()
-
   return (
     <SectionWrapper variant='wide'>
       <EventTypeProvider>
-        <PartnerEventsProvider>
-          <AgendaCardsContentHeader />
-          <AgendaCardsContent />
-        </PartnerEventsProvider>
+        <MainEventsProvider>
+          <PartnerEventsProvider>
+            <AgendaCardsContentHeader />
+            <AgendaCardsContent />
+          </PartnerEventsProvider>
+        </MainEventsProvider>
       </EventTypeProvider>
     </SectionWrapper>
   )
