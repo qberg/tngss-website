@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react'
 
 const SpeakerProfileCard = ({ speaker }) => {
   return (
-    <div className='flex items-center gap-2 md:gap-4'>
+    <div className='flex items-center gap-2 md:gap-4 w-full md:w-11/12'>
       {/*profile image */}
       <div className='w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden flex-shrink-0'>
         {speaker?.profile_image ? (

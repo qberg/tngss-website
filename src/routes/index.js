@@ -48,10 +48,13 @@ const AppRoutes = () => {
       />
       <Route path='/venue' element={<RouteWithLayout component={Venue} />} />
 
-      <Route path='/agenda' element={<RouteWithLayout component={Agenda} />} />
+      <Route
+        path='/agenda'
+        element={<RouteWithLayout component={NewAgenda} />}
+      />
       <Route
         path='/agenda-new'
-        element={<RouteWithLayout component={NewAgenda} />}
+        element={<RouteWithLayout component={Agenda} />}
       />
       <Route
         path='/agenda/:slug'

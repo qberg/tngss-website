@@ -66,7 +66,9 @@ const SpeakersListing = () => {
             ? speaker.speaker_type.slug
             : speaker.speaker_type?.toLowerCase()
         const isValidType =
-          speakerType === 'international' || speakerType === 'domestic'
+          speakerType === 'international' ||
+          speakerType === 'domestic' ||
+          speakerType === 'investor-speaker'
         const isPublic = speaker.isPublic === true
         return isValidType && isPublic
       })
@@ -78,7 +80,12 @@ const SpeakersListing = () => {
   }, [speakersData])
 
   const speakerTypeCounts = useMemo(() => {
-    const counts = { all: allSpeakers.length, international: 0, domestic: 0 }
+    const counts = {
+      all: allSpeakers.length,
+      international: 0,
+      domestic: 0,
+      'investor-speaker': 0,
+    }
     allSpeakers.forEach((speaker) => {
       const type =
         typeof speaker.speaker_type === 'object'
@@ -252,6 +259,11 @@ const SpeakersListing = () => {
         value: 'domestic',
         label: getTypeName('domestic'),
         count: speakerTypeCounts.domestic,
+      },
+      {
+        value: 'investor-speaker',
+        label: getTypeName('investor-speaker'),
+        count: speakerTypeCounts['investor-speaker'],
       },
     ]
   }, [allSpeakers, speakerTypeCounts])

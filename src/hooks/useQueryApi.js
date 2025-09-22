@@ -142,6 +142,31 @@ export const useSpeakerBySlugEff = (slug) => {
   })
 }
 
+export const useSpeakerById = (speakerId) => {
+  return useQuery({
+    queryKey: ['speaker', speakerId],
+    queryFn: async () => {
+      const baseUrl = `/api/speakers/${speakerId}`
+      const params = new URLSearchParams({
+        limit: '1',
+        depth: '2',
+      })
+
+      const url = `${baseUrl}?${params.toString()}`
+
+      const result = await payloadClient.get(url)
+
+      if (result.success) {
+        return result.data
+      } else {
+        throw new Error(result.error || 'Failed to fetch speaker')
+      }
+    },
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+  })
+}
+
 // learned the hard way the importance of URL encoding
 export const useGovtDignitaries = () => {
   return useQuery({

@@ -97,6 +97,8 @@ class PayloadClient {
       if (queryString) {
         url += `?${queryString}`
       }
+
+      console.log(url)
     }
 
     return this.request(url, { method: 'GET' })

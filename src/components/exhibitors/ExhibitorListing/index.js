@@ -7,7 +7,6 @@ import {
 } from '../../../utils/exhibitors'
 import { SectionTitle, SectionWrapper } from '../../Layout/Section'
 import {
-  ExhibitorCard,
   ExhibitorCardRow,
   ExhibitorCardTitle,
   ExhibitorLogo,

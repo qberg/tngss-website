@@ -3,7 +3,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
 export const useEventFilters = (filters = {}) => {
   return useQuery({
-    queryKey: ['events-filters', filters],
+    queryKey: ['events-filters'],
     queryFn: async () => {
       const queryParams = {
         public_only: filters.public_only?.toString() || 'true',
@@ -60,6 +60,8 @@ export const useInfinteEvents = (filters = {}) => {
       const cleanParams = Object.fromEntries(
         Object.entries(queryParams).filter(([_, value]) => value !== '')
       )
+
+      console.log()
 
       const result = await payloadClient.get(
         '/api/events/main_events/list',

@@ -22,6 +22,7 @@ module.exports = {
         'pale-gray': '#bbbbbb',
         'light-gray': '#DDDDDD',
         'badge-yellow': '#FDB633',
+        'text-black': '#cccccc',
       },
       spacing: {
         '5p': '5%',

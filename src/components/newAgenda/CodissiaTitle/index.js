@@ -8,7 +8,7 @@ const CodissiaTitle = () => {
       {/*date*/}
       <div className='flex gap-2'>
         <GradientCalendar />
-        9th & 10th OCT 2025
+        9th & 10th Oct 2025
       </div>
     </div>
   )

@@ -16,4 +16,12 @@ const TabsHeaderWrapper = ({ children, className }) => {
   )
 }
 
-export { HeaderSectionWrapper, TabsHeaderWrapper }
+const EventsListingGrid = ({ children, className = '' }) => {
+  return (
+    <div className={`${className} grid grid-cols-1 md:grid-cols-2 gap-8`}>
+      {children}
+    </div>
+  )
+}
+
+export { HeaderSectionWrapper, TabsHeaderWrapper, EventsListingGrid }
