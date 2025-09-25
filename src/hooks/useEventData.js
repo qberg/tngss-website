@@ -5,26 +5,7 @@ export const useEventFilters = (filters = {}) => {
   return useQuery({
     queryKey: ['events-filters'],
     queryFn: async () => {
-      const queryParams = {
-        public_only: filters.public_only?.toString() || 'true',
-        dates: filters.dates || '',
-        zones: filters.zones || '',
-        halls: filters.halls || '',
-        formats: filters.formats || '',
-        tags: filters.tags || '',
-        access_levels: filters.access_levels || '',
-        time_start: filters.time_start || '',
-        time_end: filters.time_end || '',
-      }
-
-      const cleanParams = Object.fromEntries(
-        Object.entries(queryParams).filter(([_, value]) => value !== '')
-      )
-
-      const result = await payloadClient.get(
-        '/api/events/main_events/filters',
-        cleanParams
-      )
+      const result = await payloadClient.get('/api/events/main_events/filters')
 
       if (result.success) {
         return result.data

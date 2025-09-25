@@ -76,7 +76,7 @@ export default function ShowcaseSection() {
               alt='CTA Button'
             />
             <CTAButton
-              src='https://event.startuptn.in/'
+              src='/tickets'
               className='rounded-2xl transform -rotate-6'
             >
               <div className='w-70 h-10 px-6 py-7 flex items-center justify-center '>

@@ -39,6 +39,8 @@ const MainDateTabs = ({ className = '' }) => {
     )
   }
 
+  console.log(availableDates)
+
   return (
     <DateTabs
       selectedDate={selectedDate}

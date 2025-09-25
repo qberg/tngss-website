@@ -46,7 +46,7 @@ const MainEventCard = ({ children, className, delay = 0, href, onClick }) => {
       }}
       onClick={handleClick}
     >
-      <div className='relative w-full h-full bg-black overflow-hidden rounded-lg md:rounded-xl flex flex-col p-6 justify-between cursor-pointer'>
+      <div className='relative w-full h-full bg-black overflow-hidden rounded-lg md:rounded-xl flex flex-col p-6 justify-between gap-3 cursor-pointer'>
         {children}
       </div>
     </motion.div>
@@ -79,15 +79,7 @@ const MainEventCardTitle = ({ children, className, skeleton = false }) => {
 
   return (
     <h3
-      className={`${className} font-semibold font-urbanist text-white text-2xl md:text-3xl 2xl:text-4xl overflow-hidden`}
-      style={{
-        display: '-webkit-box',
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: 'vertical',
-        overflow: 'hidden',
-        lineHeight: '120%',
-        height: '5.5rem',
-      }}
+      className={`${className} font-semibold font-urbanist text-white text-2xl md:text-3xl 2xl:text-4xl heading-height line-clamp-2`}
     >
       {children}
     </h3>
@@ -104,4 +96,19 @@ export {
   MainEventCardCardRow,
   MainEventCardTitle,
   MainEventCardCta,
+}
+
+{
+  /*
+
+      style={{
+        display: '-webkit-box',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+        lineHeight: '120%',
+        height: '5.5rem',
+      }}
+
+*/
 }

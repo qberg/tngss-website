@@ -62,7 +62,13 @@ export default function NavBar() {
     },
     { name: 'Venue', link: '/venue' },
     { name: 'Exhibitors', link: '/exhibitors' },
-    { name: 'FAQ', link: '/faq' },
+    {
+      name: 'More',
+      dropdown: [
+        { name: 'Press And Media', link: '/media-form' },
+        { name: 'FAQ', link: '/faq' },
+      ],
+    },
   ]
 
   const toggleMenu = () => {
@@ -363,8 +369,8 @@ export default function NavBar() {
               transition={{ duration: 0.3, delay: 0.6 }}
             >
               <AppCTAButton
-                showQR={true}
-                qrCodeUrl=''
+                showQR={false}
+                qrCodeUrl='https://apps.apple.com/in/app/tngss/id6744852527'
                 icon={<Download size={16} />}
               >
                 <div className='flex items-center justify-center md:px-3 2xl:px-4 2xl:py-6 w-full h-10'>
@@ -380,8 +386,8 @@ export default function NavBar() {
               transition={{ duration: 0.3, delay: 0.7 }}
             >
               <AppCTAButton
-                showQR={true}
-                qrCodeUrl=''
+                showQR={false}
+                qrCodeUrl='https://play.google.com/store/search?q=tngss'
                 icon={<Download size={16} />}
               >
                 <div className='flex items-center justify-center md:px-3  2xl:px-4 2xl:py-6 w-full h-10'>

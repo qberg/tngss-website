@@ -1825,6 +1825,22 @@ body {
   aspect-ratio: 1.75/ 1;
 }
 
+.heading-height {
+  height: 56px;
+}
+
+@media (min-width: 768px) {
+  .heading-height {
+    height: 64px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .heading-height {
+    height: 74px;
+  }
+}
+
 /* Mobile - scoped to hero section */
 @media (max-width: 767px) {
   #hero-section .hero-animate-floatUpBounce {

@@ -16,6 +16,7 @@ import {
   SponsorInterestForm,
   WhySponsor,
   Exhibitors,
+  MediaInterestForm,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -75,6 +76,11 @@ const AppRoutes = () => {
       <Route
         path='/sponsor-form'
         element={<RouteWithNav component={SponsorInterestForm} />}
+      />
+
+      <Route
+        path='/media-form'
+        element={<RouteWithNav component={MediaInterestForm} />}
       />
       <Route
         path='/tickets'

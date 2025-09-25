@@ -35,9 +35,9 @@ const usePayloadQuery = (queryKey, endpoint, options = {}) => {
 export const useSpeakersData = () => {
   return usePayloadQuery(['speakers', 'all-with-relations'], '/api/speakers', {
     payloadOptions: {
-      limit: 0,
-      depth: 2,
-      sort: 'sort_order',
+      limit: 30,
+      depth: 1,
+      sort: 'name',
       where: { isPublic: { equals: true } },
     },
     errorMessage: 'Failed to fetch speakers',
@@ -810,6 +810,25 @@ export const useSponsorFormWp = () => {
         return result
       } else {
         throw new Error(result.error || 'Failed to fetch sponsor form data')
+      }
+    },
+    staleTime: QUERY_DEFAULTS.LONG_STALE_TIME,
+    retry: QUERY_DEFAULTS.DEFAULT_RETRY,
+  })
+}
+
+export const useMediaFormWp = () => {
+  return useQuery({
+    queryKey: ['media-form-wp'],
+    queryFn: async () => {
+      const result = await payloadClient.get('/api/globals/media-form-wp', {
+        depth: 2,
+      })
+
+      if (result.success !== false) {
+        return result
+      } else {
+        throw new Error(result.error || 'Failed to fetch media form data')
       }
     },
     staleTime: QUERY_DEFAULTS.LONG_STALE_TIME,

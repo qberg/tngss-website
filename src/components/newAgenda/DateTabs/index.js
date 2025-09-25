@@ -10,8 +10,19 @@ const DateTabs = ({
   isLoading,
   layoutIdPrefix = 'date-tab',
   className = '',
+  is_main_event = true,
 }) => {
   // Format date display
+  let filteredDates
+  if (is_main_event) {
+    const ALLOWED_DATES = ['2025-10-09', '2025-10-10']
+    filteredDates = availableDates.filter(
+      (date) => date === 'all' || ALLOWED_DATES.includes(date)
+    )
+  } else {
+    filteredDates = availableDates
+  }
+
   const formatDateDisplay = (dateString) => {
     if (dateString === 'all') {
       return 'ALL DAYS'
@@ -26,7 +37,7 @@ const DateTabs = ({
 
   const dateTabs = [
     { key: 'all', label: 'ALL DAYS' },
-    ...availableDates.map((date) => ({
+    ...filteredDates.map((date) => ({
       key: date,
       label: formatDateDisplay(date),
     })),
@@ -48,7 +59,6 @@ const DateTabs = ({
     >
       {dateTabs.map((dateTab, index) => {
         const count = dateCounts[dateTab.key] || 0
-        if (dateTab.key !== 'all' && count === 0) return null
 
         return (
           <motion.div

@@ -45,6 +45,7 @@ module.exports = {
         '50vh': '50vh',
         '60vh': '60vh',
         '62.5vh': '62.5vh',
+        '80px': '80px',
       },
       width: {
         vw: 'calc(var(--vw, 1vw) * 100)',
@@ -62,7 +63,10 @@ module.exports = {
       rotate: ['group-hover'],
     },
   },
-  plugins: [require('@tailwindcss/aspect-ratio')],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
+  ],
   compilerOptions: {
     baseUrl: '.',
     paths: {

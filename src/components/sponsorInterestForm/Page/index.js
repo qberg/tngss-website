@@ -1,4 +1,3 @@
-import LogoHero from '../../Elements/LogoHero'
 import SponsorForm from '../SponsorForm'
 
 const SponsorInterestFormPage = () => {

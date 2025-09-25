@@ -9,12 +9,16 @@ import {
 import { createDefaultValues } from './utils/formHelpers'
 import handleFormSubmission from './utils/formSubmission'
 
-const DynamicForm = ({ data }) => {
+const DynamicForm = ({ data, formOptions }) => {
   const { showModal } = useModal()
 
   const formInstance = useForm({
     defaultValues: createDefaultValues(data?.form?.fields),
-    onSubmit: handleFormSubmission(data?.form?.id, showModal),
+    onSubmit: handleFormSubmission(
+      data?.form?.id,
+      showModal,
+      formOptions || {}
+    ),
   })
 
   if (!data?.form) return null

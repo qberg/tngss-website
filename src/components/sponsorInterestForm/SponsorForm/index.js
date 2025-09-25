@@ -17,7 +17,7 @@ const SponsorForm = () => {
           description={sponsorsData.data.description}
         />
         <DynamicForm data={sponsorsData.data} />
-        <AuroraCardFooter message='You may still receive emails from us regarding any current registrations or orders.' />
+        <AuroraCardFooter message='' />
       </AuroraCard>
     </ModalProvider>
   )

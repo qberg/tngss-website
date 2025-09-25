@@ -59,11 +59,24 @@ const SpeakersListing = () => {
 
   const allSpeakers = useMemo(() => {
     const speakers = speakersData?.docs || []
-    console.log('Speakers:', speakers)
-    const cleanedSpeakers = speakers
-
-    console.log(cleanedSpeakers)
-    return cleanedSpeakers
+    return speakers
+      .filter((speaker) => {
+        const speakerType =
+          typeof speaker.speaker_type === 'object'
+            ? speaker.speaker_type.slug
+            : speaker.speaker_type?.toLowerCase()
+        const isValidType =
+          speakerType === 'international' ||
+          speakerType === 'domestic' ||
+          speakerType === 'investor-speaker'
+        const isPublic = speaker.isPublic === true
+        return isValidType && isPublic
+      })
+      .sort((a, b) => {
+        const nameA = a.name?.toLowerCase() || ''
+        const nameB = b.name?.toLowerCase() || ''
+        return nameA.localeCompare(nameB)
+      })
   }, [speakersData])
 
   const speakerTypeCounts = useMemo(() => {
@@ -272,6 +285,7 @@ const SpeakersListing = () => {
   return (
     <section className='min-h-screen bg-black px-4 py-8 md:px-24 2xl:px-44 md:py-14 2xl:py-24'>
       {/* Header with search and mobile filter button */}
+      <pre>{JSON.stringify(speakersData, null, 2)}</pre>
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}

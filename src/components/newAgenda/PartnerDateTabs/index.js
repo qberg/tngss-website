@@ -19,6 +19,7 @@ const PartnerDateTabs = ({ className = '' }) => {
       isLoading={isLoading}
       layoutIdPrefix='partner-date-tab'
       className={className}
+      is_main_event={false}
     />
   )
 }
