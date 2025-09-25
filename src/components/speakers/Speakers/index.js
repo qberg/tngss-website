@@ -1,7 +1,7 @@
 import MinimalHero from '../../Elements/MinimalHero'
 import ChiefGuestSection from '../ChiefGuestSection'
 import HonourableDignitaries from '../HonourableDignitaries'
-import SpeakersListing from '../SpeakersListing'
+import SpeakerListing from '../server/SpeakerListing'
 
 const SpeakerPage = () => {
   return (
@@ -15,9 +15,9 @@ const SpeakerPage = () => {
 
       <ChiefGuestSection />
 
-      <HonourableDignitaries />
+      {/*<HonourableDignitaries /> */}
 
-      <SpeakersListing />
+      <SpeakerListing />
     </div>
   )
 }

@@ -19,7 +19,7 @@ export const useSpeakersFilters = (filters = {}) => {
   })
 }
 
-export const useInfiniteSpeakers = (filters={}, limit=10) {
+export const useInfiniteSpeakers = (filters = {}, limit = 10) => {
   const {
     data,
     fetchNextPage,
@@ -30,9 +30,9 @@ export const useInfiniteSpeakers = (filters={}, limit=10) {
     error,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ['speakers', 'infinite', fitlers],
-    queryFn: async ({pageParam = 1}) => {
-      const queryParams = new URLSearchParams({
+    queryKey: ['speakers', 'infinite', filters],
+    queryFn: async ({ pageParam = 1 }) => {
+      const params = new URLSearchParams({
         'where[isPublic][equals]': 'true',
         depth: '2',
         sort: 'name',
@@ -42,44 +42,50 @@ export const useInfiniteSpeakers = (filters={}, limit=10) {
       })
 
       if (filters.speaker_type && filters.speaker_type !== 'all') {
-        queryParams.set('where[speaker_type.slug][equals]', filters.speaker_type)
+        params.set('where[speaker_type.slug][equals]', filters.speaker_type)
       }
 
       if (filters.countries && filters.countries.length > 0) {
-        queryParams.set('where[location.country][in]', filters.countries.join(','))
+        params.set('where[location.country][in]', filters.countries.join(','))
       }
 
       if (filters.tags && filters.tags.length > 0) {
-        queryParams.set('where[tags.slug][in]', filters.tags.join(','))
+        params.set('where[tags.slug][in]', filters.tags.join(','))
       }
 
-      const result = await payloadClient.get(
-        '/api/speakers/',
-        queryParams
-      )
-      
-      if (result.success) {
-        return result.data
-      } else {
-        throw new Error(result.error || 'Failed to fetch events')
+      const url = `https://cms.tngss.startuptn.in/api/speakers?${params.toString()}`
+      console.log('Final URL:', url)
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
+
+      return await response.json()
     },
-
     getNextPageParam: (lastPage) => {
-      const pagination = lastPage?.pagination || {}
-      return pagination.hasNextPage ? pagination.nextPage : undefined
+      console.log('Pagination check:', {
+        hasNextPage: lastPage.hasNextPage,
+        nextPage: lastPage.nextPage,
+      })
+      return lastPage.hasNextPage ? lastPage.nextPage : undefined
     },
-    
+    initialPageParam: 1,
     staleTime: 5 * 60 * 1000,
     retry: 3,
     refetchOnWindowFocus: false,
   })
 
-  const speakers = data?.pages?.flatMap((page) => page.events || []) || []
-  
-  const pagination = data?.pages?.[0]?.pagination || {}
+  const speakers = data?.pages?.flatMap((page) => page.docs || []) || []
+  const firstPage = data?.pages?.[0]
 
-  
   return {
     speakers,
     isLoading,
@@ -88,9 +94,10 @@ export const useInfiniteSpeakers = (filters={}, limit=10) {
     loadMore: fetchNextPage,
     error: isError ? error : null,
     refetch,
-    pagination,
-    totalCount: pagination.totalDocs || 0,
-    totalPages: pagination.totalPages || 0,
-    currentPage: pagination.page || 1,
+    totalCount: firstPage?.totalDocs || 0,
+    totalPages: firstPage?.totalPages || 0,
+    currentPage: firstPage?.page || 1,
+    hasNextPage: firstPage?.hasNextPage || false,
+    hasPrevPage: firstPage?.hasPrevPage || false,
   }
 }
