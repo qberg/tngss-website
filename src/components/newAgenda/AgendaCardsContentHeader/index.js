@@ -51,9 +51,7 @@ const AgendaCardsContentHeader = () => {
     <HeaderSectionWrapper>
       <TabsHeaderWrapper>
         <div className='order-3 md:order-1'>
-          {selectedEventType === 'partner_event' && (
-            <PartnerDateTabs is_main_event={false} />
-          )}
+          {selectedEventType === 'partner_event' && <PartnerDateTabs />}
           {selectedEventType === 'main_event' && <MainDateTabs className='' />}
         </div>
         {selectedEventType === 'main_event' && (
