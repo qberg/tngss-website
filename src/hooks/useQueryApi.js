@@ -103,17 +103,6 @@ export const useSpeakerBySlugEff = (slug) => {
   return useQuery({
     queryKey: ['speaker', 'smart', slug],
     queryFn: async () => {
-      // First try cache
-      if (speakersData?.docs) {
-        const speakerFromCache = speakersData.docs.find(
-          (speaker) => speaker.slug === slug
-        )
-        if (speakerFromCache) {
-          return { data: speakerFromCache, source: 'cache' }
-        }
-      }
-
-      // Fallback to direct API
       const result = await payloadClient.get('/api/speakers', {
         limit: 1,
         depth: 2,

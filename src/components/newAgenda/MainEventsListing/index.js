@@ -13,7 +13,6 @@ import {
 import MainEventsEmptyState from '../MainEventsEmptyState'
 import { formatDate, formatTime } from '../../../utils/dateHelpers'
 import SpeakerProfileCard from '../../agenda/SpeakerProfileCard'
-import { useSpeakerById } from '../../../hooks/useQueryApi'
 import ShineButton from '../../Elements/ShineButton'
 import { ExhibitorCardSkeleton } from '../../exhibitors/ExhibitorListing/loaders'
 import InfiniteScrollTrigger from '../../../hooks/useInfiniteScrollTrigger'

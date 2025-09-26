@@ -146,6 +146,7 @@ export default function Footer() {
                       src={item.img}
                       alt={`Social ${index + 1}`}
                       className='w-full h-full object-contain'
+                      loading='lazy'
                     />
                   </a>
                 ))}

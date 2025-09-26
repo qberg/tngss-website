@@ -19,7 +19,7 @@ export const useSpeakersFilters = (filters = {}) => {
   })
 }
 
-export const useInfiniteSpeakers = (filters = {}, limit = 10) => {
+export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
   const {
     data,
     fetchNextPage,
@@ -100,4 +100,32 @@ export const useInfiniteSpeakers = (filters = {}, limit = 10) => {
     hasNextPage: firstPage?.hasNextPage || false,
     hasPrevPage: firstPage?.hasPrevPage || false,
   }
+}
+
+export const useSpeakerBySlug = (slug) => {
+  return useQuery({
+    queryKey: ['speaker', 'detail', slug],
+    queryFn: async () => {
+      if (!slug) throw new Error('Slug is required')
+
+      const response = await fetch(
+        `https://cms.tngss.startuptn.in/api/speakers?where[slug][equals]=${slug}&depth=2&limit=1`
+      )
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+
+      if (data.docs.length === 0) {
+        throw new Error('Speaker not found')
+      }
+
+      return data.docs[0]
+    },
+    enabled: !!slug,
+    staleTime: 5 * 60 * 1000,
+    retry: 3,
+  })
 }

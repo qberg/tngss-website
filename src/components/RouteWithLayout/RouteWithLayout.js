@@ -5,6 +5,8 @@ import Footer from '../Elements/Footer/Footer'
 import { ReactLenis } from 'lenis/react'
 
 const RouteWithLayout = ({ component: Component }) => {
+  const urlParams = new URLSearchParams(window.location.search)
+  const isFromApp = urlParams.get('app') === 'tngss'
   return (
     <>
       <ReactLenis
@@ -16,9 +18,9 @@ const RouteWithLayout = ({ component: Component }) => {
           smoothTouch: false,
         }}
       />
-      <NavBar />
+      {!isFromApp && <NavBar />}
       <Component />
-      <Footer />
+      {!isFromApp && <Footer />}
     </>
   )
 }

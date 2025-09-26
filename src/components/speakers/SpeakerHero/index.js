@@ -113,9 +113,14 @@ const SpeakerDetailHero = ({ speaker }) => {
           >
             {/* Image */}
             <motion.div className='w-full md:w-4/12' variants={fadeInLeft}>
-              <div className='aspect-w-9 aspect-h-10'>
-                <SpeakerCard speaker={speaker} showName={false} />
-              </div>
+              <motion.div className='aspect-w-9 aspect-h-10'>
+                <SpeakerCard
+                  speaker={speaker}
+                  showName={false}
+                  layout
+                  layoutId={`speaker-${speaker}`}
+                />
+              </motion.div>
             </motion.div>
 
             {/* Content */}

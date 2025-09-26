@@ -1841,6 +1841,22 @@ body {
   }
 }
 
+.bar-height {
+  height: 60vh;
+}
+
+@media (min-width: 768px) {
+  .bar-height {
+    height: 80vh;
+  }
+}
+
+@media (min-width: 1536px) {
+  .bar-height {
+    height: 65vh;
+  }
+}
+
 /* Mobile - scoped to hero section */
 @media (max-width: 767px) {
   #hero-section .hero-animate-floatUpBounce {
@@ -1883,4 +1899,32 @@ body {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+.skeleton-shimmer-dark {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.skeleton-shimmer-light {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.skeleton-shimmer-lighter {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
 }

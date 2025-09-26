@@ -1,7 +1,9 @@
+import { lazy, Suspense } from 'react'
 import MinimalHero from '../../Elements/MinimalHero'
 import ChiefGuestSection from '../ChiefGuestSection'
-import HonourableDignitaries from '../HonourableDignitaries'
-import SpeakerListing from '../server/SpeakerListing'
+
+const SpeakerCardsSection = lazy(() => import('../SpeakerCardsSection'))
+const HonourableDignitaries = lazy(() => import('../HonourableDignitaries'))
 
 const SpeakerPage = () => {
   return (
@@ -15,9 +17,21 @@ const SpeakerPage = () => {
 
       <ChiefGuestSection />
 
-      {/*<HonourableDignitaries /> */}
+      <Suspense
+        fallback={
+          <div className='p-4 text-center'>
+            Loading Honourable Dignitaries...
+          </div>
+        }
+      >
+        <HonourableDignitaries />
+      </Suspense>
 
-      <SpeakerListing />
+      <Suspense
+        fallback={<div className='p-4 text-center'>Loading speakers...</div>}
+      >
+        <SpeakerCardsSection />
+      </Suspense>
     </div>
   )
 }
