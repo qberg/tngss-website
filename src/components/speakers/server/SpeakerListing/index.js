@@ -1,4 +1,5 @@
 import InfiniteScrollTrigger from '../../../../hooks/useInfiniteScrollTrigger'
+import { useInView } from 'react-intersection-observer'
 import { SpeakersGrid } from '../../../Layout/Grid'
 import { SectionTitle, SectionWrapper } from '../../../Layout/Section'
 import {
@@ -11,7 +12,6 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useSpeakers } from '../context/SpeakersContext'
 import SpeakerCard from '../../../Elements/SpeakerCard'
 import SpeakerCardWrapper from '../Layout'
-import SpeakerFilters from '../Filters'
 import {
   NewFilterBody,
   NewFilterCta,
@@ -27,11 +27,16 @@ import {
   NewFilterWrapper,
 } from '../../../Elements/NewFilters'
 import { Filter } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import SpeakerCardSkeleton from '../../../Elements/SpeakerCardSkeleton'
 
 const SpeakerListing = () => {
   const [openDropdown, setOpenDropDown] = useState(null)
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+  const { ref: gridRef, inView: gridInView } = useInView({
+    threshold: 0.5,
+  })
+
   const {
     draftFilters,
     appliedFilters,
@@ -93,7 +98,13 @@ const SpeakerListing = () => {
                     isOpen={openDropdown === 'speakerType'}
                     onToggle={() => toggleDropdown('speakerType')}
                   >
-                    Speaker Type
+                    Speaker Type{' '}
+                    {draftFilters.speaker_type !== 'all' &&
+                      `(${
+                        filterOptions?.available?.speaker_types?.find(
+                          (t) => t.value === draftFilters.speaker_type
+                        )?.label || 'Selected'
+                      })`}
                   </NewFilterDropdownTrigger>
                   <NewFilterDropdownContent
                     isOpen={openDropdown === 'speakerType'}
@@ -121,7 +132,9 @@ const SpeakerListing = () => {
                     isOpen={openDropdown === 'countries'}
                     onToggle={() => toggleDropdown('countries')}
                   >
-                    Countries
+                    Countries{' '}
+                    {draftFilters.countries.length > 0 &&
+                      `(${draftFilters.countries.length} selected)`}
                   </NewFilterDropdownTrigger>
 
                   <NewFilterDropdownContent
@@ -148,7 +161,9 @@ const SpeakerListing = () => {
                     isOpen={openDropdown === 'tags'}
                     onToggle={() => toggleDropdown('tags')}
                   >
-                    Tags
+                    Tags{' '}
+                    {draftFilters.tags.length > 0 &&
+                      `(${draftFilters.tags.length} selected)`}
                   </NewFilterDropdownTrigger>
 
                   <NewFilterDropdownContent isOpen={openDropdown === 'tags'}>
@@ -172,7 +187,11 @@ const SpeakerListing = () => {
               <NewFilterCta>
                 <motion.button
                   onClick={applyFilters}
-                  className='w-full bg-theme-blue text-white font-semibold py-3 rounded-xl hover:bg-[#16a8c4] transition-colors'
+                  whileTap={{
+                    scale: 0.97,
+                    transition: { type: 'spring', stiffness: 400, damping: 25 },
+                  }}
+                  className='w-full bg-theme-blue text-white font-semibold py-3 rounded-xl hover:bg-[#16a8c4] transition-colors focus:outline-none'
                 >
                   Apply Filters
                 </motion.button>
@@ -182,7 +201,7 @@ const SpeakerListing = () => {
         </StickyBarWrapper>
 
         <StickyBarSectionContentWrapper>
-          <SpeakersGrid>
+          <SpeakersGrid ref={gridRef}>
             {showSpeakersSkeleton ? (
               Array.from({ length: 9 }, (_, index) => (
                 <SpeakerCardSkeleton key={`skeleton-${index}`} />
@@ -214,6 +233,26 @@ const SpeakerListing = () => {
           />
         </StickyBarSectionContentWrapper>
       </StickyBarSectionWrapper>
+
+      {gridInView && (
+        <motion.button
+          onClick={() => setIsMobileFilterOpen(true)}
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          className='md:hidden fixed bottom-6 left-1/2 bg-theme-blue text-white px-6 py-3 rounded-lg shadow-2xl flex items-center gap-2 z-50 border border-white/20'
+        >
+          <Filter size={20} />
+          <span className='font-medium'>Filters</span>
+          {hasActiveFilters && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className='w-2 h-2 bg-white rounded-full'
+            />
+          )}
+        </motion.button>
+      )}
     </SectionWrapper>
   )
 }

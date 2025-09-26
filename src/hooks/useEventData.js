@@ -79,3 +79,31 @@ export const useInfinteEvents = (filters = {}) => {
     currentPage: pagination.page || 1,
   }
 }
+
+export const useEventBySlug = (slug) => {
+  return useQuery({
+    queryKey: ['event', 'detail', slug],
+    queryFn: async () => {
+      if (!slug) throw new Error('Slug is required')
+
+      const response = await fetch(
+        `https://cms.tngss.startuptn.in/api/events?where[slug][equals]=${slug}&depth=2&limit=1`
+      )
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+
+      if (data.docs.length === 0) {
+        throw new Error('Speaker not found')
+      }
+
+      return data.docs[0]
+    },
+    enabled: !!slug,
+    staleTime: 5 * 60 * 1000,
+    retry: 3,
+  })
+}

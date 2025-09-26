@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom'
 import MinimalHero from '../../Elements/MinimalHero'
-import { useEventBySlugEff } from '../../../hooks/useQueryApi'
 import EventDetails from '../EventDetails'
 import EventDetailsExtra from '../EventDetailsExtra'
+import { useEventBySlug } from '../../../hooks/useEventData'
 
 const AgendaDetail = () => {
   const { slug } = useParams()
 
-  const { data: event, isLoading, error } = useEventBySlugEff(slug)
+  const { data: event, isLoading } = useEventBySlug(slug)
   return (
     <>
       <MinimalHero
