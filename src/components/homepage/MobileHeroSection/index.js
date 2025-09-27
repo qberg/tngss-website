@@ -81,7 +81,7 @@ const EventDetails = () => (
 const CallToAction = () => (
   <div className='flex flex-col md:flex-row gap-2'>
     <ShineButton
-      src='/tickets'
+      src='https://event.startuptn.in/login'
       className='!hover:bg-black w-full justify-center text-white'
       contCN='!bg-none py-3 px-4 w-full'
     >
@@ -91,7 +91,7 @@ const CallToAction = () => (
         alt='Vector'
         style={{ filter: 'invert(1)' }}
       />
-      Book Your Stall
+      Manage Your Stall
     </ShineButton>
 
     <ShineButton

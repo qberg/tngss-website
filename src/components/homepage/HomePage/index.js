@@ -11,6 +11,7 @@ import MobileHeroSection from '../MobileHeroSection'
 import MobileCMSection from '../MobileCMSection'
 import MobileStatsSection from '../MobileStatsSection'
 import { useMobileStickyTrigger } from '../../../hooks/mobileHooks'
+import AnnouncementModal from '../../Elements/AnnouncementModal'
 
 const SpeakersSection = lazy(() => import('../SpeakersSection'))
 const GlobalPavilion = lazy(() => import('../GlobalPavilion'))
@@ -48,6 +49,7 @@ const HomePage = () => {
   if (isMobile) {
     return (
       <div className='text-white font-urbanist'>
+        <AnnouncementModal />
         <MobileHeroSection isSticky={mobileEffects.isSticky} />
         <MobileCMSection isSticky={mobileEffects.isSticky} />
         <MobileStatsSection isSticky={mobileEffects.isSticky} />
@@ -74,6 +76,7 @@ const HomePage = () => {
 
   return (
     <div className='text-white font-urbanist'>
+      <AnnouncementModal />
       <div ref={homepageRef}>
         <ScrollAnimsFirst />
         <WhyAttendSection />

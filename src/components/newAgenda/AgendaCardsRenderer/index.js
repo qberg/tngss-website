@@ -1,7 +1,7 @@
 import { SectionWrapper } from '../../Layout/Section'
 import AgendaCardsContent from '../AgendaCardsContent'
 import AgendaCardsContentHeader from '../AgendaCardsContentHeader'
-import { EventTypeProvider, useEventType } from '../context/EventTypeContext'
+import { EventTypeProvider } from '../context/EventTypeContext'
 import { MainEventsProvider } from '../context/MainEventsContext'
 import { PartnerEventsProvider } from '../context/PartnerEventsContext'
 

@@ -222,8 +222,7 @@ export default function NavBar() {
         {/* Desktop CTA Buttons - Hidden on mobile */}
         <div className='hidden md:flex gap-3 md:gap-5 items-center text-xl'>
           <ShineButton
-            src='/tickets#stall'
-            onClick={handleScrollToStall}
+            src='https://event.startuptn.in/login'
             className='!hover:bg-black'
             contCN='!bg-none py-2 px-4'
           >
@@ -233,7 +232,7 @@ export default function NavBar() {
               alt='Vector'
               style={{ filter: 'invert(1)' }}
             />
-            Book Your Stall
+            Manage Your Stall
           </ShineButton>
           <ShineButton
             src='/tickets#pass'
