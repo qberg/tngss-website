@@ -36,7 +36,6 @@ const SpeakersListing = () => {
   const [tagsDropdownOpen, setTagsDropdownOpen] = useState(false)
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false)
 
-  // Prevent body scroll when drawer is open
   useEffect(() => {
     if (isFilterDrawerOpen) {
       document.body.style.overflow = 'hidden'

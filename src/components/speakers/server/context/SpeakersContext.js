@@ -44,23 +44,30 @@ const SpeakersProvider = ({ children }) => {
           ? urlParams.get('countries').split(',')
           : [],
         tags: urlParams.get('tags') ? urlParams.get('tags').split(',') : [],
+        search: urlParams.get('search') || '',
       }
     }
     return {
       speaker_type: 'all',
       countries: [],
       tags: [],
+      search: '',
     }
   }
 
   const [appliedFilters, setAppliedFilters] = useState(getInitialFilters)
   const [draftFilters, setDraftFilters] = useState(appliedFilters)
 
+  const queryFilters = {
+    ...appliedFilters,
+    search: draftFilters.search,
+  }
+
   const { data: filterOptions, isLoading: isLoadingFilterOptions } =
     useSpeakersFilters()
 
   const { speakers, isLoading, isLoadingMore, hasMore, loadMore, totalCount } =
-    useInfiniteSpeakers(appliedFilters)
+    useInfiniteSpeakers(queryFilters)
 
   useEffect(() => {
     const params = new URLSearchParams()
@@ -77,12 +84,16 @@ const SpeakersProvider = ({ children }) => {
       params.set('tags', appliedFilters.tags.join(','))
     }
 
+    if (draftFilters.search.trim()) {
+      params.set('search', draftFilters.search.trim())
+    }
+
     const newUrl = params.toString()
       ? `${window.location.pathname}?${params}`
       : window.location.pathname
 
     window.history.replaceState({}, '', newUrl)
-  }, [appliedFilters])
+  }, [appliedFilters, draftFilters.search])
 
   const updateDraftFilters = (newFilters) => {
     setDraftFilters((prev) => ({ ...prev, ...newFilters }))
@@ -115,6 +126,7 @@ const SpeakersProvider = ({ children }) => {
       speaker_type: 'all',
       tags: [],
       countries: [],
+      search: '',
     }
 
     setDraftFilters(defaultFilters)
@@ -124,7 +136,8 @@ const SpeakersProvider = ({ children }) => {
   const hasActiveFilters =
     appliedFilters.speaker_type !== 'all' ||
     appliedFilters.countries.length > 0 ||
-    appliedFilters.tags.length > 0
+    appliedFilters.tags.length > 0 ||
+    appliedFilters.search.trim() !== ''
 
   const hasPendingChanges =
     JSON.stringify(draftFilters) !== JSON.stringify(appliedFilters)

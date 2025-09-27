@@ -1,7 +1,10 @@
 import InfiniteScrollTrigger from '../../../../hooks/useInfiniteScrollTrigger'
-import { useInView } from 'react-intersection-observer'
 import { SpeakersGrid } from '../../../Layout/Grid'
-import { SectionTitle, SectionWrapper } from '../../../Layout/Section'
+import {
+  SectionHeader,
+  SectionTitle,
+  SectionWrapper,
+} from '../../../Layout/Section'
 import {
   StickyBar,
   StickyBarSectionContentWrapper,
@@ -27,7 +30,7 @@ import {
   NewFilterWrapper,
 } from '../../../Elements/NewFilters'
 import { Filter } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import SpeakerCardSkeleton from '../../../Elements/SpeakerCardSkeleton'
 import {
   FilterCategory,
@@ -37,15 +40,12 @@ import {
   MobileFilterRightSection,
   MobileFilterSidebar,
 } from '../../../Elements/MobileFilters'
+import SearchBar from '../../../Elements/SearchBar'
 
 const SpeakerListing = () => {
   const [openDropdown, setOpenDropDown] = useState(null)
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('speakerType')
-
-  const { ref: gridRef, inView: gridInView } = useInView({
-    threshold: 0.5,
-  })
 
   const {
     draftFilters,
@@ -88,13 +88,23 @@ const SpeakerListing = () => {
     },
   ]
 
+  console.log(draftFilters.search)
+
   const toggleDropdown = (dropdownName) => {
     setOpenDropDown(openDropdown === dropdownName ? null : dropdownName)
   }
 
   return (
     <SectionWrapper>
-      <SectionTitle>SPEAKERS</SectionTitle>
+      <SectionHeader>
+        <SectionTitle>SPEAKERS</SectionTitle>
+        <div className='hidden md:block w-2/5'>
+          <SearchBar
+            value={draftFilters.search}
+            onChange={(value) => updateDraftFilters({ search: value })}
+          />
+        </div>
+      </SectionHeader>
       <FloatingButton
         onOpen={() => setIsMobileFilterOpen(true)}
         hasActiveFilters={hasActiveFilters}
@@ -318,7 +328,7 @@ const SpeakerListing = () => {
         </StickyBarWrapper>
 
         <StickyBarSectionContentWrapper>
-          <SpeakersGrid ref={gridRef}>
+          <SpeakersGrid>
             {showSpeakersSkeleton ? (
               Array.from({ length: 9 }, (_, index) => (
                 <SpeakerCardSkeleton key={`skeleton-${index}`} />

@@ -1,5 +1,6 @@
 import { payloadClient } from '../utils/payloadClient'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { useDebounce } from 'use-debounce'
 
 export const useSpeakersFilters = (filters = {}) => {
   return useQuery({
@@ -20,6 +21,12 @@ export const useSpeakersFilters = (filters = {}) => {
 }
 
 export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
+  const [debouncedSearch] = useDebounce(filters.search || '', 500)
+  const queryFilters = {
+    ...filters,
+    search: debouncedSearch,
+  }
+
   const {
     data,
     fetchNextPage,
@@ -30,7 +37,7 @@ export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
     error,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ['speakers', 'infinite', filters],
+    queryKey: ['speakers', 'infinite', queryFilters],
     queryFn: async ({ pageParam = 1 }) => {
       const params = new URLSearchParams({
         'where[isPublic][equals]': 'true',
@@ -41,16 +48,20 @@ export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
         'where[speaker_type.slug][not_equals]': 'government-dignitaries',
       })
 
-      if (filters.speaker_type && filters.speaker_type !== 'all') {
+      if (queryFilters.speaker_type && queryFilters.speaker_type !== 'all') {
         params.set('where[speaker_type.slug][equals]', filters.speaker_type)
       }
 
-      if (filters.countries && filters.countries.length > 0) {
+      if (queryFilters.countries && queryFilters.countries.length > 0) {
         params.set('where[location.country][in]', filters.countries.join(','))
       }
 
-      if (filters.tags && filters.tags.length > 0) {
+      if (queryFilters.tags && queryFilters.tags.length > 0) {
         params.set('where[tags.slug][in]', filters.tags.join(','))
+      }
+
+      if (queryFilters.search && queryFilters.search.trim()) {
+        params.set('where[name][contains]', filters.search.trim())
       }
 
       const url = `https://cms.tngss.startuptn.in/api/speakers?${params.toString()}`

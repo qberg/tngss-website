@@ -34,14 +34,14 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-icons": "^5.5.0",
-    "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^6.13.0",
     "react-use-measure": "^2.1.7",
     "sass-loader": "^16.0.5",
     "styled-components": "^6.1.17",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^2.2.19",
-    "tw-animate-css": "^1.2.7"
+    "tw-animate-css": "^1.2.7",
+    "use-debounce": "^10.0.6"
   },
   "main": "index.js",
   "scripts": {
