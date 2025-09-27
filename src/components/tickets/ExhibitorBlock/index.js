@@ -71,8 +71,8 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               variant='green'
               showSize
             />
-            <SimpleButton onClick={handleExhibitorClick} variant='green'>
-              Join As Exhibitor
+            <SimpleButton variant='green'>
+              <div className='text-red-500'>Sold Out</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorSmall?.features} />
           </TicketCard>
@@ -86,8 +86,8 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               variant='yellow'
               showSize
             />
-            <SimpleButton onClick={handleExhibitorClick} variant='yellow'>
-              Join As Exhibitor
+            <SimpleButton variant='yellow'>
+              <div className='text-red-500'>Sold Out</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorMedium?.features} />
           </TicketCard>
@@ -101,8 +101,8 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               variant='cyan'
               showSize
             />
-            <SimpleButton onClick={handleExhibitorClick} variant='cyan'>
-              Join As Exhibitor
+            <SimpleButton variant='cyan'>
+              <div className='text-red-500'>Sold Out</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorLarge?.features} />
           </TicketCard>

@@ -102,10 +102,6 @@ const CircleRevealSection = () => {
     setCurrentIndex(index)
   }
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    console.log('Page Scroll:', latest)
-  })
-
   // Mobile version
   if (isMobile) {
     return (

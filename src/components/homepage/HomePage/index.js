@@ -1,11 +1,7 @@
 import { useScroll } from 'motion/react'
-import { useRef } from 'react'
-import GlobalPavilion from '../GlobalPavilion'
+import { lazy, Suspense, useRef } from 'react'
 import { motion, useTransform } from 'motion/react'
-import SpeakersSection from '../SpeakersSection'
-import PastEngagements from '../PastEngagements'
-import CircleRevealSection from '../CircleRevealSection'
-import MobileCircleRevealSection from '../MobileCircleRevealSection'
+
 import { useIsMobile } from '../../../hooks/test_hooks/useIsMobile'
 import ShowcaseSection from '../../Homepage/showcase_section/ShowcaseSection'
 import bg from '../../../assets/speakersbg.svg?url'
@@ -14,9 +10,24 @@ import WhyAttendSection from '../WhyAttendSection'
 import MobileHeroSection from '../MobileHeroSection'
 import MobileCMSection from '../MobileCMSection'
 import MobileStatsSection from '../MobileStatsSection'
-import MobileWhyAttendSection from '../MobileWhyAttendSection'
 import { useMobileStickyTrigger } from '../../../hooks/mobileHooks'
-import MobileSpeakersSection from '../MobileSpeakersSection'
+
+const SpeakersSection = lazy(() => import('../SpeakersSection'))
+const GlobalPavilion = lazy(() => import('../GlobalPavilion'))
+const CircleRevealSection = lazy(() => import('../CircleRevealSection'))
+const PastEngagements = lazy(() => import('../PastEngagements'))
+
+const MobileWhyAttendSection = lazy(() => import('../MobileWhyAttendSection'))
+const MobileSpeakersSection = lazy(() => import('../MobileSpeakersSection'))
+const MobileCircleRevealSection = lazy(() =>
+  import('../MobileCircleRevealSection')
+)
+
+const LoadingSpinner = ({ className = '' }) => (
+  <div className={`flex items-center justify-center ${className}`}>
+    <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-theme-blue'></div>
+  </div>
+)
 
 const HomePage = () => {
   const homepageRef = useRef(null)
@@ -40,13 +51,23 @@ const HomePage = () => {
         <MobileHeroSection isSticky={mobileEffects.isSticky} />
         <MobileCMSection isSticky={mobileEffects.isSticky} />
         <MobileStatsSection isSticky={mobileEffects.isSticky} />
-        <MobileWhyAttendSection />
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <MobileWhyAttendSection />
+        </Suspense>
         <div className='h-lvh'>
-          <GlobalPavilion />
+          <Suspense fallback={<LoadingSpinner className='h-full' />}>
+            <GlobalPavilion />
+          </Suspense>
         </div>
-        <MobileSpeakersSection />
-        <MobileCircleRevealSection />
-        <PastEngagements />
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <MobileSpeakersSection />
+        </Suspense>
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <MobileCircleRevealSection />
+        </Suspense>
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <PastEngagements />
+        </Suspense>
       </div>
     )
   }
@@ -56,32 +77,42 @@ const HomePage = () => {
       <div ref={homepageRef}>
         <ScrollAnimsFirst />
         <WhyAttendSection />
-        {!isMobile && <div className='h-screen' />}
+        <div className='h-screen' />
         <motion.div
-          className={isMobile ? 'h-lvh py-8' : 'fixed inset-0 -z-10'}
-          style={{ opacity: isMobile ? 1 : gpOpacity }}
+          className='fixed inset-0 -z-10'
+          style={{ opacity: gpOpacity }}
         >
-          <GlobalPavilion />
+          <Suspense fallback={<LoadingSpinner className='h-full' />}>
+            <GlobalPavilion />
+          </Suspense>
         </motion.div>
-        {!isMobile && <div style={{ height: '25vh' }} />}
+        <div style={{ height: '25vh' }} />
 
-        <SpeakersSection isMobile={isMobile} />
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <SpeakersSection isMobile={isMobile} />
+        </Suspense>
       </div>
 
-      {!isMobile && (
-        <div style={{ height: '25vh' }} className='relative'>
-          <img
-            src={bg}
-            alt='Background for speakers'
-            className='absolute inset-0 object-cover object-center w-full h-full -z-10'
-            style={{ transform: 'rotate(180deg) scaleX(-1)' }}
-            loading='lazy'
-          />
-        </div>
-      )}
-      {isMobile ? <MobileCircleRevealSection /> : <CircleRevealSection />}
+      <div style={{ height: '25vh' }} className='relative'>
+        <img
+          src={bg}
+          alt='Background for speakers'
+          className='absolute inset-0 object-cover object-center w-full h-full -z-10'
+          style={{ transform: 'rotate(180deg) scaleX(-1)' }}
+          loading='lazy'
+        />
+      </div>
+      <div>
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <CircleRevealSection />
+        </Suspense>
+      </div>
 
-      <PastEngagements />
+      <div>
+        <Suspense fallback={<LoadingSpinner className='h-full' />}>
+          <PastEngagements />
+        </Suspense>
+      </div>
       <ShowcaseSection />
     </div>
   )

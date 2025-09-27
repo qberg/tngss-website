@@ -105,6 +105,13 @@ const SpeakerListing = () => {
           />
         </div>
       </SectionHeader>
+
+      <div className='w-full block md:hidden'>
+        <SearchBar
+          value={draftFilters.search}
+          onChange={(value) => updateDraftFilters({ search: value })}
+        />
+      </div>
       <FloatingButton
         onOpen={() => setIsMobileFilterOpen(true)}
         hasActiveFilters={hasActiveFilters}
