@@ -29,10 +29,20 @@ import {
 import { Filter } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import SpeakerCardSkeleton from '../../../Elements/SpeakerCardSkeleton'
+import {
+  FilterCategory,
+  FloatingButton,
+  MobileFilterCtas,
+  MobileFilterOverlay,
+  MobileFilterRightSection,
+  MobileFilterSidebar,
+} from '../../../Elements/MobileFilters'
 
 const SpeakerListing = () => {
   const [openDropdown, setOpenDropDown] = useState(null)
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState('speakerType')
+
   const { ref: gridRef, inView: gridInView } = useInView({
     threshold: 0.5,
   })
@@ -60,6 +70,24 @@ const SpeakerListing = () => {
     showSpeakersSkeleton,
   } = useSpeakers()
 
+  const filterCategories = [
+    {
+      id: 'speakerType',
+      title: 'Speaker Type',
+      hasSelections: draftFilters.speaker_type !== 'all',
+    },
+    {
+      id: 'countries',
+      title: 'Countries',
+      hasSelections: draftFilters.countries.length > 0,
+    },
+    {
+      id: 'tags',
+      title: 'Tags',
+      hasSelections: draftFilters.tags.length > 0,
+    },
+  ]
+
   const toggleDropdown = (dropdownName) => {
     setOpenDropDown(openDropdown === dropdownName ? null : dropdownName)
   }
@@ -67,10 +95,99 @@ const SpeakerListing = () => {
   return (
     <SectionWrapper>
       <SectionTitle>SPEAKERS</SectionTitle>
+      <FloatingButton
+        onOpen={() => setIsMobileFilterOpen(true)}
+        hasActiveFilters={hasActiveFilters}
+        scrollThreshold={175}
+      />
+
+      <MobileFilterOverlay
+        isOpen={isMobileFilterOpen}
+        onClose={() => setIsMobileFilterOpen(false)}
+      >
+        <MobileFilterSidebar>
+          {filterCategories.map((category) => (
+            <FilterCategory
+              key={category.id}
+              category={category}
+              isActive={selectedCategory === category.id}
+              onClick={() => setSelectedCategory(category.id)}
+            />
+          ))}
+        </MobileFilterSidebar>
+
+        <MobileFilterRightSection>
+          {selectedCategory === 'speakerType' && (
+            <div className='space-y-1'>
+              {filterOptions?.available?.speaker_types?.map((type) => (
+                <NewFilterDropdownRadioItem
+                  key={type.value}
+                  value={type.value}
+                  selectedValue={draftFilters.speaker_type}
+                  onChange={(value) =>
+                    updateDraftFilters({ speaker_type: value })
+                  }
+                  count={type.count}
+                >
+                  {type.label}
+                </NewFilterDropdownRadioItem>
+              ))}
+            </div>
+          )}
+
+          {selectedCategory === 'countries' && (
+            <div className='space-y-1'>
+              {filterOptions?.available?.countries?.map((country) => (
+                <NewFilterDropdownCheckboxItem
+                  key={country.value}
+                  value={country.value}
+                  selectedValues={draftFilters.countries}
+                  onToggle={toggleCountry}
+                  count={country.count}
+                >
+                  {country.label}
+                </NewFilterDropdownCheckboxItem>
+              ))}
+            </div>
+          )}
+
+          {selectedCategory === 'tags' && (
+            <div className='space-y-1'>
+              {filterOptions?.available?.tags?.map((tag) => (
+                <NewFilterDropdownCheckboxItem
+                  key={tag.value}
+                  value={tag.value}
+                  selectedValues={draftFilters.tags}
+                  onToggle={toggleTag}
+                  count={tag.count}
+                >
+                  {tag.label}
+                </NewFilterDropdownCheckboxItem>
+              ))}
+            </div>
+          )}
+        </MobileFilterRightSection>
+
+        <MobileFilterCtas>
+          <motion.button
+            onClick={() => {
+              applyFilters()
+              setIsMobileFilterOpen(false)
+            }}
+            whileTap={{
+              scale: 0.97,
+              transition: { type: 'spring', stiffness: 400, damping: 25 },
+            }}
+            className='w-full bg-theme-blue text-white font-semibold py-3 rounded-xl hover:bg-[#16a8c4] transition-colors focus:outline-none'
+          >
+            Apply Filters
+          </motion.button>
+        </MobileFilterCtas>
+      </MobileFilterOverlay>
 
       <StickyBarSectionWrapper>
         <StickyBarWrapper>
-          <StickyBar className='border-0 border-red-500'>
+          <StickyBar>
             {/*<SpeakerFilters />*/}
             <NewFilterWrapper>
               <NewFilterBody>
@@ -233,26 +350,6 @@ const SpeakerListing = () => {
           />
         </StickyBarSectionContentWrapper>
       </StickyBarSectionWrapper>
-
-      {gridInView && (
-        <motion.button
-          onClick={() => setIsMobileFilterOpen(true)}
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-          className='md:hidden fixed bottom-6 left-1/2 bg-theme-blue text-white px-6 py-3 rounded-lg shadow-2xl flex items-center gap-2 z-50 border border-white/20'
-        >
-          <Filter size={20} />
-          <span className='font-medium'>Filters</span>
-          {hasActiveFilters && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className='w-2 h-2 bg-white rounded-full'
-            />
-          )}
-        </motion.button>
-      )}
     </SectionWrapper>
   )
 }

@@ -54,7 +54,6 @@ export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
       }
 
       const url = `https://cms.tngss.startuptn.in/api/speakers?${params.toString()}`
-      console.log('Final URL:', url)
 
       const response = await fetch(url, {
         method: 'GET',
@@ -71,10 +70,6 @@ export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
       return await response.json()
     },
     getNextPageParam: (lastPage) => {
-      console.log('Pagination check:', {
-        hasNextPage: lastPage.hasNextPage,
-        nextPage: lastPage.nextPage,
-      })
       return lastPage.hasNextPage ? lastPage.nextPage : undefined
     },
     initialPageParam: 1,

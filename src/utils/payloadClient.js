@@ -19,8 +19,6 @@ class PayloadClient {
     const timeoutId = setTimeout(() => controller.abort(), this.timeout)
     const url = `${this.baseURL}${endpoint}`
 
-    this.log(`→ ${options.method || 'GET'} ${url}`)
-
     const defaultOptions = {
       method: 'GET',
       headers: {
@@ -35,8 +33,6 @@ class PayloadClient {
       const response = await fetch(url, defaultOptions)
       const duration = Date.now() - startTime
       clearTimeout(timeoutId)
-
-      this.log(`← ${response.status} ${url} (${duration}ms)`)
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
@@ -53,8 +49,6 @@ class PayloadClient {
     } catch (error) {
       const duration = Date.now() - startTime
       clearTimeout(timeoutId)
-
-      this.log(`✗ ${url} failed: ${error.message} (${duration}ms)`)
 
       if (error.name === 'AbortError') {
         return {
@@ -97,8 +91,6 @@ class PayloadClient {
       if (queryString) {
         url += `?${queryString}`
       }
-
-      console.log(url)
     }
 
     return this.request(url, { method: 'GET' })

@@ -2,11 +2,6 @@ import { useMemo, useState } from 'react'
 import FilterButton from '../../Elements/FilterButton'
 import { Calendar } from 'lucide-react'
 import SpeakerEventCard from '../../Elements/SpeakerEventCard'
-import {
-  useEventsByIds,
-  useSpeakerBySlugEff,
-  useSpeakerEvents,
-} from '../../../hooks/useQueryApi'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   gentleSpring,
@@ -78,13 +73,9 @@ const filterButtonVariant = {
 
 const SpeakerEventsListing = ({ speaker }) => {
   const [selectedFilter, setSelectedFilter] = useState('all')
-  const {
-    data: speakerData,
-    isLoading,
-    error,
-  } = useSpeakerBySlugEff(speaker?.slug)
+  const isLoading = false
 
-  const events = speakerData?.events || []
+  const events = speaker?.speaking_events?.docs || []
 
   const filteredEvents = useMemo(() => {
     if (selectedFilter === 'all') return events
@@ -130,7 +121,7 @@ const SpeakerEventsListing = ({ speaker }) => {
 
   return (
     <motion.section
-      className='bg-black px-4 md:px-28 2xl:px-36 py-8 md:py-14 2xl:py-24 w-full h-full flex flex-col gap-4 md:gap-16 flex md:justify-end'
+      className='bg-black px-4 md:px-28 2xl:px-36 py-8 md:py-14 2xl:py-24 w-full h-full flex flex-col gap-4 md:gap-16 md:justify-end'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={gentleSpring}
@@ -141,7 +132,6 @@ const SpeakerEventsListing = ({ speaker }) => {
         animate={{ opacity: 1, x: 0 }}
         transition={smoothSpring}
       >
-        {/* Filter Buttons */}
         <motion.div
           className='flex flex-wrap gap-3 mb-4 md:mb-8 justify-center'
           variants={staggerContainer}

@@ -88,7 +88,7 @@ const NewFilterDropdownRadioItem = ({
             color: isSelected ? '#ffffff' : 'rgba(255, 255, 255, 0.7)',
             transition: { type: 'spring', stiffness: 300, damping: 20 },
           }}
-          className='text-base font-medium select-none'
+          className='text-sm md:text-base font-medium select-none'
         >
           {children}
         </motion.span>

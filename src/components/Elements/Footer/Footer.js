@@ -7,7 +7,6 @@ import insta from '../../../assets/insta.svg?url'
 import yt from '../../../assets/yt.svg?url'
 import LinkedIn from '../../../assets/LinkedIn.svg?url'
 import X from '../../../assets/x.svg?url'
-import credits from '../../../assets/credits.png'
 import Minsky from '../../../assets/minsky.svg?url'
 
 export default function Footer() {
@@ -38,15 +37,12 @@ export default function Footer() {
         className='flex flex-col bg-[#18BFDB] h-[60vh] md:rounded-t-[60px] overflow-hidden z-50'
         style={{ borderRadius: '50px 23px 0px 0px' }}
       >
-        {/* Marquee */}
-        {/* Conditionally render marquee only if footerData and banner exist */}
         <div className='inline-flex whitespace-nowrap w-full animate-marking text-black font-medium text-2xl sm:text-4xl md:text-5xl space-x-8 py-3 pt-5 px-4'>
-          {/* Use Array.from for clearer iteration, or simply use a fixed number of repetitions */}
           {Array(7)
-            .fill(null) // Fill with null, then map to use footerData.banner
+            .fill(null)
             .map((_, index) => (
               <div key={index} className='space-x-4'>
-                <span>{banner}</span> {/* Use footerData.banner here */}
+                <span>{banner}</span>
                 {index < 6 && <span>|</span>}
               </div>
             ))}
@@ -61,7 +57,7 @@ export default function Footer() {
           <div className='safe-cont group flex items-center justify-center h-full w-full relative'>
             {/* DISRUPT TO RISE Text */}
             <div className='flex w-full h-full justify-center group-hover:opacity-40 transition-opacity duration-300 items-center'>
-              <p className='text-3xl sm:text-5xl md:text-8xl lg:text-9xl text-white text-center font-medium tracking-widest group-hover:-rotate-6 transition-all duration-300'>
+              <p className='hidden md:block sm:text-5xl md:text-8xl lg:text-9xl text-white text-center font-medium tracking-widest group-hover:-rotate-6 transition-all duration-300'>
                 DISRUPT TO RISE
               </p>
             </div>
