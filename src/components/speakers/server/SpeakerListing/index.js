@@ -115,7 +115,7 @@ const SpeakerListing = () => {
       <FloatingButton
         onOpen={() => setIsMobileFilterOpen(true)}
         hasActiveFilters={hasActiveFilters}
-        scrollThreshold={175}
+        scrollThreshold={950}
       />
 
       <MobileFilterOverlay

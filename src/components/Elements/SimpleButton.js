@@ -16,6 +16,8 @@ const SimpleButton = ({
     yellow:
       'linear-gradient(135deg, rgba(253, 182, 51, 1) 0%, rgba(251, 146, 60, 1) 100%)',
     cyan: 'linear-gradient(135deg, rgba(23, 191, 219, 1) 0%, rgba(14, 165, 233, 1) 100%)',
+    mixed:
+      'linear-gradient(90deg, rgba(247, 117, 12, 0.6) 0%, rgba(23, 191, 219, 0.6) 100%)',
   }
 
   const baseClasses =

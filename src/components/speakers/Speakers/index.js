@@ -25,6 +25,12 @@ const SpeakerPage = () => {
         }
       >
         <HonourableDignitaries />
+        <HonourableDignitaries
+          title='Government Officials'
+          slug='government-officials'
+        />
+
+        <HonourableDignitaries title='Guest' slug='guest' />
       </Suspense>
 
       <Suspense

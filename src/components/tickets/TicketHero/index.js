@@ -7,6 +7,7 @@ import {
 
 import blueCardBg from '../../../assets/blue-cardbg.svg?url'
 import purpleCardBg from '../../../assets/purple-cardbg.svg?url'
+import mixedCardBg from '../../../assets/mixed-cardbg.svg?url'
 import { useTicketsBySlug } from '../../../hooks/useQueryApi'
 import SimpleButton from '../../Elements/SimpleButton'
 
@@ -15,7 +16,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
     data: passData,
     isLoading,
     error,
-  } = useTicketsBySlug(['delegate-pass', 'visitor-pass'])
+  } = useTicketsBySlug(['delegate-pass', 'visitor-pass', 'networking-dinner'])
 
   const visitorTicket = passData?.docs?.find(
     (ticket) => ticket.slug === 'visitor-pass'
@@ -25,12 +26,22 @@ const TicketHero = ({ headers, applyBorder = true }) => {
     (ticket) => ticket.slug === 'delegate-pass'
   )
 
+  const networkingDinner = passData?.docs?.find(
+    (ticket) => ticket.slug === 'networking-dinner'
+  )
+
   const handleVisitorPassClick = () => {
     window.location.href = 'https://event.startuptn.in/booking?pass=visitor'
   }
 
   const handleDelegatePassClick = () => {
-    window.location.href = 'https://event.startuptn.in/upgrade?email='
+    window.location.href =
+      'https://event.startuptn.in/booking?pass=delegate&count=1'
+  }
+
+  const handleNetworkingDinnerClick = () => {
+    window.location.href =
+      'https://event.startuptn.in/booking?pass=networking&count=1'
   }
 
   return (
@@ -58,7 +69,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
 
         {/*ticket cards*/}
         <div className='w-full flex flex-col md:flex-row md:items-stretch md:justify-center gap-7 md:gap-14'>
-          <div className='w-full md:w-4/12'>
+          <div className='w-full md:w-4/12 2xl:w-4/12'>
             <TicketCard variant='blue' backgroundImage={blueCardBg}>
               <TicketTitle
                 title={visitorTicket?.name}
@@ -73,7 +84,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
             </TicketCard>
           </div>
 
-          <div className='w-full md:w-4/12'>
+          <div className='w-full md:w-4/12 2xl:w-4/12'>
             <TicketCard
               variant='purple'
               backgroundImage={purpleCardBg}
@@ -93,6 +104,24 @@ const TicketHero = ({ headers, applyBorder = true }) => {
                 Select Delegate Pass
               </SimpleButton>
               <TicketFeatures features={delegateTicket?.features} />
+            </TicketCard>
+          </div>
+
+          <div className='w-full md:w-4/12 2xl:w-4/12'>
+            <TicketCard variant='mixed' backgroundImage={mixedCardBg}>
+              <TicketTitle
+                title={networkingDinner?.name}
+                description={networkingDinner?.description}
+                icon={true}
+              />
+              <TicketPrice pricing={networkingDinner?.pricing} />
+              <SimpleButton
+                onClick={handleNetworkingDinnerClick}
+                variant='mixed'
+              >
+                Register Now
+              </SimpleButton>
+              <TicketFeatures features={networkingDinner?.features} />
             </TicketCard>
           </div>
         </div>

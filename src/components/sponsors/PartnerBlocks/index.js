@@ -25,16 +25,34 @@ const PartnerBlocks = () => {
               </h3>
               {/*logos*/}
               <div className='flex flex-row flex-wrap items-center justify-center md:justify-start w-full gap-4 md:gap-8'>
-                {partner.logos.map((logo) => (
-                  <SponsorLogo
-                    key={logo.id}
-                    logo={logo}
-                    desktopWidth='10vw'
-                    desktopHeight='4vw'
-                    mobileWidth='100px'
-                    mobileHeight='50px'
-                  />
-                ))}
+                {partner.logos.map((logo) =>
+                  logo?.url ? (
+                    <a
+                      href={logo.url}
+                      key={logo.id}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      <SponsorLogo
+                        key={logo.id}
+                        logo={logo}
+                        desktopWidth='10vw'
+                        desktopHeight='4vw'
+                        mobileWidth='100px'
+                        mobileHeight='50px'
+                      />
+                    </a>
+                  ) : (
+                    <SponsorLogo
+                      key={logo.id}
+                      logo={logo}
+                      desktopWidth='10vw'
+                      desktopHeight='4vw'
+                      mobileWidth='100px'
+                      mobileHeight='50px'
+                    />
+                  )
+                )}
               </div>
             </div>
           ))}

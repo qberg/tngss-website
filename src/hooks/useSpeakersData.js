@@ -45,7 +45,8 @@ export const useInfiniteSpeakers = (filters = {}, limit = 9) => {
         sort: 'name',
         limit: limit.toString(),
         page: pageParam.toString(),
-        'where[speaker_type.slug][not_equals]': 'government-dignitaries',
+        'where[speaker_type.slug][not_in]':
+          'government-dignitaries,guest,government-officials',
       })
 
       if (queryFilters.speaker_type && queryFilters.speaker_type !== 'all') {
@@ -133,5 +134,45 @@ export const useSpeakerBySlug = (slug) => {
     enabled: !!slug,
     staleTime: 5 * 60 * 1000,
     retry: 3,
+  })
+}
+
+export const useSpeakersByType = (speakerTypeSlug, options = {}) => {
+  const { limit = 10, enabled = true } = options
+
+  return useQuery({
+    queryKey: ['speakers', 'by-type', speakerTypeSlug, limit],
+    queryFn: async () => {
+      if (!speakerTypeSlug) throw new Error('Speaker type slug is required')
+
+      const params = new URLSearchParams({
+        'where[isPublic][equals]': 'true',
+        'where[speaker_type.slug][equals]': speakerTypeSlug,
+        depth: '2',
+        sort: 'sort_order',
+        limit: limit.toString(),
+      })
+
+      const url = `https://cms.tngss.startuptn.in/api/speakers?${params.toString()}`
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+      return data.docs
+    },
+    enabled: enabled && !!speakerTypeSlug,
+    staleTime: 5 * 60 * 1000,
+    retry: 3,
+    refetchOnWindowFocus: false,
   })
 }

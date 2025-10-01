@@ -26,13 +26,13 @@ const MobileStatsSection = ({ isSticky = true }) => {
 
   const data = useMemo(
     () => [
+      { count: 40, tag: 'Countries' },
       { count: 200, tag: 'Global Startups Stakeholders' },
       { count: 30000, tag: 'Attendees' },
       { count: 50, tag: 'Showcasing Power Brands Of TN' },
       { count: 150, tag: 'International & National Speakers' },
       { count: 750, tag: 'Stalls' },
       { count: 75, tag: 'Incubations Participation' },
-      { count: 10, tag: 'Unicorns/ Soonicorns' },
       { count: 100, tag: 'Investors Participation' },
       { count: 150, tag: 'Student Startups Showcasing' },
       { count: 100, tag: 'Investment Commitment', suffix: 'Crore' },
