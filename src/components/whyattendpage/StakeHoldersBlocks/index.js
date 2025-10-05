@@ -3,6 +3,8 @@ import { useStakeholdersFromBase } from '../../../hooks/useQueryApi'
 
 const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
   const [imageLoaded, setImageLoaded] = useState(false)
+  const url = `${info?.image.url}?format=webp&quality=40&width=600`
+  console.log(url)
   return (
     <section className='relative overflow-hidden'>
       <div
@@ -48,7 +50,7 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
                   }}
                 >
                   <img
-                    src={info?.image.url}
+                    src={url}
                     alt={info.image.alt || 'Stakeholder image'}
                     className={`w-full h-auto object-cover transition-all duration-700 ${
                       imageLoaded ? 'blur-0' : 'blur-md'
@@ -56,8 +58,6 @@ const StakeHoldersBlock = ({ info, isEven, applyBorder = true }) => {
                     style={{
                       borderRadius: '32px',
                     }}
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => setImageLoaded(true)}
                   />
                 </div>
               </div>
@@ -119,6 +119,7 @@ const StakeHoldersSection = () => {
 
   return (
     <div className='pb-4 md:pb-28'>
+      {/*<pre>{JSON.stringify(stakeholdersData, null, 2)}</pre> */}
       {stakeholdersData &&
         stakeholdersData.map((info, index) => (
           <StakeHoldersBlock

@@ -80,7 +80,7 @@ const HonourableDignitaries = ({
       >
         <div className='h-auto bg-black px-4 md:px-24 2xl:px-44 py-8 md:py-14 2xl:py-24'>
           <h2 className='uppercase text-3xl md:text-6xl text-white font-medium gradient-text-black mb-4 md:mb-7 2xl:mb-12'>
-            {title}
+            {dignitariesData[0]?.speaker_type?.name || title}
           </h2>
 
           {/* Featured speakers in their own row */}

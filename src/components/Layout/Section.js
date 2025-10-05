@@ -5,7 +5,7 @@ const SectionWrapper = ({ children, className, variant = 'default' }) => {
   }
   return (
     <section
-      className={`${className} ${variants[variant]} bg-black pb-8 py-4 md:py-14 2xl:py-24 flex flex-col gap-8 md:gap-14 2xl:gap-24`}
+      className={`${className} ${variants[variant]} bg-black pb-8 py-4 md:py-14 2xl:py-24 flex flex-col gap-8 md:gap-14 2xl:gap-14`}
     >
       {children}
     </section>

@@ -1,0 +1,3192 @@
+{
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 9,
+        "vusers.created": 9,
+        "http.requests": 9,
+        "http.codes.200": 2,
+        "http.responses": 2,
+        "http.downloaded_bytes": 1187,
+        "plugins.expect.ok": 2,
+        "plugins.expect.ok.statusCode": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 2,
+        "errors.Failed capture or match": 2,
+        "vusers.failed": 2,
+        "vusers.active": 7
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314181827,
+      "firstHistogramAt": 1759314186653,
+      "lastCounterAt": 1759314189829,
+      "lastHistogramAt": 1759314188619,
+      "firstMetricAt": 1759314181827,
+      "lastMetricAt": 1759314189829,
+      "period": "1759314180000",
+      "summaries": {
+        "http.response_time": {
+          "min": 4654,
+          "max": 5656,
+          "count": 2,
+          "mean": 5155,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        },
+        "http.response_time.2xx": {
+          "min": 4654,
+          "max": 5656,
+          "count": 2,
+          "mean": 5155,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 4654,
+          "max": 5656,
+          "count": 2,
+          "mean": 5155,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 10,
+        "vusers.created": 10,
+        "http.requests": 10,
+        "http.codes.200": 5,
+        "http.responses": 6,
+        "http.downloaded_bytes": 3018,
+        "plugins.expect.ok": 5,
+        "plugins.expect.ok.statusCode": 5,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 5,
+        "errors.Failed capture or match": 6,
+        "vusers.failed": 6,
+        "http.codes.502": 1,
+        "plugins.expect.failed": 1,
+        "plugins.expect.failed.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 1,
+        "vusers.active": 11
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314190826,
+      "firstHistogramAt": 1759314191567,
+      "lastCounterAt": 1759314199828,
+      "lastHistogramAt": 1759314199529,
+      "firstMetricAt": 1759314190826,
+      "lastMetricAt": 1759314199828,
+      "period": "1759314190000",
+      "summaries": {
+        "http.response_time": {
+          "min": 3580,
+          "max": 11560,
+          "count": 6,
+          "mean": 8360.2,
+          "p50": 8868.4,
+          "median": 8868.4,
+          "p75": 9416.8,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.2xx": {
+          "min": 6606,
+          "max": 11560,
+          "count": 5,
+          "mean": 9316.2,
+          "p50": 9416.8,
+          "median": 9416.8,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 3580,
+          "max": 11560,
+          "count": 6,
+          "mean": 8360.2,
+          "p50": 8868.4,
+          "median": 8868.4,
+          "p75": 9416.8,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.5xx": {
+          "min": 3580,
+          "max": 3580,
+          "count": 1,
+          "mean": 3580,
+          "p50": 3605.5,
+          "median": 3605.5,
+          "p75": 3605.5,
+          "p90": 3605.5,
+          "p95": 3605.5,
+          "p99": 3605.5,
+          "p999": 3605.5
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 10,
+        "vusers.created": 10,
+        "http.requests": 10,
+        "http.codes.200": 4,
+        "http.responses": 4,
+        "http.downloaded_bytes": 2514,
+        "plugins.expect.ok": 4,
+        "plugins.expect.ok.statusCode": 4,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 4,
+        "errors.Failed capture or match": 4,
+        "vusers.failed": 4,
+        "vusers.active": 17
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314200826,
+      "firstHistogramAt": 1759314201808,
+      "lastCounterAt": 1759314209828,
+      "lastHistogramAt": 1759314208456,
+      "firstMetricAt": 1759314200826,
+      "lastMetricAt": 1759314209828,
+      "period": "1759314200000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11851,
+          "max": 16488,
+          "count": 4,
+          "mean": 14719.5,
+          "p50": 15218.6,
+          "median": 15218.6,
+          "p75": 15526,
+          "p90": 15526,
+          "p95": 15526,
+          "p99": 15526,
+          "p999": 15526
+        },
+        "http.response_time.2xx": {
+          "min": 11851,
+          "max": 16488,
+          "count": 4,
+          "mean": 14719.5,
+          "p50": 15218.6,
+          "median": 15218.6,
+          "p75": 15526,
+          "p90": 15526,
+          "p95": 15526,
+          "p99": 15526,
+          "p999": 15526
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11851,
+          "max": 16488,
+          "count": 4,
+          "mean": 14719.5,
+          "p50": 15218.6,
+          "median": 15218.6,
+          "p75": 15526,
+          "p90": 15526,
+          "p95": 15526,
+          "p99": 15526,
+          "p999": 15526
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 10,
+        "vusers.created": 10,
+        "http.requests": 10,
+        "http.codes.200": 3,
+        "http.responses": 3,
+        "http.downloaded_bytes": 1959,
+        "plugins.expect.ok": 3,
+        "plugins.expect.ok.statusCode": 3,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 3,
+        "errors.Failed capture or match": 3,
+        "vusers.failed": 3,
+        "vusers.active": 24
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314210826,
+      "firstHistogramAt": 1759314213282,
+      "lastCounterAt": 1759314219828,
+      "lastHistogramAt": 1759314215954,
+      "firstMetricAt": 1759314210826,
+      "lastMetricAt": 1759314219828,
+      "period": "1759314210000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11002,
+          "max": 23009,
+          "count": 3,
+          "mean": 17779.7,
+          "p50": 19346.7,
+          "median": 19346.7,
+          "p75": 19346.7,
+          "p90": 19346.7,
+          "p95": 19346.7,
+          "p99": 19346.7,
+          "p999": 19346.7
+        },
+        "http.response_time.2xx": {
+          "min": 11002,
+          "max": 23009,
+          "count": 3,
+          "mean": 17779.7,
+          "p50": 19346.7,
+          "median": 19346.7,
+          "p75": 19346.7,
+          "p90": 19346.7,
+          "p95": 19346.7,
+          "p99": 19346.7,
+          "p999": 19346.7
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11002,
+          "max": 23009,
+          "count": 3,
+          "mean": 17779.7,
+          "p50": 19346.7,
+          "median": 19346.7,
+          "p75": 19346.7,
+          "p90": 19346.7,
+          "p95": 19346.7,
+          "p99": 19346.7,
+          "p999": 19346.7
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 10,
+        "vusers.created": 10,
+        "http.requests": 10,
+        "http.codes.200": 5,
+        "http.responses": 7,
+        "http.downloaded_bytes": 3181,
+        "plugins.expect.ok": 5,
+        "plugins.expect.ok.statusCode": 5,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 5,
+        "errors.Failed capture or match": 7,
+        "vusers.failed": 9,
+        "http.codes.502": 2,
+        "plugins.expect.failed": 2,
+        "plugins.expect.failed.statusCode": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 2,
+        "errors.ETIMEDOUT": 2,
+        "vusers.active": 25
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314220826,
+      "firstHistogramAt": 1759314222040,
+      "lastCounterAt": 1759314229829,
+      "lastHistogramAt": 1759314226334,
+      "firstMetricAt": 1759314220826,
+      "lastMetricAt": 1759314229829,
+      "period": "1759314220000",
+      "summaries": {
+        "http.response_time": {
+          "min": 5353,
+          "max": 28390,
+          "count": 7,
+          "mean": 17243.1,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 27181.5,
+          "p90": 28290.8,
+          "p95": 28290.8,
+          "p99": 28290.8,
+          "p999": 28290.8
+        },
+        "http.response_time.2xx": {
+          "min": 11093,
+          "max": 28390,
+          "count": 5,
+          "mean": 21450.2,
+          "p50": 27181.5,
+          "median": 27181.5,
+          "p75": 28290.8,
+          "p90": 28290.8,
+          "p95": 28290.8,
+          "p99": 28290.8,
+          "p999": 28290.8
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 5353,
+          "max": 28390,
+          "count": 7,
+          "mean": 17243.1,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 27181.5,
+          "p90": 28290.8,
+          "p95": 28290.8,
+          "p99": 28290.8,
+          "p999": 28290.8
+        },
+        "http.response_time.5xx": {
+          "min": 5353,
+          "max": 8098,
+          "count": 2,
+          "mean": 6725.5,
+          "p50": 5378.9,
+          "median": 5378.9,
+          "p75": 5378.9,
+          "p90": 5378.9,
+          "p95": 5378.9,
+          "p99": 5378.9,
+          "p999": 5378.9
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 10,
+        "vusers.created": 10,
+        "http.requests": 10,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 9,
+        "errors.ETIMEDOUT": 9,
+        "vusers.failed": 10,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 394,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 25
+      },
+      "rates": {
+        "http.request_rate": 1
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314230826,
+      "firstHistogramAt": 1759314233400,
+      "lastCounterAt": 1759314239828,
+      "lastHistogramAt": 1759314233400,
+      "firstMetricAt": 1759314230826,
+      "lastMetricAt": 1759314239828,
+      "period": "1759314230000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10457,
+          "max": 10457,
+          "count": 1,
+          "mean": 10457,
+          "p50": 10407.3,
+          "median": 10407.3,
+          "p75": 10407.3,
+          "p90": 10407.3,
+          "p95": 10407.3,
+          "p99": 10407.3,
+          "p999": 10407.3
+        },
+        "http.response_time.2xx": {
+          "min": 10457,
+          "max": 10457,
+          "count": 1,
+          "mean": 10457,
+          "p50": 10407.3,
+          "median": 10407.3,
+          "p75": 10407.3,
+          "p90": 10407.3,
+          "p95": 10407.3,
+          "p99": 10407.3,
+          "p999": 10407.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10457,
+          "max": 10457,
+          "count": 1,
+          "mean": 10457,
+          "p50": 10407.3,
+          "median": 10407.3,
+          "p75": 10407.3,
+          "p90": 10407.3,
+          "p95": 10407.3,
+          "p99": 10407.3,
+          "p999": 10407.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 28,
+        "vusers.created": 28,
+        "http.requests": 28,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 6,
+        "errors.ETIMEDOUT": 6,
+        "vusers.failed": 7,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 492,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 46
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314240826,
+      "firstHistogramAt": 1759314245478,
+      "lastCounterAt": 1759314249929,
+      "lastHistogramAt": 1759314245479,
+      "firstMetricAt": 1759314240826,
+      "lastMetricAt": 1759314249929,
+      "period": "1759314240000",
+      "summaries": {
+        "http.response_time": {
+          "min": 12525,
+          "max": 12525,
+          "count": 1,
+          "mean": 12525,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        },
+        "http.response_time.2xx": {
+          "min": 12525,
+          "max": 12525,
+          "count": 1,
+          "mean": 12525,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 12525,
+          "max": 12525,
+          "count": 1,
+          "mean": 12525,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 9,
+        "errors.ETIMEDOUT": 9,
+        "vusers.failed": 9,
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "vusers.active": 67
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314250827,
+      "lastCounterAt": 1759314259929,
+      "firstMetricAt": 1759314250827,
+      "lastMetricAt": 1759314259929,
+      "period": "1759314250000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 9,
+        "errors.ETIMEDOUT": 9,
+        "vusers.failed": 9,
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "vusers.active": 88
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314260827,
+      "lastCounterAt": 1759314269929,
+      "firstMetricAt": 1759314260827,
+      "lastMetricAt": 1759314269929,
+      "period": "1759314260000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 28,
+        "errors.ETIMEDOUT": 28,
+        "vusers.failed": 28,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314270827,
+      "lastCounterAt": 1759314279930,
+      "firstMetricAt": 1759314270827,
+      "lastMetricAt": 1759314279930,
+      "period": "1759314270000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314280827,
+      "lastCounterAt": 1759314289929,
+      "firstMetricAt": 1759314280827,
+      "lastMetricAt": 1759314289929,
+      "period": "1759314280000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314290827,
+      "lastCounterAt": 1759314299929,
+      "firstMetricAt": 1759314290827,
+      "lastMetricAt": 1759314299929,
+      "period": "1759314290000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314300827,
+      "lastCounterAt": 1759314309929,
+      "firstMetricAt": 1759314300827,
+      "lastMetricAt": 1759314309929,
+      "period": "1759314300000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314310827,
+      "lastCounterAt": 1759314319929,
+      "firstMetricAt": 1759314310827,
+      "lastMetricAt": 1759314319929,
+      "period": "1759314310000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314320827,
+      "lastCounterAt": 1759314329929,
+      "firstMetricAt": 1759314320827,
+      "lastMetricAt": 1759314329929,
+      "period": "1759314320000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314330827,
+      "lastCounterAt": 1759314339929,
+      "firstMetricAt": 1759314330827,
+      "lastMetricAt": 1759314339929,
+      "period": "1759314330000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314340827,
+      "lastCounterAt": 1759314349929,
+      "firstMetricAt": 1759314340827,
+      "lastMetricAt": 1759314349929,
+      "period": "1759314340000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 30,
+        "vusers.created": 30,
+        "http.requests": 30,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 30,
+        "vusers.active": 90
+      },
+      "rates": {
+        "http.request_rate": 3
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314350827,
+      "lastCounterAt": 1759314359929,
+      "firstMetricAt": 1759314350827,
+      "lastMetricAt": 1759314359929,
+      "period": "1759314350000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 47,
+        "vusers.created": 47,
+        "http.requests": 47,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.failed": 31,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 597,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 106
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314360827,
+      "firstHistogramAt": 1759314367798,
+      "lastCounterAt": 1759314369980,
+      "lastHistogramAt": 1759314367800,
+      "firstMetricAt": 1759314360827,
+      "lastMetricAt": 1759314369980,
+      "period": "1759314360000",
+      "summaries": {
+        "http.response_time": {
+          "min": 4713,
+          "max": 4713,
+          "count": 1,
+          "mean": 4713,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        },
+        "http.response_time.2xx": {
+          "min": 4713,
+          "max": 4713,
+          "count": 1,
+          "mean": 4713,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 4713,
+          "max": 4713,
+          "count": 1,
+          "mean": 4713,
+          "p50": 4676.2,
+          "median": 4676.2,
+          "p75": 4676.2,
+          "p90": 4676.2,
+          "p95": 4676.2,
+          "p99": 4676.2,
+          "p999": 4676.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 605,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.failed": 31,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.active": 125
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314370031,
+      "firstHistogramAt": 1759314371872,
+      "lastCounterAt": 1759314379979,
+      "lastHistogramAt": 1759314371875,
+      "firstMetricAt": 1759314370031,
+      "lastMetricAt": 1759314379979,
+      "period": "1759314370000",
+      "summaries": {
+        "http.response_time": {
+          "min": 8745,
+          "max": 8745,
+          "count": 1,
+          "mean": 8745,
+          "p50": 8692.8,
+          "median": 8692.8,
+          "p75": 8692.8,
+          "p90": 8692.8,
+          "p95": 8692.8,
+          "p99": 8692.8,
+          "p999": 8692.8
+        },
+        "http.response_time.2xx": {
+          "min": 8745,
+          "max": 8745,
+          "count": 1,
+          "mean": 8745,
+          "p50": 8692.8,
+          "median": 8692.8,
+          "p75": 8692.8,
+          "p90": 8692.8,
+          "p95": 8692.8,
+          "p99": 8692.8,
+          "p999": 8692.8
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 8745,
+          "max": 8745,
+          "count": 1,
+          "mean": 8745,
+          "p50": 8692.8,
+          "median": 8692.8,
+          "p75": 8692.8,
+          "p90": 8692.8,
+          "p95": 8692.8,
+          "p99": 8692.8,
+          "p999": 8692.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "http.codes.200": 4,
+        "http.responses": 4,
+        "http.downloaded_bytes": 2117,
+        "plugins.expect.ok": 4,
+        "plugins.expect.ok.statusCode": 4,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 4,
+        "errors.Failed capture or match": 4,
+        "vusers.failed": 34,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 30,
+        "errors.ETIMEDOUT": 30,
+        "vusers.active": 141
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314380031,
+      "firstHistogramAt": 1759314380621,
+      "lastCounterAt": 1759314389979,
+      "lastHistogramAt": 1759314389610,
+      "firstMetricAt": 1759314380031,
+      "lastMetricAt": 1759314389979,
+      "period": "1759314380000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11655,
+          "max": 25564,
+          "count": 4,
+          "mean": 17356.3,
+          "p50": 15526,
+          "median": 15526,
+          "p75": 16819.2,
+          "p90": 16819.2,
+          "p95": 16819.2,
+          "p99": 16819.2,
+          "p999": 16819.2
+        },
+        "http.response_time.2xx": {
+          "min": 11655,
+          "max": 25564,
+          "count": 4,
+          "mean": 17356.3,
+          "p50": 15526,
+          "median": 15526,
+          "p75": 16819.2,
+          "p90": 16819.2,
+          "p95": 16819.2,
+          "p99": 16819.2,
+          "p999": 16819.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11655,
+          "max": 25564,
+          "count": 4,
+          "mean": 17356.3,
+          "p50": 15526,
+          "median": 15526,
+          "p75": 16819.2,
+          "p90": 16819.2,
+          "p95": 16819.2,
+          "p99": 16819.2,
+          "p999": 16819.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 42,
+        "errors.ETIMEDOUT": 42,
+        "vusers.failed": 44,
+        "http.codes.200": 2,
+        "http.responses": 2,
+        "http.downloaded_bytes": 1106,
+        "plugins.expect.ok": 2,
+        "plugins.expect.ok.statusCode": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 2,
+        "errors.Failed capture or match": 2,
+        "vusers.active": 147
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314390031,
+      "firstHistogramAt": 1759314391669,
+      "lastCounterAt": 1759314399981,
+      "lastHistogramAt": 1759314395788,
+      "firstMetricAt": 1759314390031,
+      "lastMetricAt": 1759314399981,
+      "period": "1759314390000",
+      "summaries": {
+        "http.response_time": {
+          "min": 5479,
+          "max": 8836,
+          "count": 2,
+          "mean": 7157.5,
+          "p50": 5487.5,
+          "median": 5487.5,
+          "p75": 5487.5,
+          "p90": 5487.5,
+          "p95": 5487.5,
+          "p99": 5487.5,
+          "p999": 5487.5
+        },
+        "http.response_time.2xx": {
+          "min": 5479,
+          "max": 8836,
+          "count": 2,
+          "mean": 7157.5,
+          "p50": 5487.5,
+          "median": 5487.5,
+          "p75": 5487.5,
+          "p90": 5487.5,
+          "p95": 5487.5,
+          "p99": 5487.5,
+          "p999": 5487.5
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 5479,
+          "max": 8836,
+          "count": 2,
+          "mean": 7157.5,
+          "p50": 5487.5,
+          "median": 5487.5,
+          "p75": 5487.5,
+          "p90": 5487.5,
+          "p95": 5487.5,
+          "p99": 5487.5,
+          "p999": 5487.5
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 49,
+        "errors.ETIMEDOUT": 49,
+        "vusers.failed": 53,
+        "http.codes.200": 3,
+        "http.responses": 4,
+        "http.downloaded_bytes": 2001,
+        "plugins.expect.ok": 3,
+        "plugins.expect.ok.statusCode": 3,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 3,
+        "errors.Failed capture or match": 4,
+        "http.codes.502": 1,
+        "plugins.expect.failed": 1,
+        "plugins.expect.failed.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 1,
+        "vusers.active": 144
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314400031,
+      "firstHistogramAt": 1759314400335,
+      "lastCounterAt": 1759314409979,
+      "lastHistogramAt": 1759314403076,
+      "firstMetricAt": 1759314400031,
+      "lastMetricAt": 1759314409979,
+      "period": "1759314400000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11032,
+          "max": 21965,
+          "count": 4,
+          "mean": 16833.3,
+          "p50": 13230.3,
+          "median": 13230.3,
+          "p75": 20958.1,
+          "p90": 20958.1,
+          "p95": 20958.1,
+          "p99": 20958.1,
+          "p999": 20958.1
+        },
+        "http.response_time.2xx": {
+          "min": 13261,
+          "max": 21965,
+          "count": 3,
+          "mean": 18767,
+          "p50": 20958.1,
+          "median": 20958.1,
+          "p75": 20958.1,
+          "p90": 20958.1,
+          "p95": 20958.1,
+          "p99": 20958.1,
+          "p999": 20958.1
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11032,
+          "max": 21965,
+          "count": 4,
+          "mean": 16833.3,
+          "p50": 13230.3,
+          "median": 13230.3,
+          "p75": 20958.1,
+          "p90": 20958.1,
+          "p95": 20958.1,
+          "p99": 20958.1,
+          "p999": 20958.1
+        },
+        "http.response_time.5xx": {
+          "min": 11032,
+          "max": 11032,
+          "count": 1,
+          "mean": 11032,
+          "p50": 11050.8,
+          "median": 11050.8,
+          "p75": 11050.8,
+          "p90": 11050.8,
+          "p95": 11050.8,
+          "p99": 11050.8,
+          "p999": 11050.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 44,
+        "errors.ETIMEDOUT": 44,
+        "vusers.failed": 49,
+        "http.codes.200": 4,
+        "http.responses": 5,
+        "http.downloaded_bytes": 2627,
+        "plugins.expect.ok": 4,
+        "plugins.expect.ok.statusCode": 4,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 4,
+        "errors.Failed capture or match": 5,
+        "http.codes.502": 1,
+        "plugins.expect.failed": 1,
+        "plugins.expect.failed.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 1,
+        "vusers.active": 145
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314410031,
+      "firstHistogramAt": 1759314412927,
+      "lastCounterAt": 1759314419979,
+      "lastHistogramAt": 1759314414407,
+      "firstMetricAt": 1759314410031,
+      "lastMetricAt": 1759314419979,
+      "period": "1759314410000",
+      "summaries": {
+        "http.response_time": {
+          "min": 7773,
+          "max": 27285,
+          "count": 5,
+          "mean": 18105.6,
+          "p50": 17505.6,
+          "median": 17505.6,
+          "p75": 21813.5,
+          "p90": 21813.5,
+          "p95": 21813.5,
+          "p99": 21813.5,
+          "p999": 21813.5
+        },
+        "http.response_time.2xx": {
+          "min": 16244,
+          "max": 27285,
+          "count": 4,
+          "mean": 20688.8,
+          "p50": 17505.6,
+          "median": 17505.6,
+          "p75": 21813.5,
+          "p90": 21813.5,
+          "p95": 21813.5,
+          "p99": 21813.5,
+          "p999": 21813.5
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 7773,
+          "max": 27285,
+          "count": 5,
+          "mean": 18105.6,
+          "p50": 17505.6,
+          "median": 17505.6,
+          "p75": 21813.5,
+          "p90": 21813.5,
+          "p95": 21813.5,
+          "p99": 21813.5,
+          "p999": 21813.5
+        },
+        "http.response_time.5xx": {
+          "min": 7773,
+          "max": 7773,
+          "count": 1,
+          "mean": 7773,
+          "p50": 7709.8,
+          "median": 7709.8,
+          "p75": 7709.8,
+          "p90": 7709.8,
+          "p95": 7709.8,
+          "p99": 7709.8,
+          "p999": 7709.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 46,
+        "errors.ETIMEDOUT": 46,
+        "vusers.failed": 51,
+        "http.codes.502": 3,
+        "http.responses": 5,
+        "http.downloaded_bytes": 1550,
+        "plugins.expect.failed": 3,
+        "plugins.expect.failed.statusCode": 3,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 3,
+        "errors.Failed capture or match": 5,
+        "http.codes.200": 2,
+        "plugins.expect.ok": 2,
+        "plugins.expect.ok.statusCode": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 2,
+        "vusers.active": 144
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314420031,
+      "firstHistogramAt": 1759314422865,
+      "lastCounterAt": 1759314429979,
+      "lastHistogramAt": 1759314426779,
+      "firstMetricAt": 1759314420031,
+      "lastMetricAt": 1759314429979,
+      "period": "1759314420000",
+      "summaries": {
+        "http.response_time": {
+          "min": 1670,
+          "max": 17920,
+          "count": 5,
+          "mean": 10437.6,
+          "p50": 9607.1,
+          "median": 9607.1,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        },
+        "http.response_time.5xx": {
+          "min": 1670,
+          "max": 9691,
+          "count": 3,
+          "mean": 6141.7,
+          "p50": 7117,
+          "median": 7117,
+          "p75": 7117,
+          "p90": 7117,
+          "p95": 7117,
+          "p99": 7117,
+          "p999": 7117
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 1670,
+          "max": 17920,
+          "count": 5,
+          "mean": 10437.6,
+          "p50": 9607.1,
+          "median": 9607.1,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        },
+        "http.response_time.2xx": {
+          "min": 15843,
+          "max": 17920,
+          "count": 2,
+          "mean": 16881.5,
+          "p50": 15839.7,
+          "median": 15839.7,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 47,
+        "errors.ETIMEDOUT": 47,
+        "vusers.failed": 49,
+        "http.codes.200": 2,
+        "http.responses": 2,
+        "http.downloaded_bytes": 1261,
+        "plugins.expect.ok": 2,
+        "plugins.expect.ok.statusCode": 2,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 2,
+        "errors.Failed capture or match": 2,
+        "vusers.active": 145
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314430031,
+      "firstHistogramAt": 1759314437395,
+      "lastCounterAt": 1759314439980,
+      "lastHistogramAt": 1759314437402,
+      "firstMetricAt": 1759314430031,
+      "lastMetricAt": 1759314439980,
+      "period": "1759314430000",
+      "summaries": {
+        "http.response_time": {
+          "min": 22320,
+          "max": 22442,
+          "count": 2,
+          "mean": 22381,
+          "p50": 22254.1,
+          "median": 22254.1,
+          "p75": 22254.1,
+          "p90": 22254.1,
+          "p95": 22254.1,
+          "p99": 22254.1,
+          "p999": 22254.1
+        },
+        "http.response_time.2xx": {
+          "min": 22320,
+          "max": 22442,
+          "count": 2,
+          "mean": 22381,
+          "p50": 22254.1,
+          "median": 22254.1,
+          "p75": 22254.1,
+          "p90": 22254.1,
+          "p95": 22254.1,
+          "p99": 22254.1,
+          "p999": 22254.1
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 22320,
+          "max": 22442,
+          "count": 2,
+          "mean": 22381,
+          "p50": 22254.1,
+          "median": 22254.1,
+          "p75": 22254.1,
+          "p90": 22254.1,
+          "p95": 22254.1,
+          "p99": 22254.1,
+          "p999": 22254.1
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 46,
+        "errors.ETIMEDOUT": 46,
+        "vusers.failed": 48,
+        "http.codes.200": 1,
+        "http.responses": 2,
+        "http.downloaded_bytes": 874,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 2,
+        "http.codes.502": 1,
+        "plugins.expect.failed": 1,
+        "plugins.expect.failed.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 1,
+        "vusers.active": 147
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314440031,
+      "firstHistogramAt": 1759314446562,
+      "lastCounterAt": 1759314449979,
+      "lastHistogramAt": 1759314446563,
+      "firstMetricAt": 1759314440031,
+      "lastMetricAt": 1759314449979,
+      "period": "1759314440000",
+      "summaries": {
+        "http.response_time": {
+          "min": 8554,
+          "max": 22595,
+          "count": 2,
+          "mean": 15574.5,
+          "p50": 8520.7,
+          "median": 8520.7,
+          "p75": 8520.7,
+          "p90": 8520.7,
+          "p95": 8520.7,
+          "p99": 8520.7,
+          "p999": 8520.7
+        },
+        "http.response_time.2xx": {
+          "min": 22595,
+          "max": 22595,
+          "count": 1,
+          "mean": 22595,
+          "p50": 22703.7,
+          "median": 22703.7,
+          "p75": 22703.7,
+          "p90": 22703.7,
+          "p95": 22703.7,
+          "p99": 22703.7,
+          "p999": 22703.7
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 8554,
+          "max": 22595,
+          "count": 2,
+          "mean": 15574.5,
+          "p50": 8520.7,
+          "median": 8520.7,
+          "p75": 8520.7,
+          "p90": 8520.7,
+          "p95": 8520.7,
+          "p99": 8520.7,
+          "p999": 8520.7
+        },
+        "http.response_time.5xx": {
+          "min": 8554,
+          "max": 8554,
+          "count": 1,
+          "mean": 8554,
+          "p50": 8520.7,
+          "median": 8520.7,
+          "p75": 8520.7,
+          "p90": 8520.7,
+          "p95": 8520.7,
+          "p99": 8520.7,
+          "p999": 8520.7
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 48,
+        "errors.ETIMEDOUT": 48,
+        "vusers.failed": 49,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 463,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 148
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314450031,
+      "firstHistogramAt": 1759314455999,
+      "lastCounterAt": 1759314459979,
+      "lastHistogramAt": 1759314456000,
+      "firstMetricAt": 1759314450031,
+      "lastMetricAt": 1759314459979,
+      "period": "1759314450000",
+      "summaries": {
+        "http.response_time": {
+          "min": 14833,
+          "max": 14833,
+          "count": 1,
+          "mean": 14833,
+          "p50": 14917.2,
+          "median": 14917.2,
+          "p75": 14917.2,
+          "p90": 14917.2,
+          "p95": 14917.2,
+          "p99": 14917.2,
+          "p999": 14917.2
+        },
+        "http.response_time.2xx": {
+          "min": 14833,
+          "max": 14833,
+          "count": 1,
+          "mean": 14833,
+          "p50": 14917.2,
+          "median": 14917.2,
+          "p75": 14917.2,
+          "p90": 14917.2,
+          "p95": 14917.2,
+          "p99": 14917.2,
+          "p999": 14917.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 14833,
+          "max": 14833,
+          "count": 1,
+          "mean": 14833,
+          "p50": 14917.2,
+          "median": 14917.2,
+          "p75": 14917.2,
+          "p90": 14917.2,
+          "p95": 14917.2,
+          "p99": 14917.2,
+          "p999": 14917.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 49,
+        "errors.ETIMEDOUT": 49,
+        "vusers.failed": 50,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 610,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 148
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314460031,
+      "firstHistogramAt": 1759314466306,
+      "lastCounterAt": 1759314469979,
+      "lastHistogramAt": 1759314466306,
+      "firstMetricAt": 1759314460031,
+      "lastMetricAt": 1759314469979,
+      "period": "1759314460000",
+      "summaries": {
+        "http.response_time": {
+          "min": 18106,
+          "max": 18106,
+          "count": 1,
+          "mean": 18106,
+          "p50": 18220,
+          "median": 18220,
+          "p75": 18220,
+          "p90": 18220,
+          "p95": 18220,
+          "p99": 18220,
+          "p999": 18220
+        },
+        "http.response_time.2xx": {
+          "min": 18106,
+          "max": 18106,
+          "count": 1,
+          "mean": 18106,
+          "p50": 18220,
+          "median": 18220,
+          "p75": 18220,
+          "p90": 18220,
+          "p95": 18220,
+          "p99": 18220,
+          "p999": 18220
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 18106,
+          "max": 18106,
+          "count": 1,
+          "mean": 18106,
+          "p50": 18220,
+          "median": 18220,
+          "p75": 18220,
+          "p90": 18220,
+          "p95": 18220,
+          "p99": 18220,
+          "p999": 18220
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 50,
+        "vusers.created": 50,
+        "http.requests": 50,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 48,
+        "errors.ETIMEDOUT": 48,
+        "vusers.failed": 49,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 659,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 149
+      },
+      "rates": {
+        "http.request_rate": 5
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314470031,
+      "firstHistogramAt": 1759314475852,
+      "lastCounterAt": 1759314479979,
+      "lastHistogramAt": 1759314475852,
+      "firstMetricAt": 1759314470031,
+      "lastMetricAt": 1759314479979,
+      "period": "1759314470000",
+      "summaries": {
+        "http.response_time": {
+          "min": 15824,
+          "max": 15824,
+          "count": 1,
+          "mean": 15824,
+          "p50": 15839.7,
+          "median": 15839.7,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        },
+        "http.response_time.2xx": {
+          "min": 15824,
+          "max": 15824,
+          "count": 1,
+          "mean": 15824,
+          "p50": 15839.7,
+          "median": 15839.7,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 15824,
+          "max": 15824,
+          "count": 1,
+          "mean": 15824,
+          "p50": 15839.7,
+          "median": 15839.7,
+          "p75": 15839.7,
+          "p90": 15839.7,
+          "p95": 15839.7,
+          "p99": 15839.7,
+          "p999": 15839.7
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 90,
+        "vusers.created": 90,
+        "http.requests": 90,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 49,
+        "errors.ETIMEDOUT": 49,
+        "vusers.failed": 49,
+        "vusers.active": 190
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314480031,
+      "lastCounterAt": 1759314489980,
+      "firstMetricAt": 1759314480031,
+      "lastMetricAt": 1759314489980,
+      "period": "1759314480000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 568,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.failed": 51,
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 50,
+        "errors.ETIMEDOUT": 50,
+        "vusers.active": 239
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314490032,
+      "firstHistogramAt": 1759314490969,
+      "lastCounterAt": 1759314499980,
+      "lastHistogramAt": 1759314490969,
+      "firstMetricAt": 1759314490032,
+      "lastMetricAt": 1759314499980,
+      "period": "1759314490000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11848,
+          "max": 11848,
+          "count": 1,
+          "mean": 11848,
+          "p50": 11734.2,
+          "median": 11734.2,
+          "p75": 11734.2,
+          "p90": 11734.2,
+          "p95": 11734.2,
+          "p99": 11734.2,
+          "p999": 11734.2
+        },
+        "http.response_time.2xx": {
+          "min": 11848,
+          "max": 11848,
+          "count": 1,
+          "mean": 11848,
+          "p50": 11734.2,
+          "median": 11734.2,
+          "p75": 11734.2,
+          "p90": 11734.2,
+          "p95": 11734.2,
+          "p99": 11734.2,
+          "p999": 11734.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11848,
+          "max": 11848,
+          "count": 1,
+          "mean": 11848,
+          "p50": 11734.2,
+          "median": 11734.2,
+          "p75": 11734.2,
+          "p90": 11734.2,
+          "p95": 11734.2,
+          "p99": 11734.2,
+          "p999": 11734.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 49,
+        "errors.ETIMEDOUT": 49,
+        "vusers.failed": 50,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 506,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 289
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314500032,
+      "firstHistogramAt": 1759314504753,
+      "lastCounterAt": 1759314509980,
+      "lastHistogramAt": 1759314504755,
+      "firstMetricAt": 1759314500032,
+      "lastMetricAt": 1759314509980,
+      "period": "1759314500000",
+      "summaries": {
+        "http.response_time": {
+          "min": 12402,
+          "max": 12402,
+          "count": 1,
+          "mean": 12402,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        },
+        "http.response_time.2xx": {
+          "min": 12402,
+          "max": 12402,
+          "count": 1,
+          "mean": 12402,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 12402,
+          "max": 12402,
+          "count": 1,
+          "mean": 12402,
+          "p50": 12459.8,
+          "median": 12459.8,
+          "p75": 12459.8,
+          "p90": 12459.8,
+          "p95": 12459.8,
+          "p99": 12459.8,
+          "p999": 12459.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 90,
+        "errors.ETIMEDOUT": 90,
+        "vusers.failed": 91,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 540,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 298
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314510032,
+      "firstHistogramAt": 1759314518727,
+      "lastCounterAt": 1759314519980,
+      "lastHistogramAt": 1759314518729,
+      "firstMetricAt": 1759314510032,
+      "lastMetricAt": 1759314519980,
+      "period": "1759314510000",
+      "summaries": {
+        "http.response_time": {
+          "min": 13273,
+          "max": 13273,
+          "count": 1,
+          "mean": 13273,
+          "p50": 13230.3,
+          "median": 13230.3,
+          "p75": 13230.3,
+          "p90": 13230.3,
+          "p95": 13230.3,
+          "p99": 13230.3,
+          "p999": 13230.3
+        },
+        "http.response_time.2xx": {
+          "min": 13273,
+          "max": 13273,
+          "count": 1,
+          "mean": 13273,
+          "p50": 13230.3,
+          "median": 13230.3,
+          "p75": 13230.3,
+          "p90": 13230.3,
+          "p95": 13230.3,
+          "p99": 13230.3,
+          "p999": 13230.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 13273,
+          "max": 13273,
+          "count": 1,
+          "mean": 13273,
+          "p50": 13230.3,
+          "median": 13230.3,
+          "p75": 13230.3,
+          "p90": 13230.3,
+          "p95": 13230.3,
+          "p99": 13230.3,
+          "p999": 13230.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 99,
+        "vusers.active": 299
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314520032,
+      "lastCounterAt": 1759314529980,
+      "firstMetricAt": 1759314520032,
+      "lastMetricAt": 1759314529980,
+      "period": "1759314520000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 100,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 562,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 299
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314530032,
+      "firstHistogramAt": 1759314532488,
+      "lastCounterAt": 1759314539980,
+      "lastHistogramAt": 1759314532489,
+      "firstMetricAt": 1759314530032,
+      "lastMetricAt": 1759314539980,
+      "period": "1759314530000",
+      "summaries": {
+        "http.response_time": {
+          "min": 11463,
+          "max": 11463,
+          "count": 1,
+          "mean": 11463,
+          "p50": 11501.8,
+          "median": 11501.8,
+          "p75": 11501.8,
+          "p90": 11501.8,
+          "p95": 11501.8,
+          "p99": 11501.8,
+          "p999": 11501.8
+        },
+        "http.response_time.2xx": {
+          "min": 11463,
+          "max": 11463,
+          "count": 1,
+          "mean": 11463,
+          "p50": 11501.8,
+          "median": 11501.8,
+          "p75": 11501.8,
+          "p90": 11501.8,
+          "p95": 11501.8,
+          "p99": 11501.8,
+          "p999": 11501.8
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 11463,
+          "max": 11463,
+          "count": 1,
+          "mean": 11463,
+          "p50": 11501.8,
+          "median": 11501.8,
+          "p75": 11501.8,
+          "p90": 11501.8,
+          "p95": 11501.8,
+          "p99": 11501.8,
+          "p999": 11501.8
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 100,
+        "errors.ETIMEDOUT": 100,
+        "vusers.failed": 101,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 596,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 298
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314540032,
+      "firstHistogramAt": 1759314546149,
+      "lastCounterAt": 1759314549980,
+      "lastHistogramAt": 1759314546150,
+      "firstMetricAt": 1759314540032,
+      "lastMetricAt": 1759314549980,
+      "period": "1759314540000",
+      "summaries": {
+        "http.response_time": {
+          "min": 12035,
+          "max": 12035,
+          "count": 1,
+          "mean": 12035,
+          "p50": 11971.2,
+          "median": 11971.2,
+          "p75": 11971.2,
+          "p90": 11971.2,
+          "p95": 11971.2,
+          "p99": 11971.2,
+          "p999": 11971.2
+        },
+        "http.response_time.2xx": {
+          "min": 12035,
+          "max": 12035,
+          "count": 1,
+          "mean": 12035,
+          "p50": 11971.2,
+          "median": 11971.2,
+          "p75": 11971.2,
+          "p90": 11971.2,
+          "p95": 11971.2,
+          "p99": 11971.2,
+          "p999": 11971.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 12035,
+          "max": 12035,
+          "count": 1,
+          "mean": 12035,
+          "p50": 11971.2,
+          "median": 11971.2,
+          "p75": 11971.2,
+          "p90": 11971.2,
+          "p95": 11971.2,
+          "p99": 11971.2,
+          "p999": 11971.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 99,
+        "vusers.active": 299
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314550032,
+      "lastCounterAt": 1759314559980,
+      "firstMetricAt": 1759314550032,
+      "lastMetricAt": 1759314559980,
+      "period": "1759314550000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 100,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 641,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 299
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314560032,
+      "firstHistogramAt": 1759314560809,
+      "lastCounterAt": 1759314569980,
+      "lastHistogramAt": 1759314560810,
+      "firstMetricAt": 1759314560032,
+      "lastMetricAt": 1759314569980,
+      "period": "1759314560000",
+      "summaries": {
+        "http.response_time": {
+          "min": 12847,
+          "max": 12847,
+          "count": 1,
+          "mean": 12847,
+          "p50": 12968.3,
+          "median": 12968.3,
+          "p75": 12968.3,
+          "p90": 12968.3,
+          "p95": 12968.3,
+          "p99": 12968.3,
+          "p999": 12968.3
+        },
+        "http.response_time.2xx": {
+          "min": 12847,
+          "max": 12847,
+          "count": 1,
+          "mean": 12847,
+          "p50": 12968.3,
+          "median": 12968.3,
+          "p75": 12968.3,
+          "p90": 12968.3,
+          "p95": 12968.3,
+          "p99": 12968.3,
+          "p999": 12968.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 12847,
+          "max": 12847,
+          "count": 1,
+          "mean": 12847,
+          "p50": 12968.3,
+          "median": 12968.3,
+          "p75": 12968.3,
+          "p90": 12968.3,
+          "p95": 12968.3,
+          "p99": 12968.3,
+          "p999": 12968.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 100,
+        "http.codes.200": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 604,
+        "plugins.expect.ok": 1,
+        "plugins.expect.ok.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 299
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314570032,
+      "firstHistogramAt": 1759314575898,
+      "lastCounterAt": 1759314579980,
+      "lastHistogramAt": 1759314575900,
+      "firstMetricAt": 1759314570032,
+      "lastMetricAt": 1759314579980,
+      "period": "1759314570000",
+      "summaries": {
+        "http.response_time": {
+          "min": 13635,
+          "max": 13635,
+          "count": 1,
+          "mean": 13635,
+          "p50": 13770.3,
+          "median": 13770.3,
+          "p75": 13770.3,
+          "p90": 13770.3,
+          "p95": 13770.3,
+          "p99": 13770.3,
+          "p999": 13770.3
+        },
+        "http.response_time.2xx": {
+          "min": 13635,
+          "max": 13635,
+          "count": 1,
+          "mean": 13635,
+          "p50": 13770.3,
+          "median": 13770.3,
+          "p75": 13770.3,
+          "p90": 13770.3,
+          "p95": 13770.3,
+          "p99": 13770.3,
+          "p999": 13770.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 13635,
+          "max": 13635,
+          "count": 1,
+          "mean": 13635,
+          "p50": 13770.3,
+          "median": 13770.3,
+          "p75": 13770.3,
+          "p90": 13770.3,
+          "p95": 13770.3,
+          "p99": 13770.3,
+          "p999": 13770.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 100,
+        "errors.ETIMEDOUT": 100,
+        "vusers.failed": 101,
+        "http.codes.502": 1,
+        "http.responses": 1,
+        "http.downloaded_bytes": 122,
+        "plugins.expect.failed": 1,
+        "plugins.expect.failed.statusCode": 1,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 1,
+        "errors.Failed capture or match": 1,
+        "vusers.active": 298
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314580032,
+      "firstHistogramAt": 1759314580161,
+      "lastCounterAt": 1759314589980,
+      "lastHistogramAt": 1759314580162,
+      "firstMetricAt": 1759314580032,
+      "lastMetricAt": 1759314589980,
+      "period": "1759314580000",
+      "summaries": {
+        "http.response_time": {
+          "min": 4153,
+          "max": 4153,
+          "count": 1,
+          "mean": 4153,
+          "p50": 4147.4,
+          "median": 4147.4,
+          "p75": 4147.4,
+          "p90": 4147.4,
+          "p95": 4147.4,
+          "p99": 4147.4,
+          "p999": 4147.4
+        },
+        "http.response_time.5xx": {
+          "min": 4153,
+          "max": 4153,
+          "count": 1,
+          "mean": 4153,
+          "p50": 4147.4,
+          "median": 4147.4,
+          "p75": 4147.4,
+          "p90": 4147.4,
+          "p95": 4147.4,
+          "p99": 4147.4,
+          "p999": 4147.4
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 4153,
+          "max": 4153,
+          "count": 1,
+          "mean": 4153,
+          "p50": 4147.4,
+          "median": 4147.4,
+          "p75": 4147.4,
+          "p90": 4147.4,
+          "p95": 4147.4,
+          "p99": 4147.4,
+          "p999": 4147.4
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 100,
+        "vusers.created": 100,
+        "http.requests": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 100,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ECONNRESET": 1,
+        "errors.ECONNRESET": 1,
+        "vusers.active": 298
+      },
+      "rates": {
+        "http.request_rate": 10
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314590032,
+      "lastCounterAt": 1759314599980,
+      "firstMetricAt": 1759314590032,
+      "lastMetricAt": 1759314599980,
+      "period": "1759314590000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 180,
+        "vusers.created": 180,
+        "http.requests": 180,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 99,
+        "vusers.active": 379
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314600032,
+      "lastCounterAt": 1759314609980,
+      "firstMetricAt": 1759314600032,
+      "lastMetricAt": 1759314609980,
+      "period": "1759314600000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 100,
+        "errors.ETIMEDOUT": 100,
+        "vusers.failed": 100,
+        "vusers.active": 479
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314610032,
+      "lastCounterAt": 1759314619980,
+      "firstMetricAt": 1759314610032,
+      "lastMetricAt": 1759314619980,
+      "period": "1759314610000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 99,
+        "errors.ETIMEDOUT": 99,
+        "vusers.failed": 99,
+        "vusers.active": 580
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314620032,
+      "lastCounterAt": 1759314629980,
+      "firstMetricAt": 1759314620032,
+      "lastMetricAt": 1759314629980,
+      "period": "1759314620000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 180,
+        "errors.ETIMEDOUT": 180,
+        "vusers.failed": 180,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314630032,
+      "lastCounterAt": 1759314639980,
+      "firstMetricAt": 1759314630032,
+      "lastMetricAt": 1759314639980,
+      "period": "1759314630000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314640032,
+      "lastCounterAt": 1759314649980,
+      "firstMetricAt": 1759314640032,
+      "lastMetricAt": 1759314649980,
+      "period": "1759314640000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314650032,
+      "lastCounterAt": 1759314659980,
+      "firstMetricAt": 1759314650032,
+      "lastMetricAt": 1759314659980,
+      "period": "1759314650000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314660032,
+      "lastCounterAt": 1759314669980,
+      "firstMetricAt": 1759314660032,
+      "lastMetricAt": 1759314669980,
+      "period": "1759314660000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314670032,
+      "lastCounterAt": 1759314679980,
+      "firstMetricAt": 1759314670032,
+      "lastMetricAt": 1759314679980,
+      "period": "1759314670000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314680032,
+      "lastCounterAt": 1759314689980,
+      "firstMetricAt": 1759314680032,
+      "lastMetricAt": 1759314689980,
+      "period": "1759314680000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314690032,
+      "lastCounterAt": 1759314699980,
+      "firstMetricAt": 1759314690032,
+      "lastMetricAt": 1759314699980,
+      "period": "1759314690000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314700032,
+      "lastCounterAt": 1759314709980,
+      "firstMetricAt": 1759314700032,
+      "lastMetricAt": 1759314709980,
+      "period": "1759314700000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 200,
+        "vusers.created": 200,
+        "http.requests": 200,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 600
+      },
+      "rates": {
+        "http.request_rate": 20
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314710032,
+      "lastCounterAt": 1759314719980,
+      "firstMetricAt": 1759314710032,
+      "lastMetricAt": 1759314719980,
+      "period": "1759314710000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 462,
+        "vusers.created": 462,
+        "http.requests": 462,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 200,
+        "vusers.active": 862
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314720032,
+      "lastCounterAt": 1759314729986,
+      "firstMetricAt": 1759314720032,
+      "lastMetricAt": 1759314729986,
+      "period": "1759314720000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 500,
+        "vusers.created": 500,
+        "http.requests": 500,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.failed": 616,
+        "http.codes.504": 416,
+        "http.responses": 416,
+        "http.downloaded_bytes": 54912,
+        "plugins.expect.failed": 416,
+        "plugins.expect.failed.statusCode": 416,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 416,
+        "errors.Failed capture or match": 416,
+        "vusers.active": 746
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314730032,
+      "firstHistogramAt": 1759314731503,
+      "lastCounterAt": 1759314739985,
+      "lastHistogramAt": 1759314739963,
+      "firstMetricAt": 1759314730032,
+      "lastMetricAt": 1759314739985,
+      "period": "1759314730000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10036,
+          "max": 10444,
+          "count": 416,
+          "mean": 10070.8,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 10201.2,
+          "p99": 10407.3,
+          "p999": 10407.3
+        },
+        "http.response_time.5xx": {
+          "min": 10036,
+          "max": 10444,
+          "count": 416,
+          "mean": 10070.8,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 10201.2,
+          "p99": 10407.3,
+          "p999": 10407.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10036,
+          "max": 10444,
+          "count": 416,
+          "mean": 10070.8,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 10201.2,
+          "p99": 10407.3,
+          "p999": 10407.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 500,
+        "vusers.created": 500,
+        "http.requests": 500,
+        "http.codes.504": 496,
+        "http.responses": 496,
+        "http.downloaded_bytes": 65472,
+        "plugins.expect.failed": 496,
+        "plugins.expect.failed.statusCode": 496,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 496,
+        "errors.Failed capture or match": 496,
+        "vusers.failed": 696,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 200,
+        "errors.ETIMEDOUT": 200,
+        "vusers.active": 550
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314740032,
+      "firstHistogramAt": 1759314740043,
+      "lastCounterAt": 1759314749985,
+      "lastHistogramAt": 1759314749975,
+      "firstMetricAt": 1759314740032,
+      "lastMetricAt": 1759314749985,
+      "period": "1759314740000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10036,
+          "max": 10401,
+          "count": 496,
+          "mean": 10058.5,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        },
+        "http.response_time.5xx": {
+          "min": 10036,
+          "max": 10401,
+          "count": 496,
+          "mean": 10058.5,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10036,
+          "max": 10401,
+          "count": 496,
+          "mean": 10058.5,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 500,
+        "vusers.created": 500,
+        "http.requests": 500,
+        "http.codes.504": 492,
+        "http.responses": 492,
+        "http.downloaded_bytes": 64944,
+        "plugins.expect.failed": 492,
+        "plugins.expect.failed.statusCode": 492,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 492,
+        "errors.Failed capture or match": 492,
+        "vusers.failed": 525,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 33,
+        "errors.ETIMEDOUT": 33,
+        "vusers.active": 525
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314750019,
+      "firstHistogramAt": 1759314750019,
+      "lastCounterAt": 1759314759985,
+      "lastHistogramAt": 1759314759978,
+      "firstMetricAt": 1759314750019,
+      "lastMetricAt": 1759314759985,
+      "period": "1759314750000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10033,
+          "max": 10232,
+          "count": 492,
+          "mean": 10054.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        },
+        "http.response_time.5xx": {
+          "min": 10033,
+          "max": 10232,
+          "count": 492,
+          "mean": 10054.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10033,
+          "max": 10232,
+          "count": 492,
+          "mean": 10054.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 500,
+        "vusers.created": 500,
+        "http.requests": 500,
+        "http.codes.504": 497,
+        "http.responses": 497,
+        "http.downloaded_bytes": 65604,
+        "plugins.expect.failed": 497,
+        "plugins.expect.failed.statusCode": 497,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 497,
+        "errors.Failed capture or match": 497,
+        "vusers.failed": 501,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 4,
+        "errors.ETIMEDOUT": 4,
+        "vusers.active": 524
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314760000,
+      "firstHistogramAt": 1759314760000,
+      "lastCounterAt": 1759314769985,
+      "lastHistogramAt": 1759314769985,
+      "firstMetricAt": 1759314760000,
+      "lastMetricAt": 1759314769985,
+      "period": "1759314760000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10034,
+          "max": 10214,
+          "count": 497,
+          "mean": 10057.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10201.2
+        },
+        "http.response_time.5xx": {
+          "min": 10034,
+          "max": 10214,
+          "count": 497,
+          "mean": 10057.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10201.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10034,
+          "max": 10214,
+          "count": 497,
+          "mean": 10057.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10201.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 500,
+        "vusers.created": 500,
+        "http.requests": 500,
+        "http.codes.504": 480,
+        "http.responses": 480,
+        "http.downloaded_bytes": 63360,
+        "plugins.expect.failed": 480,
+        "plugins.expect.failed.statusCode": 480,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 480,
+        "errors.Failed capture or match": 480,
+        "vusers.failed": 488,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 8,
+        "errors.ETIMEDOUT": 8,
+        "vusers.active": 536
+      },
+      "rates": {
+        "http.request_rate": 50
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314770008,
+      "firstHistogramAt": 1759314770008,
+      "lastCounterAt": 1759314779985,
+      "lastHistogramAt": 1759314779649,
+      "firstMetricAt": 1759314770008,
+      "lastMetricAt": 1759314779985,
+      "period": "1759314770000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10035,
+          "max": 10104,
+          "count": 480,
+          "mean": 10054,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        },
+        "http.response_time.5xx": {
+          "min": 10035,
+          "max": 10104,
+          "count": 480,
+          "mean": 10054,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10035,
+          "max": 10104,
+          "count": 480,
+          "mean": 10054,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 10201.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Chatbot Load Test": 74,
+        "vusers.created": 74,
+        "http.requests": 74,
+        "http.codes.504": 509,
+        "http.responses": 509,
+        "http.downloaded_bytes": 67188,
+        "plugins.expect.failed": 509,
+        "plugins.expect.failed.statusCode": 509,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 509,
+        "errors.Failed capture or match": 509,
+        "vusers.failed": 513,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 4,
+        "errors.ETIMEDOUT": 4,
+        "vusers.active": 97
+      },
+      "rates": {
+        "http.request_rate": 67
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1759314780032,
+      "firstHistogramAt": 1759314780041,
+      "lastCounterAt": 1759314789991,
+      "lastHistogramAt": 1759314789991,
+      "firstMetricAt": 1759314780032,
+      "lastMetricAt": 1759314789991,
+      "period": "1759314780000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10033,
+          "max": 10321,
+          "count": 509,
+          "mean": 10052.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        },
+        "http.response_time.5xx": {
+          "min": 10033,
+          "max": 10321,
+          "count": 509,
+          "mean": 10052.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10033,
+          "max": 10321,
+          "count": 509,
+          "mean": 10052.7,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 10201.2,
+          "p999": 10407.3
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "http.codes.504": 80,
+        "http.responses": 80,
+        "http.downloaded_bytes": 10560,
+        "plugins.expect.failed": 80,
+        "plugins.expect.failed.statusCode": 80,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 80,
+        "errors.Failed capture or match": 80,
+        "vusers.failed": 84,
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 4,
+        "errors.ETIMEDOUT": 4,
+        "vusers.active": 13
+      },
+      "rates": {},
+      "firstCounterAt": 1759314790014,
+      "firstHistogramAt": 1759314790014,
+      "lastCounterAt": 1759314796264,
+      "lastHistogramAt": 1759314792272,
+      "firstMetricAt": 1759314790014,
+      "lastMetricAt": 1759314796264,
+      "period": "1759314790000",
+      "summaries": {
+        "http.response_time": {
+          "min": 10034,
+          "max": 10082,
+          "count": 80,
+          "mean": 10043.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "http.response_time.5xx": {
+          "min": 10034,
+          "max": 10082,
+          "count": 80,
+          "mean": 10043.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        },
+        "plugins.metrics-by-endpoint.response_time./api/chat/{{ sessionId }}": {
+          "min": 10034,
+          "max": 10082,
+          "count": 80,
+          "mean": 10043.3,
+          "p50": 9999.2,
+          "median": 9999.2,
+          "p75": 9999.2,
+          "p90": 9999.2,
+          "p95": 9999.2,
+          "p99": 9999.2,
+          "p999": 9999.2
+        }
+      },
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 8,
+        "errors.ETIMEDOUT": 8,
+        "vusers.failed": 8,
+        "vusers.active": 5
+      },
+      "rates": {},
+      "firstCounterAt": 1759314800368,
+      "lastCounterAt": 1759314809881,
+      "firstMetricAt": 1759314800368,
+      "lastMetricAt": 1759314809881,
+      "period": "1759314800000",
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "counters": {
+        "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 5,
+        "errors.ETIMEDOUT": 5,
+        "vusers.failed": 5,
+        "vusers.active": 0
+      },
+      "rates": {},
+      "firstCounterAt": 1759314810164,
+      "lastCounterAt": 1759314811793,
+      "firstMetricAt": 1759314810164,
+      "lastMetricAt": 1759314811793,
+      "period": "1759314810000",
+      "summaries": {},
+      "histograms": {}
+    }
+  ],
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.Chatbot Load Test": 7620,
+      "vusers.created": 7620,
+      "http.requests": 7620,
+      "http.codes.200": 51,
+      "http.responses": 3031,
+      "http.downloaded_bytes": 423394,
+      "plugins.expect.ok": 51,
+      "plugins.expect.ok.statusCode": 51,
+      "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.200": 51,
+      "errors.Failed capture or match": 3031,
+      "vusers.failed": 7620,
+      "http.codes.502": 10,
+      "plugins.expect.failed": 2980,
+      "plugins.expect.failed.statusCode": 2980,
+      "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.502": 10,
+      "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ETIMEDOUT": 4588,
+      "errors.ETIMEDOUT": 4588,
+      "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.errors.ECONNRESET": 1,
+      "errors.ECONNRESET": 1,
+      "http.codes.504": 2970,
+      "plugins.metrics-by-endpoint./api/chat/{{ sessionId }}.codes.504": 2970
+    },
+    "histograms": {},
+    "rates": {
+      "http.request_rate": 13
+    },
+    "firstCounterAt": 1759314181827,
+    "firstHistogramAt": 1759314186653,
+    "lastCounterAt": 1759314811793,
+    "lastHistogramAt": 1759314792272,
+    "firstMetricAt": 1759314181827,
+    "lastMetricAt": 1759314811793,
+    "period": 1759314810000
+  }
+}

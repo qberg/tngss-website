@@ -1,29 +1,16 @@
-import { Link } from 'react-router-dom'
 import { ExhibitorCard } from '../ExhibitorCard'
+import { motion } from 'motion/react'
 
-const ExhibitorCardLink = ({
-  to,
-  exhibitor,
-  children,
-  className,
-  onClick,
-  ...props
-}) => {
-  const handleClick = (e) => {
-    if (onClick) {
-      onClick(e, exhibitor)
-    }
-  }
-
+const ExhibitorCardLink = ({ to, children, id, className = '' }) => {
   return (
-    <Link
-      to={to}
-      onClick={handleClick}
+    <motion.a
+      href={to}
       className={`${className} block focus:outline-none rounded-lg md:rounded-xl`}
-      {...props}
+      layout={true}
+      layoutId={id}
     >
       <ExhibitorCard>{children}</ExhibitorCard>
-    </Link>
+    </motion.a>
   )
 }
 

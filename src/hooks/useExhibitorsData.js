@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import exhibitorApiClient from '../utils/exhibitorApiClient'
 import { generateExhibitorSlug, getHallFromBooth } from '../utils/exhibitors'
+import { useDebounce } from 'use-debounce'
 
 const BASE_EXPO_ID = '0632d025-28d8-4650-92ed-f240a695d023'
 
@@ -50,6 +51,11 @@ export const useExhibitorsData = (
 }
 
 export const useInfiniteExhibitors = (filters = {}, expoId = BASE_EXPO_ID) => {
+  const [debouncedSearch] = useDebounce(filters.search || '', 500)
+  const queryFilters = {
+    ...filters,
+    search: debouncedSearch,
+  }
   const {
     data,
     fetchNextPage,
@@ -64,7 +70,7 @@ export const useInfiniteExhibitors = (filters = {}, expoId = BASE_EXPO_ID) => {
     queryFn: async ({ pageParam = 1 }) => {
       // Build query parameters
       const queryParams = {
-        ...filters,
+        ...queryFilters,
         page: pageParam,
         limit: 20,
       }

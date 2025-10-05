@@ -69,6 +69,13 @@ export {
 } from './Dropdown'
 
 export {
+  FilterDropdownPortal,
+  useDropdownPortal,
+  FilterDropdownPortalTrigger,
+  FilterDropdownPortalContent,
+} from './PortalDropdown'
+
+export {
   NewFilterDropdownRadioGroup,
   NewFilterDropdownRadioItem,
 } from './RadioOption'

@@ -115,12 +115,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
                 icon={true}
               />
               <TicketPrice pricing={networkingDinner?.pricing} />
-              <SimpleButton
-                onClick={handleNetworkingDinnerClick}
-                variant='mixed'
-              >
-                Register Now
-              </SimpleButton>
+              <SimpleButton variant='mixed'>Sold Out</SimpleButton>
               <TicketFeatures features={networkingDinner?.features} />
             </TicketCard>
           </div>

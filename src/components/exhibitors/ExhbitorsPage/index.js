@@ -1,4 +1,5 @@
 import MinimalHero from '../../Elements/MinimalHero'
+import { ExhibitorsProvider } from '../context/ExhibitorsContext'
 import ExhibitorListing from '../ExhibitorListing'
 
 const ExhibitorPage = () => {
@@ -6,7 +7,9 @@ const ExhibitorPage = () => {
     <main className='home-fade-in text-white font-urbanist'>
       <MinimalHero title='Exhibitor' tagLine='Elevate Your Brand at TNGSS' />
 
-      <ExhibitorListing />
+      <ExhibitorsProvider>
+        <ExhibitorListing />
+      </ExhibitorsProvider>
     </main>
   )
 }

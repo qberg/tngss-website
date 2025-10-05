@@ -8,10 +8,11 @@ const InfiniteScrollTrigger = ({
   children,
   className = '',
   text = 'Loading more exhibitors...',
+  margin = '200px',
 }) => {
   const { setElement, isIntersecting } = useIntersectionObserver({
     threshold: 0.1,
-    rootMargin: '200px',
+    rootMargin: margin,
     triggerOnce: false,
   })
 

@@ -39,8 +39,13 @@ const SpeakerEventCard = ({ event }) => {
     })
   }
 
+  const access_labels = {
+    '6896319ceccaa2124765d825': 'Visitor and Delegate Pass',
+    '689631a5eccaa2124765d83d': 'Delegate Pass Only',
+  }
+
   const getEventTypeLabel = (type) => {
-    return type === 'main_event' ? 'Main Event' : 'Partner Event'
+    return type === 'main_event' ? 'Main Event' : 'Pre-Event'
   }
 
   const toggleExpanded = () => {
@@ -49,9 +54,10 @@ const SpeakerEventCard = ({ event }) => {
 
   return (
     <article
-      className='p-1 overflow-hidden rounded-2xl'
+      className='overflow-hidden rounded-2xl'
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
+        padding: '0.5px',
       }}
     >
       <div className='w-full h-full bg-black rounded-2xl overflow-hidden p-3 md:p-6'>
@@ -66,7 +72,7 @@ const SpeakerEventCard = ({ event }) => {
           )}
           <div className='flex gap-1 items-center font-bold font-urbanist'>
             <Ticket size={14} />
-            <span>Delegate Pass Only</span>
+            <span>{access_labels[event?.access_level]}</span>
           </div>
         </div>
 

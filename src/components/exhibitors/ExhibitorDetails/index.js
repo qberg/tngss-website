@@ -28,7 +28,8 @@ const cleanUrl = (url) => {
 }
 
 const ExhibitorDetails = ({ exhibitor }) => {
-  const name = exhibitor?.name || ''
+  const name =
+    exhibitor?.exhibitor_data?.organisationDisplayName || exhibitor?.name || ''
   const imageSrc = exhibitor?.exhibitor_data?.organisationLogoUrl || null
   const sector = exhibitor?.sectorIntrested || 'sector_agnostic'
   const booths = exhibitor?.booths || []

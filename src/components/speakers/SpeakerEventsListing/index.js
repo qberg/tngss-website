@@ -161,7 +161,7 @@ const SpeakerEventsListing = ({ speaker }) => {
           <motion.div variants={filterButtonVariant}>
             <FilterButton
               value='partner_event'
-              label='Partner Events'
+              label='Pre-Events'
               count={eventCounts.partner_event}
               isActive={selectedFilter === 'partner_event'}
               onClick={() => handleFilterChange('partner_event')}
@@ -181,8 +181,9 @@ const SpeakerEventsListing = ({ speaker }) => {
               exit='exit'
             >
               {filteredEvents.map((event, index) => (
-                <motion.div
+                <motion.a
                   key={event.id}
+                  href={`/agenda/${event.slug}`}
                   variants={cardVariant}
                   layout
                   layoutId={`event-${event.id}`}
@@ -193,7 +194,7 @@ const SpeakerEventsListing = ({ speaker }) => {
                   style={{ willChange: 'transform' }}
                 >
                   <SpeakerEventCard event={event} />
-                </motion.div>
+                </motion.a>
               ))}
             </motion.div>
           ) : (

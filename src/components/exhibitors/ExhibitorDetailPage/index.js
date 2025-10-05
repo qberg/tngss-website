@@ -15,6 +15,7 @@ const ExhibitorDetailPage = () => {
         tagLine='Elevate Your Brand at TNGSS'
         applyBorder={false}
       />
+
       <ExhibitorDetails exhibitor={exhibitor} />
     </>
   )

@@ -8,7 +8,7 @@ const EventTypeTabs = ({ className = '', eventCounts = {} }) => {
 
   const tabs = [
     { key: 'main_event', label: 'Main Events' },
-    { key: 'partner_event', label: 'Partner Events' },
+    { key: 'partner_event', label: 'Pre-Events' },
   ]
 
   return (

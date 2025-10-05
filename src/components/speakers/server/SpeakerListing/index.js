@@ -88,8 +88,6 @@ const SpeakerListing = () => {
     },
   ]
 
-  console.log(draftFilters.search)
-
   const toggleDropdown = (dropdownName) => {
     setOpenDropDown(openDropdown === dropdownName ? null : dropdownName)
   }

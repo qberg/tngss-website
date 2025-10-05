@@ -324,7 +324,7 @@ const PartnerEventsListing = () => {
     >
       <div className='flex gap-12'>
         <div className='hidden md:block md:w-3/12'>
-          <DesktopFilterContainer title='Partner Event Filters'>
+          <DesktopFilterContainer title='Pre-Events Filters'>
             {/* Formats Filter */}
             <FilterDropdown filterKey='formats' title='Event Formats'>
               <div className='space-y-1'>
