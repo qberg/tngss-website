@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import MinimalHero from '../../Elements/MinimalHero'
 import { useExhibitorBySlug } from '../../../hooks/useExhibitorsData'
 import ExhibitorDetails from '../ExhibitorDetails'
+import FounderDetails from '../FounderDetails'
 
 const ExhibitorDetailPage = () => {
   const { slug } = useParams()
@@ -17,6 +18,7 @@ const ExhibitorDetailPage = () => {
       />
 
       <ExhibitorDetails exhibitor={exhibitor} />
+      <FounderDetails exhibitor={exhibitor} />
     </>
   )
 }

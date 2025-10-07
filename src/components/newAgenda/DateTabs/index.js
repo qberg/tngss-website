@@ -10,24 +10,13 @@ const DateTabs = ({
   isLoading,
   layoutIdPrefix = 'date-tab',
   className = '',
-  is_main_event = true,
 }) => {
-  // Format date display
-  let filteredDates
-  if (is_main_event) {
-    const ALLOWED_DATES = ['2025-10-09', '2025-10-10']
-    filteredDates = availableDates.filter(
-      (date) => date === 'all' || ALLOWED_DATES.includes(date)
-    )
-  } else {
-    filteredDates = availableDates
-  }
-
-  const formatDateDisplay = (dateString) => {
-    if (dateString === 'all') {
+  const formatDateDisplay = (dateObj) => {
+    if (dateObj.slug === 'all') {
       return 'ALL DAYS'
     }
-    const date = new Date(dateString)
+
+    const date = new Date(dateObj.slug)
     const dayOfWeek = date
       .toLocaleDateString('en-US', { month: 'short' })
       .toUpperCase()
@@ -35,13 +24,10 @@ const DateTabs = ({
     return `${dayOfWeek} ${dayOfMonth}`
   }
 
-  const dateTabs = [
-    { key: 'all', label: 'ALL DAYS' },
-    ...filteredDates.map((date) => ({
-      key: date,
-      label: formatDateDisplay(date),
-    })),
-  ]
+  const dateTabs = availableDates.map((date) => ({
+    key: date.slug,
+    label: formatDateDisplay(date),
+  }))
 
   if (isLoading) {
     return (
@@ -59,7 +45,6 @@ const DateTabs = ({
     >
       {dateTabs.map((dateTab, index) => {
         const count = dateCounts[dateTab.key] || 0
-
         return (
           <motion.div
             key={dateTab.key}
@@ -104,7 +89,7 @@ const DateTabs = ({
             {selectedDate === dateTab.key && (
               <motion.div
                 layoutId={`active-${layoutIdPrefix}-indicator`}
-                className='absolute inset-0 bg-theme-blue rounded-xl'
+                className='absolute inset-0 bg-theme-blue rounded-xl -z-10'
                 transition={{ ...superSnappySpring }}
               />
             )}

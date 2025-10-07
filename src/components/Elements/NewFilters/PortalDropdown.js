@@ -24,7 +24,11 @@ const useDropdownPortal = () => {
   return context
 }
 
-const FilterDropdownPortalTrigger = ({ children, className = '' }) => {
+const FilterDropdownPortalTrigger = ({
+  children,
+  className = '',
+  width = '300px',
+}) => {
   const { isOpen, setIsOpen, triggerRef } = useDropdownPortal()
 
   return (
@@ -41,7 +45,7 @@ const FilterDropdownPortalTrigger = ({ children, className = '' }) => {
       `}
       data-slot='filter-dropdown-portal-trigger'
       style={{
-        minWidth: '300px',
+        minWidth: width,
       }}
     >
       <span className='text-lg font-medium text-white'>{children}</span>
@@ -130,7 +134,7 @@ const FilterDropdownPortalContent = ({
             position: 'absolute',
             top: position.top,
             left: position.left,
-            minWidth: position.width,
+            width: position.width,
             zIndex: 9999,
           }}
           data-slot='filter-dropdown-portal-content'

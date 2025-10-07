@@ -18,7 +18,7 @@ const MainEventCard = ({ children, className, delay = 0, href, onClick }) => {
       }}
       initial={{
         opacity: 0,
-        y: 30,
+        y: 60,
       }}
       whileInView={{
         opacity: 1,

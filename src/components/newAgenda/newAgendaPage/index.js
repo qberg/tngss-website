@@ -1,5 +1,8 @@
 import MinimalHero from '../../Elements/MinimalHero'
+import { SectionWrapper } from '../../Layout/Section'
 import AgendaCardsRenderer from '../AgendaCardsRenderer'
+import MainEventsListing from '../MainEventsListing'
+import { MainAgendaProvider } from '../server/context/MainAgendaContext'
 
 const NewAgendaPage = () => {
   return (
@@ -9,7 +12,9 @@ const NewAgendaPage = () => {
         subTitle=''
         tagLine="Exploring the Core of TNGSS'25"
       />
-      <AgendaCardsRenderer />
+      <MainAgendaProvider>
+        <MainEventsListing />
+      </MainAgendaProvider>
     </section>
   )
 }
