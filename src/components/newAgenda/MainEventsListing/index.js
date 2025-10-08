@@ -17,7 +17,6 @@ import { ExhibitorCardSkeleton } from '../../exhibitors/ExhibitorListing/loaders
 import InfiniteScrollTrigger from '../../../hooks/useInfiniteScrollTrigger'
 import { useAgenda } from '../server/context/MainAgendaContext'
 import { SectionWrapper } from '../../Layout/Section'
-import MainAgendaFilters from '../MainAgendaFilters'
 import MainAgendaHeader from '../MainAgendaHeader'
 
 const MainEventsListing = () => {

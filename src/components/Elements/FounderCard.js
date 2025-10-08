@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 const FounderCard = ({ children, className = '' }) => {
   return (
     <motion.div
-      className={`${className} overflow-hidden rounded-lg md:rounded-xl`}
+      className={`${className} overflow-hidden rounded-lg md:rounded-xl md:w-4/12`}
       style={{
         background: 'linear-gradient(150deg, #007fcf, #f56b0d)',
         padding: '1px',
@@ -36,7 +36,7 @@ const FounderCard = ({ children, className = '' }) => {
         },
       }}
     >
-      <div className='relative w-full h-full bg-black overflow-hidden rounded-lg md:rounded-xl flex flex-col p-4 md:p-9 gap-3'>
+      <div className='relative w-full h-full bg-black overflow-hidden rounded-lg md:rounded-xl flex flex-col p-4 md:px-8 md:py-4 gap-3 '>
         {children}
       </div>
     </motion.div>
@@ -45,7 +45,7 @@ const FounderCard = ({ children, className = '' }) => {
 
 const FounderCardRow = ({ children, className }) => {
   return (
-    <div className={`${className} flex flex-row gap-3 md:gap-8`}>
+    <div className={`${className} flex flex-row gap-4 md:gap-6 items-center`}>
       {children}
     </div>
   )

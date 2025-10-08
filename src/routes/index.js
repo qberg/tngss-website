@@ -17,6 +17,8 @@ import {
   WhySponsor,
   Exhibitors,
   MediaInterestForm,
+  GlobalPavilion,
+  SpaceTechPavilion,
 } from '../views'
 import NewHome from '../views/New'
 import SpeakerDetail from '../components/speakers/SpeakerDetail'
@@ -95,6 +97,15 @@ const AppRoutes = () => {
       <Route
         path='/exhibitors/:slug'
         element={<RouteWithLayout component={ExhibitorDetailPage} />}
+      />
+      <Route
+        path='/global-pavilion'
+        element={<RouteWithLayout component={GlobalPavilion} />}
+      />
+
+      <Route
+        path='/space-tech-pavilion'
+        element={<RouteWithLayout component={SpaceTechPavilion} />}
       />
 
       <Route

@@ -1928,3 +1928,13 @@ body {
   background-size: 200% 100%;
   animation: shimmer 2s infinite linear;
 }
+
+.product-image {
+  aspect-ratio: '12/10';
+}
+
+@media (min-width: '768px') {
+  .product-image {
+    aspect-ratio: '12/4';
+  }
+}

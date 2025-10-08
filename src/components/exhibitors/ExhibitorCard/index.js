@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Children, useState } from 'react'
 import { motion } from 'motion/react'
 
 import logo from '../../../assets/tngss-dark.jpeg'
@@ -139,6 +139,32 @@ const ExhibitorCardTitle = ({ children, className, skeleton = false }) => {
   )
 }
 
+const ExhibitorCardTitleSecondary = ({
+  children,
+  skeleton = false,
+  className = '',
+}) => {
+  if (skeleton) {
+    return (
+      <div className='space-y-2'>
+        <SkeletonPulse className='w-3/4 h-6 rounded' />
+        <SkeletonPulse className='w-1/2 h-6 rounded' />
+      </div>
+    )
+  }
+
+  return (
+    <h3
+      className={`${className} font-bold font-urbanist text-white text-lg md:text-xl`}
+      style={{
+        lineHeight: '120%',
+      }}
+    >
+      {children}
+    </h3>
+  )
+}
+
 const ExhibitorCardDescription = ({ children, className }) => {
   return (
     <div
@@ -159,6 +185,7 @@ export {
   ExhibitorCard,
   ExhibitorLogo,
   ExhibitorCardTitle,
+  ExhibitorCardTitleSecondary,
   ExhibitorCardDescription,
   ExhibitorCardRow,
   StallInfoWrapper,

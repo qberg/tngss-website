@@ -59,8 +59,7 @@ const AnnouncementModal = ({}) => {
           >
             <X className='w-6 h-6 text-bg-gray' />
           </motion.button>
-          <motion.a
-            href='https://event.startuptn.in/booking?pass=delegate&count=1'
+          <motion.div
             className='relative w-11/12 md:max-w-5xl aspect-w-2 aspect-h-1'
             initial={{ opacity: 0, scale: 0.65 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -68,11 +67,11 @@ const AnnouncementModal = ({}) => {
             style={{ transformOrigin: 'bottom center' }}
           >
             <img
-              src='https://dejqwog80n2lx.cloudfront.net/delegate-pass-banner-new.jpg'
+              src='https://dejqwog80n2lx.cloudfront.net/announcement-banner.png'
               alt='Delegate pass banner'
               className='w-full h-full object-contain'
             />
-          </motion.a>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

@@ -97,18 +97,3 @@ export {
   MainEventCardTitle,
   MainEventCardCta,
 }
-
-{
-  /*
-
-      style={{
-        display: '-webkit-box',
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: 'vertical',
-        overflow: 'hidden',
-        lineHeight: '120%',
-        height: '5.5rem',
-      }}
-
-*/
-}

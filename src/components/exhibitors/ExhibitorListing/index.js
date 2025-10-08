@@ -63,6 +63,11 @@ const ExhibitorListing = () => {
     updateDraftFilters({ organisation_type: value })
   }
 
+  const companyTypeLabels = {
+    product: 'Product',
+    service: 'Service',
+  }
+
   return (
     <SectionWrapper>
       {/* title */}
@@ -189,6 +194,8 @@ const ExhibitorListing = () => {
             const organisationType = exhibitor?.organisationType || null
             const booths = exhibitor?.booths || []
             const sector = exhibitor?.sectorIntrested || 'sector_agnostic'
+            const companyType =
+              exhibitor?.exhibitor_data?.productService || 'product'
 
             const exhibitorPath = generateExhibitorPath(exhibitor, index)
 
@@ -234,7 +241,13 @@ const ExhibitorListing = () => {
                   </StallInfoWrapper>
                 )}
 
-                <ExhibitorCardRow>
+                <ExhibitorCardRow className='mt-2'>
+                  {companyType && (
+                    <Badge variant='primary' size='md'>
+                      {companyTypeLabels[companyType]}
+                    </Badge>
+                  )}
+
                   <Badge variant='primary' size='md'>
                     {SectorLabels[sector]}
                   </Badge>

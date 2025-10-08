@@ -61,7 +61,14 @@ export default function NavBar() {
       ],
     },
     { name: 'Venue', link: '/venue' },
-    { name: 'Exhibitors', link: '/exhibitors' },
+    {
+      name: 'Exhibitors',
+      dropdown: [
+        { name: 'Exhibitors', link: '/exhibitors' },
+        { name: 'Global Pavilion', link: '/global-pavilion' },
+        { name: 'Space Tech Pavilion', link: '/space-tech-pavilion' },
+      ],
+    },
     {
       name: 'More',
       dropdown: [

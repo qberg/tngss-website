@@ -1,11 +1,12 @@
 const SectionWrapper = ({ children, className, variant = 'default' }) => {
   const variants = {
-    default: 'px-4 md:px-24 2xl:px-44',
-    wide: 'px-4 md:px-16 2xl:px-28',
+    default: 'px-4 md:px-24 2xl:px-44 pb-8 py-4 md:py-14 2xl:py-24',
+    wide: 'px-4 md:px-16 2xl:px-28 pb-8 py-4 md:py-14 2xl:py-24',
+    top: 'px-4 md:px-24 2xl:px-44 pb-8 md:pb-14 2xl:pb-24',
   }
   return (
     <section
-      className={`${className} ${variants[variant]} bg-black pb-8 py-4 md:py-14 2xl:py-24 flex flex-col gap-8 md:gap-14 2xl:gap-14`}
+      className={`${className} ${variants[variant]} bg-black flex flex-col gap-8 md:gap-14 2xl:gap-14`}
     >
       {children}
     </section>

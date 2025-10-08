@@ -77,4 +77,36 @@ const AvatarFallback = ({ name, className = '' }) => {
   )
 }
 
-export { Avatar, AvatarImage, AvatarFallback }
+const AvatarInfo = ({ children, className = '' }) => {
+  return <div className={`${className} flex flex-col`}>{children}</div>
+}
+
+const AvatarTitle = ({ children, className = '' }) => {
+  return (
+    <h5
+      className={`${className} font-urbanist font-semibold text-white text-lg md:text-xl 2xl:text-2xl w-full truncate`}
+      style={{ lineHeight: '120%' }}
+    >
+      {children}
+    </h5>
+  )
+}
+
+const AvatarBody = ({ children, className = '' }) => {
+  return (
+    <p
+      className={`${className} font-urbanist font-normal text-gray-300 text-sm truncate`}
+    >
+      {children}
+    </p>
+  )
+}
+
+export {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarInfo,
+  AvatarTitle,
+  AvatarBody,
+}

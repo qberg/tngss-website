@@ -138,7 +138,7 @@ export const useSpeakerBySlug = (slug) => {
 }
 
 export const useSpeakersByType = (speakerTypeSlug, options = {}) => {
-  const { limit = 10, enabled = true } = options
+  const { limit = 30, enabled = true } = options
 
   return useQuery({
     queryKey: ['speakers', 'by-type', speakerTypeSlug, limit],
