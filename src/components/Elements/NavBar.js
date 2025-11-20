@@ -42,7 +42,48 @@ export default function NavBar() {
     }
   }, [isVisible, controls])
 
-  const menuItems = [
+  const desktopMenuItems = [
+    {
+      name: 'About',
+      dropdown: [
+        { name: 'TNGSS 2025', link: '/about' },
+        { name: 'Why Attend', link: '/why-attend' },
+        { name: 'Why Tamil Nadu', link: '/why-tn' },
+      ],
+    },
+    { name: 'Agenda', link: '/agenda' },
+    { name: 'Speakers', link: '/speakers' },
+    {
+      name: 'Sponsors',
+      dropdown: [
+        { name: 'Sponsors & Partners', link: '/sponsors' },
+        { name: 'Become a Sponsor', link: '/why-sponsor' },
+      ],
+    },
+    { name: 'Venue', link: '/venue' },
+    {
+      name: 'Exhibitors',
+      dropdown: [
+        { name: 'Exhibitors', link: '/exhibitors' },
+        { name: 'Global Pavilion', link: '/global-pavilion' },
+        { name: 'Space Tech Pavilion', link: '/space-tech-pavilion' },
+      ],
+    },
+    {
+      name: 'More',
+      dropdown: [
+        { name: 'Press And Media', link: '/media-form' },
+        { name: 'FAQ', link: '/faq' },
+        {
+          name: 'AI Chatbot',
+          link: 'https://tngss.heyareweare.com/',
+          external: true,
+        },
+      ],
+    },
+  ]
+
+  const mobileMenuItems = [
     {
       name: 'About',
       dropdown: [
@@ -75,6 +116,11 @@ export default function NavBar() {
         { name: 'Press And Media', link: '/media-form' },
         { name: 'FAQ', link: '/faq' },
       ],
+    },
+    {
+      name: 'AI Chatbot',
+      link: 'https://tngss.heyareweare.com/',
+      external: true,
     },
   ]
 
@@ -166,7 +212,7 @@ export default function NavBar() {
 
         {/* Desktop Menu - Hidden on mobile */}
         <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-2/3 2xl:-translate-x-1/2'>
-          {menuItems.map((item, index) => (
+          {desktopMenuItems.map((item, index) => (
             <div key={index} className='relative'>
               {item.dropdown ? (
                 <div
@@ -201,6 +247,12 @@ export default function NavBar() {
                           <motion.a
                             key={subIndex}
                             href={subItem.link}
+                            target={subItem.external ? '_blank' : undefined}
+                            rel={
+                              subItem.external
+                                ? 'noopener noreferrer'
+                                : undefined
+                            }
                             className='block px-4 py-3 text-base text-white transition-colors duration-200 border-b border-bg-gray last:border-b-0 hover:text-theme-blue'
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -300,7 +352,7 @@ export default function NavBar() {
           {/* Menu Items - Scrollable Section */}
           <div className='flex-1 px-6 py-8 overflow-y-auto'>
             <nav className='space-y-2'>
-              {menuItems.map((item, index) => (
+              {mobileMenuItems.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: 20 }}
@@ -338,6 +390,12 @@ export default function NavBar() {
                               <motion.a
                                 key={subIndex}
                                 href={subItem.link}
+                                target={subItem.external ? '_blank' : undefined}
+                                rel={
+                                  subItem.external
+                                    ? 'noopener noreferrer'
+                                    : undefined
+                                }
                                 onClick={closeMenu}
                                 className='block text-white text-lg hover:text-theme-blue transition-colors duration-200 py-3 px-4 hover:bg-white/5'
                                 initial={{ opacity: 0, x: -10 }}
@@ -354,6 +412,8 @@ export default function NavBar() {
                   ) : (
                     <a
                       href={item.link}
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
                       onClick={closeMenu}
                       className='block text-white text-lg font-medium hover:text-theme-blue transition-colors duration-200 py-3 px-3 rounded-lg hover:bg-white/5'
                     >

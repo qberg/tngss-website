@@ -8,27 +8,15 @@ import {
 import blueCardBg from '../../../assets/blue-cardbg.svg?url'
 import purpleCardBg from '../../../assets/purple-cardbg.svg?url'
 import mixedCardBg from '../../../assets/mixed-cardbg.svg?url'
-import { useTicketsBySlug } from '../../../hooks/useQueryApi'
 import SimpleButton from '../../Elements/SimpleButton'
+import { tickets } from '../utils'
 
-const TicketHero = ({ headers, applyBorder = true }) => {
-  const {
-    data: passData,
-    isLoading,
-    error,
-  } = useTicketsBySlug(['delegate-pass', 'visitor-pass', 'networking-dinner'])
+const TicketHero = ({ applyBorder = true }) => {
+  const visitorTicket = tickets[0]
 
-  const visitorTicket = passData?.docs?.find(
-    (ticket) => ticket.slug === 'visitor-pass'
-  )
+  const delegateTicket = tickets[1]
 
-  const delegateTicket = passData?.docs?.find(
-    (ticket) => ticket.slug === 'delegate-pass'
-  )
-
-  const networkingDinner = passData?.docs?.find(
-    (ticket) => ticket.slug === 'networking-dinner'
-  )
+  const networkingDinner = tickets[2]
 
   const handleVisitorPassClick = () => {
     window.location.href = 'https://event.startuptn.in/booking?pass=visitor'
@@ -59,11 +47,12 @@ const TicketHero = ({ headers, applyBorder = true }) => {
         {/*title*/}
         <div className='flex flex-col items-center gap-4'>
           <h2 className='font-medium text-3xl md:text-4xl 2xl:text-6xl gradient-text-black'>
-            {headers?.title}
+            Choose your Pass
           </h2>
 
           <p className='text-lg md:text-xl 2xl:text-3xl text-center'>
-            {headers?.description}
+            Select the perfect pass that suits your needs and get ready for an
+            unforgettable experience.
           </p>
         </div>
 
@@ -77,9 +66,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
                 icon={true}
               />
               <TicketPrice pricing={visitorTicket?.pricing} />
-              <SimpleButton onClick={handleVisitorPassClick} variant='blue'>
-                Select Visitor Pass
-              </SimpleButton>
+              <SimpleButton variant='blue'>Closed</SimpleButton>
               <TicketFeatures features={visitorTicket?.features} />
             </TicketCard>
           </div>
@@ -96,12 +83,8 @@ const TicketHero = ({ headers, applyBorder = true }) => {
                 icon={true}
               />
               <TicketPrice pricing={delegateTicket?.pricing} />
-              <SimpleButton
-                onClick={handleDelegatePassClick}
-                variant='purple'
-                fill
-              >
-                Select Delegate Pass
+              <SimpleButton variant='purple' fill>
+                Closed
               </SimpleButton>
               <TicketFeatures features={delegateTicket?.features} />
             </TicketCard>
@@ -115,7 +98,7 @@ const TicketHero = ({ headers, applyBorder = true }) => {
                 icon={true}
               />
               <TicketPrice pricing={networkingDinner?.pricing} />
-              <SimpleButton variant='mixed'>Sold Out</SimpleButton>
+              <SimpleButton variant='mixed'>Closed</SimpleButton>
               <TicketFeatures features={networkingDinner?.features} />
             </TicketCard>
           </div>

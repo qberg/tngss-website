@@ -28,15 +28,9 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
     (guideline) => guideline.name === 'Exhibitor Guidelines'
   )
 
-  const exhibitorSmall = exhibitors.find(
-    (data) => data.slug === 'exhibitor-6x8'
-  )
-  const exhibitorMedium = exhibitors.find(
-    (data) => data.slug === 'exhibitor-8x8'
-  )
-  const exhibitorLarge = exhibitors.find(
-    (data) => data.slug === 'exhibitor-16x8'
-  )
+  const exhibitorSmall = exhibitors[0]
+  const exhibitorMedium = exhibitors[1]
+  const exhibitorLarge = exhibitors[2]
 
   const handleExhibitorClick = () => {
     window.location.href = 'https://event.startuptn.in/expo-booking'
@@ -52,11 +46,12 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
     >
       <div className='flex flex-col items-center gap-4'>
         <h2 className='font-medium text-3xl md:text-4xl 2xl:text-6xl gradient-text-black'>
-          {headers?.title}
+          {headers?.title || 'Stall Availability For Exhibitors'}
         </h2>
 
         <p className='text-lg md:text-xl 2xl:text-3xl text-center'>
-          {headers?.description}
+          {headers?.description ||
+            'Select the perfect stall that suits your needs to best represent your brand.'}
         </p>
       </div>
 
@@ -72,7 +67,7 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               showSize
             />
             <SimpleButton variant='green'>
-              <div className='text-red-500'>Sold Out</div>
+              <div className='text-red-500'>Closed</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorSmall?.features} />
           </TicketCard>
@@ -87,7 +82,7 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               showSize
             />
             <SimpleButton variant='yellow'>
-              <div className='text-red-500'>Sold Out</div>
+              <div className='text-red-500'>Closed</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorMedium?.features} />
           </TicketCard>
@@ -102,7 +97,7 @@ const ExhibitorBlock = ({ headers, guidelinesData }) => {
               showSize
             />
             <SimpleButton variant='cyan'>
-              <div className='text-red-500'>Sold Out</div>
+              <div className='text-red-500'>Closed</div>
             </SimpleButton>
             <TicketFeatures features={exhibitorLarge?.features} />
           </TicketCard>

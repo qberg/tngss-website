@@ -52,7 +52,7 @@ const AnnouncementModal = ({}) => {
         >
           <motion.button
             onClick={closeModal}
-            className='absolute bottom-16 md:bottom-8 2xl:bottom-16 left-1/2 -translate-x-1/2 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors duration-200'
+            className='absolute top-16 md:top-8 2xl:top-16 right-4 md:right-24 -translate-x-1/2 z-10 p-2 bg-white rounded-full shadow-lg hover:bg-gray-100 transition-colors duration-200'
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
@@ -67,7 +67,7 @@ const AnnouncementModal = ({}) => {
             style={{ transformOrigin: 'bottom center' }}
           >
             <img
-              src='https://dejqwog80n2lx.cloudfront.net/announcement-banner.png'
+              src='https://dejqwog80n2lx.cloudfront.net/tq-note.jpg'
               alt='Delegate pass banner'
               className='w-full h-full object-contain'
             />
