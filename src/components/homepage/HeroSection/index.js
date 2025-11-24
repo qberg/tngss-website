@@ -11,6 +11,9 @@ import {
   eventDetailsVariants,
   logoVariants,
 } from './variants'
+import useYouTubeData from '../../../hooks/useYouTubeData'
+import YouTubeCard from '../../Elements/YouTubeCard'
+import { useRef, useEffect } from 'react'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -63,7 +66,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
   return (
     <motion.section
       id='hero-section'
-      className='bg-transparent flex flex-col justify-between pt-40 md:pt-0 items-center h-svh bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
+      className='bg-transparent pt-40 md:pt-0 h-svh bg-cover bg-center overflow-hidden md:px-12 sticky top-0'
       style={{
         backgroundImage: `url(${Herobg})`,
         opacity: wholeOpacity,
@@ -86,36 +89,39 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
       {/* Top spacer for mobile padding */}
       <div className='flex-shrink-0 md:hidden'></div>
 
-      {/* Logo Section */}
-      <motion.div
-        className='relative z-20 sm:mt-32 lg:mt-40 2xl:mt-60 will-change-transform'
-        variants={logoVariants}
-        style={{ scale: logoScale, y: logoY }}
-      >
-        <div className='flex justify-center items-center h-[25vh] md:h-[40vh] 2xl:h-[50vh] pr-4 md:px-10 w-full'>
-          <div className='relative'>
-            <img
-              src={logo}
-              alt='StartupTN Logo'
-              className='object-contain heroBg logo-3d-img max-w-[95%] 2xl:max-w-full'
-            />
+      <div className="h-svh w-1/2 flex flex-col items-center justify-between">
+        {/* Logo Section */}
+        <motion.div
+          className='relative z-20 sm:mt-32 lg:mt-40 2xl:mt-60 will-change-transform'
+          variants={logoVariants}
+          style={{ scale: logoScale, y: logoY }}
+        >
+          <div className='flex justify-center items-center h-[25vh] md:h-[40vh] 2xl:h-[50vh] pr-4 md:px-10 w-full'>
+            <div className='relative'>
+              <img
+                src={logo}
+                alt='StartupTN Logo'
+                className='object-contain logo-3d-img max-w-full'
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
-
-      {/* Event Details */}
-      <motion.div className='z-10' style={{ y: yEvents, opacity: subOpacity }}>
-        <EventDetails />
-      </motion.div>
-
-      {/* CTA Button */}
-      <motion.div
-        className='z-20 mb-20 sm:mb-8 lg:mb-12 2xl:mb-16'
-        variants={ctaVariants}
-        style={{ y: yCta, opacity: subOpacity }}
-      >
-        <CallToAction />
-      </motion.div>
+        </motion.div>
+        {/* Event Details */}
+        <motion.div className='z-10' style={{ y: yEvents, opacity: subOpacity }}>
+          <EventDetails />
+        </motion.div>
+        {/* CTA Button */}
+        <motion.div
+          className='z-20 mb-20 sm:mb-8 lg:mb-12 2xl:mb-16'
+          variants={ctaVariants}
+          style={{ y: yCta, opacity: subOpacity }}
+        >
+          <CallToAction />
+        </motion.div>
+      </div>
+      {/* <div className="absolute bottom-14 z-30">
+        <YouTubeScroll />
+      </div> */}
     </motion.section>
   )
 }
@@ -165,5 +171,31 @@ const CallToAction = () => (
     </AppCTAButton>
   </div>
 )
+
+const YouTubeScroll = () => {
+  const { data: videos, isLoading, isError, error } = useYouTubeData()
+  const scrollRef = useRef(null)
+  useEffect(()=>{
+    if (scrollRef.current) {
+      const scroll = (e) => {
+        scrollRef.current.scrollLeft += e.deltaX;
+      }
+      scrollRef.current.addEventListener('scroll', scroll);
+      return () => scrollRef.current.removeEventListener('scroll', scroll);
+    }
+  }, [])
+
+  if(isLoading) return <p>Loading Videos...</p>
+  if(isError) return <p>Error:{error.message}</p>
+
+  return (
+    <div className="flex gap-4 overflow-x-hidden whitespace-nowrap pl-40" ref={scrollRef}>
+      {videos?.map((video, index)=>(
+        <YouTubeCard key={index} videoId={video.id} thumbnail={video.thumbnail} />
+      ))}
+    </div>
+  )
+  
+}
 
 export default HeroSection

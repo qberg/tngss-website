@@ -1,6 +1,6 @@
 import Herobg from '../../../assets/herobg.svg?url'
 import pin from '../../../assets/locationpin.svg?url'
-import logo from '../../../assets/Nav_logo.png'
+import logo from '../../../assets/heroLogo.svg?url'
 import '../../Elements/custom.css'
 import { motion } from 'motion/react'
 import book from '../../../assets/foodcart.svg?url'
@@ -17,7 +17,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
   return (
     <motion.section
       id='hero-section'
-      className={`bg-transparent flex flex-col justify-between pt-40 md:pt-0 items-center h-svh bg-cover bg-center overflow-hidden md:px-12 ${
+      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 ${
         isSticky ? 'sticky top-0' : 'relative'
       }`}
       style={{
@@ -36,35 +36,31 @@ const MobileHeroSection = ({ isSticky = true }) => {
       {/* Top spacer for mobile padding */}
       <div className='flex-shrink-0 md:hidden'></div>
 
-      {/* Logo Section */}
-      <motion.div className='relative z-20 sm:mt-32 lg:mt-40 2xl:mt-60 will-change-transform'>
-        <div className='flex justify-center items-center h-[25vh] w-full'>
-          <div className='relative'>
-            <img
-              src={logo}
-              alt='StartupTN Logo'
-              className='object-contain heroBg logo-3d-img max-w-[95%] 2xl:max-w-full'
-            />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Event Details */}
-      <motion.div className='z-10'>
-        <EventDetails />
-      </motion.div>
-
-      {/* CTA Button */}
-      <motion.div className='z-20 mb-20'>
-        <CallToAction />
-      </motion.div>
+      <div className="h-2/3 flex flex-col justify-start items-center min-h-0 overflow-hidden">
+        {/* Logo Section */}
+        <motion.div className='relative flex justify-center items-center max-h-[30%] max-w-[60%] shrink min-h-0 min-w-0 will-change-transform'>
+          <img
+            src={logo}
+            alt='StartupTN Logo'
+            className='object-contain'
+          />
+        </motion.div>
+        {/* Event Details */}
+        <motion.div className='shrink min-h-0 min-w-0'>
+          <EventDetails />
+        </motion.div>
+        {/* CTA Button */}
+        <motion.div className='shrink min-h-0 min-w-0'>
+          <CallToAction />
+        </motion.div>
+      </div>
     </motion.section>
   )
 }
 
 const EventDetails = () => (
   <motion.div className=''>
-    <motion.p className='text-center text-3xl 2xl:text-5xl mb-2 2xl:mb-5 mt-2 2xl:mt-8'>
+    <motion.p className='text-center text-xl 2xl:text-5xl mb-2 2xl:mb-5 mt-2 2xl:mt-8'>
       <img
         src={pin}
         alt='Location pin'
@@ -72,14 +68,14 @@ const EventDetails = () => (
       />
       {EVENT_CONFIG.location}
     </motion.p>
-    <motion.p className='text-center text-2xl md:text-3xl mb-14 md:mb-4'>
+    <motion.p className='text-center text-lg md:text-3xl mb-4'>
       {EVENT_CONFIG.date}
     </motion.p>
   </motion.div>
 )
 
 const CallToAction = () => (
-  <div className='flex flex-col md:flex-row gap-2'>
+  <div className='flex flex-row gap-2'>
     <ShineButton
       src='https://event.startuptn.in/login'
       className='!hover:bg-black w-full justify-center text-white'
