@@ -34,15 +34,15 @@ const MobileHeroSection = ({ isSticky = true }) => {
       ></motion.video>
 
       {/* Top spacer for mobile padding */}
-      <div className='flex-shrink-0 md:hidden'></div>
+      {/* <div className='flex-shrink-0 md:hidden'></div> */}
 
-      <div className="h-2/3 flex flex-col justify-start items-center min-h-0 overflow-hidden">
+      <div className="h-3/5 flex flex-col justify-start items-center min-h-0">
         {/* Logo Section */}
-        <motion.div className='relative flex justify-center items-center max-h-[30%] max-w-[60%] shrink min-h-0 min-w-0 will-change-transform'>
+        <motion.div className='shrink flex min-h-0 min-w-0 will-change-transform'>
           <img
             src={logo}
             alt='StartupTN Logo'
-            className='object-contain'
+            className='object-contain max-h-48 w-auto'
           />
         </motion.div>
         {/* Event Details */}
