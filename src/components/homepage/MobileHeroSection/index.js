@@ -1,11 +1,14 @@
 import Herobg from '../../../assets/herobg.svg?url'
 import pin from '../../../assets/locationpin.svg?url'
-import logo from '../../../assets/Nav_logo.png'
+import logo from '../../../assets/heroLogo.svg?url'
 import '../../Elements/custom.css'
 import { motion } from 'motion/react'
 import book from '../../../assets/foodcart.svg?url'
 import vector from '../../../assets/Vector.svg?url'
 import ShineButton from '../../Elements/ShineButton'
+import HorizontalScroll from '../../Elements/HorizontalScroll'
+import YouTubeCard from '../../Elements/YouTubeCard'
+import useYouTubeData from '../../../hooks/useYouTubeData'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -14,10 +17,11 @@ const EVENT_CONFIG = {
 }
 
 const MobileHeroSection = ({ isSticky = true }) => {
+  const { data: videos } = useYouTubeData()
   return (
     <motion.section
       id='hero-section'
-      className={`bg-transparent flex flex-col justify-between pt-40 md:pt-0 items-center h-svh bg-cover bg-center overflow-hidden md:px-12 ${
+      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 flex flex-col gap-12 ${
         isSticky ? 'sticky top-0' : 'relative'
       }`}
       style={{
@@ -34,37 +38,42 @@ const MobileHeroSection = ({ isSticky = true }) => {
       ></motion.video>
 
       {/* Top spacer for mobile padding */}
-      <div className='flex-shrink-0 md:hidden'></div>
+      {/* <div className='flex-shrink-0 md:hidden'></div> */}
 
-      {/* Logo Section */}
-      <motion.div className='relative z-20 sm:mt-32 lg:mt-40 2xl:mt-60 will-change-transform'>
-        <div className='flex justify-center items-center h-[25vh] w-full'>
-          <div className='relative'>
-            <img
-              src={logo}
-              alt='StartupTN Logo'
-              className='object-contain heroBg logo-3d-img max-w-[95%] 2xl:max-w-full'
-            />
+      <div className='h-2/5 flex flex-col justify-start items-center min-h-0'>
+        {/* Logo Section */}
+        <motion.div className='shrink flex min-h-0 min-w-0 will-change-transform'>
+          <img
+            src={logo}
+            alt='StartupTN Logo'
+            className='object-contain max-h-48 w-auto'
+          />
+        </motion.div>
+        {/* Event Details */}
+        <motion.div className='shrink min-h-0 min-w-0'>
+          <EventDetails />
+        </motion.div>
+        {/* CTA Button */}
+      </div>
+
+      <div className='relative z-10'>
+        <HorizontalScroll maskWidth={30}>
+          <div className='flex gap-4' style={{ paddingLeft: '12vw' }}>
+            {videos?.map((video, index) => (
+              <div key={index} className='inline-block'>
+                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+              </div>
+            ))}
           </div>
-        </div>
-      </motion.div>
-
-      {/* Event Details */}
-      <motion.div className='z-10'>
-        <EventDetails />
-      </motion.div>
-
-      {/* CTA Button */}
-      <motion.div className='z-20 mb-20'>
-        <CallToAction />
-      </motion.div>
+        </HorizontalScroll>
+      </div>
     </motion.section>
   )
 }
 
 const EventDetails = () => (
   <motion.div className=''>
-    <motion.p className='text-center text-3xl 2xl:text-5xl mb-2 2xl:mb-5 mt-2 2xl:mt-8'>
+    <motion.p className='text-center text-xl 2xl:text-5xl mb-2 2xl:mb-5 mt-2 2xl:mt-8'>
       <img
         src={pin}
         alt='Location pin'
@@ -72,14 +81,14 @@ const EventDetails = () => (
       />
       {EVENT_CONFIG.location}
     </motion.p>
-    <motion.p className='text-center text-2xl md:text-3xl mb-14 md:mb-4'>
+    <motion.p className='text-center text-lg md:text-3xl mb-4'>
       {EVENT_CONFIG.date}
     </motion.p>
   </motion.div>
 )
 
 const CallToAction = () => (
-  <div className='flex flex-col md:flex-row gap-2'>
+  <div className='flex flex-row gap-2'>
     <ShineButton
       src='https://event.startuptn.in/login'
       className='!hover:bg-black w-full justify-center text-white'
