@@ -6,14 +6,12 @@ import { motion, useTransform } from 'motion/react'
 import AppCTAButton from '../../Elements/AppCTAButton'
 import { Download } from 'lucide-react'
 import {
-  ctaVariants,
   eventChildVariants,
   eventDetailsVariants,
   logoVariants,
 } from './variants'
 import useYouTubeData from '../../../hooks/useYouTubeData'
 import YouTubeCard from '../../Elements/YouTubeCard'
-import { useRef, useEffect } from 'react'
 import HorizontalScroll from '../../Elements/HorizontalScroll'
 
 const EVENT_CONFIG = {
@@ -34,10 +32,6 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
 
   const yEvents = !isMobile
     ? useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 400])
-    : 0
-
-  const yCta = !isMobile
-    ? useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 0, 600])
     : 0
 
   const subOpacity = !isMobile
@@ -65,6 +59,8 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
     : 1
 
   const { data: videos } = useYouTubeData()
+
+  console.log(videos)
 
   return (
     <motion.section

@@ -21,7 +21,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
   return (
     <motion.section
       id='hero-section'
-      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 ${
+      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 flex flex-col gap-6 ${
         isSticky ? 'sticky top-0' : 'relative'
       }`}
       style={{
@@ -40,7 +40,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
       {/* Top spacer for mobile padding */}
       {/* <div className='flex-shrink-0 md:hidden'></div> */}
 
-      <div className='h-3/5 flex flex-col justify-start items-center min-h-0'>
+      <div className='h-2/5 flex flex-col justify-start items-center min-h-0'>
         {/* Logo Section */}
         <motion.div className='shrink flex min-h-0 min-w-0 will-change-transform'>
           <img
