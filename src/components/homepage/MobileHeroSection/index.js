@@ -6,6 +6,9 @@ import { motion } from 'motion/react'
 import book from '../../../assets/foodcart.svg?url'
 import vector from '../../../assets/Vector.svg?url'
 import ShineButton from '../../Elements/ShineButton'
+import HorizontalScroll from '../../Elements/HorizontalScroll'
+import YouTubeCard from '../../Elements/YouTubeCard'
+import useYouTubeData from '../../../hooks/useYouTubeData'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -14,6 +17,7 @@ const EVENT_CONFIG = {
 }
 
 const MobileHeroSection = ({ isSticky = true }) => {
+  const { data: videos } = useYouTubeData()
   return (
     <motion.section
       id='hero-section'
@@ -36,7 +40,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
       {/* Top spacer for mobile padding */}
       {/* <div className='flex-shrink-0 md:hidden'></div> */}
 
-      <div className="h-3/5 flex flex-col justify-start items-center min-h-0">
+      <div className='h-3/5 flex flex-col justify-start items-center min-h-0'>
         {/* Logo Section */}
         <motion.div className='shrink flex min-h-0 min-w-0 will-change-transform'>
           <img
@@ -50,9 +54,18 @@ const MobileHeroSection = ({ isSticky = true }) => {
           <EventDetails />
         </motion.div>
         {/* CTA Button */}
-        <motion.div className='shrink min-h-0 min-w-0'>
-          <CallToAction />
-        </motion.div>
+      </div>
+
+      <div className='relative z-10'>
+        <HorizontalScroll maskWidth={30}>
+          <div className='flex gap-4' style={{ paddingLeft: '12vw' }}>
+            {videos?.map((video, index) => (
+              <div key={index} className='inline-block'>
+                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+              </div>
+            ))}
+          </div>
+        </HorizontalScroll>
       </div>
     </motion.section>
   )

@@ -14,6 +14,7 @@ import {
 import useYouTubeData from '../../../hooks/useYouTubeData'
 import YouTubeCard from '../../Elements/YouTubeCard'
 import { useRef, useEffect } from 'react'
+import HorizontalScroll from '../../Elements/HorizontalScroll'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -63,6 +64,8 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
     ? useTransform(scrollYProgress, [0.6, 0.7], [1, 0.6])
     : 1
 
+  const { data: videos } = useYouTubeData()
+
   return (
     <motion.section
       className='bg-transparent pt-30 h-svh bg-cover bg-center md:px-12 sticky top-0'
@@ -76,7 +79,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
       animate='visible'
     >
       <motion.video
-        className='absolute w-full h-full inset-0 z-10 object-cover'
+        className='absolute w-full h-full inset-0 object-cover'
         src='https://divsh6mubpk9o.cloudfront.net/hero-vid.mp4'
         autoPlay
         muted
@@ -88,34 +91,31 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
       {/* Top spacer for mobile padding */}
       <div className='flex-shrink-0 md:hidden'></div>
 
-      <div className="h-svh w-1/2 flex flex-col items-center justify-center 2xl:justify-between gap-8 xl:gap-12 2xl:gap-0">
+      <div className='h-svh w-1/2 flex flex-col items-center justify-center 2xl:justify-center gap-8 xl:gap-12 2xl:gap-0 z-10'>
         {/* Logo Section */}
         <motion.div
           className='relative mt-32 will-change-transform'
           variants={logoVariants}
           style={{ scale: logoScale, y: logoY }}
         >
-          <img
-            src={logo}
-            alt='StartupTN Logo'
-            className='object-contain'
-          />
+          <img src={logo} alt='StartupTN Logo' className='object-contain' />
         </motion.div>
         {/* Event Details */}
         <motion.div className='' style={{ y: yEvents, opacity: subOpacity }}>
           <EventDetails />
         </motion.div>
         {/* CTA Button */}
-        <motion.div
-          className='mb-20 sm:mb-8 lg:mb-12 2xl:mb-16'
-          variants={ctaVariants}
-          style={{ y: yCta, opacity: subOpacity }}
-        >
-          <CallToAction />
-        </motion.div>
       </div>
-      <div className="absolute bottom-14 z-10">
-        <YouTubeScroll />
+      <div className='absolute bottom-14 left-0 right-0 z-10'>
+        <HorizontalScroll>
+          <div className='flex gap-4' style={{ paddingLeft: '50vw' }}>
+            {videos?.map((video, index) => (
+              <div key={index} className='inline-block'>
+                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+              </div>
+            ))}
+          </div>
+        </HorizontalScroll>
       </div>
     </motion.section>
   )
@@ -166,43 +166,5 @@ const CallToAction = () => (
     </AppCTAButton>
   </div>
 )
-
-const YouTubeScroll = () => {
-  const scrollRef = useRef(null);
-  useEffect(()=>{
-    const el = scrollRef.current;
-    if (el) {
-      const onWheel = (e) => {
-        e.preventDefault();
-        el.scrollLeft += e.deltaY;
-      };
-      el.addEventListener('wheel', onWheel);
-      return () => el.removeEventListener('wheel', onWheel);
-    }
-  }, []);
-  
-  const { data: videos, isLoading, isError, error } = useYouTubeData()
-  if(isLoading) return <p>Loading Videos...</p>
-  if(isError) return <p>Error:{error.message}</p>
-
-  return (
-    <div>
-      <div
-        ref={scrollRef}
-        style={{
-          overflowX: 'hidden',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        {videos?.map((video, index)=>(
-          <div key={index} className="inline-block">
-            <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-  
-}
 
 export default HeroSection
