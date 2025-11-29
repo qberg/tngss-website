@@ -21,7 +21,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
   return (
     <motion.section
       id='hero-section'
-      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 flex flex-col gap-6 ${
+      className={`h-screen bg-transparent pt-28 md:pt-0 bg-cover bg-center overflow-hidden md:px-12 flex flex-col gap-12 ${
         isSticky ? 'sticky top-0' : 'relative'
       }`}
       style={{
