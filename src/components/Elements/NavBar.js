@@ -211,7 +211,7 @@ export default function NavBar() {
         </a>
 
         {/* Desktop Menu - Hidden on mobile */}
-        <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-2/3 2xl:-translate-x-1/2'>
+        <div className='hidden lg:absolute left-1/2 md:flex  text-xl transform  gap-4  lg:-translate-x-1/2'>
           {desktopMenuItems.map((item, index) => (
             <div key={index} className='relative'>
               {item.dropdown ? (
@@ -280,19 +280,6 @@ export default function NavBar() {
 
         {/* Desktop CTA Buttons - Hidden on mobile */}
         <div className='hidden md:flex gap-3 md:gap-5 items-center text-xl'>
-          <ShineButton
-            src='https://event.startuptn.in/login'
-            className='!hover:bg-black'
-            contCN='!bg-none py-2 px-4'
-          >
-            <img
-              className='px-2 inline-block w-8 h-4 mb-0.5'
-              src={book || '/placeholder.svg'}
-              alt='Vector'
-              style={{ filter: 'invert(1)' }}
-            />
-            Manage Your Stall
-          </ShineButton>
           <ShineButton
             src='/tickets#pass'
             onClick={handleScrollToPass}
