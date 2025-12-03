@@ -61,7 +61,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
           <div className='flex gap-4' style={{ paddingLeft: '12vw' }}>
             {videos?.map((video, index) => (
               <div key={index} className='inline-block'>
-                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} isMobile={true} />
               </div>
             ))}
           </div>
