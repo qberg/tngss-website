@@ -9,6 +9,7 @@ import ShineButton from '../../Elements/ShineButton'
 import HorizontalScroll from '../../Elements/HorizontalScroll'
 import YouTubeCard from '../../Elements/YouTubeCard'
 import useYouTubeData from '../../../hooks/useYouTubeData'
+import Carousel from '../../Elements/HorizontalScroll'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -57,7 +58,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
       </div>
 
       <div className='relative z-10'>
-        <HorizontalScroll maskWidth={30}>
+        <Carousel>
           <div className='flex gap-4' style={{ paddingLeft: '12vw' }}>
             {videos?.map((video, index) => (
               <div key={index} className='inline-block'>
@@ -65,7 +66,7 @@ const MobileHeroSection = ({ isSticky = true }) => {
               </div>
             ))}
           </div>
-        </HorizontalScroll>
+        </Carousel>
       </div>
     </motion.section>
   )

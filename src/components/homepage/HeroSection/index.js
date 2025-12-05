@@ -12,7 +12,8 @@ import {
 } from './variants'
 import useYouTubeData from '../../../hooks/useYouTubeData'
 import YouTubeCard from '../../Elements/YouTubeCard'
-import HorizontalScroll from '../../Elements/HorizontalScroll'
+import React, { useState } from 'react'
+import Carousel from '../../Elements/HorizontalScroll'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -59,6 +60,7 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
     : 1
 
   const { data: videos } = useYouTubeData()
+  const [active, setActive] = useState(null)
 
   console.log(videos)
 
@@ -103,15 +105,15 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         {/* CTA Button */}
       </div>
       <div className='absolute bottom-14 left-0 right-0 z-10'>
-        <HorizontalScroll>
-          <div className='flex gap-4' style={{ paddingLeft: '50vw' }}>
+        <Carousel>
+          <div className='flex gap-4' style={{paddingLeft: '50vw'}}>
             {videos?.map((video, index) => (
-              <div key={index} className='inline-block'>
-                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
-              </div>
-            ))}
+                <div key={index} className='inline-block'>
+                  <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+                </div>
+              ))}
           </div>
-        </HorizontalScroll>
+        </Carousel>
       </div>
     </motion.section>
   )
