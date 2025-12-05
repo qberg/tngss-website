@@ -7,7 +7,10 @@ const HorizontalScroll = ({ children, className = '', maskWidth = 60 }) => {
   })
 
   const scrollRef = useRef()
-  const [isTouch, setIsTouch] = useState(false)
+  const [dragging, setDragging] = useState(false)
+  const isDragging = useRef(false)
+  const startX = useRef(0)
+  const scrollLeftStart = useRef(0)
 
   const checkScrollPosition = useCallback(() => {
     const element = scrollRef.current
@@ -21,6 +24,32 @@ const HorizontalScroll = ({ children, className = '', maskWidth = 60 }) => {
       right: scrollLeft + clientWidth < scrollWidth - 1,
     })
   }, [])
+
+  const handleDown = (e) => {
+    const el = scrollRef.current
+    if (!el) return
+    isDragging.current = true
+    setDragging(true)
+    const xPosition = e.touches ? e.touches[0].pageX : e.pageX
+    startX.current = xPosition
+    scrollLeftStart.current = el.scrollLeft
+  }
+
+  const handleMove = (e) => {
+    if (!isDragging.current) return
+    const el = scrollRef.current
+    if (!el) return
+
+    const xPosition =  e.touches ? e.touches[0].pageX : e.pageX
+    const scrolled = xPosition - startX.current
+
+    el.scrollLeft = scrollLeftStart.current - scrolled
+  }
+
+  const handleUp = () => {
+    isDragging.current = false
+    setDragging(false)
+  }
 
   useEffect(() => {
     const element = scrollRef.current
@@ -50,11 +79,20 @@ const HorizontalScroll = ({ children, className = '', maskWidth = 60 }) => {
       <div
         ref={scrollRef}
         onScroll={checkScrollPosition}
+        onMouseDown={handleDown}
+        onMouseMove={handleMove}
+        onMouseUp={handleUp}
+        onMouseLeave={handleUp}
+        onTouchStart={handleDown}
+        onTouchMove={handleMove}
+        onTouchEnd={handleUp}
         className='overflow-x-auto'
         style={{
           overflowX: 'auto',
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
+          cursor: dragging? 'grabbing': 'grab',
+          touchAction: 'none'
         }}
       >
         {children}
