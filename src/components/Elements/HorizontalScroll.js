@@ -185,7 +185,7 @@ const Carousel = ({children, maskWidth=60}) => {
     }, [])
 
     console.log(showMask.left)
-    const baseStyle = "w-8 h-8 rounded-md hover:bg-theme-blue disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
+    const baseStyle = "w-8 h-8 rounded-md transition-colors duration-200 flex items-center justify-center"
 
     return (
         <>
