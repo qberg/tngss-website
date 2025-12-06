@@ -171,7 +171,6 @@ const Carousel = ({children, maskWidth=60}) => {
           behavior: "smooth"
       })
     }
-
     const checkScrollPosition = useCallback(() => {
       const element = carouselRef.current
 
@@ -185,20 +184,22 @@ const Carousel = ({children, maskWidth=60}) => {
       })
     }, [])
 
+    console.log(showMask.left)
     const baseStyle = "w-8 h-8 rounded-md hover:bg-theme-blue disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center"
 
     return (
         <>
             <div className="flex gap-4 justify-end mb-4 mr-4">
               <button
-                  className={`flex ${baseStyle}`}
+                  className={`flex ${baseStyle} ${showMask.left ? 'cursor-pointer': 'cursor-not-allowed opacity-50'}`}
                   onClick={() => {
                       scroll("left")
-                      checkScrollPosition
+                      checkScrollPosition()
                   }}
                   style={{
                     backgroundImage: `url(${introBackground})`
                   }}
+                  disabled={!showMask.left}
               >
                   <ArrowLeft
                       size={40}
@@ -206,14 +207,15 @@ const Carousel = ({children, maskWidth=60}) => {
                   />
               </button>
               <button
-                  className={`flex ${baseStyle}`}
+                  className={`flex ${baseStyle} ${showMask.right ? 'cursor-pointer': 'cursor-not-allowed opacity-50'}`}
                   onClick={() => {
                       scroll("right")
-                      checkScrollPosition
+                      checkScrollPosition()
                   }}
                   style={{
                     backgroundImage: `url(${introBackground})`
                   }}
+                  disabled={!showMask.right}
               >
                   <ArrowRight
                       size={40}
