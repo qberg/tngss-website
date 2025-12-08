@@ -62,7 +62,6 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
   const { data: youtube } = useYouTubeData()
   const [active, setActive] = useState(null)
 
-  console.log(videos)
   const fallback = [
     {id: '60NGR-V8qVU', thumbnail: 'https://i.ytimg.com/vi/60NGR-V8qVU/mqdefault.jpg'},
     {id: '_laGdEMiP8Y', thumbnail: 'https://i.ytimg.com/vi/_laGdEMiP8Y/mqdefault.jpg'},
