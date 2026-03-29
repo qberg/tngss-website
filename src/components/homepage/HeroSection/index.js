@@ -12,7 +12,8 @@ import {
 } from './variants'
 import useYouTubeData from '../../../hooks/useYouTubeData'
 import YouTubeCard from '../../Elements/YouTubeCard'
-import HorizontalScroll from '../../Elements/HorizontalScroll'
+import React, { useState } from 'react'
+import Carousel from '../../Elements/HorizontalScroll'
 
 const EVENT_CONFIG = {
   location: 'Codissia Trade Fair Complex, Coimbatore',
@@ -58,9 +59,18 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
     ? useTransform(scrollYProgress, [0.6, 0.7], [1, 0.6])
     : 1
 
-  const { data: videos } = useYouTubeData()
+  const { data: youtube } = useYouTubeData()
+  const [active, setActive] = useState(null)
 
-  console.log(videos)
+  const fallback = [
+    {id: '60NGR-V8qVU', thumbnail: 'https://i.ytimg.com/vi/60NGR-V8qVU/mqdefault.jpg'},
+    {id: '_laGdEMiP8Y', thumbnail: 'https://i.ytimg.com/vi/_laGdEMiP8Y/mqdefault.jpg'},
+    {id: 'it7HYe1CVlI', thumbnail: 'https://i.ytimg.com/vi/it7HYe1CVlI/mqdefault.jpg'},
+    {id: '5hBZxLxzSmU', thumbnail: 'https://i.ytimg.com/vi/5hBZxLxzSmU/mqdefault.jpg'},
+    {id: 's0fHU-0E3cg', thumbnail: 'https://i.ytimg.com/vi/s0fHU-0E3cg/mqdefault.jpg'},
+    {id: '6-pYVnlqoOc', thumbnail: 'https://i.ytimg.com/vi/6-pYVnlqoOc/mqdefault.jpg'},
+  ]
+  const videos = youtube || fallback
 
   return (
     <motion.section
@@ -103,15 +113,15 @@ const HeroSection = ({ scrollYProgress, isMobile }) => {
         {/* CTA Button */}
       </div>
       <div className='absolute bottom-14 left-0 right-0 z-10'>
-        <HorizontalScroll>
-          <div className='flex gap-4' style={{ paddingLeft: '50vw' }}>
-            {videos?.map((video, index) => (
-              <div key={index} className='inline-block'>
-                <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
-              </div>
-            ))}
+        <Carousel>
+          <div className='flex gap-4' style={{paddingLeft: '50vw'}}>
+            {videos.map((video, index) => (
+                <div key={index} className='inline-block'>
+                  <YouTubeCard videoId={video.id} thumbnail={video.thumbnail} />
+                </div>
+              ))}
           </div>
-        </HorizontalScroll>
+        </Carousel>
       </div>
     </motion.section>
   )

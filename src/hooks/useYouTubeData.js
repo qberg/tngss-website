@@ -5,12 +5,10 @@ const useYouTubeData = () => {
     queryKey: ['youtube', 'videos'],
     queryFn: async () => {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?` +
+        `https://www.googleapis.com/youtube/v3/playlistItems?` +
           `part=snippet` +
-          `&channelId=${process.env.REACT_APP_CHANNEL_ID}` +
+          `&playlistId=${process.env.REACT_APP_PLAYLIST_ID}` +
           `&maxResults=20` +
-          `&order=date` +
-          `&type=video` +
           `&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
       )
 
@@ -25,8 +23,8 @@ const useYouTubeData = () => {
       }
 
       return data.items.map((item) => ({
-        id: item.id.videoId,
-        thumbnail: item.snippet.thumbnails.medium.url,
+        id: item.snippet.resourceId.videoId,
+        thumbnail: item.snippet.thumbnails.medium.url, 
       }))
     },
     staleTime: 5 * 60 * 1000,

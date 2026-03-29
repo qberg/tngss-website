@@ -7,3 +7,4 @@ package-lock.json
 # jetbrains
 .idea
 .nvimrc
+.env.development
